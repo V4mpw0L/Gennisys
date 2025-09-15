@@ -1,114 +1,15 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Gennisys - Desenvolvimento de Apps</title>
-  <style>
-    /* Reset */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+  <meta name="viewport" content="width=device-width, maximum-scale=1.0, user-scalable=no">
+  <title>Gennisys - App Development</title>
+  
+  <!-- CSS -->
+  <link rel="stylesheet" href="style.css">
 
-    body {
-      font-family: "Segoe UI", Arial, sans-serif;
-      color: #f8fafc;
-      background: #0f172a;
-      overflow-x: hidden;
-    }
-
-    /* Canvas para partículas */
-    #particles {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: -1;
-      background: linear-gradient(135deg, #0f172a, #1e293b);
-    }
-
-    /* Navbar */
-    nav {
-      width: 100%;
-      position: fixed;
-      top: 0;
-      left: 0;
-      padding: 15px 40px;
-      background: rgba(15, 23, 42, 0.85);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      z-index: 1000;
-    }
-    nav h1 {
-      font-size: 1.5rem;
-      color: #38bdf8;
-    }
-    nav ul {
-      list-style: none;
-      display: flex;
-      gap: 25px;
-    }
-    nav ul li a {
-      color: #cbd5e1;
-      text-decoration: none;
-      font-weight: 500;
-      transition: 0.3s;
-    }
-    nav ul li a:hover {
-      color: #38bdf8;
-    }
-
-    /* Seções */
-    section {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      padding: 80px 20px;
-    }
-    section h2 {
-      font-size: 2.2rem;
-      color: #38bdf8;
-      margin-bottom: 15px;
-    }
-    section p {
-      max-width: 700px;
-      font-size: 1.2rem;
-      color: #cbd5e1;
-      line-height: 1.6;
-    }
-
-    /* Botão */
-    .btn {
-      display: inline-block;
-      margin-top: 25px;
-      padding: 12px 28px;
-      background: #38bdf8;
-      color: #0f172a;
-      font-weight: bold;
-      text-decoration: none;
-      border-radius: 8px;
-      transition: 0.3s;
-    }
-    .btn:hover {
-      background: #0ea5e9;
-    }
-
-    /* Footer */
-    footer {
-      text-align: center;
-      padding: 20px;
-      background: rgba(15, 23, 42, 0.9);
-      font-size: 0.9rem;
-      color: #94a3b8;
-    }
-  </style>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
 </head>
 <body>
   <!-- Canvas partículas -->
@@ -116,99 +17,65 @@
 
   <!-- Navbar -->
   <nav>
-    <h1>Gennisys</h1>
-    <ul>
-      <li><a href="#home">Home</a></li>
-      <li><a href="#sobre">Sobre</a></li>
-      <li><a href="#contato">Contato</a></li>
+    <h1 class="logo">Gennisys</h1>
+    <ul class="menu">
+      <li><a href="#home" data-key="home">Home</a></li>
+      <li><a href="#sobre" data-key="about">About</a></li>
+      <li><a href="#contato" data-key="contact">Contact</a></li>
     </ul>
+    <div class="flags">
+      <img src="https://flagcdn.com/us.svg" alt="English" data-lang="en">
+      <img src="https://flagcdn.com/br.svg" alt="Português" data-lang="pt">
+    </div>
   </nav>
 
-  <!-- Seções -->
-  <section id="home">
-    <h2>Bem-vindo à Gennisys</h2>
-    <p>Desenvolvemos aplicativos móveis e soluções digitais sob medida para transformar suas ideias em realidade.</p>
-  </section>
+  <!-- Banner Hero -->
+  <header class="hero" id="home">
+    <div class="hero-content">
+      <h2 data-key="hero_title">Building the Future in Apps</h2>
+      <p data-key="hero_text">
+        At <strong>Gennisys</strong>, we transform ideas into robust, secure, and scalable digital solutions.
+      </p>
+      <a href="#contato" class="btn" data-key="btn_contact">Get in Touch</a>
+    </div>
+  </header>
 
+  <!-- Seção Sobre -->
   <section id="sobre">
-    <h2>Sobre Nós</h2>
-    <p>
-      A Gennisys é focada em inovação, design e performance. Criamos apps modernos,
-      seguros e escaláveis para Android e iOS, sempre priorizando a experiência do usuário.
+    <h2 data-key="about_title">About Us</h2>
+    <p data-key="about_text">
+      Gennisys was born with the mission of creating applications and digital systems that combine innovation,
+      modern design, and performance. We develop solutions for Android and iOS, 
+      helping businesses and entrepreneurs reach new heights.
     </p>
   </section>
 
+  <!-- Seção CEO -->
+  <section id="ceo">
+    <div class="ceo-card">
+      <img src="https://i.ibb.co/0j1rG4H/avatar.png" alt="CEO Avatar">
+      <h3>Tiago Cardoso</h3>
+      <p class="position" data-key="ceo_title">Founder & CEO</p>
+      <p data-key="ceo_text">
+        With vision and passion for technology, Tiago leads Gennisys to create impactful apps and 
+        digital solutions that inspire innovation and deliver results.
+      </p>
+    </div>
+  </section>
+
+  <!-- Seção Contato -->
   <section id="contato">
-    <h2>Entre em Contato</h2>
-    <p>Tem uma ideia ou projeto? Vamos conversar!</p>
+    <h2 data-key="contact_title">Contact Us</h2>
+    <p data-key="contact_text">Have an idea or project? Let's talk and make it real!</p>
     <a href="mailto:info@gennisys.com" class="btn">info@gennisys.com</a>
   </section>
 
-  <!-- Footer -->
+  <!-- Rodapé -->
   <footer>
-    © 2025 Gennisys. Todos os direitos reservados.
+    © 2025 Gennisys. All rights reserved.
   </footer>
 
-  <!-- Script partículas -->
-  <script>
-    const canvas = document.getElementById("particles");
-    const ctx = canvas.getContext("2d");
-
-    let particlesArray;
-
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-
-    window.addEventListener("resize", () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-      init();
-    });
-
-    class Particle {
-      constructor(x, y, size, speedX, speedY) {
-        this.x = x;
-        this.y = y;
-        this.size = size;
-        this.speedX = speedX;
-        this.speedY = speedY;
-      }
-      update() {
-        this.x += this.speedX;
-        this.y += this.speedY;
-        if (this.size > 0.2) this.size -= 0.01;
-      }
-      draw() {
-        ctx.fillStyle = "rgba(56, 189, 248, 0.7)";
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-        ctx.fill();
-      }
-    }
-
-    function init() {
-      particlesArray = [];
-      for (let i = 0; i < 100; i++) {
-        let x = Math.random() * canvas.width;
-        let y = Math.random() * canvas.height;
-        let size = Math.random() * 3 + 1;
-        let speedX = (Math.random() - 0.5) * 1;
-        let speedY = (Math.random() - 0.5) * 1;
-        particlesArray.push(new Particle(x, y, size, speedX, speedY));
-      }
-    }
-
-    function animate() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      for (let i = 0; i < particlesArray.length; i++) {
-        particlesArray[i].update();
-        particlesArray[i].draw();
-      }
-      requestAnimationFrame(animate);
-    }
-
-    init();
-    animate();
-  </script>
+  <!-- Scripts -->
+  <script src="main.js"></script>
 </body>
 </html>
