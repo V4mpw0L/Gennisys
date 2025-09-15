@@ -1,18 +1,22 @@
-/* main.js
-   - partículas leves
-   - tradução EN/PT (clique nas flags)
-   - menu hamburger (mobile)
-   - comportamento: fechar mobile menu ao clicar em um link
-*/
+/* =========================================
+   Gennisys - main.js
+   - Animação de background (digital, em grid)
+   - Menu mobile toggle (hamburger)
+   - Tradução EN/PT (clique nas flags)
+   - Fechar mobile menu ao clicar fora
+   - Animação do logo ao carregar
+   ========================================= */
 
-/* ================== DOM READY ================== */
 document.addEventListener('DOMContentLoaded', () => {
-  /* ---------- particles (leve) ---------- */
+
+  /* ---------- Digital Grid Particles (leve, fundo animado) ---------- */
   const canvas = document.getElementById('particles');
   const ctx = canvas.getContext('2d');
   let w = canvas.width = window.innerWidth;
   let h = canvas.height = window.innerHeight;
   let particles = [];
+  const particleCount = () => Math.round(Math.max(60, Math.min(150, w / 10)));
+  const gridSpacing = 40;
 
   window.addEventListener('resize', () => {
     w = canvas.width = window.innerWidth;
@@ -20,47 +24,76 @@ document.addEventListener('DOMContentLoaded', () => {
     initParticles();
   });
 
-  class P {
-    constructor() {
-      this.reset();
-    }
-    reset() {
-      this.x = Math.random() * w;
-      this.y = Math.random() * h;
-      this.r = Math.random() * 2 + 0.6;
-      this.vx = (Math.random() - 0.5) * 0.6;
-      this.vy = (Math.random() - 0.5) * 0.6;
-      this.alpha = 0.5 + Math.random() * 0.6;
+  class Particle {
+    constructor(x, y) {
+      this.x = x;
+      this.y = y;
+      this.baseX = x;
+      this.baseY = y;
+      this.density = (Math.random() * 40) + 5;
+      this.alpha = 0.5 + Math.random() * 0.5;
     }
     step() {
-      this.x += this.vx;
-      this.y += this.vy;
-      if (this.x < -10 || this.x > w + 10 || this.y < -10 || this.y > h + 10) this.reset();
+      const distance = Math.sqrt(Math.pow(this.x - mouse.x, 2) + Math.pow(this.y - mouse.y, 2));
+      const forceDirectionX = (this.x - mouse.x) / distance;
+      const forceDirectionY = (this.y - mouse.y) / distance;
+      const maxDistance = mouse.radius;
+      const force = (maxDistance - distance) / maxDistance;
+      const directionX = forceDirectionX * force * this.density;
+      const directionY = forceDirectionY * force * this.density;
+
+      if (distance < mouse.radius) {
+        this.x -= directionX;
+        this.y -= directionY;
+      } else {
+        if (this.x !== this.baseX) {
+          const dx = this.x - this.baseX;
+          this.x -= dx / 12;
+        }
+        if (this.y !== this.baseY) {
+          const dy = this.y - this.baseY;
+          this.y -= dy / 12;
+        }
+      }
     }
     draw() {
       ctx.beginPath();
-      ctx.fillStyle = `rgba(56,189,248, ${this.alpha})`;
-      ctx.arc(this.x, this.y, this.r, 0, Math.PI*2);
+      ctx.fillStyle = `rgba(56,189,248,${this.alpha})`;
+      ctx.arc(this.x, this.y, 1.2, 0, Math.PI * 2);
       ctx.fill();
     }
   }
 
+  const mouse = {
+    x: undefined,
+    y: undefined,
+    radius: 120
+  };
+
+  window.addEventListener('mousemove', (event) => {
+    mouse.x = event.x;
+    mouse.y = event.y;
+  });
+
   function initParticles() {
     particles = [];
-    const count = Math.round(Math.max(40, Math.min(110, w / 12)));
-    for (let i = 0; i < count; i++) particles.push(new P());
+    for (let y = 0; y < h; y += gridSpacing) {
+      for (let x = 0; x < w; x += gridSpacing) {
+        particles.push(new Particle(x, y));
+      }
+    }
   }
 
-  function loop() {
+  function loopParticles() {
     ctx.clearRect(0, 0, w, h);
     particles.forEach(p => { p.step(); p.draw(); });
-    requestAnimationFrame(loop);
+    requestAnimationFrame(loopParticles);
   }
 
   initParticles();
-  loop();
+  loopParticles();
 
-  /* ============= Mobile menu toggle ============= */
+  /* ---------- Mobile menu toggle ---------- */
   const hamburger = document.querySelector('.hamburger');
   const mobileMenu = document.getElementById('mobileMenu');
 
@@ -79,19 +112,24 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // close mobile menu when clicking a link
+  // Close menu when a link is clicked
   document.querySelectorAll('.mobile-menu a').forEach(a => {
     a.addEventListener('click', () => toggleMobileMenu(false));
   });
 
-  // close mobile menu if clicking outside
+  // Close menu if user clicks outside
   document.addEventListener('click', (e) => {
     if (!e.target.closest('.mobile-menu') && !e.target.closest('.hamburger')) {
       toggleMobileMenu(false);
     }
   });
+  
+  // Close menu on resize
+  window.addEventListener('resize', () => {
+    toggleMobileMenu(false);
+  });
 
-  /* ============= Translations (EN / PT) ============= */
+  /* ---------- Translations EN/PT ---------- */
   const translations = {
     en: {
       nav_home: "Home",
@@ -129,19 +167,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // set default language
   let currentLang = 'en';
+
   function applyTranslations(lang) {
     currentLang = lang;
     document.documentElement.lang = lang;
     document.querySelectorAll('[data-key]').forEach(el => {
       const key = el.dataset.key;
       if (!key) return;
-      const value = translations[lang] && translations[lang][key];
+      const value = translations[lang][key];
       if (value !== undefined) el.innerHTML = value;
     });
   }
+
   applyTranslations(currentLang);
 
-  // flags click -> change language
+  // Flags click -> change language
   document.querySelectorAll('.flag').forEach(img => {
     img.addEventListener('click', () => {
       const lang = img.dataset.lang;
@@ -149,6 +189,12 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  /* ========= ensure that anchor clicks do not hide content under navbar ========= */
-  // scroll-margin-top already set in CSS (html { scroll-padding-top: 88px; })
+  // Animate SVG Logo
+  const logo = document.getElementById('logoSvg');
+  if (logo) {
+    setTimeout(() => {
+      logo.style.strokeDashoffset = '0';
+    }, 500);
+  }
+
 });

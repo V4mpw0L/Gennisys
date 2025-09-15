@@ -5,20 +5,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>Gennisys — App Development</title>
 
-  <!-- Styles -->
   <link rel="stylesheet" href="style.css" />
 
-  <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
 </head>
 <body>
-  <!-- Canvas das partículas -->
   <canvas id="particles" aria-hidden="true"></canvas>
 
-  <!-- NAVBAR -->
+  <button id="backToTop" aria-label="Back to top" style="display:none">
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#061023" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="18 15 12 9 6 15" />
+    </svg>
+  </button>
+
   <nav class="navbar" role="navigation" aria-label="Main navigation">
     <div class="nav-left">
-      <a href="#home" class="logo" aria-label="Gennisys home">Gennisys</a>
+      <a href="#home" class="logo desktop-only-logo" aria-label="Gennisys home">
+        <svg id="logoSvg" class="logo-svg" viewBox="0 0 240 50">
+          <path d="M10,25 Q30,5 50,25 Q70,45 90,25 T130,25 Q150,5 170,25 Q190,45 210,25 T240,25" />
+        </svg>
+      </a>
     </div>
 
     <div class="nav-center">
@@ -30,40 +36,44 @@
       </ul>
     </div>
 
-    <div class="nav-right">
-      <div class="flags" aria-hidden="false">
-        <!-- using flagcdn svg; needs internet to load -->
+    <div class="nav-right desktop-flags">
         <img src="https://flagcdn.com/us.svg" alt="English" data-lang="en" class="flag" />
         <img src="https://flagcdn.com/br.svg" alt="Português" data-lang="pt" class="flag" />
-      </div>
+    </div>
 
-      <!-- hamburger (visible on small screens) -->
+    <div class="mobile-nav">
+      <a href="#home" class="logo mobile-only-logo" aria-label="Gennisys home">Gennisys</a>
       <button class="hamburger" aria-label="Open mobile menu" aria-expanded="false">
-        <span></span><span></span><span></span>
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="3" y1="6" x2="21" y2="6"/>
+          <line x1="3" y1="12" x2="21" y2="12"/>
+          <line x1="3" y1="18" x2="21" y2="18"/>
+        </svg>
       </button>
     </div>
   </nav>
 
-  <!-- Mobile menu (hidden by default) -->
   <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
     <ul>
       <li><a href="#home" data-key="nav_home">Home</a></li>
       <li><a href="#about" data-key="nav_about">About</a></li>
       <li><a href="#ceo" data-key="nav_ceo">CEO</a></li>
       <li><a href="#contact" data-key="nav_contact">Contact</a></li>
+      <li class="flags-mobile">
+        <img src="https://flagcdn.com/us.svg" alt="English" data-lang="en" class="flag" />
+        <img src="https://flagcdn.com/br.svg" alt="Português" data-lang="pt" class="flag" />
+      </li>
     </ul>
   </div>
 
-  <!-- HERO (banner) -->
-  <header id="home" class="section hero">
+  <section id="home" class="section hero">
     <div class="card hero-card">
       <h1 data-key="hero_title">Building the Future in Apps</h1>
       <p data-key="hero_text">At <strong>Gennisys</strong>, we transform ideas into robust, secure, and scalable digital solutions.</p>
       <a class="btn" href="#contact" data-key="btn_contact">Get in Touch</a>
     </div>
-  </header>
+  </section>
 
-  <!-- ABOUT -->
   <section id="about" class="section">
     <div class="card">
       <h2 data-key="about_title">About Us</h2>
@@ -75,7 +85,6 @@
     </div>
   </section>
 
-  <!-- CEO -->
   <section id="ceo" class="section">
     <div class="card ceo-card">
       <img src="https://i.ibb.co/0j1rG4H/avatar.png" alt="Tiago Cardoso avatar" class="ceo-avatar" />
@@ -87,7 +96,6 @@
     </div>
   </section>
 
-  <!-- CONTACT -->
   <section id="contact" class="section">
     <div class="card">
       <h2 data-key="contact_title">Contact Us</h2>
@@ -96,14 +104,22 @@
     </div>
   </section>
 
-  <!-- FOOTER -->
   <footer>
     <div class="footer-inner">
       <small>© 2025 Gennisys. All rights reserved.</small>
     </div>
   </footer>
 
-  <!-- Script -->
   <script src="main.js"></script>
+  <script>
+    // Back to Top Button logic
+    const backToTop = document.getElementById('backToTop');
+    window.addEventListener('scroll', () => {
+      backToTop.style.display = window.scrollY > 200 ? 'block' : 'none';
+    });
+    backToTop.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  </script>
 </body>
 </html>
