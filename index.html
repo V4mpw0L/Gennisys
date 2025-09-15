@@ -1,81 +1,109 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, maximum-scale=1.0, user-scalable=no">
-  <title>Gennisys - App Development</title>
-  
-  <!-- CSS -->
-  <link rel="stylesheet" href="style.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Gennisys — App Development</title>
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="style.css" />
 
   <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
 </head>
 <body>
-  <!-- Canvas partículas -->
-  <canvas id="particles"></canvas>
+  <!-- Canvas das partículas -->
+  <canvas id="particles" aria-hidden="true"></canvas>
 
-  <!-- Navbar -->
-  <nav>
-    <h1 class="logo">Gennisys</h1>
-    <ul class="menu">
-      <li><a href="#home" data-key="home">Home</a></li>
-      <li><a href="#sobre" data-key="about">About</a></li>
-      <li><a href="#contato" data-key="contact">Contact</a></li>
-    </ul>
-    <div class="flags">
-      <img src="https://flagcdn.com/us.svg" alt="English" data-lang="en">
-      <img src="https://flagcdn.com/br.svg" alt="Português" data-lang="pt">
+  <!-- NAVBAR -->
+  <nav class="navbar" role="navigation" aria-label="Main navigation">
+    <div class="nav-left">
+      <a href="#home" class="logo" aria-label="Gennisys home">Gennisys</a>
+    </div>
+
+    <div class="nav-center">
+      <ul class="menu" role="menubar" aria-label="Primary">
+        <li role="none"><a role="menuitem" href="#home" data-key="nav_home">Home</a></li>
+        <li role="none"><a role="menuitem" href="#about" data-key="nav_about">About</a></li>
+        <li role="none"><a role="menuitem" href="#ceo" data-key="nav_ceo">CEO</a></li>
+        <li role="none"><a role="menuitem" href="#contact" data-key="nav_contact">Contact</a></li>
+      </ul>
+    </div>
+
+    <div class="nav-right">
+      <div class="flags" aria-hidden="false">
+        <!-- using flagcdn svg; needs internet to load -->
+        <img src="https://flagcdn.com/us.svg" alt="English" data-lang="en" class="flag" />
+        <img src="https://flagcdn.com/br.svg" alt="Português" data-lang="pt" class="flag" />
+      </div>
+
+      <!-- hamburger (visible on small screens) -->
+      <button class="hamburger" aria-label="Open mobile menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
     </div>
   </nav>
 
-  <!-- Banner Hero -->
-  <header class="hero" id="home">
-    <div class="hero-content">
-      <h2 data-key="hero_title">Building the Future in Apps</h2>
-      <p data-key="hero_text">
-        At <strong>Gennisys</strong>, we transform ideas into robust, secure, and scalable digital solutions.
-      </p>
-      <a href="#contato" class="btn" data-key="btn_contact">Get in Touch</a>
+  <!-- Mobile menu (hidden by default) -->
+  <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+    <ul>
+      <li><a href="#home" data-key="nav_home">Home</a></li>
+      <li><a href="#about" data-key="nav_about">About</a></li>
+      <li><a href="#ceo" data-key="nav_ceo">CEO</a></li>
+      <li><a href="#contact" data-key="nav_contact">Contact</a></li>
+    </ul>
+  </div>
+
+  <!-- HERO (banner) -->
+  <header id="home" class="section hero">
+    <div class="card hero-card">
+      <h1 data-key="hero_title">Building the Future in Apps</h1>
+      <p data-key="hero_text">At <strong>Gennisys</strong>, we transform ideas into robust, secure, and scalable digital solutions.</p>
+      <a class="btn" href="#contact" data-key="btn_contact">Get in Touch</a>
     </div>
   </header>
 
-  <!-- Seção Sobre -->
-  <section id="sobre">
-    <h2 data-key="about_title">About Us</h2>
-    <p data-key="about_text">
-      Gennisys was born with the mission of creating applications and digital systems that combine innovation,
-      modern design, and performance. We develop solutions for Android and iOS, 
-      helping businesses and entrepreneurs reach new heights.
-    </p>
-  </section>
-
-  <!-- Seção CEO -->
-  <section id="ceo">
-    <div class="ceo-card">
-      <img src="https://i.ibb.co/0j1rG4H/avatar.png" alt="CEO Avatar">
-      <h3>Tiago Cardoso</h3>
-      <p class="position" data-key="ceo_title">Founder & CEO</p>
-      <p data-key="ceo_text">
-        With vision and passion for technology, Tiago leads Gennisys to create impactful apps and 
-        digital solutions that inspire innovation and deliver results.
+  <!-- ABOUT -->
+  <section id="about" class="section">
+    <div class="card">
+      <h2 data-key="about_title">About Us</h2>
+      <p data-key="about_text">
+        Gennisys was born with the mission of creating applications and digital systems that combine innovation,
+        modern design and performance. We develop reliable solutions for Android and iOS, helping businesses and entrepreneurs
+        reach new heights.
       </p>
     </div>
   </section>
 
-  <!-- Seção Contato -->
-  <section id="contato">
-    <h2 data-key="contact_title">Contact Us</h2>
-    <p data-key="contact_text">Have an idea or project? Let's talk and make it real!</p>
-    <a href="mailto:info@gennisys.com" class="btn">info@gennisys.com</a>
+  <!-- CEO -->
+  <section id="ceo" class="section">
+    <div class="card ceo-card">
+      <img src="https://i.ibb.co/0j1rG4H/avatar.png" alt="Tiago Cardoso avatar" class="ceo-avatar" />
+      <h3 data-key="ceo_name">Tiago Cardoso</h3>
+      <p class="ceo-position" data-key="ceo_title">Founder & CEO</p>
+      <p data-key="ceo_text">
+        With vision and passion for technology, Tiago leads Gennisys to create impactful apps and digital solutions that inspire innovation and deliver results.
+      </p>
+    </div>
   </section>
 
-  <!-- Rodapé -->
+  <!-- CONTACT -->
+  <section id="contact" class="section">
+    <div class="card">
+      <h2 data-key="contact_title">Contact Us</h2>
+      <p data-key="contact_text">Have an idea or project? Let's talk and make it real!</p>
+      <a class="btn" href="mailto:info@gennisys.com">info@gennisys.com</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
   <footer>
-    © 2025 Gennisys. All rights reserved.
+    <div class="footer-inner">
+      <small>© 2025 Gennisys. All rights reserved.</small>
+    </div>
   </footer>
 
-  <!-- Scripts -->
+  <!-- Script -->
   <script src="main.js"></script>
 </body>
 </html>
