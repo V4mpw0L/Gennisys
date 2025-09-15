@@ -5,34 +5,90 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Gennisys - Desenvolvimento de Apps</title>
   <style>
-    body {
+    /* Reset */
+    * {
       margin: 0;
-      font-family: Arial, sans-serif;
-      background: linear-gradient(135deg, #0f172a, #1e293b);
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "Segoe UI", Arial, sans-serif;
       color: #f8fafc;
-      text-align: center;
+      background: #0f172a;
+      overflow-x: hidden;
+    }
+
+    /* Canvas para partículas */
+    #particles {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      background: linear-gradient(135deg, #0f172a, #1e293b);
+    }
+
+    /* Navbar */
+    nav {
+      width: 100%;
+      position: fixed;
+      top: 0;
+      left: 0;
+      padding: 15px 40px;
+      background: rgba(15, 23, 42, 0.85);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1000;
+    }
+    nav h1 {
+      font-size: 1.5rem;
+      color: #38bdf8;
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 25px;
+    }
+    nav ul li a {
+      color: #cbd5e1;
+      text-decoration: none;
+      font-weight: 500;
+      transition: 0.3s;
+    }
+    nav ul li a:hover {
+      color: #38bdf8;
+    }
+
+    /* Seções */
+    section {
+      min-height: 100vh;
       display: flex;
       flex-direction: column;
       justify-content: center;
-      height: 100vh;
+      align-items: center;
+      text-align: center;
+      padding: 80px 20px;
     }
-    header {
-      margin-bottom: 20px;
-    }
-    h1 {
-      font-size: 2.5rem;
-      margin: 0;
+    section h2 {
+      font-size: 2.2rem;
       color: #38bdf8;
+      margin-bottom: 15px;
     }
-    p {
+    section p {
+      max-width: 700px;
       font-size: 1.2rem;
-      margin-top: 10px;
       color: #cbd5e1;
+      line-height: 1.6;
     }
+
+    /* Botão */
     .btn {
       display: inline-block;
-      margin-top: 30px;
-      padding: 12px 24px;
+      margin-top: 25px;
+      padding: 12px 28px;
       background: #38bdf8;
       color: #0f172a;
       font-weight: bold;
@@ -43,25 +99,116 @@
     .btn:hover {
       background: #0ea5e9;
     }
+
+    /* Footer */
     footer {
-      position: absolute;
-      bottom: 15px;
-      width: 100%;
+      text-align: center;
+      padding: 20px;
+      background: rgba(15, 23, 42, 0.9);
       font-size: 0.9rem;
       color: #94a3b8;
     }
   </style>
 </head>
 <body>
-  <header>
+  <!-- Canvas partículas -->
+  <canvas id="particles"></canvas>
+
+  <!-- Navbar -->
+  <nav>
     <h1>Gennisys</h1>
-    <p>Desenvolvimento de Aplicativos e Soluções Digitais</p>
-  </header>
+    <ul>
+      <li><a href="#home">Home</a></li>
+      <li><a href="#sobre">Sobre</a></li>
+      <li><a href="#contato">Contato</a></li>
+    </ul>
+  </nav>
 
-  <a href="mailto:contato@gennisys.com" class="btn">Entre em contato</a>
+  <!-- Seções -->
+  <section id="home">
+    <h2>Bem-vindo à Gennisys</h2>
+    <p>Desenvolvemos aplicativos móveis e soluções digitais sob medida para transformar suas ideias em realidade.</p>
+  </section>
 
+  <section id="sobre">
+    <h2>Sobre Nós</h2>
+    <p>
+      A Gennisys é focada em inovação, design e performance. Criamos apps modernos,
+      seguros e escaláveis para Android e iOS, sempre priorizando a experiência do usuário.
+    </p>
+  </section>
+
+  <section id="contato">
+    <h2>Entre em Contato</h2>
+    <p>Tem uma ideia ou projeto? Vamos conversar!</p>
+    <a href="mailto:info@gennisys.com" class="btn">info@gennisys.com</a>
+  </section>
+
+  <!-- Footer -->
   <footer>
     © 2025 Gennisys. Todos os direitos reservados.
   </footer>
+
+  <!-- Script partículas -->
+  <script>
+    const canvas = document.getElementById("particles");
+    const ctx = canvas.getContext("2d");
+
+    let particlesArray;
+
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    window.addEventListener("resize", () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      init();
+    });
+
+    class Particle {
+      constructor(x, y, size, speedX, speedY) {
+        this.x = x;
+        this.y = y;
+        this.size = size;
+        this.speedX = speedX;
+        this.speedY = speedY;
+      }
+      update() {
+        this.x += this.speedX;
+        this.y += this.speedY;
+        if (this.size > 0.2) this.size -= 0.01;
+      }
+      draw() {
+        ctx.fillStyle = "rgba(56, 189, 248, 0.7)";
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    }
+
+    function init() {
+      particlesArray = [];
+      for (let i = 0; i < 100; i++) {
+        let x = Math.random() * canvas.width;
+        let y = Math.random() * canvas.height;
+        let size = Math.random() * 3 + 1;
+        let speedX = (Math.random() - 0.5) * 1;
+        let speedY = (Math.random() - 0.5) * 1;
+        particlesArray.push(new Particle(x, y, size, speedX, speedY));
+      }
+    }
+
+    function animate() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      for (let i = 0; i < particlesArray.length; i++) {
+        particlesArray[i].update();
+        particlesArray[i].draw();
+      }
+      requestAnimationFrame(animate);
+    }
+
+    init();
+    animate();
+  </script>
 </body>
 </html>
