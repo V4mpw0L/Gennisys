@@ -62,9 +62,9 @@ body {
 .nav-left, .nav-center, .nav-right { display:flex; align-items:center; gap:12px; }
 
 /* Logo */
-.logo { font-size:1.6rem; font-weight:800; color:#00ff88; text-decoration:none; letter-spacing:.8px; transition: transform .2s ease; }
+.logo { font-size:1.6rem; font-weight:800; color:#00ff88; text-decoration:none; letter-spacing:.8px; transition: transform .2s ease; background: transparent; }
 .logo:hover { transform: translateY(-1px); }
-.logo-svg { width: 140px; height: auto; }
+.logo-svg { width: 140px; height: auto; background: transparent; }
 .logo-svg path, .logo-svg-mobile path {
   fill: none;
   stroke: #00ff88;
@@ -79,35 +79,35 @@ body {
 /* Mobile logo */
 .mobile-logo-svg {
   display: none;
+  background: transparent;
 }
 
 .logo-svg-mobile {
   width: 80px;
   height: auto;
+  background: transparent;
 }
 
 @keyframes ecgHeartbeat {
   0% { 
     stroke-dashoffset: 400;
-    filter: drop-shadow(0 0 5px rgba(0,255,136,0.3));
+    stroke-width: 3;
   }
   25% { 
     stroke-dashoffset: 200;
-    filter: drop-shadow(0 0 10px rgba(0,255,136,0.6));
+    stroke-width: 3;
   }
   50% { 
     stroke-dashoffset: 0;
-    filter: drop-shadow(0 0 20px rgba(0,255,136,1));
     stroke-width: 4;
   }
   75% { 
     stroke-dashoffset: -200;
-    filter: drop-shadow(0 0 10px rgba(0,255,136,0.6));
     stroke-width: 3;
   }
   100% { 
     stroke-dashoffset: -400;
-    filter: drop-shadow(0 0 5px rgba(0,255,136,0.3));
+    stroke-width: 3;
   }
 }
 
