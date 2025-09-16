@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>Gennisys — App Development</title>
 
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
   <link rel="stylesheet" href="style.css" />
 
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
@@ -13,7 +14,7 @@
   <canvas id="particles" aria-hidden="true"></canvas>
 
   <button id="backToTop" aria-label="Back to top" style="display:none">
-    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#061023" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#00ff88" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
       <polyline points="18 15 12 9 6 15" />
     </svg>
   </button>
@@ -36,14 +37,29 @@
 
     <div class="nav-right">
       <a href="#home" class="logo desktop-only-logo" aria-label="Gennisys home">
-        <svg id="logoSvg" class="logo-svg" viewBox="0 0 240 50">
-          <path d="M10,25 Q30,5 50,25 Q70,45 90,25 T130,25 Q150,5 170,25 Q190,45 210,25 T240,25" />
+        <svg id="logoSvg" class="logo-svg" viewBox="0 0 240 50" xmlns="http://www.w3.org/2000/svg">
+          <path d="M20,25 L80,25 L85,10 L90,40 L95,25 L160,25" 
+                fill="none" 
+                stroke="#00ff88" 
+                stroke-width="3" 
+                stroke-linecap="round" 
+                stroke-linejoin="round"/>
         </svg>
       </a>
     </div>
 
     <div class="mobile-nav">
       <a href="#home" class="logo mobile-only-logo" aria-label="Gennisys home">Gennisys</a>
+      <div class="mobile-logo-svg">
+        <svg class="logo-svg-mobile" viewBox="0 0 240 50" xmlns="http://www.w3.org/2000/svg">
+          <path d="M20,25 L80,25 L85,10 L90,40 L95,25 L160,25" 
+                fill="none" 
+                stroke="#00ff88" 
+                stroke-width="3" 
+                stroke-linecap="round" 
+                stroke-linejoin="round"/>
+        </svg>
+      </div>
       <button class="hamburger" aria-label="Open mobile menu" aria-expanded="false">
         <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#00ff88" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
           <line x1="3" y1="6" x2="21" y2="6"/>
@@ -71,7 +87,7 @@
   <section id="home" class="section hero">
     <div class="card hero-card">
       <h1 data-key="hero_title">Building the Future in Apps</h1>
-      <p data-key="hero_text">At <strong>Gennisys</strong>, we create innovative mobile applications and digital solutions that define the next generation of technology.</p>
+      <p data-key="hero_text">At <strong class="brand-highlight">Gennisys</strong>, we create innovative mobile applications and digital solutions that define the next generation of technology.</p>
       <a class="btn" href="#contact" data-key="btn_contact">Get in Touch</a>
     </div>
   </section>

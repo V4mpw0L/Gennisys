@@ -138,7 +138,7 @@ document.addEventListener('DOMContentLoaded', () => {
       nav_ceo: "CEO",
       nav_contact: "Contact",
       hero_title: "Building the Future in Apps",
-      hero_text: "At <strong>Gennisys</strong>, we create innovative mobile applications and digital solutions that define the next generation of technology.",
+      hero_text: "At <strong class=\"brand-highlight\">Gennisys</strong>, we create innovative mobile applications and digital solutions that define the next generation of technology.",
       btn_contact: "Get in Touch",
       about_title: "About Us",
       about_text: "Gennisys specializes in developing innovative mobile applications and digital solutions. We create our own suite of professional apps including productivity tools, utilities, and games, all designed with cutting-edge technology and modern interfaces for the mobile-first world.",
@@ -169,7 +169,7 @@ document.addEventListener('DOMContentLoaded', () => {
       nav_ceo: "CEO",
       nav_contact: "Contato",
       hero_title: "Construindo o Futuro em Apps",
-      hero_text: "Na <strong>Gennisys</strong>, criamos aplicativos móveis inovadores e soluções digitais que definem a próxima geração de tecnologia.",
+      hero_text: "Na <strong class=\"brand-highlight\">Gennisys</strong>, criamos aplicativos móveis inovadores e soluções digitais que definem a próxima geração de tecnologia.",
       btn_contact: "Fale Conosco",
       about_title: "Sobre Nós",
       about_text: "A Gennisys é especializada no desenvolvimento de aplicativos móveis inovadores e soluções digitais. Criamos nossa própria suíte de apps profissionais incluindo ferramentas de produtividade, utilitários e jogos, todos projetados com tecnologia de ponta e interfaces modernas para o mundo mobile-first.",
@@ -218,13 +218,5 @@ document.addEventListener('DOMContentLoaded', () => {
       if (lang && translations[lang]) applyTranslations(lang);
     });
   });
-
-  // Animate SVG Logo
-  const logo = document.getElementById('logoSvg');
-  if (logo) {
-    setTimeout(() => {
-      logo.style.strokeDashoffset = '0';
-    }, 500);
-  }
 
 });
