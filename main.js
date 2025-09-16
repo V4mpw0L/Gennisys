@@ -58,7 +58,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     draw() {
       ctx.beginPath();
-      ctx.fillStyle = `rgba(56,189,248,${this.alpha})`;
+      ctx.fillStyle = `rgba(0,255,136,${this.alpha})`;
       ctx.arc(this.x, this.y, 1.2, 0, Math.PI * 2);
       ctx.fill();
     }
@@ -134,34 +134,64 @@ document.addEventListener('DOMContentLoaded', () => {
     en: {
       nav_home: "Home",
       nav_about: "About",
+      nav_apps: "Apps",
       nav_ceo: "CEO",
       nav_contact: "Contact",
       hero_title: "Building the Future in Apps",
-      hero_text: "At <strong>Gennisys</strong>, we transform ideas into robust, secure, and scalable digital solutions.",
+      hero_text: "At <strong>Gennisys</strong>, we create innovative mobile applications and digital solutions that define the next generation of technology.",
       btn_contact: "Get in Touch",
       about_title: "About Us",
-      about_text: "Gennisys was born with the mission of creating applications and digital systems that combine innovation, modern design and performance. We develop reliable solutions for Android and iOS, helping businesses and entrepreneurs reach new heights.",
+      about_text: "Gennisys specializes in developing innovative mobile applications and digital solutions. We create our own suite of professional apps including productivity tools, utilities, and games, all designed with cutting-edge technology and modern interfaces for the mobile-first world.",
+      apps_title: "Our Applications",
+      apps_subtitle: "Discover our suite of professional mobile applications",
+      app_calculator_title: "Smart Calculator",
+      app_calculator_desc: "Advanced calculator with scientific functions and history tracking",
+      app_calendar_title: "Pro Calendar",
+      app_calendar_desc: "Intelligent calendar with smart scheduling and reminders",
+      app_maps_title: "Navigation Plus",
+      app_maps_desc: "Enhanced mapping solution with offline capabilities",
+      app_games_title: "Mobile Games",
+      app_games_desc: "Engaging 2D and 3D games optimized for mobile experience",
+      app_utilities_title: "Utility Suite",
+      app_utilities_desc: "Essential tools for productivity and system optimization",
+      app_music_title: "Audio Studio",
+      app_music_desc: "Professional audio editing and music creation tools",
       ceo_name: "Tiago Cardoso",
       ceo_title: "Founder & CEO",
-      ceo_text: "With vision and passion for technology, Tiago leads Gennisys to create impactful apps and digital solutions that inspire innovation and deliver results.",
+      ceo_text: "With vision and passion for technology, Tiago leads Gennisys to create impactful mobile applications that inspire innovation and deliver exceptional user experiences.",
       contact_title: "Contact Us",
-      contact_text: "Have an idea or project? Let's talk and make it real!"
+      contact_text: "Ready to explore our applications? Let's connect and discuss the future of mobile technology!"
     },
     pt: {
       nav_home: "Início",
       nav_about: "Sobre",
+      nav_apps: "Apps",
       nav_ceo: "CEO",
       nav_contact: "Contato",
       hero_title: "Construindo o Futuro em Apps",
-      hero_text: "Na <strong>Gennisys</strong>, transformamos ideias em soluções digitais robustas, seguras e escaláveis.",
+      hero_text: "Na <strong>Gennisys</strong>, criamos aplicativos móveis inovadores e soluções digitais que definem a próxima geração de tecnologia.",
       btn_contact: "Fale Conosco",
       about_title: "Sobre Nós",
-      about_text: "A Gennisys nasceu com a missão de criar aplicativos e sistemas digitais que unem inovação, design moderno e performance. Desenvolvemos soluções para Android e iOS, ajudando empresas e empreendedores a alcançarem novos patamares.",
+      about_text: "A Gennisys é especializada no desenvolvimento de aplicativos móveis inovadores e soluções digitais. Criamos nossa própria suíte de apps profissionais incluindo ferramentas de produtividade, utilitários e jogos, todos projetados com tecnologia de ponta e interfaces modernas para o mundo mobile-first.",
+      apps_title: "Nossos Aplicativos",
+      apps_subtitle: "Descubra nossa suíte de aplicativos móveis profissionais",
+      app_calculator_title: "Calculadora Inteligente",
+      app_calculator_desc: "Calculadora avançada com funções científicas e histórico",
+      app_calendar_title: "Calendário Pro",
+      app_calendar_desc: "Calendário inteligente com agendamento e lembretes",
+      app_maps_title: "Navegação Plus",
+      app_maps_desc: "Solução de mapas aprimorada com recursos offline",
+      app_games_title: "Jogos Mobile",
+      app_games_desc: "Jogos envolventes 2D e 3D otimizados para experiência móvel",
+      app_utilities_title: "Suíte de Utilitários",
+      app_utilities_desc: "Ferramentas essenciais para produtividade e otimização",
+      app_music_title: "Estúdio de Áudio",
+      app_music_desc: "Ferramentas profissionais de edição de áudio e criação musical",
       ceo_name: "Tiago Cardoso",
       ceo_title: "Fundador & CEO",
-      ceo_text: "Com visão e paixão por tecnologia, Tiago lidera a Gennisys para criar aplicativos impactantes e soluções digitais que inspiram inovação e entregam resultados.",
+      ceo_text: "Com visão e paixão por tecnologia, Tiago lidera a Gennisys para criar aplicativos móveis impactantes que inspiram inovação e entregam experiências excepcionais.",
       contact_title: "Entre em Contato",
-      contact_text: "Tem uma ideia ou projeto? Vamos conversar e transformar em realidade!"
+      contact_text: "Pronto para explorar nossos aplicativos? Vamos nos conectar e discutir o futuro da tecnologia móvel!"
     }
   };
 
