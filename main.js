@@ -219,95 +219,14 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  /* ---------- Logo Animation with Floating Bytes ---------- */
+  /* ---------- Logo Animation with Rotating G ---------- */
   function initLogoAnimation() {
     // Animate G in mobile logo
     const mobileLogoText = document.querySelector('.mobile-only-logo');
     if (mobileLogoText && mobileLogoText.textContent.includes('Gennisys')) {
       const text = mobileLogoText.textContent;
       mobileLogoText.innerHTML = `<span class="rotating-g">${text.charAt(0)}</span>${text.slice(1)}`;
-      
-      // Create container for floating bytes
-      const logoContainer = document.createElement('div');
-      logoContainer.className = 'logo-container';
-      mobileLogoText.parentNode.insertBefore(logoContainer, mobileLogoText);
-      logoContainer.appendChild(mobileLogoText);
-      
-      // Create floating bytes
-      createFloatingBytes(logoContainer);
     }
-  }
-  
-  function createFloatingBytes(container) {
-    const bytesCount = 6;
-    const positions = [
-      { x: -40, y: -20 }, // top left
-      { x: 40, y: -20 },  // top right
-      { x: -50, y: 0 },   // middle left
-      { x: 50, y: 0 },    // middle right
-      { x: -30, y: 25 },  // bottom left
-      { x: 30, y: 25 }    // bottom right
-    ];
-    
-    for (let i = 0; i < bytesCount; i++) {
-      const byte = document.createElement('span');
-      byte.className = 'floating-byte';
-      byte.textContent = Math.random() > 0.5 ? '1' : '0';
-      
-      // Position around the logo
-      const pos = positions[i];
-      byte.style.left = `calc(50% + ${pos.x}px)`;
-      byte.style.top = `calc(50% + ${pos.y}px)`;
-      
-      container.appendChild(byte);
-      
-      // Animate each byte with subtle floating
-      animateFloatingByte(byte, pos, i);
-    }
-  }
-  
-  function animateFloatingByte(byte, originalPos, index) {
-    let time = index * 1000; // Different starting time for each byte
-    let directionX = (Math.random() - 0.5) * 0.5;
-    let directionY = (Math.random() - 0.5) * 0.5;
-    let currentX = originalPos.x;
-    let currentY = originalPos.y;
-    
-    function animate() {
-      time += 0.02;
-      
-      // Continuous floating movement
-      currentX += directionX;
-      currentY += directionY;
-      
-      // Bounce off boundaries around the logo
-      if (currentX > originalPos.x + 20 || currentX < originalPos.x - 20) {
-        directionX *= -1;
-      }
-      if (currentY > originalPos.y + 15 || currentY < originalPos.y - 15) {
-        directionY *= -1;
-      }
-      
-      // Add some random drift
-      directionX += (Math.random() - 0.5) * 0.05;
-      directionY += (Math.random() - 0.5) * 0.05;
-      
-      // Limit speed
-      directionX = Math.max(-0.8, Math.min(0.8, directionX));
-      directionY = Math.max(-0.8, Math.min(0.8, directionY));
-      
-      byte.style.left = `calc(50% + ${currentX}px)`;
-      byte.style.top = `calc(50% + ${currentY}px)`;
-      
-      // Change byte value occasionally
-      if (Math.random() < 0.003) {
-        byte.textContent = Math.random() > 0.5 ? '1' : '0';
-      }
-      
-      requestAnimationFrame(animate);
-    }
-    
-    animate();
   }
   
   // Initialize logo animation

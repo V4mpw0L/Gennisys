@@ -75,24 +75,6 @@ body {
 }
 .logo:hover { transform: translateY(-1px); }
 
-/* Container for floating bytes */
-.logo-container {
-  position: relative;
-  display: inline-block;
-}
-
-/* Floating bytes styles */
-.floating-byte {
-  position: absolute;
-  color: #00ff88;
-  font-size: 0.6rem;
-  font-weight: bold;
-  pointer-events: none;
-  opacity: 0.25;
-  z-index: 10;
-  text-shadow: 0 0 2px rgba(0,255,136,0.3);
-}
-
 /* G rotation animation */
 .rotating-g {
   display: inline-block;
