@@ -62,8 +62,48 @@ body {
 .nav-left, .nav-center, .nav-right { display:flex; align-items:center; gap:12px; }
 
 /* Logo */
-.logo { font-size:1.6rem; font-weight:800; color:#00ff88; text-decoration:none; letter-spacing:.8px; transition: transform .2s ease; background: transparent; }
+.logo { 
+  font-size:1.6rem; 
+  font-weight:800; 
+  color:#00ff88; 
+  text-decoration:none; 
+  letter-spacing:.8px; 
+  transition: transform .2s ease; 
+  background: transparent; 
+  position: relative;
+  display: inline-block;
+}
 .logo:hover { transform: translateY(-1px); }
+
+/* Container for floating bytes */
+.logo-container {
+  position: relative;
+  display: inline-block;
+}
+
+/* Floating bytes styles */
+.floating-byte {
+  position: absolute;
+  color: #00ff88;
+  font-size: 0.5rem;
+  font-weight: bold;
+  pointer-events: none;
+  opacity: 0.3;
+  z-index: 10;
+  transition: opacity 0.5s ease;
+}
+
+/* G rotation animation */
+.rotating-g {
+  display: inline-block;
+  animation: slowRotate 6s linear infinite;
+  transform-origin: center;
+}
+
+@keyframes slowRotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
 .logo-svg { width: 140px; height: auto; background: transparent; }
 .logo-svg path, .logo-svg-mobile path {
   fill: none;

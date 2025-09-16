@@ -219,4 +219,76 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  /* ---------- Logo Animation with Floating Bytes ---------- */
+  function initLogoAnimation() {
+    // Animate G in mobile logo
+    const mobileLogoText = document.querySelector('.mobile-only-logo');
+    if (mobileLogoText && mobileLogoText.textContent.includes('Gennisys')) {
+      const text = mobileLogoText.textContent;
+      mobileLogoText.innerHTML = `<span class="rotating-g">${text.charAt(0)}</span>${text.slice(1)}`;
+      
+      // Create container for floating bytes
+      const logoContainer = document.createElement('div');
+      logoContainer.className = 'logo-container';
+      mobileLogoText.parentNode.insertBefore(logoContainer, mobileLogoText);
+      logoContainer.appendChild(mobileLogoText);
+      
+      // Create floating bytes
+      createFloatingBytes(logoContainer);
+    }
+  }
+  
+  function createFloatingBytes(container) {
+    const bytesCount = 6;
+    
+    for (let i = 0; i < bytesCount; i++) {
+      const byte = document.createElement('span');
+      byte.className = 'floating-byte';
+      byte.textContent = Math.random() > 0.5 ? '1' : '0';
+      
+      // Random starting position around the logo
+      const startX = (Math.random() - 0.5) * 120;
+      const startY = (Math.random() - 0.5) * 80;
+      
+      byte.style.left = '50%';
+      byte.style.top = '50%';
+      byte.style.transform = `translate(${startX}px, ${startY}px)`;
+      
+      container.appendChild(byte);
+      
+      // Animate each byte with floating movement
+      animateFloatingByte(byte, i);
+    }
+  }
+  
+  function animateFloatingByte(byte, index) {
+    let time = 0;
+    const speedX = 0.002 + (index * 0.0005);
+    const speedY = 0.003 + (index * 0.0003);
+    const amplitudeX = 30 + (index * 5);
+    const amplitudeY = 20 + (index * 3);
+    
+    function animate() {
+      time += 0.01;
+      
+      // Smooth floating movement using sine waves
+      const x = Math.sin(time * speedX) * amplitudeX;
+      const y = Math.cos(time * speedY) * amplitudeY;
+      
+      byte.style.transform = `translate(${x}px, ${y}px)`;
+      
+      // Change byte value very occasionally
+      if (Math.random() < 0.001) {
+        byte.textContent = Math.random() > 0.5 ? '1' : '0';
+      }
+      
+      requestAnimationFrame(animate);
+    }
+    
+    animate();
+  }
+  
+  // Initialize logo animation
+  initLogoAnimation();
+
 });
