@@ -4,9 +4,9 @@
 
 ![Gennisys Logo](https://img.shields.io/badge/Gennisys-Building%20the%20Future-00ff88?style=for-the-badge&logo=data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTIgMTJMMTAgMTJMMTEgNkwxMyAxOEwxNSAxMkwyMiAxMiIgc3Ryb2tlPSIjMDBmZjg4IiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPgo8L3N2Zz4K)
 
-**Building the Future in Apps**
+**Independent App Studio**
 
-*Creating innovative mobile applications and digital solutions that define the next generation of technology.*
+*Criamos e operamos nosso próprio portfólio de aplicativos. Nenhum serviço terceirizado — apenas os produtos que acreditamos que o mundo precisa usar.*
 
 </div>
 
@@ -14,7 +14,7 @@
 
 ## 🌟 About Gennisys
 
-Gennisys specializes in developing **innovative mobile applications** and **digital solutions**. We create our own suite of professional apps including productivity tools, utilities, and games, all designed with cutting-edge technology and modern interfaces for the mobile-first world.
+Gennisys é um estúdio independente focado em desenvolver **aplicativos proprietários**. Todas as experiências descritas aqui são concebidas, desenhadas e operadas pela nossa equipe — sem projetos para clientes, apenas produtos que fazem parte do nosso roadmap.
 
 ## 📱 Our Applications
 
@@ -61,7 +61,12 @@ Gennisys specializes in developing **innovative mobile applications** and **digi
 - **Animated Logo** - Rotating "G" animation
 - **Mobile Menu** - Smooth hamburger navigation
 - **Back to Top Button** - Enhanced UX
+- **Leadership Spotlight** - CEO narrative with strategic highlights
+- **Vision Metrics** - Animated KPIs showcasing the roadmap
 - **Bilingual Support** - English/Portuguese toggle
+- **Dynamic Newsroom** - Easily update proprietary roadmap announcements via JavaScript data
+- **Partner Placeholders** - Ready-to-use slots for future partnerships without layout changes
+- **Clickable App Cards** - Each solution tile opens a URL you control via HTML attributes
 
 ### 🛠️ Technical Stack
 - **HTML5** - Semantic structure
@@ -92,11 +97,25 @@ Gennisys specializes in developing **innovative mobile applications** and **digi
 ## 👨‍💼 Leadership
 
 **Tiago Cardoso** - *Founder & CEO*
-> "With vision and passion for technology, leading Gennisys to create impactful mobile applications that inspire innovation and deliver exceptional user experiences."
+> "We exist to craft the digital products we believe should exist — intuitive, fast, and inspiring."
+
+## 🔗 Managing App Cards
+
+Each card in the **Solutions ▸ Our Applications** grid is an anchor ready for your live product URL.
+
+1. Open `index.html` and locate the `<a class="app-item">` you want to update.
+2. Set the `data-app-url` attribute to your destination (e.g. `data-app-url="https://apps.gennisys.com/calculator"`).
+3. Optional: change `data-app-target="self"` if you prefer opening in the same tab.
+
+If the attribute is left empty, the card stays static (no redirect).
+
+## 🤝 Partner Logo Placeholders
+
+The ecosystem section includes three `.partner-slot` blocks. Drop SVGs or `<img>` tags inside whenever a collaboration goes live — the grid and responsive layout are already configured.
 
 ## 📧 Contact
 
-Ready to explore our applications? Let's connect and discuss the future of mobile technology!
+Media, distribuição ou parcerias estratégicas? Fale diretamente com o estúdio:
 
 **Email**: [info@gennisys.com](mailto:info@gennisys.com)
 
@@ -106,7 +125,7 @@ Ready to explore our applications? Let's connect and discuss the future of mobil
 
 **© 2025 Gennisys. All rights reserved.**
 
-*Building the future, one app at a time.* 🌟
+*Our apps, our innovation.* 🌟
 
 [![Website](https://img.shields.io/badge/Website-Live-00ff88?style=for-the-badge)](https://gennisys.com)
 [![Status](https://img.shields.io/badge/Status-Active-00ff88?style=for-the-badge)]()
