@@ -295,6 +295,10 @@
   gap:12px;
 }
 
+.partner-placeholder-grid.partners-active {
+  grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
+}
+
 .partner-slot {
   display:flex;
   align-items:center;
@@ -305,15 +309,33 @@
   color:rgba(219,234,254,0.68);
   background:rgba(6,16,35,0.5);
   font-size:0.9rem;
-  min-height:72px;
+  min-height:78px;
   text-transform:uppercase;
   letter-spacing:0.45px;
+  transition:transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .partner-note {
   color:var(--brand-muted);
   font-size:0.9rem;
 }
+
+.partner-slot img {
+  max-width:140px;
+  max-height:46px;
+  width:auto;
+  height:auto;
+  object-fit:contain;
+  filter:brightness(1.05);
+}
+
+.partner-slot:hover,
+.partner-slot:focus-visible {
+  border-color:rgba(0,255,136,0.55);
+  box-shadow:0 16px 36px rgba(0,255,136,0.18);
+  transform:translateY(-4px);
+}
+
 
 /* News */
 .news-card {

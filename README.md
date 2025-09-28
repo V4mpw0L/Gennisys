@@ -65,7 +65,7 @@ Gennisys é um estúdio independente focado em desenvolver **aplicativos proprie
 - **Vision Metrics** - Animated KPIs showcasing the roadmap
 - **Bilingual Support** - English/Portuguese toggle
 - **Dynamic Newsroom** - Easily update proprietary roadmap announcements via JavaScript data
-- **Partner Placeholders** - Ready-to-use slots for future partnerships without layout changes
+- **Strategic Partners** - Highlight real collaborators with responsive logo slots
 - **Clickable App Cards** - Each solution tile opens a URL you control via HTML attributes
 
 ### 🛠️ Technical Stack
@@ -109,9 +109,13 @@ Each card in the **Solutions ▸ Our Applications** grid is an anchor ready for 
 
 If the attribute is left empty, the card stays static (no redirect).
 
-## 🤝 Partner Logo Placeholders
+## 🤝 Strategic Partners
 
-The ecosystem section includes three `.partner-slot` blocks. Drop SVGs or `<img>` tags inside whenever a collaboration goes live — the grid and responsive layout are already configured.
+The ecosystem section already surfaces key collaborators. To update the lineup:
+
+1. Update the `<img>` sources (e.g. `assets/google.png`, `assets/microsoft.jpg`, `assets/x.png`) inside the `.partner-slot` anchors in `index.html`.
+2. Keep the `partner-slot` class so the dark glass styling, hover, and focus states stay consistent.
+3. Optionally point each `<a>` to a partner landing page or remove the anchor if you prefer a static logo.
 
 ## 📧 Contact
 
