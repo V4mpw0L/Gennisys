@@ -1,138 +1,88 @@
-# 🚀 Gennisys
+# Gennisys — Independent App Studio
 
 <div align="center">
 
 ![Gennisys Logo](https://img.shields.io/badge/Gennisys-Building%20the%20Future-00ff88?style=for-the-badge&logo=data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTIgMTJMMTAgMTJMMTEgNkwxMyAxOEwxNSAxMkwyMiAxMiIgc3Ryb2tlPSIjMDBmZjg4IiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPgo8L3N2Zz4K)
 
-**Independent App Studio**
+**Independent App Studio | Estúdio Independente de Apps**
 
-*Criamos e operamos nosso próprio portfólio de aplicativos. Nenhum serviço terceirizado — apenas os produtos que acreditamos que o mundo precisa usar.*
+*EN:* We conceive, govern, and scale proprietary digital products with end-to-end ownership.<br>
+*PT:* Concebemos, governamos e escalamos produtos digitais proprietários com controle de ponta a ponta.
 
 </div>
 
 ---
 
-## 🌟 About Gennisys
+## Overview
+- **EN:** Gennisys is an independent studio focused on building a portfolio of proprietary applications across mobile, web, XR, and gaming.
+- **PT:** Gennisys é um estúdio independente focado em construir um portfólio de aplicativos proprietários para mobile, web, XR e games.
+- **EN:** Every product is strategized, designed, engineered, and operated in-house to deliver investor-grade execution.
+- **PT:** Cada produto é estrategicamente concebido, projetado, desenvolvido e operado internamente para garantir execução em padrão corporativo.
 
-Gennisys é um estúdio independente focado em desenvolver **aplicativos proprietários**. Todas as experiências descritas aqui são concebidas, desenhadas e operadas pela nossa equipe — sem projetos para clientes, apenas produtos que fazem parte do nosso roadmap.
+## Portfolio Highlights
+| Application | EN | PT |
+| --- | --- | --- |
+| Smart Calculator | Scientific calculator with audit-ready history and cross-platform availability. | Calculadora científica com histórico auditável e disponibilidade multiplataforma. |
+| Pro Calendar | Intelligent scheduling with executive-grade reminders and studio-managed synchronization. | Agendamento inteligente com lembretes em padrão executivo e sincronização gerida pelo estúdio. |
+| Navigation Plus | Resilient mapping with predictive offline routing engineered by our mobility squad. | Mapeamento resiliente com rotas offline preditivas desenvolvidas pela nossa squad de mobilidade. |
+| Mobile Games | Immersive 2D/3D titles with LiveOps governance from the internal game lab. | Títulos 2D/3D imersivos com governança LiveOps do laboratório interno de games. |
+| Utility Suite | Productivity and optimization tools spanning the broader Gennisys ecosystem. | Ferramentas de produtividade e otimização que percorrem o ecossistema Gennisys. |
+| Audio Studio | Professional audio creation environment for creators within our stack. | Ambiente profissional de criação de áudio para creators dentro do nosso stack. |
 
-## 📱 Our Applications
+## Experience & Site Features
+### Interface & Narrative
+- **EN:** Investor-focused hero narrative with animated metrics, bilingual messaging, and CTA orchestration.
+- **PT:** Narrativa voltada a investidores com métricas animadas, mensagens bilíngues e CTAs orquestrados.
+- **EN:** Leadership spotlight and roadmap KPIs evidence disciplined governance and delivery standards.
+- **PT:** O destaque de liderança e os KPIs de roadmap evidenciam governança disciplinada e padrões de entrega.
+- **EN:** Dynamic newsroom, strategic partner showcase, and clickable solution cards support stakeholder engagement.
+- **PT:** Sala de imprensa dinâmica, vitrine de parceiros estratégicos e cards clicáveis reforçam o engajamento de stakeholders.
+- **EN:** Responsive neon interface with glassmorphism, hover micro-interactions, and scroll-triggered reveals.
+- **PT:** Interface neon responsiva com glassmorphism, microinterações em hover e animações acionadas durante o scroll.
 
-<table>
-<tr>
-<td align="center" width="150">
-<img src="https://img.shields.io/badge/📱-Smart%20Calculator-00ff88?style=flat-square" alt="Smart Calculator" width="140"/>
-<br><sub><b>Advanced calculator with scientific functions</b></sub>
-</td>
-<td align="center" width="150">
-<img src="https://img.shields.io/badge/📅-Pro%20Calendar-00ff88?style=flat-square" alt="Pro Calendar" width="140"/>
-<br><sub><b>Intelligent calendar with smart scheduling</b></sub>
-</td>
-<td align="center" width="150">
-<img src="https://img.shields.io/badge/🗺️-Navigation%20Plus-00ff88?style=flat-square" alt="Navigation Plus" width="140"/>
-<br><sub><b>Enhanced mapping with offline capabilities</b></sub>
-</td>
-</tr>
-<tr>
-<td align="center" width="150">
-<img src="https://img.shields.io/badge/🎮-Mobile%20Games-00ff88?style=flat-square" alt="Mobile Games" width="140"/>
-<br><sub><b>Engaging 2D and 3D mobile games</b></sub>
-</td>
-<td align="center" width="150">
-<img src="https://img.shields.io/badge/🛠️-Utility%20Suite-00ff88?style=flat-square" alt="Utility Suite" width="140"/>
-<br><sub><b>Essential productivity tools</b></sub>
-</td>
-<td align="center" width="150">
-<img src="https://img.shields.io/badge/🎵-Audio%20Studio-00ff88?style=flat-square" alt="Audio Studio" width="140"/>
-<br><sub><b>Professional audio editing tools</b></sub>
-</td>
-</tr>
-</table>
+### Technical Stack
+- **EN:** Semantic HTML5, modern CSS with neon palette, and vanilla JavaScript orchestration.
+- **PT:** HTML5 semântico, CSS moderno com paleta neon e orquestração em JavaScript puro.
+- **EN:** Canvas particle system, parallax tilt effects, and performance-tuned counters running at 60fps.
+- **PT:** Sistema de partículas em canvas, efeitos de tilt parallax e contadores otimizados para 60fps.
+- **EN:** Translation layer keeps English and Portuguese copy synchronized across every section.
+- **PT:** Camada de tradução mantém o conteúdo em inglês e português sincronizado em todas as seções.
 
-## 🎯 Website Features
+## Leadership
+- **EN:** Tiago Cardoso — Founder & CEO. Tiago sets the strategic agenda for Gennisys, commanding execution across product, engineering, and audience expansion to uphold our independent vision.
+- **PT:** Tiago Cardoso — Fundador & CEO. Tiago define a agenda estratégica da Gennisys, coordenando execução em produto, engenharia e expansão de audiência para sustentar nossa visão independente.
+- **EN Quote:** “We design, validate, and scale the digital products we believe must exist—precise, responsive, and built for leadership.”
+- **PT Citação:** “Projetamos, validamos e escalamos os produtos digitais que acreditamos que precisam existir — precisos, responsivos e com liderança.”
 
-### ✨ Modern Design
-- **Interactive Particle Background** - Digital grid with mouse interaction
-- **Responsive Design** - Perfect on all devices
-- **Glass Morphism Cards** - Translucent, modern UI elements
-- **Smooth Animations** - 60fps performance optimized
+## Operations Guide
+### Managing App Cards
+1. **EN:** Open `index.html`, locate the desired `<a class="app-item">`, and set `data-app-url` with the target destination (e.g., `https://apps.gennisys.com/calculator`).
+	**PT:** Abra o `index.html`, localize o `<a class="app-item">` desejado e defina `data-app-url` com o destino (ex.: `https://apps.gennisys.com/calculator`).
+2. **EN:** Adjust `data-app-target` to `self` if the link should remain in the same tab; keep `new` for a new window.
+	**PT:** Ajuste `data-app-target` para `self` se o link deve abrir na mesma aba; mantenha `new` para nova janela.
+3. **EN:** Update the icon, title, and description text keys as needed and mirror the changes in the translation map inside `main.js`.
+	**PT:** Atualize o ícone, o título e a descrição conforme necessário e replique as alterações no mapa de tradução dentro de `main.js`.
 
-### 🎮 Interactive Elements
-- **Animated Logo** - Rotating "G" animation
-- **Mobile Menu** - Smooth hamburger navigation
-- **Back to Top Button** - Enhanced UX
-- **Leadership Spotlight** - CEO narrative with strategic highlights
-- **Vision Metrics** - Animated KPIs showcasing the roadmap
-- **Bilingual Support** - English/Portuguese toggle
-- **Dynamic Newsroom** - Easily update proprietary roadmap announcements via JavaScript data
-- **Strategic Partners** - Highlight real collaborators with responsive logo slots
-- **Clickable App Cards** - Each solution tile opens a URL you control via HTML attributes
+### Managing Strategic Partners
+1. **EN:** Replace the logo assets referenced in the `.partner-slot` anchors within `index.html`.
+	**PT:** Substitua os arquivos de logo referenciados nos anchors `.partner-slot` dentro do `index.html`.
+2. **EN:** Maintain the `partner-slot` class to preserve dark-glass styling, hover states, and accessibility labels.
+	**PT:** Mantenha a classe `partner-slot` para preservar o estilo glass escuro, estados de hover e rótulos de acessibilidade.
+3. **EN:** Optional outbound URLs can be assigned per partner to link stakeholders to reference material.
+	**PT:** URLs externas opcionais podem ser atribuídas por parceiro para direcionar stakeholders a materiais de referência.
 
-### 🛠️ Technical Stack
-- **HTML5** - Semantic structure
-- **CSS3** - Modern styling with animations
-- **Vanilla JavaScript** - Lightweight, no dependencies
-- **Mobile First** - Responsive design approach
-
-## 🚀 Performance
-
-- ⚡ **Lightweight** - No external frameworks
-- 📱 **Mobile Optimized** - Touch-friendly interface
-- 🎨 **Smooth Animations** - Hardware accelerated
-- 🔧 **Clean Code** - Maintainable and scalable
-
-## 🎨 Design System
-
-### Colors
-- **Primary Green**: `#00ff88` - Brand color
-- **Background**: `linear-gradient(135deg, #0a1a0e, #0e1f12)` - Dark gradient
-- **Text**: `#eef2ff` - Light text
-- **Cards**: `rgba(255,255,255,0.03)` - Translucent glass
-
-### Typography
-- **Headers**: Poppins (600-800 weight)
-- **Body**: Poppins (300-400 weight)
-- **Navigation**: Roboto (500-800 weight)
-
-## 👨‍💼 Leadership
-
-**Tiago Cardoso** - *Founder & CEO*
-> "We exist to craft the digital products we believe should exist — intuitive, fast, and inspiring."
-
-## 🔗 Managing App Cards
-
-Each card in the **Solutions ▸ Our Applications** grid is an anchor ready for your live product URL.
-
-1. Open `index.html` and locate the `<a class="app-item">` you want to update.
-2. Set the `data-app-url` attribute to your destination (e.g. `data-app-url="https://apps.gennisys.com/calculator"`).
-3. Optional: change `data-app-target="self"` if you prefer opening in the same tab.
-
-If the attribute is left empty, the card stays static (no redirect).
-
-## 🤝 Strategic Partners
-
-The ecosystem section already surfaces key collaborators. To update the lineup:
-
-1. Update the `<img>` sources (e.g. `assets/google.png`, `assets/microsoft.jpg`, `assets/x.png`) inside the `.partner-slot` anchors in `index.html`.
-2. Keep the `partner-slot` class so the dark glass styling, hover, and focus states stay consistent.
-3. Optionally point each `<a>` to a partner landing page or remove the anchor if you prefer a static logo.
-
-## 📧 Contact
-
-Media, distribuição ou parcerias estratégicas? Fale diretamente com o estúdio:
-
-**Email**: [info@gennisys.com](mailto:info@gennisys.com)
+## Contact
+- **EN:** Media, investor, or partnership inquiries — connect with the studio at [info@gennisys.com](mailto:info@gennisys.com).
+- **PT:** Demandas de mídia, investidores ou parcerias — conecte-se com o estúdio em [info@gennisys.com](mailto:info@gennisys.com).
 
 ---
 
 <div align="center">
 
-**© 2025 Gennisys. All rights reserved.**
-
-*Our apps, our innovation.* 🌟
+**© 2025 Gennisys. All rights reserved.**  
+*Our apps, our innovation.* • *Nossos apps, nossa inovação.*
 
 [![Website](https://img.shields.io/badge/Website-Live-00ff88?style=for-the-badge)](https://gennisys.com)
 [![Status](https://img.shields.io/badge/Status-Active-00ff88?style=for-the-badge)]()
-[![Made with ❤️](https://img.shields.io/badge/Made%20with-❤️-00ff88?style=for-the-badge)]()
 
 </div>
