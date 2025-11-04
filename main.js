@@ -198,15 +198,15 @@ document.addEventListener("DOMContentLoaded", () => {
       apps_title: "Our Applications",
       apps_subtitle:
         "Explore the proprietary applications engineered entirely in-house.",
-      app_calculator_title: "Smart Calculator",
+      app_calculator_title: "GenCalc",
       app_calculator_desc:
-        "Advanced calculator with scientific functions and audit-ready history tracking.",
-      app_calendar_title: "Pro Calendar",
+        "Advanced calculator with scientific functions, history tracking, and an intuitive interface.",
+      app_calendar_title: "BudgetBox",
       app_calendar_desc:
-        "Intelligent calendar delivering smart scheduling and executive-grade reminders from our studio.",
-      app_maps_title: "Navigation Plus",
+        "Smart financial manager to track expenses, set budgets, and achieve your financial goals.",
+      app_maps_title: "FazendaRPG",
       app_maps_desc:
-        "Enhanced mapping solution with resilient offline capabilities from our mobility program.",
+        "Immersive farming RPG game where you build and manage your own virtual farm.",
       app_games_title: "Mobile Games",
       app_games_desc:
         "Immersive 2D and 3D games produced by our internal game laboratory.",
@@ -318,15 +318,15 @@ document.addEventListener("DOMContentLoaded", () => {
       apps_title: "Nossos Aplicativos",
       apps_subtitle:
         "Explore os aplicativos proprietários projetados integralmente in-house.",
-      app_calculator_title: "Calculadora Inteligente",
+      app_calculator_title: "GenCalc",
       app_calculator_desc:
-        "Calculadora avançada com funções científicas e histórico auditável.",
-      app_calendar_title: "Calendário Pro",
+        "Calculadora avançada com funções científicas, histórico e interface intuitiva.",
+      app_calendar_title: "BudgetBox",
       app_calendar_desc:
-        "Calendário inteligente com agendamento estratégico e lembretes em padrão executivo do nosso estúdio.",
-      app_maps_title: "Navegação Plus",
+        "Gerenciador financeiro inteligente para controlar despesas, definir orçamentos e alcançar suas metas.",
+      app_maps_title: "FazendaRPG",
       app_maps_desc:
-        "Solução de mapas reforçada com capacidades offline resilientes da nossa frente de mobilidade.",
+        "Jogo RPG de fazenda imersivo onde você constrói e gerencia sua própria fazenda virtual.",
       app_games_title: "Jogos Mobile",
       app_games_desc:
         "Jogos 2D e 3D imersivos produzidos pelo nosso laboratório interno.",
