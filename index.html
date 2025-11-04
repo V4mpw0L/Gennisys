@@ -1,482 +1,972 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>Gennisys — Independent App Studio</title>
+<!doctype html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="utf-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+        />
+        <title>Gennisys — Independent App Studio</title>
 
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
-  <link rel="stylesheet" href="style.css" />
+        <link rel="icon" type="image/x-icon" href="favicon.ico" />
+        <link rel="stylesheet" href="style.css" />
 
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
-</head>
-<body>
-  <canvas id="particles" aria-hidden="true"></canvas>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&family=Roboto:wght@400;500&display=swap"
+            rel="stylesheet"
+        />
+    </head>
+    <body>
+        <canvas id="particles" aria-hidden="true"></canvas>
 
-  <button id="backToTop" aria-label="Back to top" style="display:none">
-    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#00ff88" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-      <polyline points="18 15 12 9 6 15" />
-    </svg>
-  </button>
-
-  <nav class="navbar" role="navigation" aria-label="Main navigation">
-    <div class="nav-left desktop-flags">
-        <img src="https://flagcdn.com/us.svg" alt="English" data-lang="en" class="flag" />
-        <img src="https://flagcdn.com/br.svg" alt="Português" data-lang="pt" class="flag" />
-    </div>
-
-    <div class="nav-center">
-      <ul class="menu" role="menubar" aria-label="Primary">
-  <li role="none"><a role="menuitem" href="#home" data-key="nav_home">Home</a></li>
-  <li role="none"><a role="menuitem" href="#ceo" data-key="nav_leadership">Leadership</a></li>
-  <li role="none"><a role="menuitem" href="#vision" data-key="nav_vision">Vision</a></li>
-  <li role="none"><a role="menuitem" href="#apps" data-key="nav_solutions">Solutions</a></li>
-  <li role="none"><a role="menuitem" href="#ecosystem" data-key="nav_ecosystem">Ecosystem</a></li>
-  <li role="none"><a role="menuitem" href="#news" data-key="nav_news">News</a></li>
-  <li role="none"><a role="menuitem" href="#contact" data-key="nav_contact">Contact</a></li>
-      </ul>
-    </div>
-
-    <div class="nav-right">
-      <a href="#home" class="logo desktop-only-logo" aria-label="Gennisys home">
-        <svg id="logoSvg" class="logo-svg" viewBox="0 0 240 50" xmlns="http://www.w3.org/2000/svg">
-          <path d="M20,25 L80,25 L85,10 L90,40 L95,25 L160,25" 
-                fill="none" 
-                stroke="#00ff88" 
-                stroke-width="3" 
-                stroke-linecap="round" 
-                stroke-linejoin="round"/>
-        </svg>
-      </a>
-    </div>
-
-    <div class="mobile-nav">
-      <a href="#home" class="logo mobile-only-logo" aria-label="Gennisys home">Gennisys</a>
-      <div class="mobile-logo-svg">
-        <svg class="logo-svg-mobile" viewBox="0 0 240 50" xmlns="http://www.w3.org/2000/svg">
-          <path d="M20,25 L80,25 L85,10 L90,40 L95,25 L160,25" 
-                fill="none" 
-                stroke="#00ff88" 
-                stroke-width="3" 
-                stroke-linecap="round" 
-                stroke-linejoin="round"/>
-        </svg>
-      </div>
-      <button class="hamburger" aria-label="Open mobile menu" aria-expanded="false">
-        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#00ff88" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-          <line x1="3" y1="6" x2="21" y2="6"/>
-          <line x1="3" y1="12" x2="21" y2="12"/>
-          <line x1="3" y1="18" x2="21" y2="18"/>
-        </svg>
-      </button>
-    </div>
-  </nav>
-
-  <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
-    <ul>
-  <li><a href="#home" data-key="nav_home">Home</a></li>
-  <li><a href="#ceo" data-key="nav_leadership">Leadership</a></li>
-  <li><a href="#vision" data-key="nav_vision">Vision</a></li>
-  <li><a href="#apps" data-key="nav_solutions">Solutions</a></li>
-  <li><a href="#ecosystem" data-key="nav_ecosystem">Ecosystem</a></li>
-  <li><a href="#news" data-key="nav_news">News</a></li>
-  <li><a href="#contact" data-key="nav_contact">Contact</a></li>
-      <li class="flags-mobile">
-        <img src="https://flagcdn.com/us.svg" alt="English" data-lang="en" class="flag" />
-        <img src="https://flagcdn.com/br.svg" alt="Português" data-lang="pt" class="flag" />
-      </li>
-    </ul>
-  </div>
-
-  <main>
-    <section id="home" class="section hero">
-      <div class="hero-grid">
-        <article class="card hero-card tilt" data-reveal>
-          <span class="hero-badge" data-key="hero_badge">Independent App Studio</span>
-          <h1 data-key="hero_title">Our Products, Built with Vision</h1>
-          <p data-key="hero_text">At <strong class="brand-highlight">Gennisys</strong>, we conceive, design, and operate a proprietary portfolio of applications—no outsourced work, only experiences driven by our product vision.</p>
-          <div class="hero-actions">
-            <a class="btn" href="#contact" data-key="btn_contact">Contact the Team</a>
-            <button class="btn-secondary" type="button" data-go="#news" data-key="btn_news">Product Updates</button>
-          </div>
-          <ul class="hero-points">
-            <li data-key="hero_point_1">Integrated product squads advancing our proprietary mobile, web, and XR platforms.</li>
-            <li data-key="hero_point_2">AI-first design and engineering powering an ambitious internal roadmap.</li>
-            <li data-key="hero_point_3">Continuous analytics, live operations, and structured community engagement around our apps.</li>
-          </ul>
-        </article>
-        <aside class="card hero-visual tilt" data-reveal>
-          <div class="hero-visual-inner">
-            <div class="orb orb-1" aria-hidden="true"></div>
-            <div class="orb orb-2" aria-hidden="true"></div>
-            <div class="orb orb-3" aria-hidden="true"></div>
-            <div class="metric-grid">
-              <div class="metric" data-reveal>
-                <span class="metric-value" data-count="12" data-suffix="+" data-duration="1600">0</span>
-                <span class="metric-label" data-key="metric_products">Products on the roadmap</span>
-              </div>
-              <div class="metric" data-reveal>
-                <span class="metric-value" data-count="80" data-suffix="K+" data-duration="1800">0</span>
-                <span class="metric-label" data-key="metric_users">Users we plan to reach</span>
-              </div>
-              <div class="metric" data-reveal>
-                <span class="metric-value" data-count="4" data-suffix="" data-duration="1600">0</span>
-                <span class="metric-label" data-key="metric_markets">Markets we're entering</span>
-              </div>
-              <div class="metric" data-reveal>
-                <span class="metric-value" data-count="99.9" data-suffix="%" data-decimals="1" data-duration="2000">0</span>
-                <span class="metric-label" data-key="metric_uptime">Reliability across our stack</span>
-              </div>
-            </div>
-            <div class="hero-stack">
-              <span class="hero-stack-title" data-key="hero_stack_title">Core focus areas:</span>
-              <div class="hero-stack-tags">
-                <span>AI</span>
-                <span>Cloud-native</span>
-                <span>Mobile</span>
-                <span>XR</span>
-                <span>Gaming</span>
-                <span>Data</span>
-              </div>
-            </div>
-          </div>
-        </aside>
-      </div>
-    </section>
-
-    <section id="ceo" class="section section-ceo">
-      <div class="card ceo-card ceo-expanded tilt" data-reveal>
-        <div class="ceo-layout">
-          <div class="ceo-profile">
-            <img src="https://i.postimg.cc/dqLLj7KL/file-0000000040e86230b2fb6a71cedf9375.png" alt="Tiago Cardoso avatar" class="ceo-avatar" />
-            <div class="ceo-headline">
-              <span class="section-eyebrow" data-key="ceo_badge">Leadership</span>
-              <h2 data-key="ceo_section_title">Meet the Founder</h2>
-              <h3 data-key="ceo_name">Tiago Cardoso</h3>
-              <p class="ceo-position" data-key="ceo_title">Founder & CEO</p>
-            </div>
-          </div>
-          <div class="ceo-story">
-            <p data-key="ceo_text">Tiago sets the strategic agenda for Gennisys, commanding execution across product, engineering, and audience expansion to uphold our independent vision.</p>
-            <div class="ceo-highlights">
-              <div class="highlight-item">
-                <h4 data-key="ceo_highlight_1_title">Product Governance</h4>
-                <p data-key="ceo_highlight_1_text">Directs the proprietary roadmap and enforces disciplined delivery for every launch.</p>
-              </div>
-              <div class="highlight-item">
-                <h4 data-key="ceo_highlight_2_title">Engineering Stewardship</h4>
-                <p data-key="ceo_highlight_2_text">Leads technical excellence, resilient infrastructure, and continuous innovation standards.</p>
-              </div>
-              <div class="highlight-item">
-                <h4 data-key="ceo_highlight_3_title">Market Relationships</h4>
-                <p data-key="ceo_highlight_3_text">Activates strategic alliances that extend distribution and stakeholder value.</p>
-              </div>
-            </div>
-          </div>
-          <blockquote class="ceo-quote" data-key="ceo_quote">“We design, validate, and scale the digital products we believe must exist—precise, responsive, and built for leadership.”</blockquote>
-        </div>
-      </div>
-    </section>
-
-    <section id="vision" class="section section-vision">
-      <div class="card split-card tilt" data-reveal>
-        <div class="split-left">
-          <span class="section-eyebrow" data-key="vision_badge">Vision 2025</span>
-          <h2 data-key="vision_title">End-to-end execution, fully internal.</h2>
-          <p data-key="vision_text">Cross-functional teams align strategy, design, and engineering to convert proprietary innovation into global platforms.</p>
-          <div class="kpi-grid">
-            <div class="kpi">
-              <span class="kpi-value" data-count="3" data-suffix="+" data-duration="1400">0</span>
-              <span class="kpi-label" data-key="vision_kpi_1">Platforms deployed</span>
-            </div>
-            <div class="kpi">
-              <span class="kpi-value" data-count="15" data-suffix="+" data-duration="1600">0</span>
-              <span class="kpi-label" data-key="vision_kpi_2">Prototypes in validation</span>
-            </div>
-            <div class="kpi">
-              <span class="kpi-value" data-count="24" data-suffix="/7" data-duration="1800">0</span>
-              <span class="kpi-label" data-key="vision_kpi_3">Operational coverage</span>
-            </div>
-          </div>
-        </div>
-        <div class="split-right vision-grid">
-          <div class="vision-item" data-reveal>
-            <span class="vision-icon" aria-hidden="true">⚡</span>
-            <h3 data-key="vision_card_1_title">Acceleration Pods</h3>
-            <p data-key="vision_card_1_text">Modular squads converting validated concepts into production-ready applications within weeks.</p>
-          </div>
-          <div class="vision-item" data-reveal>
-            <span class="vision-icon" aria-hidden="true">🧠</span>
-            <h3 data-key="vision_card_2_title">AI-First Experiences</h3>
-            <p data-key="vision_card_2_text">Intelligent systems embedded in every product we operate.</p>
-          </div>
-          <div class="vision-item" data-reveal>
-            <span class="vision-icon" aria-hidden="true">🌐</span>
-            <h3 data-key="vision_card_3_title">Global Readiness</h3>
-            <p data-key="vision_card_3_text">Localization, compliance, and infrastructure engineered for worldwide launches.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="apps" class="section section-solutions">
-      <div class="card solutions-card tilt" data-reveal>
-        <div class="section-header">
-          <span class="section-eyebrow" data-key="apps_badge">Gennisys Portfolio</span>
-          <h2 data-key="apps_title">Our Applications</h2>
-          <p data-key="apps_subtitle">Explore the proprietary applications engineered entirely in-house.</p>
-        </div>
-        <div class="apps-grid">
-          <a class="app-item tilt" data-reveal href="#" data-app-url="" data-app-target="new">
-            <div class="app-header">
-              <div class="app-icon">📱</div>
-              <div>
-                <h3 data-key="app_calculator_title">Smart Calculator</h3>
-                <p data-key="app_calculator_desc">Advanced calculator with scientific functions and audit-ready history tracking.</p>
-              </div>
-            </div>
-            <div class="app-tags">
-              <span>iOS</span>
-              <span>Android</span>
-              <span>Widget</span>
-            </div>
-          </a>
-          <a class="app-item tilt" data-reveal href="#" data-app-url="" data-app-target="new">
-            <div class="app-header">
-              <div class="app-icon">📅</div>
-              <div>
-                <h3 data-key="app_calendar_title">Pro Calendar</h3>
-                <p data-key="app_calendar_desc">Intelligent calendar delivering smart scheduling and executive-grade reminders from our studio.</p>
-              </div>
-            </div>
-            <div class="app-tags">
-              <span>AI Agents</span>
-              <span>Wearables</span>
-              <span>Sync</span>
-            </div>
-          </a>
-          <a class="app-item tilt" data-reveal href="#" data-app-url="" data-app-target="new">
-            <div class="app-header">
-              <div class="app-icon">🗺️</div>
-              <div>
-                <h3 data-key="app_maps_title">Navigation Plus</h3>
-                <p data-key="app_maps_desc">Enhanced mapping solution with resilient offline capabilities from our mobility program.</p>
-              </div>
-            </div>
-            <div class="app-tags">
-              <span>Offline</span>
-              <span>AR</span>
-              <span>Telemetry</span>
-            </div>
-          </a>
-          <a class="app-item tilt" data-reveal href="#" data-app-url="" data-app-target="new">
-            <div class="app-header">
-              <div class="app-icon">🎮</div>
-              <div>
-                <h3 data-key="app_games_title">Mobile Games</h3>
-                <p data-key="app_games_desc">Immersive 2D and 3D games produced by our internal game laboratory.</p>
-              </div>
-            </div>
-            <div class="app-tags">
-              <span>Unity</span>
-              <span>Unreal</span>
-              <span>LiveOps</span>
-            </div>
-          </a>
-          <a class="app-item tilt" data-reveal href="#" data-app-url="" data-app-target="new">
-            <div class="app-header">
-              <div class="app-icon">🛠️</div>
-              <div>
-                <h3 data-key="app_utilities_title">Utility Suite</h3>
-                <p data-key="app_utilities_desc">Essential productivity and optimization tools spanning our ecosystem.</p>
-              </div>
-            </div>
-            <div class="app-tags">
-              <span>Automation</span>
-              <span>Security</span>
-              <span>Cloud</span>
-            </div>
-          </a>
-          <a class="app-item tilt" data-reveal href="#" data-app-url="" data-app-target="new">
-            <div class="app-header">
-              <div class="app-icon">🎵</div>
-              <div>
-                <h3 data-key="app_music_title">Audio Studio</h3>
-                <p data-key="app_music_desc">Professional audio creation and editing tools from our creator stack.</p>
-              </div>
-            </div>
-            <div class="app-tags">
-              <span>Spatial</span>
-              <span>Collab</span>
-              <span>Creator</span>
-            </div>
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <section id="ecosystem" class="section section-ecosystem">
-      <div class="card ecosystem-card tilt" data-reveal>
-        <div class="section-header">
-          <span class="section-eyebrow" data-key="ecosystem_badge">Build Engine</span>
-          <h2 data-key="ecosystem_title">An internal pipeline for breakthrough products.</h2>
-          <p data-key="ecosystem_text">Every discipline collaborates to operate the applications we own, from research through live operations.</p>
-        </div>
-        <div class="ecosystem-grid">
-          <div class="ecosystem-column">
-            <h3 data-key="ecosystem_column_1_title">Product Research</h3>
-            <ul>
-              <li data-key="ecosystem_column_1_item_1">Audience intelligence & roadmap validation</li>
-              <li data-key="ecosystem_column_1_item_2">Brand systems & design language for our apps</li>
-              <li data-key="ecosystem_column_1_item_3">Concept sprints & prototype labs</li>
-            </ul>
-          </div>
-          <div class="ecosystem-column">
-            <h3 data-key="ecosystem_column_2_title">Engineering Core</h3>
-            <ul>
-              <li data-key="ecosystem_column_2_item_1">Native and cross-platform builds across our stack</li>
-              <li data-key="ecosystem_column_2_item_2">AI-driven personalization frameworks</li>
-              <li data-key="ecosystem_column_2_item_3">Secure, scalable cloud backbone</li>
-            </ul>
-          </div>
-          <div class="ecosystem-column">
-            <h3 data-key="ecosystem_column_3_title">Operations & Growth</h3>
-            <ul>
-              <li data-key="ecosystem_column_3_item_1">Analytics frameworks & experimentation</li>
-              <li data-key="ecosystem_column_3_item_2">LiveOps orchestration & release cadence</li>
-              <li data-key="ecosystem_column_3_item_3">Monetization experiments & ecosystem alliances</li>
-            </ul>
-          </div>
-        </div>
-        <div class="partner-row" data-reveal>
-          <span class="partner-caption" data-key="partner_caption">Strategic partners</span>
-          <div class="partner-placeholder-grid partners-active">
-            <a class="partner-slot" href="https://about.google/" target="_blank" rel="noopener">
-              <img src="assets/google.png" alt="Google" loading="lazy" />
-            </a>
-            <a class="partner-slot" href="https://www.microsoft.com/" target="_blank" rel="noopener">
-              <img src="assets/microsoft.png" alt="Microsoft" loading="lazy" />
-            </a>
-            <a class="partner-slot" href="https://www.samsung.com/" target="_blank" rel="noopener">
-              <img src="assets/samsung.png" alt="Samsung" loading="lazy" />
-            </a>
-          </div>
-          <p class="partner-note" data-key="partner_note">Global technology partners amplifying the reach of our proprietary applications.</p>
-        </div>
-      </div>
-    </section>
-
-    <section id="news" class="section section-news">
-      <div class="card news-card tilt" data-reveal>
-        <div class="section-header">
-          <span class="section-eyebrow" data-key="news_badge">Newsroom</span>
-          <h2 data-key="news_title">Latest from Gennisys</h2>
-          <p data-key="news_subtitle">Follow the milestones shaping our proprietary roadmap.</p>
-        </div>
-        <div class="news-grid" id="newsGrid" aria-live="polite"></div>
-        <div class="news-footer">
-          <button class="btn-secondary" type="button" id="subscribeNews" data-key="btn_subscribe">Notify me</button>
-          <p class="news-note" data-key="news_note">We share release notes and corporate milestones regularly.</p>
-        </div>
-      </div>
-    </section>
-
-    <section id="contact" class="section section-contact">
-      <div class="card contact-card tilt" data-reveal>
-        <div class="section-header">
-          <span class="section-eyebrow" data-key="contact_badge">Contact</span>
-          <h2 data-key="contact_title">Reach Gennisys</h2>
-          <p data-key="contact_text">For inquiries about our apps, media coverage, or strategic partnerships, connect with our studio team.</p>
-        </div>
-        <div class="contact-grid">
-          <div class="contact-channel">
-            <h3 data-key="contact_channel_title">Media & Partnerships</h3>
-            <a class="contact-email" href="mailto:info@gennisys.com">info@gennisys.com</a>
-            <p data-key="contact_channel_text">Press, distribution, and strategic collaboration requests are welcome.</p>
-          </div>
-          <div class="contact-cta">
-            <h3 data-key="contact_cta_title">Connect with the Studio</h3>
-            <ul class="contact-bullets">
-              <li data-key="contact_bullet_1">Portfolio briefings & beta access</li>
-              <li data-key="contact_bullet_2">Product roadmap briefings & community initiatives</li>
-              <li data-key="contact_bullet_3">Strategic alliances that amplify our apps</li>
-            </ul>
-            <a class="btn" href="mailto:info@gennisys.com" data-key="btn_project">Contact us</a>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    <div class="footer-content">
-      <div class="footer-section">
-    <h4>Gennisys</h4>
-    <p>Designing proprietary mobile applications for the digital economy.</p>
-        <div class="social-links">
-          <a href="#" aria-label="LinkedIn">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+        <button id="backToTop" aria-label="Back to top" style="display: none">
+            <svg
+                width="28"
+                height="28"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#00ff88"
+                stroke-width="3"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+            >
+                <polyline points="18 15 12 9 6 15" />
             </svg>
-          </a>
-          <a href="#" aria-label="Twitter">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
-            </svg>
-          </a>
-        </div>
-      </div>
-      
-      <div class="footer-section">
-        <h4>Applications</h4>
-        <ul>
-          <li><a href="#apps">Smart Calculator</a></li>
-          <li><a href="#apps">Pro Calendar</a></li>
-          <li><a href="#apps">Navigation Plus</a></li>
-          <li><a href="#apps">Mobile Games</a></li>
-        </ul>
-      </div>
-      
-      <div class="footer-section">
-        <h4>Company</h4>
-        <ul>
-          <li><a href="#ceo">Leadership</a></li>
-          <li><a href="#vision">Vision</a></li>
-          <li><a href="#apps">Solutions</a></li>
-          <li><a href="#ecosystem">Ecosystem</a></li>
-          <li><a href="#news">Newsroom</a></li>
-        </ul>
-      </div>
-      
-      <div class="footer-section">
-        <h4>Contact Info</h4>
-        <div class="contact-info">
-          <p>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
-            </svg>
-            info@gennisys.com
-          </p>
-          <p>Proprietary mobile application portfolio</p>
-        </div>
-      </div>
-    </div>
-    
-    <div class="footer-bottom">
-  <p>© 2025 Gennisys. All rights reserved. | Our apps, our innovation.</p>
-    </div>
-  </footer>
+        </button>
 
-  <script src="main.js"></script>
-  <script>
-    // Back to Top Button logic
-    const backToTop = document.getElementById('backToTop');
-    window.addEventListener('scroll', () => {
-      backToTop.style.display = window.scrollY > 200 ? 'block' : 'none';
-    });
-    backToTop.addEventListener('click', () => {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-  </script>
-</body>
+        <nav class="navbar" role="navigation" aria-label="Main navigation">
+            <div class="nav-left desktop-flags">
+                <img
+                    src="https://flagcdn.com/us.svg"
+                    alt="English"
+                    data-lang="en"
+                    class="flag"
+                />
+                <img
+                    src="https://flagcdn.com/br.svg"
+                    alt="Português"
+                    data-lang="pt"
+                    class="flag"
+                />
+            </div>
+
+            <div class="nav-center">
+                <ul class="menu" role="menubar" aria-label="Primary">
+                    <li role="none">
+                        <a role="menuitem" href="#home" data-key="nav_home"
+                            >Home</a
+                        >
+                    </li>
+                    <li role="none">
+                        <a role="menuitem" href="#ceo" data-key="nav_leadership"
+                            >Leadership</a
+                        >
+                    </li>
+                    <li role="none">
+                        <a role="menuitem" href="#vision" data-key="nav_vision"
+                            >Vision</a
+                        >
+                    </li>
+                    <li role="none">
+                        <a role="menuitem" href="#apps" data-key="nav_solutions"
+                            >Solutions</a
+                        >
+                    </li>
+                    <li role="none">
+                        <a
+                            role="menuitem"
+                            href="#ecosystem"
+                            data-key="nav_ecosystem"
+                            >Ecosystem</a
+                        >
+                    </li>
+                    <li role="none">
+                        <a role="menuitem" href="#news" data-key="nav_news"
+                            >News</a
+                        >
+                    </li>
+                    <li role="none">
+                        <a
+                            role="menuitem"
+                            href="#contact"
+                            data-key="nav_contact"
+                            >Contact</a
+                        >
+                    </li>
+                </ul>
+            </div>
+
+            <div class="nav-right">
+                <a
+                    href="#home"
+                    class="logo desktop-only-logo"
+                    aria-label="Gennisys home"
+                >
+                    <svg
+                        id="logoSvg"
+                        class="logo-svg"
+                        viewBox="0 0 240 50"
+                        xmlns="http://www.w3.org/2000/svg"
+                    >
+                        <path
+                            d="M20,25 L80,25 L85,10 L90,40 L95,25 L160,25"
+                            fill="none"
+                            stroke="#00ff88"
+                            stroke-width="3"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                        />
+                    </svg>
+                </a>
+            </div>
+
+            <div class="mobile-nav">
+                <a
+                    href="#home"
+                    class="logo mobile-only-logo"
+                    aria-label="Gennisys home"
+                    >Gennisys</a
+                >
+                <div class="mobile-logo-svg">
+                    <svg
+                        class="logo-svg-mobile"
+                        viewBox="0 0 240 50"
+                        xmlns="http://www.w3.org/2000/svg"
+                    >
+                        <path
+                            d="M20,25 L80,25 L85,10 L90,40 L95,25 L160,25"
+                            fill="none"
+                            stroke="#00ff88"
+                            stroke-width="3"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                        />
+                    </svg>
+                </div>
+                <button
+                    class="hamburger"
+                    aria-label="Open mobile menu"
+                    aria-expanded="false"
+                >
+                    <svg
+                        width="28"
+                        height="28"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="#00ff88"
+                        stroke-width="3"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                    >
+                        <line x1="3" y1="6" x2="21" y2="6" />
+                        <line x1="3" y1="12" x2="21" y2="12" />
+                        <line x1="3" y1="18" x2="21" y2="18" />
+                    </svg>
+                </button>
+            </div>
+        </nav>
+
+        <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+            <ul>
+                <li><a href="#home" data-key="nav_home">Home</a></li>
+                <li><a href="#ceo" data-key="nav_leadership">Leadership</a></li>
+                <li><a href="#vision" data-key="nav_vision">Vision</a></li>
+                <li><a href="#apps" data-key="nav_solutions">Solutions</a></li>
+                <li>
+                    <a href="#ecosystem" data-key="nav_ecosystem">Ecosystem</a>
+                </li>
+                <li><a href="#news" data-key="nav_news">News</a></li>
+                <li><a href="#contact" data-key="nav_contact">Contact</a></li>
+                <li class="flags-mobile">
+                    <img
+                        src="https://flagcdn.com/us.svg"
+                        alt="English"
+                        data-lang="en"
+                        class="flag"
+                    />
+                    <img
+                        src="https://flagcdn.com/br.svg"
+                        alt="Português"
+                        data-lang="pt"
+                        class="flag"
+                    />
+                </li>
+            </ul>
+        </div>
+
+        <main>
+            <section id="home" class="section hero">
+                <div class="hero-grid">
+                    <article class="card hero-card tilt" data-reveal>
+                        <span class="hero-badge" data-key="hero_badge"
+                            >Independent App Studio</span
+                        >
+                        <h1 data-key="hero_title">
+                            Our Products, Built with Vision
+                        </h1>
+                        <p data-key="hero_text">
+                            At
+                            <strong class="brand-highlight">Gennisys</strong>,
+                            we conceive, design, and operate a proprietary
+                            portfolio of applications—no outsourced work, only
+                            experiences driven by our product vision.
+                        </p>
+                        <div class="hero-actions">
+                            <a
+                                class="btn"
+                                href="#contact"
+                                data-key="btn_contact"
+                                >Contact the Team</a
+                            >
+                            <button
+                                class="btn-secondary"
+                                type="button"
+                                data-go="#news"
+                                data-key="btn_news"
+                            >
+                                Product Updates
+                            </button>
+                        </div>
+                        <ul class="hero-points">
+                            <li data-key="hero_point_1">
+                                Integrated product squads advancing our
+                                proprietary mobile, web, and XR platforms.
+                            </li>
+                            <li data-key="hero_point_2">
+                                AI-first design and engineering powering an
+                                ambitious internal roadmap.
+                            </li>
+                            <li data-key="hero_point_3">
+                                Continuous analytics, live operations, and
+                                structured community engagement around our apps.
+                            </li>
+                        </ul>
+                    </article>
+                    <aside class="card hero-visual tilt" data-reveal>
+                        <div class="hero-visual-inner">
+                            <div class="orb orb-1" aria-hidden="true"></div>
+                            <div class="orb orb-2" aria-hidden="true"></div>
+                            <div class="orb orb-3" aria-hidden="true"></div>
+                            <div class="metric-grid">
+                                <div class="metric" data-reveal>
+                                    <span
+                                        class="metric-value"
+                                        data-count="12"
+                                        data-suffix="+"
+                                        data-duration="1600"
+                                        >0</span
+                                    >
+                                    <span
+                                        class="metric-label"
+                                        data-key="metric_products"
+                                        >Products on the roadmap</span
+                                    >
+                                </div>
+                                <div class="metric" data-reveal>
+                                    <span
+                                        class="metric-value"
+                                        data-count="80"
+                                        data-suffix="K+"
+                                        data-duration="1800"
+                                        >0</span
+                                    >
+                                    <span
+                                        class="metric-label"
+                                        data-key="metric_users"
+                                        >Users we plan to reach</span
+                                    >
+                                </div>
+                                <div class="metric" data-reveal>
+                                    <span
+                                        class="metric-value"
+                                        data-count="4"
+                                        data-suffix=""
+                                        data-duration="1600"
+                                        >0</span
+                                    >
+                                    <span
+                                        class="metric-label"
+                                        data-key="metric_markets"
+                                        >Markets we're entering</span
+                                    >
+                                </div>
+                                <div class="metric" data-reveal>
+                                    <span
+                                        class="metric-value"
+                                        data-count="99.9"
+                                        data-suffix="%"
+                                        data-decimals="1"
+                                        data-duration="2000"
+                                        >0</span
+                                    >
+                                    <span
+                                        class="metric-label"
+                                        data-key="metric_uptime"
+                                        >Reliability across our stack</span
+                                    >
+                                </div>
+                            </div>
+                            <div class="hero-stack">
+                                <span
+                                    class="hero-stack-title"
+                                    data-key="hero_stack_title"
+                                    >Core focus areas:</span
+                                >
+                                <div class="hero-stack-tags">
+                                    <span>AI</span>
+                                    <span>Cloud-native</span>
+                                    <span>Mobile</span>
+                                    <span>XR</span>
+                                    <span>Gaming</span>
+                                    <span>Data</span>
+                                </div>
+                            </div>
+                        </div>
+                    </aside>
+                </div>
+            </section>
+
+            <section id="ceo" class="section section-ceo">
+                <div class="card ceo-card ceo-expanded tilt" data-reveal>
+                    <div class="ceo-layout">
+                        <div class="ceo-profile">
+                            <img
+                                src="https://i.postimg.cc/dqLLj7KL/file-0000000040e86230b2fb6a71cedf9375.png"
+                                alt="Tiago Cardoso avatar"
+                                class="ceo-avatar"
+                            />
+                            <div class="ceo-headline">
+                                <span
+                                    class="section-eyebrow"
+                                    data-key="ceo_badge"
+                                    >Leadership</span
+                                >
+                                <h2 data-key="ceo_section_title">
+                                    Meet the Founder
+                                </h2>
+                                <h3 data-key="ceo_name">Tiago Cardoso</h3>
+                                <p class="ceo-position" data-key="ceo_title">
+                                    Founder & CEO
+                                </p>
+                            </div>
+                        </div>
+                        <div class="ceo-story">
+                            <p data-key="ceo_text">
+                                Tiago sets the strategic agenda for Gennisys,
+                                commanding execution across product,
+                                engineering, and audience expansion to uphold
+                                our independent vision.
+                            </p>
+                            <div class="ceo-highlights">
+                                <div class="highlight-item">
+                                    <h4 data-key="ceo_highlight_1_title">
+                                        Product Governance
+                                    </h4>
+                                    <p data-key="ceo_highlight_1_text">
+                                        Directs the proprietary roadmap and
+                                        enforces disciplined delivery for every
+                                        launch.
+                                    </p>
+                                </div>
+                                <div class="highlight-item">
+                                    <h4 data-key="ceo_highlight_2_title">
+                                        Engineering Stewardship
+                                    </h4>
+                                    <p data-key="ceo_highlight_2_text">
+                                        Leads technical excellence, resilient
+                                        infrastructure, and continuous
+                                        innovation standards.
+                                    </p>
+                                </div>
+                                <div class="highlight-item">
+                                    <h4 data-key="ceo_highlight_3_title">
+                                        Market Relationships
+                                    </h4>
+                                    <p data-key="ceo_highlight_3_text">
+                                        Activates strategic alliances that
+                                        extend distribution and stakeholder
+                                        value.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <blockquote class="ceo-quote" data-key="ceo_quote">
+                            “We design, validate, and scale the digital products
+                            we believe must exist—precise, responsive, and built
+                            for leadership.”
+                        </blockquote>
+                    </div>
+                </div>
+            </section>
+
+            <section id="vision" class="section section-vision">
+                <div class="card split-card tilt" data-reveal>
+                    <div class="split-left">
+                        <span class="section-eyebrow" data-key="vision_badge"
+                            >Vision 2025</span
+                        >
+                        <h2 data-key="vision_title">
+                            End-to-end execution, fully internal.
+                        </h2>
+                        <p data-key="vision_text">
+                            Cross-functional teams align strategy, design, and
+                            engineering to convert proprietary innovation into
+                            global platforms.
+                        </p>
+                        <div class="kpi-grid">
+                            <div class="kpi">
+                                <span
+                                    class="kpi-value"
+                                    data-count="3"
+                                    data-suffix="+"
+                                    data-duration="1400"
+                                    >0</span
+                                >
+                                <span class="kpi-label" data-key="vision_kpi_1"
+                                    >Platforms deployed</span
+                                >
+                            </div>
+                            <div class="kpi">
+                                <span
+                                    class="kpi-value"
+                                    data-count="15"
+                                    data-suffix="+"
+                                    data-duration="1600"
+                                    >0</span
+                                >
+                                <span class="kpi-label" data-key="vision_kpi_2"
+                                    >Prototypes in validation</span
+                                >
+                            </div>
+                            <div class="kpi">
+                                <span
+                                    class="kpi-value"
+                                    data-count="24"
+                                    data-suffix="/7"
+                                    data-duration="1800"
+                                    >0</span
+                                >
+                                <span class="kpi-label" data-key="vision_kpi_3"
+                                    >Operational coverage</span
+                                >
+                            </div>
+                        </div>
+                    </div>
+                    <div class="split-right vision-grid">
+                        <div class="vision-item" data-reveal>
+                            <span class="vision-icon" aria-hidden="true"
+                                >⚡</span
+                            >
+                            <h3 data-key="vision_card_1_title">
+                                Acceleration Pods
+                            </h3>
+                            <p data-key="vision_card_1_text">
+                                Modular squads converting validated concepts
+                                into production-ready applications within weeks.
+                            </p>
+                        </div>
+                        <div class="vision-item" data-reveal>
+                            <span class="vision-icon" aria-hidden="true"
+                                >🧠</span
+                            >
+                            <h3 data-key="vision_card_2_title">
+                                AI-First Experiences
+                            </h3>
+                            <p data-key="vision_card_2_text">
+                                Intelligent systems embedded in every product we
+                                operate.
+                            </p>
+                        </div>
+                        <div class="vision-item" data-reveal>
+                            <span class="vision-icon" aria-hidden="true"
+                                >🌐</span
+                            >
+                            <h3 data-key="vision_card_3_title">
+                                Global Readiness
+                            </h3>
+                            <p data-key="vision_card_3_text">
+                                Localization, compliance, and infrastructure
+                                engineered for worldwide launches.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="apps" class="section section-solutions">
+                <div class="card solutions-card tilt" data-reveal>
+                    <div class="section-header">
+                        <span class="section-eyebrow" data-key="apps_badge"
+                            >Gennisys Portfolio</span
+                        >
+                        <h2 data-key="apps_title">Our Applications</h2>
+                        <p data-key="apps_subtitle">
+                            Explore the proprietary applications engineered
+                            entirely in-house.
+                        </p>
+                    </div>
+                    <div class="apps-grid">
+                        <a
+                            class="app-item tilt"
+                            data-reveal
+                            href="#"
+                            data-app-url=""
+                            data-app-target="new"
+                        >
+                            <div class="app-header">
+                                <div class="app-icon">📱</div>
+                                <div>
+                                    <h3 data-key="app_calculator_title">
+                                        Smart Calculator
+                                    </h3>
+                                    <p data-key="app_calculator_desc">
+                                        Advanced calculator with scientific
+                                        functions and audit-ready history
+                                        tracking.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="app-tags">
+                                <span>iOS</span>
+                                <span>Android</span>
+                                <span>Widget</span>
+                            </div>
+                        </a>
+                        <a
+                            class="app-item tilt"
+                            data-reveal
+                            href="#"
+                            data-app-url=""
+                            data-app-target="new"
+                        >
+                            <div class="app-header">
+                                <div class="app-icon">📅</div>
+                                <div>
+                                    <h3 data-key="app_calendar_title">
+                                        Pro Calendar
+                                    </h3>
+                                    <p data-key="app_calendar_desc">
+                                        Intelligent calendar delivering smart
+                                        scheduling and executive-grade reminders
+                                        from our studio.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="app-tags">
+                                <span>AI Agents</span>
+                                <span>Wearables</span>
+                                <span>Sync</span>
+                            </div>
+                        </a>
+                        <a
+                            class="app-item tilt"
+                            data-reveal
+                            href="#"
+                            data-app-url=""
+                            data-app-target="new"
+                        >
+                            <div class="app-header">
+                                <div class="app-icon">🗺️</div>
+                                <div>
+                                    <h3 data-key="app_maps_title">
+                                        Navigation Plus
+                                    </h3>
+                                    <p data-key="app_maps_desc">
+                                        Enhanced mapping solution with resilient
+                                        offline capabilities from our mobility
+                                        program.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="app-tags">
+                                <span>Offline</span>
+                                <span>AR</span>
+                                <span>Telemetry</span>
+                            </div>
+                        </a>
+                        <a
+                            class="app-item tilt"
+                            data-reveal
+                            href="#"
+                            data-app-url=""
+                            data-app-target="new"
+                        >
+                            <div class="app-header">
+                                <div class="app-icon">🎮</div>
+                                <div>
+                                    <h3 data-key="app_games_title">
+                                        Mobile Games
+                                    </h3>
+                                    <p data-key="app_games_desc">
+                                        Immersive 2D and 3D games produced by
+                                        our internal game laboratory.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="app-tags">
+                                <span>Unity</span>
+                                <span>Unreal</span>
+                                <span>LiveOps</span>
+                            </div>
+                        </a>
+                        <a
+                            class="app-item tilt"
+                            data-reveal
+                            href="#"
+                            data-app-url=""
+                            data-app-target="new"
+                        >
+                            <div class="app-header">
+                                <div class="app-icon">🛠️</div>
+                                <div>
+                                    <h3 data-key="app_utilities_title">
+                                        Utility Suite
+                                    </h3>
+                                    <p data-key="app_utilities_desc">
+                                        Essential productivity and optimization
+                                        tools spanning our ecosystem.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="app-tags">
+                                <span>Automation</span>
+                                <span>Security</span>
+                                <span>Cloud</span>
+                            </div>
+                        </a>
+                        <a
+                            class="app-item tilt"
+                            data-reveal
+                            href="#"
+                            data-app-url=""
+                            data-app-target="new"
+                        >
+                            <div class="app-header">
+                                <div class="app-icon">🎵</div>
+                                <div>
+                                    <h3 data-key="app_music_title">
+                                        Audio Studio
+                                    </h3>
+                                    <p data-key="app_music_desc">
+                                        Professional audio creation and editing
+                                        tools from our creator stack.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="app-tags">
+                                <span>Spatial</span>
+                                <span>Collab</span>
+                                <span>Creator</span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <section id="ecosystem" class="section section-ecosystem">
+                <div class="card ecosystem-card tilt" data-reveal>
+                    <div class="section-header">
+                        <span class="section-eyebrow" data-key="ecosystem_badge"
+                            >Build Engine</span
+                        >
+                        <h2 data-key="ecosystem_title">
+                            An internal pipeline for breakthrough products.
+                        </h2>
+                        <p data-key="ecosystem_text">
+                            Every discipline collaborates to operate the
+                            applications we own, from research through live
+                            operations.
+                        </p>
+                    </div>
+                    <div class="ecosystem-grid">
+                        <div class="ecosystem-column">
+                            <h3 data-key="ecosystem_column_1_title">
+                                Product Research
+                            </h3>
+                            <ul>
+                                <li data-key="ecosystem_column_1_item_1">
+                                    Audience intelligence & roadmap validation
+                                </li>
+                                <li data-key="ecosystem_column_1_item_2">
+                                    Brand systems & design language for our apps
+                                </li>
+                                <li data-key="ecosystem_column_1_item_3">
+                                    Concept sprints & prototype labs
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="ecosystem-column">
+                            <h3 data-key="ecosystem_column_2_title">
+                                Engineering Core
+                            </h3>
+                            <ul>
+                                <li data-key="ecosystem_column_2_item_1">
+                                    Native and cross-platform builds across our
+                                    stack
+                                </li>
+                                <li data-key="ecosystem_column_2_item_2">
+                                    AI-driven personalization frameworks
+                                </li>
+                                <li data-key="ecosystem_column_2_item_3">
+                                    Secure, scalable cloud backbone
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="ecosystem-column">
+                            <h3 data-key="ecosystem_column_3_title">
+                                Operations & Growth
+                            </h3>
+                            <ul>
+                                <li data-key="ecosystem_column_3_item_1">
+                                    Analytics frameworks & experimentation
+                                </li>
+                                <li data-key="ecosystem_column_3_item_2">
+                                    LiveOps orchestration & release cadence
+                                </li>
+                                <li data-key="ecosystem_column_3_item_3">
+                                    Monetization experiments & ecosystem
+                                    alliances
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="partner-row" data-reveal>
+                        <span class="partner-caption" data-key="partner_caption"
+                            >Strategic partners</span
+                        >
+                        <div class="partner-placeholder-grid partners-active">
+                            <a
+                                class="partner-slot"
+                                href="https://about.google/"
+                                target="_blank"
+                                rel="noopener"
+                            >
+                                <img
+                                    src="assets/google.png"
+                                    alt="Google"
+                                    loading="lazy"
+                                />
+                            </a>
+                            <a
+                                class="partner-slot"
+                                href="https://www.microsoft.com/"
+                                target="_blank"
+                                rel="noopener"
+                            >
+                                <img
+                                    src="assets/microsoft.png"
+                                    alt="Microsoft"
+                                    loading="lazy"
+                                />
+                            </a>
+                            <a
+                                class="partner-slot"
+                                href="https://www.samsung.com/"
+                                target="_blank"
+                                rel="noopener"
+                            >
+                                <img
+                                    src="assets/samsung.png"
+                                    alt="Samsung"
+                                    loading="lazy"
+                                />
+                            </a>
+                        </div>
+                        <p class="partner-note" data-key="partner_note">
+                            Global technology partners amplifying the reach of
+                            our proprietary applications.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="news" class="section section-news">
+                <div class="card news-card tilt" data-reveal>
+                    <div class="section-header">
+                        <span class="section-eyebrow" data-key="news_badge"
+                            >Newsroom</span
+                        >
+                        <h2 data-key="news_title">Latest from Gennisys</h2>
+                        <p data-key="news_subtitle">
+                            Follow the milestones shaping our proprietary
+                            roadmap.
+                        </p>
+                    </div>
+                    <div
+                        class="news-grid"
+                        id="newsGrid"
+                        aria-live="polite"
+                    ></div>
+                    <div class="news-footer">
+                        <button
+                            class="btn-secondary"
+                            type="button"
+                            id="subscribeNews"
+                            data-key="btn_subscribe"
+                        >
+                            Notify me
+                        </button>
+                        <p class="news-note" data-key="news_note">
+                            We share release notes and corporate milestones
+                            regularly.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="contact" class="section section-contact">
+                <div class="card contact-card tilt" data-reveal>
+                    <div class="section-header">
+                        <span class="section-eyebrow" data-key="contact_badge"
+                            >Contact</span
+                        >
+                        <h2 data-key="contact_title">Reach Gennisys</h2>
+                        <p data-key="contact_text">
+                            For inquiries about our apps, media coverage, or
+                            strategic partnerships, connect with our studio
+                            team.
+                        </p>
+                    </div>
+                    <div class="contact-grid">
+                        <div class="contact-channel">
+                            <h3 data-key="contact_channel_title">
+                                Media & Partnerships
+                            </h3>
+                            <a
+                                class="contact-email"
+                                href="mailto:info@gennisys.com"
+                                >info@gennisys.com</a
+                            >
+                            <p data-key="contact_channel_text">
+                                Press, distribution, and strategic collaboration
+                                requests are welcome.
+                            </p>
+                        </div>
+                        <div class="contact-cta">
+                            <h3 data-key="contact_cta_title">
+                                Connect with the Studio
+                            </h3>
+                            <ul class="contact-bullets">
+                                <li data-key="contact_bullet_1">
+                                    Portfolio briefings & beta access
+                                </li>
+                                <li data-key="contact_bullet_2">
+                                    Product roadmap briefings & community
+                                    initiatives
+                                </li>
+                                <li data-key="contact_bullet_3">
+                                    Strategic alliances that amplify our apps
+                                </li>
+                            </ul>
+                            <a
+                                class="btn"
+                                href="mailto:info@gennisys.com"
+                                data-key="btn_project"
+                                >Contact us</a
+                            >
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Gennisys</h4>
+                    <p>
+                        Designing proprietary mobile applications for the
+                        digital economy.
+                    </p>
+                    <div class="social-links">
+                        <a href="#" aria-label="LinkedIn">
+                            <svg
+                                width="20"
+                                height="20"
+                                viewBox="0 0 24 24"
+                                fill="currentColor"
+                            >
+                                <path
+                                    d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"
+                                />
+                            </svg>
+                        </a>
+                        <a href="#" aria-label="Twitter">
+                            <svg
+                                width="20"
+                                height="20"
+                                viewBox="0 0 24 24"
+                                fill="currentColor"
+                            >
+                                <path
+                                    d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"
+                                />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Applications</h4>
+                    <ul>
+                        <li><a href="#apps">Smart Calculator</a></li>
+                        <li><a href="#apps">Pro Calendar</a></li>
+                        <li><a href="#apps">Navigation Plus</a></li>
+                        <li><a href="#apps">Mobile Games</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="#ceo">Leadership</a></li>
+                        <li><a href="#vision">Vision</a></li>
+                        <li><a href="#apps">Solutions</a></li>
+                        <li><a href="#ecosystem">Ecosystem</a></li>
+                        <li><a href="#news">Newsroom</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Contact Info</h4>
+                    <div class="contact-info">
+                        <p>
+                            <svg
+                                width="16"
+                                height="16"
+                                viewBox="0 0 24 24"
+                                fill="currentColor"
+                            >
+                                <path
+                                    d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                                />
+                            </svg>
+                            info@gennisys.com
+                        </p>
+                        <p>Proprietary mobile application portfolio</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>
+                    © 2025 Gennisys. All rights reserved. | Our apps, our
+                    innovation.
+                </p>
+            </div>
+        </footer>
+
+        <script src="main.js"></script>
+        <script>
+            // Back to Top Button logic
+            const backToTop = document.getElementById("backToTop");
+            window.addEventListener("scroll", () => {
+                backToTop.style.display =
+                    window.scrollY > 200 ? "block" : "none";
+            });
+            backToTop.addEventListener("click", () => {
+                window.scrollTo({ top: 0, behavior: "smooth" });
+            });
+        </script>
+    </body>
 </html>
