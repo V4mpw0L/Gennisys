@@ -868,7 +868,65 @@ body {
 /* Hero */
 .hero {
     position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 50px;
 }
+
+/* Hero Logo Centralizado */
+.hero-logo-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 20px;
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+.hero-logo-wrapper {
+    font-size: 4.5rem;
+    font-weight: 800;
+    color: #00ff88;
+    letter-spacing: 2px;
+    display: flex;
+    align-items: center;
+    text-shadow:
+        0 0 30px rgba(0, 255, 136, 0.5),
+        0 0 60px rgba(0, 255, 136, 0.3);
+    animation: heroLogoPulse 3s ease-in-out infinite;
+}
+
+.rotating-g-hero {
+    display: inline-block;
+    animation: slowRotate 6s linear infinite;
+    transform-origin: center;
+    margin-right: 4px;
+}
+
+.hero-logo-text {
+    background: linear-gradient(135deg, #00ff88 0%, #00cc6a 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+@keyframes heroLogoPulse {
+    0%,
+    100% {
+        text-shadow:
+            0 0 30px rgba(0, 255, 136, 0.5),
+            0 0 60px rgba(0, 255, 136, 0.3);
+    }
+    50% {
+        text-shadow:
+            0 0 40px rgba(0, 255, 136, 0.7),
+            0 0 80px rgba(0, 255, 136, 0.5),
+            0 0 120px rgba(0, 255, 136, 0.3);
+    }
+}
+
 .hero-grid {
     width: 100%;
     max-width: 1200px;
@@ -1243,6 +1301,9 @@ footer {
     .menu {
         gap: 16px;
     }
+    .hero-logo-wrapper {
+        font-size: 3.5rem;
+    }
     .hero-grid {
         grid-template-columns: 1fr;
         gap: 28px;
@@ -1348,6 +1409,10 @@ footer {
     }
 }
 @media (max-width: 420px) {
+    .hero-logo-wrapper {
+        font-size: 2.5rem;
+        letter-spacing: 1px;
+    }
     .hero-card h1 {
         font-size: 2.1rem;
     }
