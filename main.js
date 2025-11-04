@@ -207,15 +207,15 @@ document.addEventListener("DOMContentLoaded", () => {
       app_maps_title: "FazendaRPG",
       app_maps_desc:
         "Immersive farming RPG game where you build and manage your own virtual farm.",
-      app_games_title: "Mobile Games",
+      app_games_title: "Hacker0s",
       app_games_desc:
-        "Immersive 2D and 3D games produced by our internal game laboratory.",
-      app_utilities_title: "Utility Suite",
+        "Interactive hacking simulation tool with realistic terminal experience and cybersecurity challenges.",
+      app_utilities_title: "PacketClicker",
       app_utilities_desc:
-        "Essential productivity and optimization tools spanning our ecosystem.",
-      app_music_title: "Audio Studio",
+        "Addictive incremental clicker game where you collect packets and upgrade your network infrastructure.",
+      app_music_title: "PassMap",
       app_music_desc:
-        "Professional audio creation and editing tools from our creator stack.",
+        "Secure password and address management tool to organize your digital life safely.",
       ecosystem_badge: "Build Engine",
       ecosystem_title: "An internal pipeline for breakthrough products.",
       ecosystem_text:
@@ -327,15 +327,15 @@ document.addEventListener("DOMContentLoaded", () => {
       app_maps_title: "FazendaRPG",
       app_maps_desc:
         "Jogo RPG de fazenda imersivo onde você constrói e gerencia sua própria fazenda virtual.",
-      app_games_title: "Jogos Mobile",
+      app_games_title: "Hacker0s",
       app_games_desc:
-        "Jogos 2D e 3D imersivos produzidos pelo nosso laboratório interno.",
-      app_utilities_title: "Suíte de Utilitários",
+        "Ferramenta interativa de simulação hacker com experiência realista de terminal e desafios de cibersegurança.",
+      app_utilities_title: "PacketClicker",
       app_utilities_desc:
-        "Ferramentas essenciais de produtividade e otimização que percorrem nosso ecossistema.",
-      app_music_title: "Estúdio de Áudio",
+        "Jogo viciante de clique incremental onde você coleta pacotes e melhora sua infraestrutura de rede.",
+      app_music_title: "PassMap",
       app_music_desc:
-        "Ferramentas profissionais de criação e edição de áudio do nosso stack para criadores.",
+        "Ferramenta segura de gerenciamento de senhas e endereços para organizar sua vida digital com segurança.",
       ecosystem_badge: "Motor de Construção",
       ecosystem_title: "Um pipeline interno para produtos de ruptura.",
       ecosystem_text:
