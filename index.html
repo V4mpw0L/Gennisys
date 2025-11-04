@@ -48,6 +48,100 @@
                     data-lang="pt"
                     class="flag"
                 />
+                <button
+                    class="theme-toggle"
+                    id="themeToggle"
+                    aria-label="Change theme"
+                >
+                    <svg
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                    >
+                        <circle cx="12" cy="12" r="10" />
+                        <circle cx="12" cy="12" r="3" />
+                        <line x1="12" y1="2" x2="12" y2="6" />
+                        <line x1="12" y1="18" x2="12" y2="22" />
+                        <line x1="4.93" y1="4.93" x2="7.76" y2="7.76" />
+                        <line x1="16.24" y1="16.24" x2="19.07" y2="19.07" />
+                        <line x1="2" y1="12" x2="6" y2="12" />
+                        <line x1="18" y1="12" x2="22" y2="12" />
+                        <line x1="4.93" y1="19.07" x2="7.76" y2="16.24" />
+                        <line x1="16.24" y1="7.76" x2="19.07" y2="4.93" />
+                    </svg>
+                </button>
+                <div class="theme-dropdown" id="themeDropdown">
+                    <div class="theme-option" data-theme="green">
+                        <span
+                            class="theme-color"
+                            style="
+                                background: linear-gradient(
+                                    135deg,
+                                    #00ff88,
+                                    #00cc6a
+                                );
+                            "
+                        ></span>
+                        <span class="theme-name">🟢 Matrix Original</span>
+                    </div>
+                    <div class="theme-option" data-theme="blue">
+                        <span
+                            class="theme-color"
+                            style="
+                                background: linear-gradient(
+                                    135deg,
+                                    #0ea5e9,
+                                    #0284c7
+                                );
+                            "
+                        ></span>
+                        <span class="theme-name">🔵 Ocean Deep</span>
+                    </div>
+                    <div class="theme-option" data-theme="purple">
+                        <span
+                            class="theme-color"
+                            style="
+                                background: linear-gradient(
+                                    135deg,
+                                    #a855f7,
+                                    #7c3aed
+                                );
+                            "
+                        ></span>
+                        <span class="theme-name">🟣 Royal Violet</span>
+                    </div>
+                    <div class="theme-option" data-theme="cyan">
+                        <span
+                            class="theme-color"
+                            style="
+                                background: linear-gradient(
+                                    135deg,
+                                    #22d3ee,
+                                    #06b6d4
+                                );
+                            "
+                        ></span>
+                        <span class="theme-name">🔷 Neon Aqua</span>
+                    </div>
+                    <div class="theme-option" data-theme="emerald">
+                        <span
+                            class="theme-color"
+                            style="
+                                background: linear-gradient(
+                                    135deg,
+                                    #34d399,
+                                    #10b981
+                                );
+                            "
+                        ></span>
+                        <span class="theme-name">💚 Forest Pro</span>
+                    </div>
+                </div>
             </div>
 
             <div class="nav-center">
@@ -190,6 +284,101 @@
                         data-lang="pt"
                         class="flag"
                     />
+                </li>
+                <li class="theme-selector-mobile">
+                    <button
+                        class="theme-toggle mobile-theme"
+                        aria-label="Change theme"
+                    >
+                        <svg
+                            width="20"
+                            height="20"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                        >
+                            <circle cx="12" cy="12" r="10" />
+                            <circle cx="12" cy="12" r="3" />
+                            <line x1="12" y1="2" x2="12" y2="6" />
+                            <line x1="12" y1="18" x2="12" y2="22" />
+                            <line x1="4.93" y1="4.93" x2="7.76" y2="7.76" />
+                            <line x1="16.24" y1="16.24" x2="19.07" y2="19.07" />
+                            <line x1="2" y1="12" x2="6" y2="12" />
+                            <line x1="18" y1="12" x2="22" y2="12" />
+                            <line x1="4.93" y1="19.07" x2="7.76" y2="16.24" />
+                            <line x1="16.24" y1="7.76" x2="19.07" y2="4.93" />
+                        </svg>
+                    </button>
+                </li>
+                <li class="theme-dropdown-mobile" id="themeDropdownMobile">
+                    <div class="theme-option" data-theme="green">
+                        <span
+                            class="theme-color"
+                            style="
+                                background: linear-gradient(
+                                    135deg,
+                                    #00ff88,
+                                    #00cc6a
+                                );
+                            "
+                        ></span>
+                        <span class="theme-name">🟢 Matrix Original</span>
+                    </div>
+                    <div class="theme-option" data-theme="blue">
+                        <span
+                            class="theme-color"
+                            style="
+                                background: linear-gradient(
+                                    135deg,
+                                    #0ea5e9,
+                                    #0284c7
+                                );
+                            "
+                        ></span>
+                        <span class="theme-name">🔵 Ocean Deep</span>
+                    </div>
+                    <div class="theme-option" data-theme="purple">
+                        <span
+                            class="theme-color"
+                            style="
+                                background: linear-gradient(
+                                    135deg,
+                                    #a855f7,
+                                    #7c3aed
+                                );
+                            "
+                        ></span>
+                        <span class="theme-name">🟣 Royal Violet</span>
+                    </div>
+                    <div class="theme-option" data-theme="cyan">
+                        <span
+                            class="theme-color"
+                            style="
+                                background: linear-gradient(
+                                    135deg,
+                                    #22d3ee,
+                                    #06b6d4
+                                );
+                            "
+                        ></span>
+                        <span class="theme-name">🔷 Neon Aqua</span>
+                    </div>
+                    <div class="theme-option" data-theme="emerald">
+                        <span
+                            class="theme-color"
+                            style="
+                                background: linear-gradient(
+                                    135deg,
+                                    #34d399,
+                                    #10b981
+                                );
+                            "
+                        ></span>
+                        <span class="theme-name">💚 Forest Pro</span>
+                    </div>
                 </li>
             </ul>
         </div>

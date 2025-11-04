@@ -656,6 +656,139 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
+  /* ---------- Theme System ---------- */
+  const themes = {
+    green: {
+      neon: "#00ff88",
+      neonSoft: "rgba(0, 255, 136, 0.08)",
+      bg: "linear-gradient(135deg, #0a1a0e 0%, #0e1f12 100%)",
+      cardBorder: "rgba(0, 255, 136, 0.12)",
+      shadowSoft: "0 12px 35px rgba(0, 255, 136, 0.18)",
+      surface: "rgba(255, 255, 255, 0.04)",
+      surfaceStrong: "rgba(255, 255, 255, 0.08)",
+      text: "#eef2ff",
+      muted: "#94a3b8",
+    },
+    blue: {
+      neon: "#0ea5e9",
+      neonSoft: "rgba(14, 165, 233, 0.08)",
+      bg: "linear-gradient(135deg, #020617 0%, #0c1220 100%)",
+      cardBorder: "rgba(56, 189, 248, 0.15)",
+      shadowSoft: "0 12px 35px rgba(14, 165, 233, 0.25)",
+      surface: "rgba(56, 189, 248, 0.05)",
+      surfaceStrong: "rgba(56, 189, 248, 0.12)",
+      text: "#dbeafe",
+      muted: "#7dd3fc",
+    },
+    purple: {
+      neon: "#a855f7",
+      neonSoft: "rgba(168, 85, 247, 0.08)",
+      bg: "linear-gradient(135deg, #1e1b4b 0%, #312e81 100%)",
+      cardBorder: "rgba(168, 85, 247, 0.2)",
+      shadowSoft: "0 12px 35px rgba(168, 85, 247, 0.3)",
+      surface: "rgba(196, 181, 253, 0.06)",
+      surfaceStrong: "rgba(196, 181, 253, 0.12)",
+      text: "#e9d5ff",
+      muted: "#c084fc",
+    },
+    cyan: {
+      neon: "#22d3ee",
+      neonSoft: "rgba(34, 211, 238, 0.08)",
+      bg: "linear-gradient(135deg, #042f2e 0%, #0f2d2a 100%)",
+      cardBorder: "rgba(34, 211, 238, 0.18)",
+      shadowSoft: "0 12px 35px rgba(34, 211, 238, 0.25)",
+      surface: "rgba(103, 232, 249, 0.05)",
+      surfaceStrong: "rgba(103, 232, 249, 0.1)",
+      text: "#cffafe",
+      muted: "#67e8f9",
+    },
+    emerald: {
+      neon: "#34d399",
+      neonSoft: "rgba(52, 211, 153, 0.08)",
+      bg: "linear-gradient(135deg, #064e3b 0%, #065f46 100%)",
+      cardBorder: "rgba(52, 211, 153, 0.15)",
+      shadowSoft: "0 12px 35px rgba(52, 211, 153, 0.22)",
+      surface: "rgba(167, 243, 208, 0.05)",
+      surfaceStrong: "rgba(167, 243, 208, 0.1)",
+      text: "#d1fae5",
+      muted: "#6ee7b7",
+    },
+  };
+
+  function applyTheme(themeName) {
+    const theme = themes[themeName];
+    if (!theme) return;
+
+    const root = document.documentElement;
+    root.style.setProperty("--brand-neon", theme.neon);
+    root.style.setProperty("--brand-neon-soft", theme.neonSoft);
+    root.style.setProperty("--brand-bg", theme.bg);
+    root.style.setProperty("--card-border", theme.cardBorder);
+    root.style.setProperty("--shadow-soft", theme.shadowSoft);
+    root.style.setProperty("--brand-surface", theme.surface);
+    root.style.setProperty("--brand-surface-strong", theme.surfaceStrong);
+    root.style.setProperty("--brand-text", theme.text);
+    root.style.setProperty("--brand-muted", theme.muted);
+
+    // Update body background
+    document.body.style.background = theme.bg;
+
+    // Save to localStorage
+    localStorage.setItem("gennisys-theme", themeName);
+
+    // Update active state
+    document.querySelectorAll(".theme-option").forEach((option) => {
+      option.classList.toggle("active", option.dataset.theme === themeName);
+    });
+  }
+
+  // Load saved theme or default to green
+  const savedTheme = localStorage.getItem("gennisys-theme") || "green";
+  applyTheme(savedTheme);
+
+  // Theme toggle button
+  const themeToggle = document.getElementById("themeToggle");
+  const themeDropdown = document.getElementById("themeDropdown");
+  const themeDropdownMobile = document.getElementById("themeDropdownMobile");
+
+  if (themeToggle && themeDropdown) {
+    themeToggle.addEventListener("click", (e) => {
+      e.stopPropagation();
+      themeDropdown.classList.toggle("active");
+      themeDropdownMobile.classList.remove("active");
+    });
+  }
+
+  // Mobile theme toggle
+  const mobileThemeToggle = document.querySelector(".mobile-theme");
+  if (mobileThemeToggle && themeDropdownMobile) {
+    mobileThemeToggle.addEventListener("click", (e) => {
+      e.stopPropagation();
+      themeDropdownMobile.classList.toggle("active");
+    });
+  }
+
+  // Theme selection
+  document.querySelectorAll(".theme-option").forEach((option) => {
+    option.addEventListener("click", () => {
+      const theme = option.dataset.theme;
+      applyTheme(theme);
+      themeDropdown.classList.remove("active");
+      themeDropdownMobile.classList.remove("active");
+    });
+  });
+
+  // Close dropdown when clicking outside
+  document.addEventListener("click", (e) => {
+    if (
+      !e.target.closest(".theme-toggle") &&
+      !e.target.closest(".theme-dropdown")
+    ) {
+      themeDropdown?.classList.remove("active");
+      themeDropdownMobile?.classList.remove("active");
+    }
+  });
+
   /* ---------- Logo Animation with Rotating G ---------- */
   function initLogoAnimation() {
     // Animate G in mobile logo
