@@ -878,6 +878,11 @@ body {
     height: 32px;
 }
 
+/* Mobile nav (hidden on desktop) */
+.mobile-nav {
+    display: none;
+}
+
 /* Hamburger (hidden in desktop) */
 .hamburger {
     display: none;
@@ -1447,10 +1452,46 @@ footer {
 }
 
 /* ---------- Responsive ---------- */
-@media (max-width: 920px) {
-    .menu {
-        gap: 16px;
+
+/* Tablet & iPad — switch to mobile nav at 1024px */
+@media (max-width: 1024px) {
+    .desktop-flags {
+        display: none;
     }
+    .nav-center {
+        display: none;
+    }
+    .nav-left {
+        display: none;
+    }
+    .nav-right {
+        display: none;
+    }
+    .mobile-nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+    }
+    .mobile-logo-svg {
+        display: block;
+    }
+    .hamburger {
+        display: flex;
+        flex-direction: column;
+    }
+    .mobile-menu {
+        display: none;
+    }
+    .mobile-menu.open {
+        display: block;
+    }
+    .logo {
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 920px) {
     .hero-logo-wrapper {
         font-size: 3.5rem;
     }
@@ -1479,45 +1520,12 @@ footer {
     .apps-grid {
         grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
     }
-    .logo {
-        font-size: 1.5rem;
-    }
-    .desktop-only-logo {
-        display: none;
-    }
-    .mobile-only-logo {
-        display: block;
+    .ceo-card {
+        padding: 38px;
     }
 }
+
 @media (max-width: 800px) {
-    .desktop-flags {
-        display: none;
-    } /* Hide desktop flags on mobile */
-    .mobile-nav {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        width: 100%;
-    }
-    .mobile-logo-svg {
-        display: block;
-    } /* Show mobile logo SVG */
-    .nav-center {
-        display: none;
-    }
-    .nav-left {
-        display: none;
-    }
-    .hamburger {
-        display: flex;
-        flex-direction: column;
-    }
-    .mobile-menu {
-        display: none;
-    }
-    .mobile-menu.open {
-        display: block;
-    }
     .card {
         padding: 34px;
         border-radius: 18px;
@@ -1541,6 +1549,9 @@ footer {
     .ceo-highlights {
         grid-template-columns: 1fr;
     }
+    .ceo-card {
+        padding: 30px;
+    }
     .split-card {
         gap: 32px;
     }
@@ -1557,7 +1568,11 @@ footer {
         padding: 80px 18px;
         padding-top: 110px;
     }
+    .ecosystem-grid {
+        grid-template-columns: 1fr;
+    }
 }
+
 @media (max-width: 420px) {
     .hero-logo-wrapper {
         font-size: 2.5rem;

@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
   let h = (canvas.height = window.innerHeight);
   let particles = [];
   const particleCount = () => Math.round(Math.max(60, Math.min(150, w / 10)));
-  const gridSpacing = 40;
+  const gridSpacing = w <= 768 ? 80 : w <= 1024 ? 60 : 40;
 
   window.addEventListener("resize", () => {
     w = canvas.width = window.innerWidth;
@@ -58,8 +58,12 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }
     draw() {
+      const neon = getComputedStyle(document.documentElement).getPropertyValue("--brand-neon").trim() || "#00ff88";
+      const r = parseInt(neon.slice(1, 3), 16);
+      const g = parseInt(neon.slice(3, 5), 16);
+      const b = parseInt(neon.slice(5, 7), 16);
       ctx.beginPath();
-      ctx.fillStyle = `rgba(0,255,136,${this.alpha})`;
+      ctx.fillStyle = `rgba(${r},${g},${b},${this.alpha})`;
       ctx.arc(this.x, this.y, 1.2, 0, Math.PI * 2);
       ctx.fill();
     }
