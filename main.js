@@ -707,19 +707,21 @@ document.addEventListener('DOMContentLoaded', () => {
         const item = getNewsData().find(n => n.id === newsId);
         if (item && modalContent && modal) {
             const lang = currentLang;
-            const contentHtml = (item.content && item.content[lang]) ? item.content[lang] : `<p>${item.excerpt ? item.excerpt[lang] : ''}</p>`;
+            const fullTextHtml = (item.texto && item.texto[lang]) ? item.texto[lang] : `<p>${item.excerpt ? item.excerpt[lang] : ''}</p>`;
+            const tagHtml = item.tag ? `<span class="news-tag">${item.tag}</span>` : '<span></span>';
+            const dateHtml = (item.date && item.date[lang]) ? `<span class="news-date">${item.date[lang]}</span>` : '';
 
             modalContent.innerHTML = `
                 <div class="news-modal-top">
-                    <div class="news-modal-meta">
-                        <span class="news-badge ${item.badgeClass}">${item.badge[lang]}</span>
-                        <span class="news-tag-pill">${item.tag}</span>
-                    </div>
-                    <span class="news-date" style="font-size:0.75rem; color:var(--text-muted); font-weight:600;">${item.date[lang]}</span>
+                    <span class="news-badge ${item.badgeClass}">${item.badge[lang]}</span>
                 </div>
-                <h3 class="news-modal-title">${item.title[lang]}</h3>
-                <div class="news-modal-body">
-                    ${contentHtml}
+                <h3 class="news-title" style="font-size:1.15rem; margin-bottom:12px;">${item.title[lang]}</h3>
+                <div class="news-modal-body-card">
+                    ${fullTextHtml}
+                </div>
+                <div class="news-footer" style="padding-top:10px; margin-top:6px;">
+                    ${tagHtml}
+                    ${dateHtml}
                 </div>
             `;
             modal.classList.add('open');

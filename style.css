@@ -1795,12 +1795,12 @@ button {
 .modal-card {
     background: var(--bg-surface-elevated);
     border: 1px solid var(--accent-border);
-    border-radius: var(--radius-lg);
-    max-width: 600px;
+    border-radius: var(--radius-md);
+    max-width: 740px;
     width: 100%;
-    padding: 36px;
+    padding: 20px 24px;
     position: relative;
-    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.8);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.85);
     transform: scale(0.95);
     transition: transform var(--transition-smooth);
 }
@@ -1811,10 +1811,10 @@ button {
 
 .modal-close-btn {
     position: absolute;
-    top: 18px;
-    right: 18px;
-    width: 32px;
-    height: 32px;
+    top: 14px;
+    right: 14px;
+    width: 28px;
+    height: 28px;
     border-radius: 50%;
     background: rgba(255, 71, 87, 0.08);
     border: 1px solid rgba(255, 71, 87, 0.35);
@@ -1822,7 +1822,7 @@ button {
     align-items: center;
     justify-content: center;
     color: #ff4757;
-    font-size: 0.95rem;
+    font-size: 0.85rem;
     font-weight: 700;
     cursor: pointer;
     z-index: 10;
@@ -1841,84 +1841,95 @@ button {
 .news-modal-top {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    margin-bottom: 14px;
-    padding-right: 42px; /* Space for close button */
-    padding-bottom: 12px;
-    border-bottom: 1px solid var(--border-subtle);
-}
-
-.news-modal-meta {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    flex-wrap: wrap;
-}
-
-.news-tag-pill {
-    font-size: 0.7rem;
-    font-weight: 700;
-    color: var(--text-muted);
-    background: rgba(255, 255, 255, 0.04);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    padding: 2px 8px;
-    border-radius: 4px;
-    letter-spacing: 0.3px;
+    margin-bottom: 8px;
+    padding-right: 36px;
 }
 
 .news-modal-title {
     font-family: var(--font-heading);
-    font-size: 1.25rem;
-    font-weight: 700;
+    font-size: 1.15rem;
+    font-weight: 800;
     color: var(--text-pure);
-    line-height: 1.4;
-    margin-bottom: 16px;
+    line-height: 1.35;
+    margin-bottom: 12px;
     letter-spacing: -0.2px;
 }
 
-.news-modal-body {
-    font-size: 0.9rem;
-    color: var(--text-secondary);
-    line-height: 1.7;
+/* Glass News Reading Card (Exact Match to Home News Excerpt Card) */
+.news-modal-body-card {
+    background: rgba(255, 255, 255, 0.025);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: var(--radius-sm);
+    padding: 14px 16px;
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 10px;
+    max-height: 55vh;
+    overflow-y: auto;
 }
 
-.news-modal-body p {
+.news-modal-body-card::-webkit-scrollbar {
+    width: 4px;
+}
+
+.news-modal-body-card::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: 4px;
+}
+
+.news-modal-body-card::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 4px;
+}
+
+.news-modal-body-card::-webkit-scrollbar-thumb:hover {
+    background: var(--accent-light);
+}
+
+.news-modal-body-card p {
+    font-size: 0.86rem;
+    color: var(--text-secondary);
+    line-height: 1.7;
     margin: 0;
 }
 
-.news-modal-body strong {
+.news-modal-body-card strong {
+    color: var(--text-pure);
+    font-weight: 700;
+}
+
+.news-modal-body-card a {
     color: var(--accent-light);
+    text-decoration: underline;
+    text-underline-offset: 3px;
     font-weight: 600;
+    transition: color var(--transition-fast);
 }
 
-.news-modal-body ul {
-    list-style: none;
-    padding: 0;
-    margin: 4px 0 0 0;
+.news-modal-body-card a:hover {
+    color: var(--text-pure);
+}
+
+.news-modal-footer {
     display: flex;
-    flex-direction: column;
-    gap: 8px;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 10px;
+    margin-top: 6px;
+    border-top: 1px solid var(--border-subtle);
 }
 
-.news-modal-body li {
-    position: relative;
-    padding-left: 16px;
-    font-size: 0.86rem;
-    color: var(--text-secondary);
-    line-height: 1.55;
+.news-tag-pill {
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: var(--text-muted);
 }
 
-.news-modal-body li::before {
-    content: '›';
-    position: absolute;
-    left: 2px;
-    top: -2px;
-    color: var(--accent-light);
-    font-size: 1.1rem;
-    font-weight: 800;
+@media (max-width: 768px) {
+    .modal-card {
+        padding: 16px 14px;
+        max-width: 95%;
+    }
 }
 
 /* --------------------------------------------------------------------------
