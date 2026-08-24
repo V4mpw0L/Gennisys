@@ -774,21 +774,26 @@ button {
 .primary-btn {
     display: inline-flex;
     align-items: center;
-    gap: 12px;
-    padding: 14px 32px;
-    background: var(--accent-gradient);
-    color: var(--text-pure);
+    gap: 10px;
+    padding: 13px 28px;
+    background: rgba(0, 255, 136, 0.08);
+    color: var(--accent-light);
+    border: 1px solid var(--accent-border);
     border-radius: var(--radius-full);
     font-weight: 700;
-    font-size: 0.95rem;
-    letter-spacing: 1px;
-    box-shadow: 0 8px 24px var(--portal-glow);
+    font-size: 0.92rem;
+    letter-spacing: 0.8px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4), 0 0 12px var(--portal-glow);
+    backdrop-filter: blur(10px);
     transition: all var(--transition-smooth);
 }
 
 .primary-btn:hover {
+    background: rgba(0, 255, 136, 0.16);
+    color: #ffffff;
+    border-color: var(--accent-secondary);
     transform: translateY(-2px);
-    box-shadow: 0 12px 32px var(--accent-glow);
+    box-shadow: 0 8px 24px var(--portal-glow);
 }
 
 .btn-arrow {
@@ -1234,8 +1239,8 @@ button {
 
 .news-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 24px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
 }
 
 .news-card {
@@ -1358,13 +1363,15 @@ button {
     color: var(--accent-secondary);
 }
 
-/* News Pagination (Soft & Elegant Glassmorphism) */
-.news-pagination {
-    display: flex;
+/* News & Creations Pagination (Soft & Elegant Glassmorphism) */
+.news-pagination, .creations-pagination {
+    display: flex !important;
+    flex-direction: row;
     align-items: center;
     justify-content: center;
     gap: 10px;
     margin-top: 32px;
+    width: 100%;
 }
 
 .page-nav-btn {
@@ -1455,131 +1462,126 @@ button {
     pointer-events: none;
 }
 
-.vault-header {
-    max-width: 700px;
-    margin-bottom: 40px;
-}
-
 .vault-status-chip {
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    padding: 4px 14px;
+    padding: 6px 14px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--accent-border);
     border-radius: var(--radius-full);
-    background: rgba(255, 0, 122, 0.12);
-    border: 1px solid rgba(255, 0, 122, 0.4);
     font-size: 0.72rem;
-    font-weight: 800;
+    font-weight: 700;
     letter-spacing: 1.5px;
-    color: #ff4081;
-    margin-bottom: 18px;
+    color: var(--accent-light);
+    margin-bottom: 20px;
 }
 
 .chip-blink {
     width: 6px;
     height: 6px;
-    background: #ff4081;
     border-radius: 50%;
-    box-shadow: 0 0 6px #ff4081;
-    animation: statusPulse 1.5s infinite;
+    background: var(--accent-light);
+    box-shadow: 0 0 8px var(--accent-glow);
+    animation: statusPulse 1.8s infinite;
 }
 
 .vault-title {
     font-family: var(--font-heading);
-    font-size: clamp(1.8rem, 3vw, 2.5rem);
-    font-weight: 800;
+    font-size: clamp(1.8rem, 3.5vw, 2.5rem);
     color: var(--text-pure);
-    margin-bottom: 14px;
+    margin-bottom: 16px;
 }
 
 .vault-desc {
+    font-size: 1rem;
     color: var(--text-secondary);
-    font-size: 1.05rem;
     line-height: 1.8;
+    max-width: 700px;
+    margin-bottom: 36px;
 }
 
 .vault-matrix {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
     gap: 20px;
-    margin-top: 30px;
+    margin-bottom: 40px;
 }
 
 .matrix-box {
-    background: rgba(255, 255, 255, 0.03);
+    background: rgba(255, 255, 255, 0.02);
     border: 1px solid var(--border-subtle);
+    padding: 16px 20px;
     border-radius: var(--radius-md);
-    padding: 18px 24px;
     display: flex;
     flex-direction: column;
-    gap: 4px;
+    gap: 6px;
 }
 
 .matrix-label {
     font-size: 0.7rem;
     font-weight: 700;
-    letter-spacing: 2px;
     color: var(--text-muted);
+    letter-spacing: 1px;
 }
 
 .matrix-val {
-    font-family: var(--font-heading);
-    font-size: 1rem;
-    font-weight: 700;
+    font-size: 0.95rem;
+    font-weight: 600;
     color: var(--accent-light);
 }
 
-.vault-rune-symbol {
-    position: absolute;
-    bottom: -40px;
-    right: 20px;
-    width: 220px;
-    height: 220px;
-    color: var(--accent-border);
-    opacity: 0.3;
-    pointer-events: none;
+.vault-actions {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
 }
 
-.rotating-sigil {
-    animation: rotateRing 60s linear infinite;
+.vault-btn {
+    padding: 12px 28px;
+    font-size: 0.88rem;
+}
+
+.vault-access-hint {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    font-style: italic;
 }
 
 /* --------------------------------------------------------------------------
    9. NEXUS / FOOTER
    -------------------------------------------------------------------------- */
 .nexus-footer {
-    background: #030406;
     border-top: 1px solid var(--border-subtle);
-    padding: 80px 0 40px;
-    position: relative;
-    z-index: 2;
+    background: linear-gradient(180deg, var(--bg-void) 0%, #010402 100%);
+    padding: 80px 0 36px;
 }
 
 .nexus-top {
     display: grid;
     grid-template-columns: 1.4fr 2fr;
-    gap: 60px;
+    gap: 64px;
     margin-bottom: 60px;
 }
 
 .nexus-brand {
     display: flex;
     flex-direction: column;
-    gap: 16px;
-}
-
-.brand-crest.large .crest-sigil {
-    width: 48px;
-    height: 48px;
+    gap: 20px;
 }
 
 .brand-crest.large .brand-title {
-    font-size: 1.4rem;
+    font-size: 1.35rem;
+}
+
+.brand-crest.large .brand-sub {
+    font-size: 0.72rem;
 }
 
 .nexus-mission {
+    font-size: 0.88rem;
     color: var(--text-secondary);
-    font-size: 0.95rem;
     line-height: 1.7;
     max-width: 360px;
 }
@@ -1934,7 +1936,7 @@ button {
         height: 36px;
     }
     .section {
-        padding: 56px 0;
+        padding: 50px 0;
     }
     .hero-section {
         padding-top: calc(var(--header-height) + 20px);
@@ -1944,47 +1946,60 @@ button {
         font-size: 2.1rem;
     }
     .creations-grid {
-        grid-template-columns: 1fr;
-        gap: 14px;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
     }
     .creation-card {
-        padding: 14px 16px;
+        padding: 12px 10px;
         min-height: auto;
-        border-radius: var(--radius-md);
+        border-radius: var(--radius-sm);
     }
     .card-header {
-        margin-bottom: 8px;
+        margin-bottom: 4px;
+    }
+    .project-badge, .project-type {
+        font-size: 0.62rem;
+        padding: 2px 4px;
     }
     .card-body {
-        gap: 4px;
-        margin-bottom: 12px;
+        gap: 2px;
+        margin-bottom: 8px;
     }
     .card-rune {
-        font-size: 1.25rem;
+        font-size: 1.15rem;
     }
     .card-title {
-        font-size: 1.05rem;
-    }
-    .card-summary {
-        font-size: 0.8rem;
-        line-height: 1.45;
-    }
-    .card-tags {
-        gap: 4px;
+        font-size: 0.94rem;
+        letter-spacing: 0;
         margin-top: 2px;
     }
-    .tag {
-        font-size: 0.65rem;
-        padding: 2px 6px;
+    .card-summary {
+        font-size: 0.72rem;
+        line-height: 1.35;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+    .card-tags {
+        display: none;
+    }
+    .card-footer {
+        gap: 6px;
     }
     .launch-btn {
-        padding: 7px 12px;
-        font-size: 0.78rem;
+        padding: 6px 8px;
+        font-size: 0.72rem;
+        gap: 4px;
+    }
+    .launch-icon {
+        width: 10px;
+        height: 10px;
     }
     .inspect-btn {
-        width: 32px;
-        height: 32px;
-        font-size: 0.82rem;
+        width: 28px;
+        height: 28px;
+        font-size: 0.75rem;
     }
     .news-grid {
         gap: 14px;
@@ -2023,6 +2038,9 @@ button {
         right: 18px;
         width: 44px;
         height: 44px;
+    }
+    .footer-control-divider {
+        display: none;
     }
 }
 

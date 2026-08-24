@@ -59,12 +59,13 @@ document.addEventListener('DOMContentLoaded', () => {
             proj_passmap_desc: "Gerenciador de segurança de senhas e dados sigilosos. Uma fortaleza de privacidade digital construída para proteção absoluta.",
             proj_budget_desc: "Sistema de controle patrimonial com categorização dinâmica, projeções orçamentárias e dashboards inteligentes.",
             proj_gencalc_desc: "Calculadora científica com histórico de auditoria instantâneo e layout ergonômico feito para operações complexas.",
-            btn_enter_world: "Entrar no Mundo",
-            btn_access_terminal: "Acessar Terminal",
-            btn_start_transmission: "Iniciar Transmissão",
-            btn_open_vault: "Abrir Cofre",
-            btn_access_system: "Acessar Sistema",
-            btn_launch_calculator: "Executar GenCalc",
+            btn_access: "Acessar",
+            btn_enter_world: "Acessar",
+            btn_access_terminal: "Acessar",
+            btn_start_transmission: "Acessar",
+            btn_open_vault: "Acessar",
+            btn_access_system: "Acessar",
+            btn_launch_calculator: "Acessar",
             news_tag: "TRANSMISSÕES & NOVIDADES",
             news_heading: "Últimas Atualizações",
             news_sub: "Acompanhe as notas de atualização, registros de desenvolvimento e comunicados oficiais do estúdio.",
@@ -83,6 +84,10 @@ document.addEventListener('DOMContentLoaded', () => {
             news_5_desc: "Atualizado o protocolo criptográfico local para proteção absoluta de dados confidenciais com auditoria de integridade.",
             news_6_title: "GenCalc & BudgetBox: Otimizações de Precisão e Interface",
             news_6_desc: "Refatoração dos algoritmos matemáticos com precisão de ponto flutuante corrigida e ergonomia acelerada por teclado.",
+            news_7_title: "Infraestrutura: Novo Cluster de Baixa Latência",
+            news_7_desc: "Migração de nós globais para acelerar o tempo de resposta e sincronização de dados nos ecossistemas Gennisys.",
+            news_8_title: "Design System: Atualização das Auras & UI",
+            news_8_desc: "Implementação da nova paleta atmosférica com temas dinâmicos e componentes glassmorphism para todos os aplicativos.",
             news_read_more: "Acessar →",
             vault_status: "LABORATÓRIO CLASSIFICADO // EM DESENVOLVIMENTO",
             vault_title: "Projeto: Protocolo Aetheria",
@@ -149,12 +154,13 @@ document.addEventListener('DOMContentLoaded', () => {
             proj_passmap_desc: "High-security password and credential manager. A cryptographic digital vault engineered for total autonomy and privacy.",
             proj_budget_desc: "Capital management architecture featuring dynamic categorization, cashflow projections, and financial intelligence visualizers.",
             proj_gencalc_desc: "Scientific computing engine with real-time audit logs and ergonomic interface engineered for advanced mathematical workflows.",
-            btn_enter_world: "Enter World",
-            btn_access_terminal: "Access Terminal",
-            btn_start_transmission: "Start Transmission",
-            btn_open_vault: "Open Vault",
-            btn_access_system: "Access System",
-            btn_launch_calculator: "Launch GenCalc",
+            btn_access: "Access",
+            btn_enter_world: "Access",
+            btn_access_terminal: "Access",
+            btn_start_transmission: "Access",
+            btn_open_vault: "Access",
+            btn_access_system: "Access",
+            btn_launch_calculator: "Access",
             news_tag: "STUDIO DISPATCHES",
             news_heading: "Latest Updates",
             news_sub: "Track recent patch releases, development logs, and official studio announcements.",
@@ -173,6 +179,10 @@ document.addEventListener('DOMContentLoaded', () => {
             news_5_desc: "Upgraded client-side cryptographic protocols for uncompromising confidential storage and integrity auditing.",
             news_6_title: "GenCalc & BudgetBox: Precision & UI Optimizations",
             news_6_desc: "Refactored mathematical engines with IEEE-754 precision correction and keyboard-accelerated workflows.",
+            news_7_title: "Infrastructure: New Low-Latency Cluster Deployed",
+            news_7_desc: "Migrated edge compute nodes globally to reduce latency and accelerate state sync across Gennisys apps.",
+            news_8_title: "Design System: UI & Visual Auras Overhaul",
+            news_8_desc: "Deployed refined atmospheric palette with dynamic themes and glassmorphic component tokens studio-wide.",
             news_read_more: "Open →",
             vault_status: "CLASSIFIED LAB // UNDER DEVELOPMENT",
             vault_title: "Project: Protocol Aetheria",
@@ -499,36 +509,114 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     // ----------------------------------------------------------------------
-    // 5. CATEGORY FILTER (CREATIONS)
+    // 5. CREATIONS FILTER & PAGINATION ENGINE
     // ----------------------------------------------------------------------
     const filterButtons = document.querySelectorAll('.filter-btn');
-    const cards = document.querySelectorAll('.creation-card');
+    const creationCards = document.querySelectorAll('.creation-card');
+    const creationsPagination = document.getElementById('creationsPagination');
+    const creationsPrevBtn = document.getElementById('creationsPrevBtn');
+    const creationsNextBtn = document.getElementById('creationsNextBtn');
+    const creationDots = document.querySelectorAll('[data-creation-page]');
 
-    filterButtons.forEach(btn => {
-        btn.addEventListener('click', () => {
-            filterButtons.forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
+    let activeFilter = 'all';
+    let currentCreationPage = 1;
+    const totalCreationPages = 2;
 
-            const filter = btn.getAttribute('data-filter');
-
-            cards.forEach(card => {
+    function renderCreations() {
+        if (activeFilter !== 'all') {
+            // In filtered mode, hide pagination controls and display matching items
+            if (creationsPagination) creationsPagination.style.display = 'none';
+            creationCards.forEach(card => {
                 const category = card.getAttribute('data-category');
-                if (filter === 'all' || category === filter) {
+                if (category === activeFilter) {
                     card.style.display = 'flex';
                     setTimeout(() => {
                         card.style.opacity = '1';
                         card.style.transform = 'translateY(0) scale(1)';
-                    }, 50);
+                    }, 40);
                 } else {
                     card.style.opacity = '0';
-                    card.style.transform = 'translateY(16px) scale(0.96)';
+                    card.style.transform = 'translateY(12px) scale(0.96)';
                     setTimeout(() => {
                         card.style.display = 'none';
-                    }, 300);
+                    }, 250);
                 }
             });
+        } else {
+            // In 'all' mode, use pagination (3 items per page)
+            if (creationsPagination) creationsPagination.style.display = 'flex';
+            creationCards.forEach(card => {
+                const page = parseInt(card.getAttribute('data-creation-page'), 10) || 1;
+                if (page === currentCreationPage) {
+                    card.style.display = 'flex';
+                    setTimeout(() => {
+                        card.style.opacity = '1';
+                        card.style.transform = 'translateY(0) scale(1)';
+                    }, 40);
+                } else {
+                    card.style.opacity = '0';
+                    card.style.transform = 'translateY(12px) scale(0.96)';
+                    setTimeout(() => {
+                        card.style.display = 'none';
+                    }, 250);
+                }
+            });
+
+            // Update pagination indicators
+            creationDots.forEach(dot => {
+                const page = parseInt(dot.getAttribute('data-creation-page'), 10);
+                if (page === currentCreationPage) {
+                    dot.classList.add('active');
+                } else {
+                    dot.classList.remove('active');
+                }
+            });
+
+            if (creationsPrevBtn) creationsPrevBtn.disabled = (currentCreationPage <= 1);
+            if (creationsNextBtn) creationsNextBtn.disabled = (currentCreationPage >= totalCreationPages);
+        }
+    }
+
+    // Filter Button Click
+    filterButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            filterButtons.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            activeFilter = btn.getAttribute('data-filter');
+            currentCreationPage = 1;
+            renderCreations();
         });
     });
+
+    // Pagination Dot Click
+    creationDots.forEach(dot => {
+        dot.addEventListener('click', () => {
+            currentCreationPage = parseInt(dot.getAttribute('data-creation-page'), 10);
+            renderCreations();
+        });
+    });
+
+    // Pagination Arrow Clicks
+    if (creationsPrevBtn) {
+        creationsPrevBtn.addEventListener('click', () => {
+            if (currentCreationPage > 1) {
+                currentCreationPage--;
+                renderCreations();
+            }
+        });
+    }
+
+    if (creationsNextBtn) {
+        creationsNextBtn.addEventListener('click', () => {
+            if (currentCreationPage < totalCreationPages) {
+                currentCreationPage++;
+                renderCreations();
+            }
+        });
+    }
+
+    // Initial render
+    renderCreations();
 
 
     // ----------------------------------------------------------------------

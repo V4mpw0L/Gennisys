@@ -53,7 +53,6 @@
                 <a href="#news" class="nav-link" data-i18n="nav_news">Novidades</a>
                 <a href="#creations" class="nav-link" data-i18n="nav_creations">Criações</a>
                 <a href="#manifesto" class="nav-link" data-i18n="nav_manifesto">Manifesto</a>
-                <a href="#the-vault" class="nav-link" data-i18n="nav_vault">O Lab</a>
                 <a href="#nexus" class="nav-link" data-i18n="nav_nexus">Nexus</a>
             </nav>
 
@@ -78,7 +77,6 @@
                 <a href="#news" class="mobile-link" data-i18n="nav_news">Novidades</a>
                 <a href="#creations" class="mobile-link" data-i18n="nav_creations">Criações</a>
                 <a href="#manifesto" class="mobile-link" data-i18n="nav_manifesto">Manifesto</a>
-                <a href="#the-vault" class="mobile-link" data-i18n="nav_vault">O Lab</a>
                 <a href="#nexus" class="mobile-link" data-i18n="nav_nexus">Nexus</a>
             </nav>
             <div class="drawer-footer">
@@ -127,11 +125,6 @@
                         Últimas Novidades
                     </a>
                 </div>
-            </div>
-
-            <div class="scroll-cue">
-                <span class="scroll-label" data-i18n="scroll_cue">DESCER</span>
-                <div class="scroll-line"></div>
             </div>
         </section>
 
@@ -193,13 +186,13 @@
                             Nossa equipe de engenharia finalizou os primeiros testes com o motor de física procedural e atmosfera sonora para o próximo projeto.
                         </p>
                         <div class="news-footer">
-                            <span class="news-tag">The Vault / R&D</span>
-                            <a href="#the-vault" class="news-read-more" data-i18n="news_read_more">Ver Lab →</a>
+                            <span class="news-tag">The Lab / R&D</span>
+                            <a href="#news" class="news-read-more" data-i18n="news_read_more">Acessar →</a>
                         </div>
                     </article>
 
                     <!-- News Card 4 -->
-                    <article class="news-card" data-page="2" style="display:none;" data-reveal>
+                    <article class="news-card" data-page="1" data-reveal>
                         <div class="news-card-header">
                             <span class="news-badge patch-badge" data-i18n="news_cat_patch">PATCH NOTES</span>
                             <span class="news-date">02 AGO 2026</span>
@@ -245,6 +238,38 @@
                             <a href="https://v4mpw0l.github.io/GenCalc/" target="_blank" rel="noopener" class="news-read-more" data-i18n="news_read_more">Acessar →</a>
                         </div>
                     </article>
+
+                    <!-- News Card 7 -->
+                    <article class="news-card" data-page="2" style="display:none;" data-reveal>
+                        <div class="news-card-header">
+                            <span class="news-badge deploy-badge" data-i18n="news_cat_deploy">SISTEMA</span>
+                            <span class="news-date">01 JUL 2026</span>
+                        </div>
+                        <h3 class="news-title" data-i18n="news_7_title">Infraestrutura: Novo Cluster de Baixa Latência</h3>
+                        <p class="news-excerpt" data-i18n="news_7_desc">
+                            Migração de nós globais para acelerar o tempo de resposta e sincronização de dados nos ecossistemas Gennisys.
+                        </p>
+                        <div class="news-footer">
+                            <span class="news-tag">Core Infrastructure</span>
+                            <a href="#creations" class="news-read-more" data-i18n="news_read_more">Acessar →</a>
+                        </div>
+                    </article>
+
+                    <!-- News Card 8 -->
+                    <article class="news-card" data-page="2" style="display:none;" data-reveal>
+                        <div class="news-card-header">
+                            <span class="news-badge devlog-badge" data-i18n="news_cat_devlog">DEVLOG</span>
+                            <span class="news-date">18 JUN 2026</span>
+                        </div>
+                        <h3 class="news-title" data-i18n="news_8_title">Design System: Atualização das Auras & UI</h3>
+                        <p class="news-excerpt" data-i18n="news_8_desc">
+                            Implementação da nova paleta atmosférica com temas dinâmicos e componentes glassmorphism para todos os aplicativos.
+                        </p>
+                        <div class="news-footer">
+                            <span class="news-tag">Studio Design System</span>
+                            <a href="#creations" class="news-read-more" data-i18n="news_read_more">Acessar →</a>
+                        </div>
+                    </article>
                 </div>
 
                 <!-- News Pagination Controls -->
@@ -282,9 +307,9 @@
                 </div>
 
                 <!-- Projects Grid -->
-                <div class="creations-grid">
+                <div class="creations-grid" id="creationsGrid">
                     <!-- Project 1: FazendaRPG -->
-                    <article class="creation-card" data-category="games" data-reveal>
+                    <article class="creation-card" data-category="games" data-creation-page="1" data-reveal>
                         <div class="card-glow-bg"></div>
                         <div class="card-aura-edge"></div>
                         <div class="card-header">
@@ -305,7 +330,7 @@
                         </div>
                         <div class="card-footer">
                             <a href="https://v4mpw0l.github.io/FazendaRPG/" target="_blank" rel="noopener noreferrer" class="launch-btn">
-                                <span data-i18n="btn_enter_world">Entrar no Mundo</span>
+                                <span data-i18n="btn_access">Acessar</span>
                                 <svg class="launch-icon" viewBox="0 0 16 16" fill="none">
                                     <path d="M3 13L13 3M13 3H6M13 3V10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
                                 </svg>
@@ -317,7 +342,7 @@
                     </article>
 
                     <!-- Project 2: Hacker0s -->
-                    <article class="creation-card" data-category="cyber" data-reveal>
+                    <article class="creation-card" data-category="cyber" data-creation-page="1" data-reveal>
                         <div class="card-glow-bg"></div>
                         <div class="card-aura-edge"></div>
                         <div class="card-header">
@@ -338,7 +363,7 @@
                         </div>
                         <div class="card-footer">
                             <a href="https://v4mpw0l.github.io/hacker0S/" target="_blank" rel="noopener noreferrer" class="launch-btn">
-                                <span data-i18n="btn_access_terminal">Acessar Terminal</span>
+                                <span data-i18n="btn_access">Acessar</span>
                                 <svg class="launch-icon" viewBox="0 0 16 16" fill="none">
                                     <path d="M3 13L13 3M13 3H6M13 3V10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
                                 </svg>
@@ -350,7 +375,7 @@
                     </article>
 
                     <!-- Project 3: PacketClicker MMO -->
-                    <article class="creation-card" data-category="games" data-reveal>
+                    <article class="creation-card" data-category="games" data-creation-page="1" data-reveal>
                         <div class="card-glow-bg"></div>
                         <div class="card-aura-edge"></div>
                         <div class="card-header">
@@ -371,7 +396,7 @@
                         </div>
                         <div class="card-footer">
                             <a href="https://v4mpw0l.github.io/packetclickermmo/" target="_blank" rel="noopener noreferrer" class="launch-btn">
-                                <span data-i18n="btn_start_transmission">Iniciar Transmissão</span>
+                                <span data-i18n="btn_access">Acessar</span>
                                 <svg class="launch-icon" viewBox="0 0 16 16" fill="none">
                                     <path d="M3 13L13 3M13 3H6M13 3V10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
                                 </svg>
@@ -383,7 +408,7 @@
                     </article>
 
                     <!-- Project 4: PassMap -->
-                    <article class="creation-card" data-category="cyber" data-reveal>
+                    <article class="creation-card" data-category="cyber" data-creation-page="1" data-reveal>
                         <div class="card-glow-bg"></div>
                         <div class="card-aura-edge"></div>
                         <div class="card-header">
@@ -404,7 +429,7 @@
                         </div>
                         <div class="card-footer">
                             <a href="https://passmap.app/" target="_blank" rel="noopener noreferrer" class="launch-btn">
-                                <span data-i18n="btn_open_vault">Abrir Cofre</span>
+                                <span data-i18n="btn_access">Acessar</span>
                                 <svg class="launch-icon" viewBox="0 0 16 16" fill="none">
                                     <path d="M3 13L13 3M13 3H6M13 3V10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
                                 </svg>
@@ -416,7 +441,7 @@
                     </article>
 
                     <!-- Project 5: BudgetBox -->
-                    <article class="creation-card" data-category="utilities" data-reveal>
+                    <article class="creation-card" data-category="utilities" data-creation-page="2" style="display:none;" data-reveal>
                         <div class="card-glow-bg"></div>
                         <div class="card-aura-edge"></div>
                         <div class="card-header">
@@ -437,7 +462,7 @@
                         </div>
                         <div class="card-footer">
                             <a href="https://v4mpw0l.github.io/BudgetBox/" target="_blank" rel="noopener noreferrer" class="launch-btn">
-                                <span data-i18n="btn_access_system">Acessar Sistema</span>
+                                <span data-i18n="btn_access">Acessar</span>
                                 <svg class="launch-icon" viewBox="0 0 16 16" fill="none">
                                     <path d="M3 13L13 3M13 3H6M13 3V10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
                                 </svg>
@@ -449,7 +474,7 @@
                     </article>
 
                     <!-- Project 6: GenCalc -->
-                    <article class="creation-card" data-category="utilities" data-reveal>
+                    <article class="creation-card" data-category="utilities" data-creation-page="2" style="display:none;" data-reveal>
                         <div class="card-glow-bg"></div>
                         <div class="card-aura-edge"></div>
                         <div class="card-header">
@@ -470,7 +495,7 @@
                         </div>
                         <div class="card-footer">
                             <a href="https://v4mpw0l.github.io/GenCalc/" target="_blank" rel="noopener noreferrer" class="launch-btn">
-                                <span data-i18n="btn_launch_calculator">Executar GenCalc</span>
+                                <span data-i18n="btn_access">Acessar</span>
                                 <svg class="launch-icon" viewBox="0 0 16 16" fill="none">
                                     <path d="M3 13L13 3M13 3H6M13 3V10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
                                 </svg>
@@ -480,6 +505,16 @@
                             </button>
                         </div>
                     </article>
+                </div>
+
+                <!-- Creations Pagination Controls -->
+                <div class="creations-pagination" id="creationsPagination">
+                    <button class="page-nav-btn prev" id="creationsPrevBtn" disabled aria-label="Página Anterior">←</button>
+                    <div class="page-indicators" id="creationsPageIndicators">
+                        <button class="page-dot active" data-creation-page="1">1</button>
+                        <button class="page-dot" data-creation-page="2">2</button>
+                    </div>
+                    <button class="page-nav-btn next" id="creationsNextBtn" aria-label="Próxima Página">→</button>
                 </div>
             </div>
         </section>
@@ -538,48 +573,6 @@
             </div>
         </section>
 
-        <!-- THE VAULT / UNDER DEVELOPMENT TEASER -->
-        <section id="the-vault" class="section vault-section">
-            <div class="section-container">
-                <div class="vault-container" data-reveal>
-                    <div class="vault-glow-pulse" aria-hidden="true"></div>
-                    <div class="vault-header">
-                        <div class="vault-status-chip">
-                            <span class="chip-blink"></span>
-                            <span data-i18n="vault_status">LABORATÓRIO CLASSIFICADO // EM DESENVOLVIMENTO</span>
-                        </div>
-                        <h2 class="vault-title" data-i18n="vault_title">Projeto: Protocolo Aetheria</h2>
-                        <p class="vault-desc" data-i18n="vault_desc">
-                            Nos bastidores da Gennisys, uma nova experiência de proporções épicas está sendo forjada. Uma fusão de narrativa mística, inteligência generativa e mecânicas táticas imersivas.
-                        </p>
-                    </div>
-
-                    <div class="vault-matrix">
-                        <div class="matrix-box">
-                            <span class="matrix-label" data-i18n="vault_label_status">ESTADO</span>
-                            <span class="matrix-val" data-i18n="vault_val_status">Fase Alpha / Sob Sigilo</span>
-                        </div>
-                        <div class="matrix-box">
-                            <span class="matrix-label" data-i18n="vault_label_engine">ENGINE</span>
-                            <span class="matrix-val">Gennisys Nexus Core</span>
-                        </div>
-                        <div class="matrix-box">
-                            <span class="matrix-label" data-i18n="vault_label_deployment">LANÇAMENTO</span>
-                            <span class="matrix-val">Quando Estiver Perfeito</span>
-                        </div>
-                    </div>
-
-                    <div class="vault-rune-symbol" aria-hidden="true">
-                        <svg viewBox="0 0 100 100" class="rotating-sigil">
-                            <circle cx="50" cy="50" r="45" stroke="currentColor" stroke-width="1" stroke-dasharray="6 6"/>
-                            <polygon points="50,15 80,75 20,75" stroke="currentColor" stroke-width="1.5" fill="none"/>
-                            <circle cx="50" cy="50" r="10" stroke="currentColor" stroke-width="1"/>
-                        </svg>
-                    </div>
-                </div>
-            </div>
-        </section>
-
         <!-- NEXUS / FOOTER -->
         <footer id="nexus" class="nexus-footer">
             <div class="section-container">
@@ -608,13 +601,11 @@
                             <a href="#news" data-i18n="nav_news">Novidades</a>
                             <a href="#creations" data-i18n="nav_creations">Criações</a>
                             <a href="#manifesto" data-i18n="nav_manifesto">Manifesto</a>
-                            <a href="#the-vault" data-i18n="nav_vault">O Lab</a>
                         </div>
                         <div class="links-col">
                             <h4 data-i18n="footer_col_ecosystem">Ecossistema</h4>
                             <a href="https://github.com/v4mpw0l" target="_blank" rel="noopener">GitHub</a>
                             <a href="#news" data-i18n="footer_devlog">Notas de Lançamento</a>
-                            <a href="#the-vault" data-i18n="footer_vault">The Vault (Alpha)</a>
                         </div>
                         <div class="links-col">
                             <h4 data-i18n="footer_col_contact">Contato</h4>
