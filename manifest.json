@@ -1,0 +1,25 @@
+{
+  "name": "GENNISYS — Independent App & Game Studio",
+  "short_name": "GENNISYS",
+  "description": "Autonomous game and app studio forging proprietary digital realities.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#030705",
+  "theme_color": "#00ff88",
+  "icons": [
+    {
+      "src": "assets/logo.jpg",
+      "sizes": "192x192",
+      "type": "image/jpeg",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "assets/logo.jpg",
+      "sizes": "512x512",
+      "type": "image/jpeg",
+      "purpose": "any maskable"
+    }
+  ]
+}
