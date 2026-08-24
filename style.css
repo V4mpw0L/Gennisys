@@ -1075,35 +1075,48 @@ button {
 .card-footer {
     display: flex;
     align-items: center;
-    gap: 10px;
+    justify-content: center;
+    padding-top: 12px;
+    border-top: 1px solid var(--border-subtle);
+    margin-top: auto;
 }
 
 .launch-btn {
-    flex: 1;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 6px;
-    padding: 8px 14px;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid var(--accent-border);
-    border-radius: var(--radius-sm);
-    font-size: 0.8rem;
+    gap: 5px;
+    padding: 0;
+    background: transparent;
+    border: none;
+    font-size: 0.78rem;
     font-weight: 700;
-    letter-spacing: 0.3px;
-    color: var(--text-pure);
-    transition: all var(--transition-fast);
+    letter-spacing: 0.4px;
+    color: var(--accent-light);
+    transition: gap var(--transition-fast), color var(--transition-fast);
+    text-decoration: none;
+    cursor: pointer;
 }
 
+.creation-card:hover .launch-btn,
 .launch-btn:hover {
-    background: var(--accent-gradient);
-    border-color: transparent;
-    box-shadow: 0 4px 16px var(--portal-glow);
+    color: #ffffff;
+    gap: 8px;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    transform: none;
 }
 
 .launch-icon {
-    width: 13px;
-    height: 13px;
+    width: 12px;
+    height: 12px;
+    transition: transform var(--transition-fast);
+}
+
+.creation-card:hover .launch-icon,
+.launch-btn:hover .launch-icon {
+    transform: translate(2px, -2px);
 }
 
 
@@ -2011,11 +2024,11 @@ button {
         display: none;
     }
     .card-footer {
-        gap: 6px;
+        padding-top: 8px;
     }
     .launch-btn {
-        padding: 6px 8px;
-        font-size: 0.72rem;
+        padding: 0;
+        font-size: 0.74rem;
         gap: 4px;
     }
     .launch-icon {
