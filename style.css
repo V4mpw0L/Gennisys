@@ -1022,27 +1022,29 @@ button {
 }
 
 .filter-btn {
-    padding: 6px 16px;
+    padding: 7px 18px;
     border-radius: var(--radius-full);
-    background: rgba(255, 255, 255, 0.04);
+    background: rgba(255, 255, 255, 0.03);
     border: 1px solid var(--border-subtle);
-    color: var(--text-secondary);
+    color: var(--text-muted);
     font-size: 0.8rem;
     font-weight: 600;
     letter-spacing: 0.5px;
+    cursor: pointer;
     transition: all var(--transition-fast);
 }
 
 .filter-btn:hover {
-    color: var(--text-pure);
+    color: var(--text-primary);
     border-color: var(--accent-border);
+    background: rgba(255, 255, 255, 0.06);
 }
 
 .filter-btn.active {
-    background: var(--accent-gradient);
-    color: var(--text-pure);
-    border-color: transparent;
-    box-shadow: 0 4px 16px var(--portal-glow);
+    background: rgba(255, 255, 255, 0.08);
+    color: var(--accent-light);
+    border-color: var(--accent-border);
+    box-shadow: 0 0 14px var(--portal-glow);
 }
 
 /* Projects Grid - Compact 3-Column Layout */
