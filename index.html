@@ -1,1178 +1,680 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="pt-BR">
-    <head>
-        <meta charset="utf-8" />
-        <meta
-            name="viewport"
-            content="width=device-width, initial-scale=1.0"
-        />
-        <title>Gennisys — Independent App Studio</title>
-        <meta
-            name="description"
-            content="Gennisys is an independent app studio designing, building, and operating a proprietary portfolio of mobile, web, and XR applications."
-        />
-        <meta property="og:title" content="Gennisys — Independent App Studio" />
-        <meta
-            property="og:description"
-            content="We conceive, design, and operate proprietary applications — no outsourced work, only experiences driven by our product vision."
-        />
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://gennisys.com" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <title>GENNISYS — Independent App & Game Studio</title>
+    <meta name="description" content="Gennisys is an autonomous game and app laboratory. We conceive, design, and forge proprietary digital universes. No clients. Pure vision.">
+    
+    <!-- Open Graph / Meta -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://gennisys.com/">
+    <meta property="og:title" content="GENNISYS — Forging Digital Universes">
+    <meta property="og:description" content="Autonomous game & app laboratory. Handcrafted digital experiences built in-house.">
+    <meta property="twitter:card" content="summary_large_image">
+    
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    
+    <!-- Google Fonts: Syne, Cinzel, Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body data-theme="emerald">
+    <!-- Background Canvas -->
+    <canvas id="ether-canvas" aria-hidden="true"></canvas>
+    <div class="ambient-glow" aria-hidden="true"></div>
+    <div class="vignette-overlay" aria-hidden="true"></div>
 
-        <link rel="icon" type="image/x-icon" href="favicon.ico" />
-        <link rel="stylesheet" href="style.css" />
-
-        <link
-            href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&family=Roboto:wght@400;500&display=swap"
-            rel="stylesheet"
-        />
-    </head>
-    <body>
-        <canvas id="particles" aria-hidden="true"></canvas>
-
-        <button id="backToTop" aria-label="Back to top" style="display: none">
-            <svg
-                width="28"
-                height="28"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="#00ff88"
-                stroke-width="3"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-            >
-                <polyline points="18 15 12 9 6 15" />
-            </svg>
-        </button>
-
-        <nav class="navbar" role="navigation" aria-label="Main navigation">
-            <div class="nav-left desktop-flags">
-                <img
-                    src="https://flagcdn.com/us.svg"
-                    alt="English"
-                    data-lang="en"
-                    class="flag"
-                />
-                <img
-                    src="https://flagcdn.com/br.svg"
-                    alt="Português"
-                    data-lang="pt"
-                    class="flag"
-                />
-                <button
-                    class="theme-toggle"
-                    id="themeToggle"
-                    aria-label="Change theme"
-                >
-                    <svg
-                        width="24"
-                        height="24"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                    >
-                        <circle cx="12" cy="12" r="10" />
-                        <circle cx="12" cy="12" r="3" />
-                        <line x1="12" y1="2" x2="12" y2="6" />
-                        <line x1="12" y1="18" x2="12" y2="22" />
-                        <line x1="4.93" y1="4.93" x2="7.76" y2="7.76" />
-                        <line x1="16.24" y1="16.24" x2="19.07" y2="19.07" />
-                        <line x1="2" y1="12" x2="6" y2="12" />
-                        <line x1="18" y1="12" x2="22" y2="12" />
-                        <line x1="4.93" y1="19.07" x2="7.76" y2="16.24" />
-                        <line x1="16.24" y1="7.76" x2="19.07" y2="4.93" />
-                    </svg>
-                </button>
-                <div class="theme-dropdown" id="themeDropdown">
-                    <div class="theme-option" data-theme="green">
-                        <span
-                            class="theme-color"
-                            style="
-                                background: linear-gradient(
-                                    135deg,
-                                    #00ff88,
-                                    #00cc6a
-                                );
-                            "
-                        ></span>
-                        <span class="theme-name">🟢 Matrix Original</span>
-                    </div>
-                    <div class="theme-option" data-theme="blue">
-                        <span
-                            class="theme-color"
-                            style="
-                                background: linear-gradient(
-                                    135deg,
-                                    #0ea5e9,
-                                    #0284c7
-                                );
-                            "
-                        ></span>
-                        <span class="theme-name">🔵 Ocean Deep</span>
-                    </div>
-                    <div class="theme-option" data-theme="purple">
-                        <span
-                            class="theme-color"
-                            style="
-                                background: linear-gradient(
-                                    135deg,
-                                    #a855f7,
-                                    #7c3aed
-                                );
-                            "
-                        ></span>
-                        <span class="theme-name">🟣 Royal Violet</span>
-                    </div>
-                    <div class="theme-option" data-theme="cyan">
-                        <span
-                            class="theme-color"
-                            style="
-                                background: linear-gradient(
-                                    135deg,
-                                    #22d3ee,
-                                    #06b6d4
-                                );
-                            "
-                        ></span>
-                        <span class="theme-name">🔷 Neon Aqua</span>
-                    </div>
-                    <div class="theme-option" data-theme="emerald">
-                        <span
-                            class="theme-color"
-                            style="
-                                background: linear-gradient(
-                                    135deg,
-                                    #34d399,
-                                    #10b981
-                                );
-                            "
-                        ></span>
-                        <span class="theme-name">💚 Forest Pro</span>
-                    </div>
+    <!-- Top Navigation Bar -->
+    <header class="studio-header">
+        <div class="header-container">
+            <a href="#hero" class="brand-crest" aria-label="Gennisys Studio Home">
+                <svg class="crest-sigil" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <polygon points="22,6 38,34 6,34" stroke="currentColor" stroke-width="2" fill="none" class="sigil-triangle"/>
+                    <circle cx="22" cy="24" r="4" fill="currentColor" class="sigil-core"/>
+                </svg>
+                <div class="brand-text">
+                    <span class="brand-title">GENNISYS</span>
+                    <span class="brand-sub">STUDIO</span>
                 </div>
-            </div>
+            </a>
 
-            <div class="nav-center">
-                <ul class="menu" role="menubar" aria-label="Primary">
-                    <li role="none">
-                        <a role="menuitem" href="#home" data-key="nav_home"
-                            >Home</a
-                        >
-                    </li>
-                    <li role="none">
-                        <a role="menuitem" href="#ceo" data-key="nav_leadership"
-                            >Leadership</a
-                        >
-                    </li>
-                    <li role="none">
-                        <a role="menuitem" href="#vision" data-key="nav_vision"
-                            >Vision</a
-                        >
-                    </li>
-                    <li role="none">
-                        <a role="menuitem" href="#apps" data-key="nav_solutions"
-                            >Solutions</a
-                        >
-                    </li>
-                    <li role="none">
-                        <a
-                            role="menuitem"
-                            href="#ecosystem"
-                            data-key="nav_ecosystem"
-                            >Ecosystem</a
-                        >
-                    </li>
-                    <li role="none">
-                        <a role="menuitem" href="#news" data-key="nav_news"
-                            >News</a
-                        >
-                    </li>
-                    <li role="none">
-                        <a
-                            role="menuitem"
-                            href="#contact"
-                            data-key="nav_contact"
-                            >Contact</a
-                        >
-                    </li>
-                </ul>
-            </div>
+            <!-- Desktop Navigation -->
+            <nav class="desktop-nav" aria-label="Navegação Principal">
+                <a href="#news" class="nav-link" data-i18n="nav_news">Novidades</a>
+                <a href="#creations" class="nav-link" data-i18n="nav_creations">Criações</a>
+                <a href="#manifesto" class="nav-link" data-i18n="nav_manifesto">Manifesto</a>
+                <a href="#the-vault" class="nav-link" data-i18n="nav_vault">O Lab</a>
+                <a href="#nexus" class="nav-link" data-i18n="nav_nexus">Nexus</a>
+            </nav>
 
-            <div class="nav-right">
-                <a
-                    href="#home"
-                    class="logo desktop-only-logo"
-                    aria-label="Gennisys home"
-                >
-                    <svg
-                        id="logoSvg"
-                        class="logo-svg"
-                        viewBox="0 0 240 50"
-                        xmlns="http://www.w3.org/2000/svg"
-                    >
-                        <path
-                            d="M20,25 L80,25 L85,10 L90,40 L95,25 L160,25"
-                            fill="none"
-                            stroke="#00ff88"
-                            stroke-width="3"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                        />
-                    </svg>
-                </a>
-            </div>
-
-            <div class="mobile-nav">
-                <a
-                    href="#home"
-                    class="logo mobile-only-logo"
-                    aria-label="Gennisys home"
-                    >Gennisys</a
-                >
-                <div class="mobile-logo-svg">
-                    <svg
-                        class="logo-svg-mobile"
-                        viewBox="0 0 240 50"
-                        xmlns="http://www.w3.org/2000/svg"
-                    >
-                        <path
-                            d="M20,25 L80,25 L85,10 L90,40 L95,25 L160,25"
-                            fill="none"
-                            stroke="#00ff88"
-                            stroke-width="3"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                        />
-                    </svg>
-                </div>
-                <button
-                    class="hamburger"
-                    aria-label="Open mobile menu"
-                    aria-expanded="false"
-                >
-                    <svg
-                        width="28"
-                        height="28"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="#00ff88"
-                        stroke-width="3"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                    >
-                        <line x1="3" y1="6" x2="21" y2="6" />
-                        <line x1="3" y1="12" x2="21" y2="12" />
-                        <line x1="3" y1="18" x2="21" y2="18" />
-                    </svg>
+            <!-- Control Actions (Mobile Menu) -->
+            <div class="header-actions">
+                <!-- Mobile Menu Hamburger -->
+                <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Abrir Menu" aria-expanded="false">
+                    <span class="bar bar-top"></span>
+                    <span class="bar bar-bottom"></span>
                 </button>
             </div>
-        </nav>
-
-        <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
-            <ul>
-                <li><a href="#home" data-key="nav_home">Home</a></li>
-                <li><a href="#ceo" data-key="nav_leadership">Leadership</a></li>
-                <li><a href="#vision" data-key="nav_vision">Vision</a></li>
-                <li><a href="#apps" data-key="nav_solutions">Solutions</a></li>
-                <li>
-                    <a href="#ecosystem" data-key="nav_ecosystem">Ecosystem</a>
-                </li>
-                <li><a href="#news" data-key="nav_news">News</a></li>
-                <li><a href="#contact" data-key="nav_contact">Contact</a></li>
-                <li class="flags-mobile">
-                    <img
-                        src="https://flagcdn.com/us.svg"
-                        alt="English"
-                        data-lang="en"
-                        class="flag"
-                    />
-                    <img
-                        src="https://flagcdn.com/br.svg"
-                        alt="Português"
-                        data-lang="pt"
-                        class="flag"
-                    />
-                </li>
-                <li class="theme-selector-mobile">
-                    <button
-                        class="theme-toggle mobile-theme"
-                        aria-label="Change theme"
-                    >
-                        <svg
-                            width="20"
-                            height="20"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            stroke="currentColor"
-                            stroke-width="2"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                        >
-                            <circle cx="12" cy="12" r="10" />
-                            <circle cx="12" cy="12" r="3" />
-                            <line x1="12" y1="2" x2="12" y2="6" />
-                            <line x1="12" y1="18" x2="12" y2="22" />
-                            <line x1="4.93" y1="4.93" x2="7.76" y2="7.76" />
-                            <line x1="16.24" y1="16.24" x2="19.07" y2="19.07" />
-                            <line x1="2" y1="12" x2="6" y2="12" />
-                            <line x1="18" y1="12" x2="22" y2="12" />
-                            <line x1="4.93" y1="19.07" x2="7.76" y2="16.24" />
-                            <line x1="16.24" y1="7.76" x2="19.07" y2="4.93" />
-                        </svg>
-                    </button>
-                </li>
-                <li class="theme-dropdown-mobile" id="themeDropdownMobile">
-                    <div class="theme-option" data-theme="green">
-                        <span
-                            class="theme-color"
-                            style="
-                                background: linear-gradient(
-                                    135deg,
-                                    #00ff88,
-                                    #00cc6a
-                                );
-                            "
-                        ></span>
-                        <span class="theme-name">🟢 Matrix Original</span>
-                    </div>
-                    <div class="theme-option" data-theme="blue">
-                        <span
-                            class="theme-color"
-                            style="
-                                background: linear-gradient(
-                                    135deg,
-                                    #0ea5e9,
-                                    #0284c7
-                                );
-                            "
-                        ></span>
-                        <span class="theme-name">🔵 Ocean Deep</span>
-                    </div>
-                    <div class="theme-option" data-theme="purple">
-                        <span
-                            class="theme-color"
-                            style="
-                                background: linear-gradient(
-                                    135deg,
-                                    #a855f7,
-                                    #7c3aed
-                                );
-                            "
-                        ></span>
-                        <span class="theme-name">🟣 Royal Violet</span>
-                    </div>
-                    <div class="theme-option" data-theme="cyan">
-                        <span
-                            class="theme-color"
-                            style="
-                                background: linear-gradient(
-                                    135deg,
-                                    #22d3ee,
-                                    #06b6d4
-                                );
-                            "
-                        ></span>
-                        <span class="theme-name">🔷 Neon Aqua</span>
-                    </div>
-                    <div class="theme-option" data-theme="emerald">
-                        <span
-                            class="theme-color"
-                            style="
-                                background: linear-gradient(
-                                    135deg,
-                                    #34d399,
-                                    #10b981
-                                );
-                            "
-                        ></span>
-                        <span class="theme-name">💚 Forest Pro</span>
-                    </div>
-                </li>
-            </ul>
         </div>
+    </header>
 
-        <main>
-            <section id="home" class="section hero">
-                <div class="hero-logo-center" data-reveal>
-                    <div class="hero-logo-wrapper">
-                        <span class="rotating-g-hero">G</span
-                        ><span class="hero-logo-text">ennisys</span>
-                    </div>
+    <!-- Mobile Drawer Navigation -->
+    <div class="mobile-drawer" id="mobileDrawer" aria-hidden="true">
+        <div class="drawer-inner">
+            <div class="drawer-sigil">
+                <svg class="crest-sigil-large" viewBox="0 0 44 44" fill="none">
+                    <polygon points="22,4 38,32 6,32" stroke="currentColor" stroke-width="1.5"/>
+                    <circle cx="22" cy="22" r="6" fill="currentColor"/>
+                </svg>
+            </div>
+            <nav class="mobile-nav-links">
+                <a href="#news" class="mobile-link" data-i18n="nav_news">Novidades</a>
+                <a href="#creations" class="mobile-link" data-i18n="nav_creations">Criações</a>
+                <a href="#manifesto" class="mobile-link" data-i18n="nav_manifesto">Manifesto</a>
+                <a href="#the-vault" class="mobile-link" data-i18n="nav_vault">O Lab</a>
+                <a href="#nexus" class="mobile-link" data-i18n="nav_nexus">Nexus</a>
+            </nav>
+            <div class="drawer-footer">
+                <span class="studio-status-indicator">
+                    <span class="pulse-dot"></span>
+                    <span data-i18n="status_autonomous">Sistemas Autônomos Ativos</span>
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <main>
+        <!-- HERO SECTION -->
+        <section id="hero" class="hero-section">
+            <div class="hero-portal-wrap" aria-hidden="true">
+                <div class="portal-circle ring-1"></div>
+                <div class="portal-circle ring-2"></div>
+                <div class="portal-circle ring-3"></div>
+                <div class="portal-glow"></div>
+            </div>
+
+            <div class="hero-content">
+                <div class="hero-badge" data-reveal>
+                    <span class="badge-rune">◈</span>
+                    <span data-i18n="hero_badge">ESTÚDIO INDEPENDENTE DE JOGOS & APLICATIVOS</span>
+                    <span class="badge-rune">◈</span>
                 </div>
-                <div class="hero-grid">
-                    <article class="card hero-card tilt" data-reveal>
-                        <span class="hero-badge" data-key="hero_badge"
-                            >Independent App Studio</span
-                        >
-                        <h1 data-key="hero_title">
-                            Our Products, Built with Vision
-                        </h1>
-                        <p data-key="hero_text">
-                            At
-                            <strong class="brand-highlight">Gennisys</strong>,
-                            we conceive, design, and operate a proprietary
-                            portfolio of applications—no outsourced work, only
-                            experiences driven by our product vision.
+
+                <h1 class="hero-title" data-reveal>
+                    <span class="line-1" data-i18n="hero_title_1">BEM-VINDO À GENNISYS</span>
+                    <span class="line-2 gradient-text" data-i18n="hero_title_2">FORJANDO NOVOS UNIVERSOS DIGITAIS</span>
+                </h1>
+
+                <p class="hero-desc" data-reveal data-i18n="hero_desc">
+                    Somos um estúdio independente focado na concepção, design e engenharia de jogos imersivos, softwares utilitários e experiências digitais proprietárias. Conheça nossos mundos e ferramentas.
+                </p>
+
+                <div class="hero-cta-group" data-reveal>
+                    <a href="#creations" class="primary-btn">
+                        <span class="btn-text" data-i18n="hero_btn_explore">Explorar Criações</span>
+                        <svg class="btn-arrow" viewBox="0 0 20 20" fill="none">
+                            <path d="M4 10H16M16 10L11 5M16 10L11 15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </a>
+                    <a href="#news" class="ghost-btn" data-i18n="hero_btn_news">
+                        Últimas Novidades
+                    </a>
+                </div>
+            </div>
+
+            <div class="scroll-cue">
+                <span class="scroll-label" data-i18n="scroll_cue">DESCER</span>
+                <div class="scroll-line"></div>
+            </div>
+        </section>
+
+        <!-- NEWS / STUDIO DISPATCHES SECTION (NOW 01) -->
+        <section id="news" class="section news-section">
+            <div class="section-container">
+                <div class="section-header-row" data-reveal>
+                    <div class="section-tag">
+                        <span class="tag-number">01</span>
+                        <span class="tag-title" data-i18n="news_tag">TRANSMISSÕES & NOVIDADES</span>
+                    </div>
+                    <h2 class="section-heading" data-i18n="news_heading">Últimas Atualizações</h2>
+                    <p class="section-subtitle" data-i18n="news_sub">
+                        Acompanhe as notas de atualização, registros de desenvolvimento e comunicados oficiais do estúdio.
+                    </p>
+                </div>
+
+                <div class="news-grid" id="newsGrid">
+                    <!-- News Card 1 -->
+                    <article class="news-card" data-page="1" data-reveal>
+                        <div class="news-card-header">
+                            <span class="news-badge patch-badge" data-i18n="news_cat_patch">PATCH NOTES</span>
+                            <span class="news-date">24 AGO 2026</span>
+                        </div>
+                        <h3 class="news-title" data-i18n="news_1_title">FazendaRPG: Atualização de Economia Agrícola e Clima</h3>
+                        <p class="news-excerpt" data-i18n="news_1_desc">
+                            Lançado o novo balanceamento para ciclos de colheita, eventos dinâmicos de estação e aprimoramento na persistência de dados.
                         </p>
-                        <div class="hero-actions">
-                            <a
-                                class="btn"
-                                href="#contact"
-                                data-key="btn_contact"
-                                >Contact the Team</a
-                            >
-                            <button
-                                class="btn-secondary"
-                                type="button"
-                                data-go="#news"
-                                data-key="btn_news"
-                            >
-                                Product Updates
+                        <div class="news-footer">
+                            <span class="news-tag">FazendaRPG v1.4</span>
+                            <a href="https://v4mpw0l.github.io/FazendaRPG/" target="_blank" rel="noopener" class="news-read-more" data-i18n="news_read_more">Acessar →</a>
+                        </div>
+                    </article>
+
+                    <!-- News Card 2 -->
+                    <article class="news-card" data-page="1" data-reveal>
+                        <div class="news-card-header">
+                            <span class="news-badge deploy-badge" data-i18n="news_cat_deploy">SISTEMA</span>
+                            <span class="news-date">18 AGO 2026</span>
+                        </div>
+                        <h3 class="news-title" data-i18n="news_2_title">Hacker0s: Novos Módulos de Terminal e Desafios</h3>
+                        <p class="news-excerpt" data-i18n="news_2_desc">
+                            A interface cibernética recebeu novos protocolos de penetração simulada, decifração criptográfica em tempo real e comandos táticos.
+                        </p>
+                        <div class="news-footer">
+                            <span class="news-tag">Hacker0s Build 2.1</span>
+                            <a href="https://v4mpw0l.github.io/hacker0S/" target="_blank" rel="noopener" class="news-read-more" data-i18n="news_read_more">Acessar →</a>
+                        </div>
+                    </article>
+
+                    <!-- News Card 3 -->
+                    <article class="news-card" data-page="1" data-reveal>
+                        <div class="news-card-header">
+                            <span class="news-badge devlog-badge" data-i18n="news_cat_devlog">DEVLOG</span>
+                            <span class="news-date">10 AGO 2026</span>
+                        </div>
+                        <h3 class="news-title" data-i18n="news_3_title">Bastidores do Lab: Avanços no Protocolo Aetheria</h3>
+                        <p class="news-excerpt" data-i18n="news_3_desc">
+                            Nossa equipe de engenharia finalizou os primeiros testes com o motor de física procedural e atmosfera sonora para o próximo projeto.
+                        </p>
+                        <div class="news-footer">
+                            <span class="news-tag">The Vault / R&D</span>
+                            <a href="#the-vault" class="news-read-more" data-i18n="news_read_more">Ver Lab →</a>
+                        </div>
+                    </article>
+
+                    <!-- News Card 4 -->
+                    <article class="news-card" data-page="2" style="display:none;" data-reveal>
+                        <div class="news-card-header">
+                            <span class="news-badge patch-badge" data-i18n="news_cat_patch">PATCH NOTES</span>
+                            <span class="news-date">02 AGO 2026</span>
+                        </div>
+                        <h3 class="news-title" data-i18n="news_4_title">PacketClicker MMO: Expansão Quântica de Servidores</h3>
+                        <p class="news-excerpt" data-i18n="news_4_desc">
+                            Novas árvores de habilidades tecnológicas de rede, cluster quântico e balanceamento para processamento de pacotes massivos.
+                        </p>
+                        <div class="news-footer">
+                            <span class="news-tag">PacketClicker v2.0</span>
+                            <a href="https://v4mpw0l.github.io/packetclickermmo/" target="_blank" rel="noopener" class="news-read-more" data-i18n="news_read_more">Acessar →</a>
+                        </div>
+                    </article>
+
+                    <!-- News Card 5 -->
+                    <article class="news-card" data-page="2" style="display:none;" data-reveal>
+                        <div class="news-card-header">
+                            <span class="news-badge deploy-badge" data-i18n="news_cat_deploy">SEGURANÇA</span>
+                            <span class="news-date">25 JUL 2026</span>
+                        </div>
+                        <h3 class="news-title" data-i18n="news_5_title">PassMap: Arquitetura Zero-Knowledge & Criptografia</h3>
+                        <p class="news-excerpt" data-i18n="news_5_desc">
+                            Atualizado o protocolo criptográfico local para proteção absoluta de dados confidenciais com auditoria de integridade.
+                        </p>
+                        <div class="news-footer">
+                            <span class="news-tag">PassMap Core</span>
+                            <a href="https://passmap.app/" target="_blank" rel="noopener" class="news-read-more" data-i18n="news_read_more">Acessar →</a>
+                        </div>
+                    </article>
+
+                    <!-- News Card 6 -->
+                    <article class="news-card" data-page="2" style="display:none;" data-reveal>
+                        <div class="news-card-header">
+                            <span class="news-badge devlog-badge" data-i18n="news_cat_devlog">SISTEMA</span>
+                            <span class="news-date">14 JUL 2026</span>
+                        </div>
+                        <h3 class="news-title" data-i18n="news_6_title">GenCalc & BudgetBox: Otimizações de Precisão e Interface</h3>
+                        <p class="news-excerpt" data-i18n="news_6_desc">
+                            Refatoração dos algoritmos matemáticos com precisão de ponto flutuante corrigida e ergonomia acelerada por teclado.
+                        </p>
+                        <div class="news-footer">
+                            <span class="news-tag">Gennisys Utils</span>
+                            <a href="https://v4mpw0l.github.io/GenCalc/" target="_blank" rel="noopener" class="news-read-more" data-i18n="news_read_more">Acessar →</a>
+                        </div>
+                    </article>
+                </div>
+
+                <!-- News Pagination Controls -->
+                <div class="news-pagination" id="newsPagination">
+                    <button class="page-nav-btn prev" id="newsPrevBtn" disabled aria-label="Página Anterior">←</button>
+                    <div class="page-indicators" id="newsPageIndicators">
+                        <button class="page-dot active" data-page="1">1</button>
+                        <button class="page-dot" data-page="2">2</button>
+                    </div>
+                    <button class="page-nav-btn next" id="newsNextBtn" aria-label="Próxima Página">→</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- CREATIONS SECTION (THE FORGE) -->
+        <section id="creations" class="section creations-section">
+            <div class="section-container">
+                <div class="section-header-row" data-reveal>
+                    <div class="section-tag">
+                        <span class="tag-number">02</span>
+                        <span class="tag-title" data-i18n="creations_tag">ECOSSISTEMA PROPRIETÁRIO</span>
+                    </div>
+                    <h2 class="section-heading" data-i18n="creations_heading">Criações & Experiências</h2>
+                    <p class="section-subtitle" data-i18n="creations_sub">
+                        Obras autorais em operação. Aplicativos, simulações e jogos moldados nos laboratórios da Gennisys.
+                    </p>
+                </div>
+
+                <!-- Filter Tabs -->
+                <div class="category-filter" data-reveal>
+                    <button class="filter-btn active" data-filter="all" data-i18n="filter_all">Todos</button>
+                    <button class="filter-btn" data-filter="games" data-i18n="filter_games">Jogos & RPG</button>
+                    <button class="filter-btn" data-filter="cyber" data-i18n="filter_cyber">Sistemas & Cyber</button>
+                    <button class="filter-btn" data-filter="utilities" data-i18n="filter_tools">Utilitários</button>
+                </div>
+
+                <!-- Projects Grid -->
+                <div class="creations-grid">
+                    <!-- Project 1: FazendaRPG -->
+                    <article class="creation-card" data-category="games" data-reveal>
+                        <div class="card-glow-bg"></div>
+                        <div class="card-aura-edge"></div>
+                        <div class="card-header">
+                            <span class="project-badge status-live" data-i18n="badge_live">ONLINE</span>
+                            <span class="project-type" data-i18n="type_rpg">RPG & Simulação</span>
+                        </div>
+                        <div class="card-body">
+                            <div class="card-rune">🌾</div>
+                            <h3 class="card-title">FazendaRPG</h3>
+                            <p class="card-summary" data-i18n="proj_fazenda_desc">
+                                Um universo imersivo de simulação rural e RPG. Desenvolva sua propriedade, gerencie colheitas, enfrente desafios sazonais e evolua seu império agrícola.
+                            </p>
+                            <div class="card-tags">
+                                <span class="tag">Simulação</span>
+                                <span class="tag">Estratégia</span>
+                                <span class="tag">RPG</span>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <a href="https://v4mpw0l.github.io/FazendaRPG/" target="_blank" rel="noopener noreferrer" class="launch-btn">
+                                <span data-i18n="btn_enter_world">Entrar no Mundo</span>
+                                <svg class="launch-icon" viewBox="0 0 16 16" fill="none">
+                                    <path d="M3 13L13 3M13 3H6M13 3V10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </a>
+                            <button class="inspect-btn" data-modal="modal-fazenda" title="Detalhes do Projeto">
+                                <span>◈</span>
                             </button>
                         </div>
-                        <ul class="hero-points">
-                            <li data-key="hero_point_1">
-                                Integrated product squads advancing our
-                                proprietary mobile, web, and XR platforms.
-                            </li>
-                            <li data-key="hero_point_2">
-                                AI-first design and engineering powering an
-                                ambitious internal roadmap.
-                            </li>
-                            <li data-key="hero_point_3">
-                                Continuous analytics, live operations, and
-                                structured community engagement around our apps.
-                            </li>
-                        </ul>
                     </article>
-                    <aside class="card hero-visual tilt" data-reveal>
-                        <div class="hero-visual-inner">
-                            <div class="orb orb-1" aria-hidden="true"></div>
-                            <div class="orb orb-2" aria-hidden="true"></div>
-                            <div class="orb orb-3" aria-hidden="true"></div>
-                            <div class="metric-grid">
-                                <div class="metric" data-reveal>
-                                    <span
-                                        class="metric-value"
-                                        data-count="12"
-                                        data-suffix="+"
-                                        data-duration="1600"
-                                        >0</span
-                                    >
-                                    <span
-                                        class="metric-label"
-                                        data-key="metric_products"
-                                        >Products on the roadmap</span
-                                    >
-                                </div>
-                                <div class="metric" data-reveal>
-                                    <span
-                                        class="metric-value"
-                                        data-count="100"
-                                        data-suffix="K+"
-                                        data-duration="1800"
-                                        >0</span
-                                    >
-                                    <span
-                                        class="metric-label"
-                                        data-key="metric_users"
-                                        >Users we plan to reach</span
-                                    >
-                                </div>
-                                <div class="metric" data-reveal>
-                                    <span
-                                        class="metric-value"
-                                        data-count="4"
-                                        data-suffix=""
-                                        data-duration="1600"
-                                        >0</span
-                                    >
-                                    <span
-                                        class="metric-label"
-                                        data-key="metric_markets"
-                                        >Markets we're entering</span
-                                    >
-                                </div>
-                                <div class="metric" data-reveal>
-                                    <span
-                                        class="metric-value"
-                                        data-count="99.9"
-                                        data-suffix="%"
-                                        data-decimals="1"
-                                        data-duration="2000"
-                                        >0</span
-                                    >
-                                    <span
-                                        class="metric-label"
-                                        data-key="metric_uptime"
-                                        >Reliability across our stack</span
-                                    >
-                                </div>
-                            </div>
-                            <div class="hero-stack">
-                                <span
-                                    class="hero-stack-title"
-                                    data-key="hero_stack_title"
-                                    >Core focus areas:</span
-                                >
-                                <div class="hero-stack-tags">
-                                    <span>AI</span>
-                                    <span>Cloud-native</span>
-                                    <span>Mobile</span>
-                                    <span>XR</span>
-                                    <span>Gaming</span>
-                                    <span>Data</span>
-                                </div>
-                            </div>
-                        </div>
-                    </aside>
-                </div>
-            </section>
 
-            <section id="ceo" class="section section-ceo">
-                <div class="card ceo-card ceo-expanded tilt" data-reveal>
-                    <div class="ceo-layout">
-                        <div class="ceo-profile">
-                            <img
-                                src="https://i.postimg.cc/dqLLj7KL/file-0000000040e86230b2fb6a71cedf9375.png"
-                                alt="Tiago Cardoso avatar"
-                                class="ceo-avatar"
-                            />
-                            <div class="ceo-headline">
-                                <span
-                                    class="section-eyebrow"
-                                    data-key="ceo_badge"
-                                    >Leadership</span
-                                >
-                                <h2 data-key="ceo_section_title">
-                                    Meet the Founder
-                                </h2>
-                                <h3 data-key="ceo_name">Tiago Cardoso</h3>
-                                <p class="ceo-position" data-key="ceo_title">
-                                    Founder & CEO
-                                </p>
-                            </div>
+                    <!-- Project 2: Hacker0s -->
+                    <article class="creation-card" data-category="cyber" data-reveal>
+                        <div class="card-glow-bg"></div>
+                        <div class="card-aura-edge"></div>
+                        <div class="card-header">
+                            <span class="project-badge status-live" data-i18n="badge_live">ONLINE</span>
+                            <span class="project-type" data-i18n="type_cyber">Cyberpunk OS</span>
                         </div>
-                        <div class="ceo-story">
-                            <p data-key="ceo_text">
-                                Tiago sets the strategic agenda for Gennisys,
-                                commanding execution across product,
-                                engineering, and audience expansion to uphold
-                                our independent vision.
+                        <div class="card-body">
+                            <div class="card-rune">💻</div>
+                            <h3 class="card-title">Hacker0s</h3>
+                            <p class="card-summary" data-i18n="proj_hacker_desc">
+                                Simulador de terminal e cibersegurança tática. Uma experiência de interface estilo matriz com protocolos de penetração, decifração e redes simuladas.
                             </p>
-                            <div class="ceo-highlights">
-                                <div class="highlight-item">
-                                    <h4 data-key="ceo_highlight_1_title">
-                                        Product Governance
-                                    </h4>
-                                    <p data-key="ceo_highlight_1_text">
-                                        Directs the proprietary roadmap and
-                                        enforces disciplined delivery for every
-                                        launch.
-                                    </p>
-                                </div>
-                                <div class="highlight-item">
-                                    <h4 data-key="ceo_highlight_2_title">
-                                        Engineering Stewardship
-                                    </h4>
-                                    <p data-key="ceo_highlight_2_text">
-                                        Leads technical excellence, resilient
-                                        infrastructure, and continuous
-                                        innovation standards.
-                                    </p>
-                                </div>
-                                <div class="highlight-item">
-                                    <h4 data-key="ceo_highlight_3_title">
-                                        Market Relationships
-                                    </h4>
-                                    <p data-key="ceo_highlight_3_text">
-                                        Activates strategic alliances that
-                                        extend distribution and stakeholder
-                                        value.
-                                    </p>
-                                </div>
+                            <div class="card-tags">
+                                <span class="tag">Terminal</span>
+                                <span class="tag">Cibersegurança</span>
+                                <span class="tag">Simulação</span>
                             </div>
                         </div>
-                        <blockquote class="ceo-quote" data-key="ceo_quote">
-                            “We design, validate, and scale the digital products
-                            we believe must exist—precise, responsive, and built
-                            for leadership.”
-                        </blockquote>
-                    </div>
-                </div>
-            </section>
-
-            <section id="vision" class="section section-vision">
-                <div class="card split-card tilt" data-reveal>
-                    <div class="split-left">
-                        <span class="section-eyebrow" data-key="vision_badge"
-                            >Vision 2025</span
-                        >
-                        <h2 data-key="vision_title">
-                            End-to-end execution, fully internal.
-                        </h2>
-                        <p data-key="vision_text">
-                            Cross-functional teams align strategy, design, and
-                            engineering to convert proprietary innovation into
-                            global platforms.
-                        </p>
-                        <div class="kpi-grid">
-                            <div class="kpi">
-                                <span
-                                    class="kpi-value"
-                                    data-count="3"
-                                    data-suffix="+"
-                                    data-duration="1400"
-                                    >0</span
-                                >
-                                <span class="kpi-label" data-key="vision_kpi_1"
-                                    >Platforms deployed</span
-                                >
-                            </div>
-                            <div class="kpi">
-                                <span
-                                    class="kpi-value"
-                                    data-count="15"
-                                    data-suffix="+"
-                                    data-duration="1600"
-                                    >0</span
-                                >
-                                <span class="kpi-label" data-key="vision_kpi_2"
-                                    >Prototypes in validation</span
-                                >
-                            </div>
-                            <div class="kpi">
-                                <span
-                                    class="kpi-value"
-                                    data-count="24"
-                                    data-suffix="/7"
-                                    data-duration="1800"
-                                    >0</span
-                                >
-                                <span class="kpi-label" data-key="vision_kpi_3"
-                                    >Operational coverage</span
-                                >
-                            </div>
-                        </div>
-                    </div>
-                    <div class="split-right vision-grid">
-                        <div class="vision-item" data-reveal>
-                            <span class="vision-icon" aria-hidden="true"
-                                >⚡</span
-                            >
-                            <h3 data-key="vision_card_1_title">
-                                Acceleration Pods
-                            </h3>
-                            <p data-key="vision_card_1_text">
-                                Modular squads converting validated concepts
-                                into production-ready applications within weeks.
-                            </p>
-                        </div>
-                        <div class="vision-item" data-reveal>
-                            <span class="vision-icon" aria-hidden="true"
-                                >🧠</span
-                            >
-                            <h3 data-key="vision_card_2_title">
-                                AI-First Experiences
-                            </h3>
-                            <p data-key="vision_card_2_text">
-                                Intelligent systems embedded in every product we
-                                operate.
-                            </p>
-                        </div>
-                        <div class="vision-item" data-reveal>
-                            <span class="vision-icon" aria-hidden="true"
-                                >🌐</span
-                            >
-                            <h3 data-key="vision_card_3_title">
-                                Global Readiness
-                            </h3>
-                            <p data-key="vision_card_3_text">
-                                Localization, compliance, and infrastructure
-                                engineered for worldwide launches.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <section id="apps" class="section section-solutions">
-                <div class="card solutions-card tilt" data-reveal>
-                    <div class="section-header">
-                        <span class="section-eyebrow" data-key="apps_badge"
-                            >Gennisys Portfolio</span
-                        >
-                        <h2 data-key="apps_title">Our Applications</h2>
-                        <p data-key="apps_subtitle">
-                            Explore the proprietary applications engineered
-                            entirely in-house.
-                        </p>
-                    </div>
-                    <div class="apps-grid">
-                        <a
-                            class="app-item tilt"
-                            data-reveal
-                            href="#"
-                            data-app-url="https://v4mpw0l.github.io/GenCalc/"
-                            data-app-target="new"
-                        >
-                            <div class="app-header">
-                                <div class="app-icon">🧮</div>
-                                <div>
-                                    <h3 data-key="app_calculator_title">
-                                        GenCalc
-                                    </h3>
-                                    <p data-key="app_calculator_desc">
-                                        Advanced calculator with scientific
-                                        functions and audit-ready history
-                                        tracking.
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="app-tags">
-                                <span>Web</span>
-                                <span>Scientific</span>
-                                <span>History</span>
-                            </div>
-                        </a>
-                        <a
-                            class="app-item tilt"
-                            data-reveal
-                            href="#"
-                            data-app-url="https://v4mpw0l.github.io/BudgetBox/"
-                            data-app-target="new"
-                        >
-                            <div class="app-header">
-                                <div class="app-icon">💰</div>
-                                <div>
-                                    <h3 data-key="app_calendar_title">
-                                        BudgetBox
-                                    </h3>
-                                    <p data-key="app_calendar_desc">
-                                        Smart financial manager to track
-                                        expenses, set budgets, and achieve your
-                                        financial goals.
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="app-tags">
-                                <span>Finance</span>
-                                <span>Budget</span>
-                                <span>Analytics</span>
-                            </div>
-                        </a>
-                        <a
-                            class="app-item tilt"
-                            data-reveal
-                            href="#"
-                            data-app-url="https://v4mpw0l.github.io/FazendaRPG/"
-                            data-app-target="new"
-                        >
-                            <div class="app-header">
-                                <div class="app-icon">🌾</div>
-                                <div>
-                                    <h3 data-key="app_maps_title">
-                                        FazendaRPG
-                                    </h3>
-                                    <p data-key="app_maps_desc">
-                                        Immersive farming RPG game where you
-                                        build and manage your own virtual farm.
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="app-tags">
-                                <span>RPG</span>
-                                <span>Farming</span>
-                                <span>Simulation</span>
-                            </div>
-                        </a>
-                        <a
-                            class="app-item tilt"
-                            data-reveal
-                            href="#"
-                            data-app-url="https://v4mpw0l.github.io/hacker0S/"
-                            data-app-target="new"
-                        >
-                            <div class="app-header">
-                                <div class="app-icon">💻</div>
-                                <div>
-                                    <h3 data-key="app_games_title">Hacker0s</h3>
-                                    <p data-key="app_games_desc">
-                                        Interactive hacking simulation tool with
-                                        realistic terminal experience and
-                                        cybersecurity challenges.
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="app-tags">
-                                <span>Terminal</span>
-                                <span>Hacking</span>
-                                <span>Security</span>
-                            </div>
-                        </a>
-                        <a
-                            class="app-item tilt"
-                            data-reveal
-                            href="#"
-                            data-app-url="https://v4mpw0l.github.io/packetclickermmo/"
-                            data-app-target="new"
-                        >
-                            <div class="app-header">
-                                <div class="app-icon">📦</div>
-                                <div>
-                                    <h3 data-key="app_utilities_title">
-                                        PacketClicker
-                                    </h3>
-                                    <p data-key="app_utilities_desc">
-                                        Addictive incremental clicker game where
-                                        you collect packets and upgrade your
-                                        network infrastructure.
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="app-tags">
-                                <span>Clicker</span>
-                                <span>Incremental</span>
-                                <span>Network</span>
-                            </div>
-                        </a>
-                        <a
-                            class="app-item tilt"
-                            data-reveal
-                            href="#"
-                            data-app-url="https://passmap.app/"
-                            data-app-target="new"
-                        >
-                            <div class="app-header">
-                                <div class="app-icon">🔐</div>
-                                <div>
-                                    <h3 data-key="app_music_title">PassMap</h3>
-                                    <p data-key="app_music_desc">
-                                        Secure password and address management
-                                        tool to organize your digital life
-                                        safely.
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="app-tags">
-                                <span>Security</span>
-                                <span>Password</span>
-                                <span>Manager</span>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-            </section>
-
-            <section id="ecosystem" class="section section-ecosystem">
-                <div class="card ecosystem-card tilt" data-reveal>
-                    <div class="section-header">
-                        <span class="section-eyebrow" data-key="ecosystem_badge"
-                            >Build Engine</span
-                        >
-                        <h2 data-key="ecosystem_title">
-                            An internal pipeline for breakthrough products.
-                        </h2>
-                        <p data-key="ecosystem_text">
-                            Every discipline collaborates to operate the
-                            applications we own, from research through live
-                            operations.
-                        </p>
-                    </div>
-                    <div class="ecosystem-grid">
-                        <div class="ecosystem-column">
-                            <h3 data-key="ecosystem_column_1_title">
-                                Product Research
-                            </h3>
-                            <ul>
-                                <li data-key="ecosystem_column_1_item_1">
-                                    Audience intelligence & roadmap validation
-                                </li>
-                                <li data-key="ecosystem_column_1_item_2">
-                                    Brand systems & design language for our apps
-                                </li>
-                                <li data-key="ecosystem_column_1_item_3">
-                                    Concept sprints & prototype labs
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="ecosystem-column">
-                            <h3 data-key="ecosystem_column_2_title">
-                                Engineering Core
-                            </h3>
-                            <ul>
-                                <li data-key="ecosystem_column_2_item_1">
-                                    Native and cross-platform builds across our
-                                    stack
-                                </li>
-                                <li data-key="ecosystem_column_2_item_2">
-                                    AI-driven personalization frameworks
-                                </li>
-                                <li data-key="ecosystem_column_2_item_3">
-                                    Secure, scalable cloud backbone
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="ecosystem-column">
-                            <h3 data-key="ecosystem_column_3_title">
-                                Operations & Growth
-                            </h3>
-                            <ul>
-                                <li data-key="ecosystem_column_3_item_1">
-                                    Analytics frameworks & experimentation
-                                </li>
-                                <li data-key="ecosystem_column_3_item_2">
-                                    LiveOps orchestration & release cadence
-                                </li>
-                                <li data-key="ecosystem_column_3_item_3">
-                                    Monetization experiments & ecosystem
-                                    alliances
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="partner-row" data-reveal>
-                        <span class="partner-caption" data-key="partner_caption"
-                            >Strategic partners</span
-                        >
-                        <div class="partner-placeholder-grid partners-active">
-                            <a
-                                class="partner-slot"
-                                href="https://about.google/"
-                                target="_blank"
-                                rel="noopener"
-                            >
-                                <img
-                                    src="assets/google.png"
-                                    alt="Google"
-                                    loading="lazy"
-                                />
+                        <div class="card-footer">
+                            <a href="https://v4mpw0l.github.io/hacker0S/" target="_blank" rel="noopener noreferrer" class="launch-btn">
+                                <span data-i18n="btn_access_terminal">Acessar Terminal</span>
+                                <svg class="launch-icon" viewBox="0 0 16 16" fill="none">
+                                    <path d="M3 13L13 3M13 3H6M13 3V10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
                             </a>
-                            <a
-                                class="partner-slot"
-                                href="https://www.microsoft.com/"
-                                target="_blank"
-                                rel="noopener"
-                            >
-                                <img
-                                    src="assets/microsoft.png"
-                                    alt="Microsoft"
-                                    loading="lazy"
-                                />
-                            </a>
-                            <a
-                                class="partner-slot"
-                                href="https://www.samsung.com/"
-                                target="_blank"
-                                rel="noopener"
-                            >
-                                <img
-                                    src="assets/samsung.png"
-                                    alt="Samsung"
-                                    loading="lazy"
-                                />
-                            </a>
+                            <button class="inspect-btn" data-modal="modal-hacker" title="Detalhes do Projeto">
+                                <span>◈</span>
+                            </button>
                         </div>
-                        <p class="partner-note" data-key="partner_note">
-                            Global technology partners amplifying the reach of
-                            our proprietary applications.
-                        </p>
-                    </div>
-                </div>
-            </section>
+                    </article>
 
-            <section id="news" class="section section-news">
-                <div class="card news-card tilt" data-reveal>
-                    <div class="section-header">
-                        <span class="section-eyebrow" data-key="news_badge"
-                            >Newsroom</span
-                        >
-                        <h2 data-key="news_title">Latest from Gennisys</h2>
-                        <p data-key="news_subtitle">
-                            Follow the milestones shaping our proprietary
-                            roadmap.
-                        </p>
-                    </div>
-                    <div
-                        class="news-grid"
-                        id="newsGrid"
-                        aria-live="polite"
-                    ></div>
-                    <div class="news-footer">
-                        <button
-                            class="btn-secondary"
-                            type="button"
-                            id="subscribeNews"
-                            data-key="btn_subscribe"
-                        >
-                            Notify me
-                        </button>
-                        <p class="news-note" data-key="news_note">
-                            We share release notes and corporate milestones
-                            regularly.
-                        </p>
-                    </div>
-                </div>
-            </section>
+                    <!-- Project 3: PacketClicker MMO -->
+                    <article class="creation-card" data-category="games" data-reveal>
+                        <div class="card-glow-bg"></div>
+                        <div class="card-aura-edge"></div>
+                        <div class="card-header">
+                            <span class="project-badge status-live" data-i18n="badge_live">ONLINE</span>
+                            <span class="project-type" data-i18n="type_mmo">MMO Incremental</span>
+                        </div>
+                        <div class="card-body">
+                            <div class="card-rune">📦</div>
+                            <h3 class="card-title">PacketClicker MMO</h3>
+                            <p class="card-summary" data-i18n="proj_packet_desc">
+                                Jogo incremental de arquitetura de dados e tráfego massivo. Colete pacotes digitais, evolua servidores quânticos e domine a infraestrutura global.
+                            </p>
+                            <div class="card-tags">
+                                <span class="tag">Incremental</span>
+                                <span class="tag">Redes</span>
+                                <span class="tag">Evolução</span>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <a href="https://v4mpw0l.github.io/packetclickermmo/" target="_blank" rel="noopener noreferrer" class="launch-btn">
+                                <span data-i18n="btn_start_transmission">Iniciar Transmissão</span>
+                                <svg class="launch-icon" viewBox="0 0 16 16" fill="none">
+                                    <path d="M3 13L13 3M13 3H6M13 3V10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </a>
+                            <button class="inspect-btn" data-modal="modal-packet" title="Detalhes do Projeto">
+                                <span>◈</span>
+                            </button>
+                        </div>
+                    </article>
 
-            <section id="contact" class="section section-contact">
-                <div class="card contact-card tilt" data-reveal>
-                    <div class="section-header">
-                        <span class="section-eyebrow" data-key="contact_badge"
-                            >Contact</span
-                        >
-                        <h2 data-key="contact_title">Reach Gennisys</h2>
-                        <p data-key="contact_text">
-                            For inquiries about our apps, media coverage, or
-                            strategic partnerships, connect with our studio
-                            team.
+                    <!-- Project 4: PassMap -->
+                    <article class="creation-card" data-category="cyber" data-reveal>
+                        <div class="card-glow-bg"></div>
+                        <div class="card-aura-edge"></div>
+                        <div class="card-header">
+                            <span class="project-badge status-live" data-i18n="badge_live">ONLINE</span>
+                            <span class="project-type" data-i18n="type_security">Criptografia & Cofre</span>
+                        </div>
+                        <div class="card-body">
+                            <div class="card-rune">🔐</div>
+                            <h3 class="card-title">PassMap</h3>
+                            <p class="card-summary" data-i18n="proj_passmap_desc">
+                                Gerenciador de segurança de senhas e dados sigilosos. Uma fortaleza de privacidade digital construída para autonomia e proteção absoluta.
+                            </p>
+                            <div class="card-tags">
+                                <span class="tag">Privacidade</span>
+                                <span class="tag">Cofre</span>
+                                <span class="tag">Segurança</span>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <a href="https://passmap.app/" target="_blank" rel="noopener noreferrer" class="launch-btn">
+                                <span data-i18n="btn_open_vault">Abrir Cofre</span>
+                                <svg class="launch-icon" viewBox="0 0 16 16" fill="none">
+                                    <path d="M3 13L13 3M13 3H6M13 3V10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </a>
+                            <button class="inspect-btn" data-modal="modal-passmap" title="Detalhes do Projeto">
+                                <span>◈</span>
+                            </button>
+                        </div>
+                    </article>
+
+                    <!-- Project 5: BudgetBox -->
+                    <article class="creation-card" data-category="utilities" data-reveal>
+                        <div class="card-glow-bg"></div>
+                        <div class="card-aura-edge"></div>
+                        <div class="card-header">
+                            <span class="project-badge status-live" data-i18n="badge_live">ONLINE</span>
+                            <span class="project-type" data-i18n="type_fin">Estratégia Financeira</span>
+                        </div>
+                        <div class="card-body">
+                            <div class="card-rune">💰</div>
+                            <h3 class="card-title">BudgetBox</h3>
+                            <p class="card-summary" data-i18n="proj_budget_desc">
+                                Sistema de controle patrimonial com categorização dinâmica, projeções orçamentárias e dashboards de inteligência financeira.
+                            </p>
+                            <div class="card-tags">
+                                <span class="tag">Finanças</span>
+                                <span class="tag">Dashboards</span>
+                                <span class="tag">Controle</span>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <a href="https://v4mpw0l.github.io/BudgetBox/" target="_blank" rel="noopener noreferrer" class="launch-btn">
+                                <span data-i18n="btn_access_system">Acessar Sistema</span>
+                                <svg class="launch-icon" viewBox="0 0 16 16" fill="none">
+                                    <path d="M3 13L13 3M13 3H6M13 3V10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </a>
+                            <button class="inspect-btn" data-modal="modal-budget" title="Detalhes do Projeto">
+                                <span>◈</span>
+                            </button>
+                        </div>
+                    </article>
+
+                    <!-- Project 6: GenCalc -->
+                    <article class="creation-card" data-category="utilities" data-reveal>
+                        <div class="card-glow-bg"></div>
+                        <div class="card-aura-edge"></div>
+                        <div class="card-header">
+                            <span class="project-badge status-live" data-i18n="badge_live">ONLINE</span>
+                            <span class="project-type" data-i18n="type_calc">Computação de Precisão</span>
+                        </div>
+                        <div class="card-body">
+                            <div class="card-rune">🧮</div>
+                            <h3 class="card-title">GenCalc</h3>
+                            <p class="card-summary" data-i18n="proj_gencalc_desc">
+                                Calculadora científica com histórico de auditoria instantâneo e layout ergonômico feito para cálculos avançados e operações complexas.
+                            </p>
+                            <div class="card-tags">
+                                <span class="tag">Matemática</span>
+                                <span class="tag">Cálculo</span>
+                                <span class="tag">Precisão</span>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <a href="https://v4mpw0l.github.io/GenCalc/" target="_blank" rel="noopener noreferrer" class="launch-btn">
+                                <span data-i18n="btn_launch_calculator">Executar GenCalc</span>
+                                <svg class="launch-icon" viewBox="0 0 16 16" fill="none">
+                                    <path d="M3 13L13 3M13 3H6M13 3V10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </a>
+                            <button class="inspect-btn" data-modal="modal-gencalc" title="Detalhes do Projeto">
+                                <span>◈</span>
+                            </button>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- MANIFESTO SECTION (NOW 03) -->
+        <section id="manifesto" class="section manifesto-section">
+            <div class="section-container">
+                <div class="section-tag" data-reveal>
+                    <span class="tag-number">03</span>
+                    <span class="tag-title" data-i18n="manifesto_tag">FILOSOFIA DO ESTÚDIO</span>
+                </div>
+
+                <div class="manifesto-grid">
+                    <div class="manifesto-lead" data-reveal>
+                        <h2 class="section-heading" data-i18n="manifesto_title">O Creio da Gennisys</h2>
+                        <p class="manifesto-quote" data-i18n="manifesto_quote">
+                            "A verdadeira arte e a alta tecnologia não nascem de briefings de terceiros. Nascem da obsessão de construir aquilo que gostaríamos que existisse."
                         </p>
                     </div>
-                    <div class="contact-grid">
-                        <div class="contact-channel">
-                            <h3 data-key="contact_channel_title">
-                                Media & Partnerships
-                            </h3>
-                            <a
-                                class="contact-email"
-                                href="mailto:info@gennisys.com"
-                                >info@gennisys.com</a
-                            >
-                            <p data-key="contact_channel_text">
-                                Press, distribution, and strategic collaboration
-                                requests are welcome.
+
+                    <div class="pillars-wrapper">
+                        <!-- Pillar 1 -->
+                        <div class="pillar-card" data-reveal>
+                            <div class="pillar-icon">
+                                <span>✦</span>
+                            </div>
+                            <h3 class="pillar-title" data-i18n="pillar_1_title">100% Autonomia</h3>
+                            <p class="pillar-desc" data-i18n="pillar_1_desc">
+                                Cada linha de código, estética visual e mecânica pertence ao ecossistema Gennisys. Criamos exclusivamente para o nosso próprio catálogo.
                             </p>
                         </div>
-                        <div class="contact-cta">
-                            <h3 data-key="contact_cta_title">
-                                Connect with the Studio
-                            </h3>
-                            <ul class="contact-bullets">
-                                <li data-key="contact_bullet_1">
-                                    Portfolio briefings & beta access
-                                </li>
-                                <li data-key="contact_bullet_2">
-                                    Product roadmap briefings & community
-                                    initiatives
-                                </li>
-                                <li data-key="contact_bullet_3">
-                                    Strategic alliances that amplify our apps
-                                </li>
-                            </ul>
-                            <a
-                                class="btn"
-                                href="mailto:info@gennisys.com"
-                                data-key="btn_project"
-                                >Contact us</a
-                            >
+
+                        <!-- Pillar 2 -->
+                        <div class="pillar-card" data-reveal>
+                            <div class="pillar-icon">
+                                <span>◈</span>
+                            </div>
+                            <h3 class="pillar-title" data-i18n="pillar_2_title">Artesanato Digital</h3>
+                            <p class="pillar-desc" data-i18n="pillar_2_desc">
+                                Rejeitamos softwares genéricos e sem alma. Projetamos interfaces atmosféricas, intuitivas e envolventes que encantam quem as utiliza.
+                            </p>
                         </div>
-                    </div>
-                </div>
-            </section>
-        </main>
 
-        <footer>
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h4>Gennisys</h4>
-                    <p>
-                        Designing proprietary mobile applications for the
-                        digital economy.
-                    </p>
-                    <div class="social-links">
-                        <a href="#" aria-label="LinkedIn">
-                            <svg
-                                width="20"
-                                height="20"
-                                viewBox="0 0 24 24"
-                                fill="currentColor"
-                            >
-                                <path
-                                    d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"
-                                />
-                            </svg>
-                        </a>
-                        <a href="#" aria-label="Twitter">
-                            <svg
-                                width="20"
-                                height="20"
-                                viewBox="0 0 24 24"
-                                fill="currentColor"
-                            >
-                                <path
-                                    d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"
-                                />
-                            </svg>
-                        </a>
-                    </div>
-                </div>
-
-                <div class="footer-section">
-                    <h4>Applications</h4>
-                    <ul>
-                        <li><a href="#apps">GenCalc</a></li>
-                        <li><a href="#apps">BudgetBox</a></li>
-                        <li><a href="#apps">FazendaRPG</a></li>
-                        <li><a href="#apps">Hacker0s</a></li>
-                        <li><a href="#apps">PacketClicker</a></li>
-                        <li><a href="#apps">PassMap</a></li>
-                    </ul>
-                </div>
-
-                <div class="footer-section">
-                    <h4>Company</h4>
-                    <ul>
-                        <li><a href="#ceo">Leadership</a></li>
-                        <li><a href="#vision">Vision</a></li>
-                        <li><a href="#apps">Solutions</a></li>
-                        <li><a href="#ecosystem">Ecosystem</a></li>
-                        <li><a href="#news">Newsroom</a></li>
-                    </ul>
-                </div>
-
-                <div class="footer-section">
-                    <h4>Contact Info</h4>
-                    <div class="contact-info">
-                        <p>
-                            <svg
-                                width="16"
-                                height="16"
-                                viewBox="0 0 24 24"
-                                fill="currentColor"
-                            >
-                                <path
-                                    d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-                                />
-                            </svg>
-                            info@gennisys.com
-                        </p>
-                        <p>Proprietary mobile application portfolio</p>
+                        <!-- Pillar 3 -->
+                        <div class="pillar-card" data-reveal>
+                            <div class="pillar-icon">
+                                <span>⬡</span>
+                            </div>
+                            <h3 class="pillar-title" data-i18n="pillar_3_title">Mundos & Ferramentas</h3>
+                            <p class="pillar-desc" data-i18n="pillar_3_desc">
+                                Dos RPGs de simulação aos terminais cibernéticos e cofres de dados, expandimos continuamente novos universos digitais.
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
+        </section>
 
-            <div class="footer-bottom">
-                <p>
-                    © 2026 Gennisys. All rights reserved. | Our apps, our
-                    innovation.
-                </p>
+        <!-- THE VAULT / UNDER DEVELOPMENT TEASER -->
+        <section id="the-vault" class="section vault-section">
+            <div class="section-container">
+                <div class="vault-container" data-reveal>
+                    <div class="vault-glow-pulse" aria-hidden="true"></div>
+                    <div class="vault-header">
+                        <div class="vault-status-chip">
+                            <span class="chip-blink"></span>
+                            <span data-i18n="vault_status">LABORATÓRIO CLASSIFICADO // EM DESENVOLVIMENTO</span>
+                        </div>
+                        <h2 class="vault-title" data-i18n="vault_title">Projeto: Protocolo Aetheria</h2>
+                        <p class="vault-desc" data-i18n="vault_desc">
+                            Nos bastidores da Gennisys, uma nova experiência de proporções épicas está sendo forjada. Uma fusão de narrativa mística, inteligência generativa e mecânicas táticas imersivas.
+                        </p>
+                    </div>
+
+                    <div class="vault-matrix">
+                        <div class="matrix-box">
+                            <span class="matrix-label" data-i18n="vault_label_status">ESTADO</span>
+                            <span class="matrix-val" data-i18n="vault_val_status">Fase Alpha / Sob Sigilo</span>
+                        </div>
+                        <div class="matrix-box">
+                            <span class="matrix-label" data-i18n="vault_label_engine">ENGINE</span>
+                            <span class="matrix-val">Gennisys Nexus Core</span>
+                        </div>
+                        <div class="matrix-box">
+                            <span class="matrix-label" data-i18n="vault_label_deployment">LANÇAMENTO</span>
+                            <span class="matrix-val">Quando Estiver Perfeito</span>
+                        </div>
+                    </div>
+
+                    <div class="vault-rune-symbol" aria-hidden="true">
+                        <svg viewBox="0 0 100 100" class="rotating-sigil">
+                            <circle cx="50" cy="50" r="45" stroke="currentColor" stroke-width="1" stroke-dasharray="6 6"/>
+                            <polygon points="50,15 80,75 20,75" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                            <circle cx="50" cy="50" r="10" stroke="currentColor" stroke-width="1"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- NEXUS / FOOTER -->
+        <footer id="nexus" class="nexus-footer">
+            <div class="section-container">
+                <div class="nexus-top" data-reveal>
+                    <div class="nexus-brand">
+                        <div class="brand-crest large">
+                            <svg class="crest-sigil" viewBox="0 0 44 44" fill="none">
+                                <polygon points="22,6 38,34 6,34" stroke="currentColor" stroke-width="2" fill="none"/>
+                                <circle cx="22" cy="24" r="4" fill="currentColor"/>
+                            </svg>
+                            <div class="brand-text">
+                                <span class="brand-title">GENNISYS</span>
+                                <span class="brand-sub">INDEPENDENT STUDIO</span>
+                            </div>
+                        </div>
+                        <p class="nexus-mission" data-i18n="nexus_mission">
+                            Estúdio independente focado na concepção e engenharia de jogos, softwares e experiências digitais proprietárias.
+                        </p>
+                        <div class="nexus-status-box">
+                            <span class="status-indicator-dot"></span>
+                            <span class="status-indicator-text" data-i18n="footer_status_text">Todos os sistemas operacionais</span>
+                        </div>
+                    </div>
+
+                    <div class="nexus-links-group">
+                        <div class="links-col">
+                            <h4 data-i18n="footer_col_nav">Navegação</h4>
+                            <a href="#hero" data-i18n="nav_home">Início</a>
+                            <a href="#news" data-i18n="nav_news">Novidades</a>
+                            <a href="#creations" data-i18n="nav_creations">Criações</a>
+                            <a href="#manifesto" data-i18n="nav_manifesto">Manifesto</a>
+                            <a href="#the-vault" data-i18n="nav_vault">O Lab</a>
+                        </div>
+                        <div class="links-col">
+                            <h4 data-i18n="footer_col_ecosystem">Ecossistema</h4>
+                            <a href="https://github.com/v4mpw0l" target="_blank" rel="noopener">GitHub</a>
+                            <a href="#news" data-i18n="footer_devlog">Notas de Lançamento</a>
+                            <a href="#the-vault" data-i18n="footer_vault">The Vault (Alpha)</a>
+                        </div>
+                        <div class="links-col">
+                            <h4 data-i18n="footer_col_contact">Contato</h4>
+                            <a href="mailto:contact@gennisys.com">contact@gennisys.com</a>
+                            <span class="footer-meta-info" data-i18n="footer_meta_location">Desenvolvimento Autônomo</span>
+                            <span class="footer-meta-info" data-i18n="footer_meta_remote">Operação Global</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="nexus-bottom">
+                    <p class="copyright">
+                        © <span id="year">2026</span> GENNISYS STUDIO. <span data-i18n="rights_reserved">TODOS OS DIREITOS RESERVADOS.</span>
+                    </p>
+                    
+                    <!-- Footer Controls (Language & Theme) -->
+                    <div class="footer-controls">
+                        <!-- Footer Language Switcher -->
+                        <div class="footer-lang-picker">
+                            <span class="footer-picker-label" data-i18n="footer_lang_label">Idioma:</span>
+                            <button class="footer-lang-btn active" data-lang-val="pt">PT</button>
+                            <span class="footer-control-sep">|</span>
+                            <button class="footer-lang-btn" data-lang-val="en">EN</button>
+                        </div>
+
+                        <span class="footer-control-divider"></span>
+
+                        <!-- Footer Theme Selector -->
+                        <div class="footer-theme-picker">
+                            <span class="footer-picker-label" data-i18n="footer_theme_label">Aura:</span>
+                            <button class="footer-theme-dot dot-emerald active" data-theme-id="emerald" title="Cyber Emerald"></button>
+                            <button class="footer-theme-dot dot-void" data-theme-id="void" title="Void Amethyst"></button>
+                            <button class="footer-theme-dot dot-cyan" data-theme-id="cyan" title="Astral Cyan"></button>
+                            <button class="footer-theme-dot dot-solar" data-theme-id="solar" title="Solar Amber"></button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </footer>
+    </main>
 
-        <script src="main.js"></script>
-        <script>
-            // Back to Top Button logic
-            const backToTop = document.getElementById("backToTop");
-            window.addEventListener("scroll", () => {
-                backToTop.style.display =
-                    window.scrollY > 200 ? "block" : "none";
-            });
-            backToTop.addEventListener("click", () => {
-                window.scrollTo({ top: 0, behavior: "smooth" });
-            });
-        </script>
-    </body>
+    <!-- PROJECT INSPECT MODAL -->
+    <div class="modal-overlay" id="projectModal" aria-hidden="true" role="dialog">
+        <div class="modal-card">
+            <button class="modal-close-btn" id="modalCloseBtn" aria-label="Fechar Modal">✕</button>
+            <div class="modal-content" id="modalContent">
+                <!-- Dynamically Populated via JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- BACK TO TOP FLOATING BUTTON -->
+    <button id="backToTop" class="back-to-top-btn" aria-label="Subir ao Topo" title="Subir ao Topo">
+        <svg class="back-to-top-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 19V5M5 12L12 5L19 12" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span class="back-to-top-glow"></span>
+    </button>
+
+    <!-- Script -->
+    <script src="main.js"></script>
+</body>
 </html>

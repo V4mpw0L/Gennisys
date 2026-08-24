@@ -1,864 +1,722 @@
-/* =========================================
-   Gennisys - main.js
-   - Animação de background (digital, em grid)
-   - Menu mobile toggle (hamburger)
-   - Tradução EN/PT (clique nas flags)
-   - Fechar mobile menu ao clicar fora
-   - Animação do logo ao carregar
-   ========================================= */
+/* ==========================================================================
+   GENNISYS STUDIO — CORE ENGINE (main.js)
+   - Constellation Ether Canvas Background
+   - Web Audio API Harmonic Synthesizer & Soundscape
+   - Dynamic Dual-Language (PT-BR / EN) Engine
+   - Aura / Theme Dynamic Switcher
+   - Category Filter System
+   - Project Modal Inspector
+   - Mobile Drawer & Scroll Interactivity
+   ========================================================================== */
 
-document.addEventListener("DOMContentLoaded", () => {
-  /* ---------- Digital Grid Particles (leve, fundo animado) ---------- */
-  const canvas = document.getElementById("particles");
-  const ctx = canvas.getContext("2d");
-  let w = (canvas.width = window.innerWidth);
-  let h = (canvas.height = window.innerHeight);
-  let particles = [];
-  const particleCount = () => Math.round(Math.max(60, Math.min(150, w / 10)));
-  const gridSpacing = w <= 768 ? 80 : w <= 1024 ? 60 : 40;
-
-  window.addEventListener("resize", () => {
-    w = canvas.width = window.innerWidth;
-    h = canvas.height = window.innerHeight;
-    initParticles();
-  });
-
-  class Particle {
-    constructor(x, y) {
-      this.x = x;
-      this.y = y;
-      this.baseX = x;
-      this.baseY = y;
-      this.density = Math.random() * 40 + 5;
-      this.alpha = 0.5 + Math.random() * 0.5;
-    }
-    step() {
-      const distance = Math.sqrt(
-        Math.pow(this.x - mouse.x, 2) + Math.pow(this.y - mouse.y, 2),
-      );
-      const forceDirectionX = (this.x - mouse.x) / distance;
-      const forceDirectionY = (this.y - mouse.y) / distance;
-      const maxDistance = mouse.radius;
-      const force = (maxDistance - distance) / maxDistance;
-      const directionX = forceDirectionX * force * this.density;
-      const directionY = forceDirectionY * force * this.density;
-
-      if (distance < mouse.radius) {
-        this.x -= directionX;
-        this.y -= directionY;
-      } else {
-        if (this.x !== this.baseX) {
-          const dx = this.x - this.baseX;
-          this.x -= dx / 12;
+document.addEventListener('DOMContentLoaded', () => {
+    // ----------------------------------------------------------------------
+    // 1. DUAL-LANGUAGE SYSTEM (PT-BR / EN)
+    // ----------------------------------------------------------------------
+    const translations = {
+        pt: {
+            nav_home: "Início",
+            nav_manifesto: "Manifesto",
+            nav_creations: "Criações",
+            nav_news: "Novidades",
+            nav_vault: "O Lab",
+            nav_nexus: "Nexus",
+            status_autonomous: "Sistemas Autônomos Ativos",
+            hero_badge: "ESTÚDIO INDEPENDENTE DE JOGOS & APLICATIVOS",
+            hero_title_1: "BEM-VINDO À GENNISYS",
+            hero_title_2: "FORJANDO NOVOS UNIVERSOS DIGITAIS",
+            hero_desc: "Somos um estúdio independente focado na concepção, design e engenharia de jogos imersivos, softwares utilitários e experiências digitais proprietárias. Conheça nossos mundos e ferramentas.",
+            hero_btn_explore: "Explorar Criações",
+            hero_btn_news: "Últimas Novidades",
+            hero_btn_manifesto: "O Manifesto",
+            scroll_cue: "DESCER",
+            manifesto_tag: "FILOSOFIA DO ESTÚDIO",
+            manifesto_title: "O Creio da Gennisys",
+            manifesto_quote: "\"A verdadeira arte e a alta tecnologia não nascem de briefings genéricos. Nascem da obsessão de construir aquilo que gostaríamos que existisse no mundo.\"",
+            pillar_1_title: "100% Autonomia",
+            pillar_1_desc: "Cada linha de código, estética visual e mecânica pertence ao ecossistema Gennisys. Criamos exclusivamente para o nosso próprio catálogo.",
+            pillar_2_title: "Artesanato Digital",
+            pillar_2_desc: "Rejeitamos softwares genéricos e sem alma. Projetamos interfaces atmosféricas, intuitivas e envolventes que encantam quem as utiliza.",
+            pillar_3_title: "Mundos & Ferramentas",
+            pillar_3_desc: "Dos RPGs de simulação aos terminais cibernéticos e cofres de dados, expandimos continuamente novos universos digitais.",
+            creations_tag: "ECOSSISTEMA PROPRIETÁRIO",
+            creations_heading: "Criações & Experiências",
+            creations_sub: "Obras autorais em operação. Aplicativos, simulações e jogos moldados nos laboratórios da Gennisys.",
+            filter_all: "Todos",
+            filter_games: "Jogos & RPG",
+            filter_cyber: "Sistemas & Cyber",
+            filter_tools: "Utilitários",
+            badge_live: "ONLINE",
+            type_rpg: "RPG & Simulação",
+            type_cyber: "Cyberpunk OS",
+            type_mmo: "MMO Incremental",
+            type_security: "Criptografia & Cofre",
+            type_fin: "Estratégia Financeira",
+            type_calc: "Computação de Precisão",
+            proj_fazenda_desc: "Um universo imersivo de simulação rural e RPG. Desenvolva sua propriedade, gerencie colheitas e evolua seu império agrícola.",
+            proj_hacker_desc: "Simulador de terminal e cibersegurança tática. Uma experiência de interface estilo matriz com protocolos de penetração simulados.",
+            proj_packet_desc: "Jogo incremental de arquitetura de dados e tráfego massivo. Colete pacotes digitais e domine a infraestrutura global.",
+            proj_passmap_desc: "Gerenciador de segurança de senhas e dados sigilosos. Uma fortaleza de privacidade digital construída para proteção absoluta.",
+            proj_budget_desc: "Sistema de controle patrimonial com categorização dinâmica, projeções orçamentárias e dashboards inteligentes.",
+            proj_gencalc_desc: "Calculadora científica com histórico de auditoria instantâneo e layout ergonômico feito para operações complexas.",
+            btn_enter_world: "Entrar no Mundo",
+            btn_access_terminal: "Acessar Terminal",
+            btn_start_transmission: "Iniciar Transmissão",
+            btn_open_vault: "Abrir Cofre",
+            btn_access_system: "Acessar Sistema",
+            btn_launch_calculator: "Executar GenCalc",
+            news_tag: "TRANSMISSÕES & NOVIDADES",
+            news_heading: "Últimas Atualizações",
+            news_sub: "Acompanhe as notas de atualização, registros de desenvolvimento e comunicados oficiais do estúdio.",
+            news_cat_patch: "PATCH NOTES",
+            news_cat_deploy: "SISTEMA",
+            news_cat_devlog: "DEVLOG",
+            news_1_title: "FazendaRPG: Atualização de Economia Agrícola e Clima",
+            news_1_desc: "Lançado o novo balanceamento para ciclos de colheita, eventos dinâmicos de estação e aprimoramento na persistência de dados.",
+            news_2_title: "Hacker0s: Novos Módulos de Terminal e Desafios",
+            news_2_desc: "A interface cibernética recebeu novos protocolos de penetração simulada, decifração criptográfica em tempo real e comandos táticos.",
+            news_3_title: "Bastidores do Lab: Avanços no Protocolo Aetheria",
+            news_3_desc: "Nossa equipe de engenharia finalizou os primeiros testes com o motor de física procedural e atmosfera sonora para o próximo projeto.",
+            news_4_title: "PacketClicker MMO: Expansão Quântica de Servidores",
+            news_4_desc: "Novas árvores de habilidades tecnológicas de rede, cluster quântico e balanceamento para processamento de pacotes massivos.",
+            news_5_title: "PassMap: Arquitetura Zero-Knowledge & Criptografia",
+            news_5_desc: "Atualizado o protocolo criptográfico local para proteção absoluta de dados confidenciais com auditoria de integridade.",
+            news_6_title: "GenCalc & BudgetBox: Otimizações de Precisão e Interface",
+            news_6_desc: "Refatoração dos algoritmos matemáticos com precisão de ponto flutuante corrigida e ergonomia acelerada por teclado.",
+            news_read_more: "Acessar →",
+            vault_status: "LABORATÓRIO CLASSIFICADO // EM DESENVOLVIMENTO",
+            vault_title: "Projeto: Protocolo Aetheria",
+            vault_desc: "Nos bastidores da Gennisys, uma nova experiência de proporções épicas está sendo forjada. Uma fusão de narrativa mística, inteligência generativa e mecânicas táticas imersivas.",
+            vault_label_status: "ESTADO",
+            vault_val_status: "Fase Alpha / Sob Sigilo",
+            vault_label_engine: "ENGINE",
+            vault_label_deployment: "LANÇAMENTO",
+            nexus_mission: "Estúdio independente focado na concepção e engenharia de jogos, softwares e experiências digitais proprietárias.",
+            footer_status_text: "Todos os sistemas operacionais",
+            footer_col_nav: "Navegação",
+            footer_col_ecosystem: "Ecossistema",
+            footer_devlog: "Notas de Lançamento",
+            footer_vault: "The Vault (Alpha)",
+            footer_col_contact: "Contato",
+            footer_meta_location: "Desenvolvimento Autônomo",
+            footer_meta_remote: "Operação Global",
+            footer_lang_label: "Idioma:",
+            footer_theme_label: "Aura:",
+            rights_reserved: "TODOS OS DIREITOS RESERVADOS."
+        },
+        en: {
+            nav_home: "Home",
+            nav_manifesto: "Manifesto",
+            nav_creations: "Creations",
+            nav_news: "News",
+            nav_vault: "The Lab",
+            nav_nexus: "Nexus",
+            status_autonomous: "Autonomous Systems Active",
+            hero_badge: "INDEPENDENT GAME & APP STUDIO",
+            hero_title_1: "WELCOME TO GENNISYS",
+            hero_title_2: "FORGING NEW DIGITAL REALITIES",
+            hero_desc: "An independent studio dedicated to the conception, design, and engineering of immersive games, utility software, and proprietary digital experiences. Discover our handcrafted worlds.",
+            hero_btn_explore: "Explore Creations",
+            hero_btn_news: "Latest News",
+            hero_btn_manifesto: "The Manifesto",
+            scroll_cue: "SCROLL",
+            manifesto_tag: "STUDIO PHILOSOPHY",
+            manifesto_title: "The Gennisys Creed",
+            manifesto_quote: "\"True art and high engineering are never born from generic briefs. They are forged from the obsession to build what we wish existed in this reality.\"",
+            pillar_1_title: "100% Autonomy",
+            pillar_1_desc: "Every line of code, aesthetic design, and system mechanic belongs to the Gennisys ecosystem. We build solely for our own catalog.",
+            pillar_2_title: "Digital Craftsmanship",
+            pillar_2_desc: "We reject soulless, generic corporate tools. We engineer atmospheric, intuitive, and captivating digital experiences.",
+            pillar_3_title: "Worlds & Instruments",
+            pillar_3_desc: "From simulation RPGs to cyberpunk terminals and cryptographic vaults, we continuously expand our universe.",
+            creations_tag: "PROPRIETARY ECOSYSTEM",
+            creations_heading: "Creations & Realities",
+            creations_sub: "Original works in active operation. Applications, simulations, and games crafted inside the Gennisys laboratory.",
+            filter_all: "All",
+            filter_games: "Games & RPG",
+            filter_cyber: "Systems & Cyber",
+            filter_tools: "Utilities",
+            badge_live: "LIVE",
+            type_rpg: "RPG & Simulation",
+            type_cyber: "Cyberpunk OS",
+            type_mmo: "Incremental MMO",
+            type_security: "Cryptography & Vault",
+            type_fin: "Financial Strategy",
+            type_calc: "Precision Compute",
+            proj_fazenda_desc: "An immersive rural simulation and RPG. Develop land, cultivate crops, master seasonal economies, and expand your empire.",
+            proj_hacker_desc: "Tactical terminal and cybersecurity simulator. A matrix-style operating interface featuring penetration protocols and simulated networks.",
+            proj_packet_desc: "Incremental game of data throughput and mass infrastructure. Harvest data packets, evolve quantum clusters, and command the grid.",
+            proj_passmap_desc: "High-security password and credential manager. A cryptographic digital vault engineered for total autonomy and privacy.",
+            proj_budget_desc: "Capital management architecture featuring dynamic categorization, cashflow projections, and financial intelligence visualizers.",
+            proj_gencalc_desc: "Scientific computing engine with real-time audit logs and ergonomic interface engineered for advanced mathematical workflows.",
+            btn_enter_world: "Enter World",
+            btn_access_terminal: "Access Terminal",
+            btn_start_transmission: "Start Transmission",
+            btn_open_vault: "Open Vault",
+            btn_access_system: "Access System",
+            btn_launch_calculator: "Launch GenCalc",
+            news_tag: "STUDIO DISPATCHES",
+            news_heading: "Latest Updates",
+            news_sub: "Track recent patch releases, development logs, and official studio announcements.",
+            news_cat_patch: "PATCH NOTES",
+            news_cat_deploy: "SYSTEM",
+            news_cat_devlog: "DEVLOG",
+            news_1_title: "FazendaRPG: Agricultural Economy & Seasonal Overhaul",
+            news_1_desc: "Deployed harvest rebalancing, dynamic seasonal weather cycles, and persistent state optimizations.",
+            news_2_title: "Hacker0s: New Terminal Modules & Security Trials",
+            news_2_desc: "The terminal emulator received simulated penetration protocols, live cryptographic cracking, and advanced tactical commands.",
+            news_3_title: "Inside the Lab: Milestones in Project Aetheria",
+            news_3_desc: "Our engineering team concluded the first milestone of procedural generation and audio mechanics for our upcoming classified title.",
+            news_4_title: "PacketClicker MMO: Quantum Server Expansion",
+            news_4_desc: "New network tech progression trees, quantum node clustering, and large-scale data throughput balancing.",
+            news_5_title: "PassMap: Zero-Knowledge Architecture & Crypto Core",
+            news_5_desc: "Upgraded client-side cryptographic protocols for uncompromising confidential storage and integrity auditing.",
+            news_6_title: "GenCalc & BudgetBox: Precision & UI Optimizations",
+            news_6_desc: "Refactored mathematical engines with IEEE-754 precision correction and keyboard-accelerated workflows.",
+            news_read_more: "Open →",
+            vault_status: "CLASSIFIED LAB // UNDER DEVELOPMENT",
+            vault_title: "Project: Protocol Aetheria",
+            vault_desc: "Behind closed doors at Gennisys, a new high-caliber reality is being forged. A synthesis of mystical lore, generative intelligence, and deep tactical mechanics.",
+            vault_label_status: "STATUS",
+            vault_val_status: "Alpha Phase / Classified",
+            vault_label_engine: "ENGINE",
+            vault_label_deployment: "RELEASE",
+            nexus_mission: "An independent digital studio creating handcrafted games, tools, and proprietary digital experiences.",
+            footer_status_text: "All systems operational",
+            footer_col_nav: "Navigation",
+            footer_col_ecosystem: "Ecosystem",
+            footer_devlog: "Release Notes",
+            footer_vault: "The Vault (Alpha)",
+            footer_col_contact: "Contact",
+            footer_meta_location: "Autonomous Development",
+            footer_meta_remote: "Global Operation",
+            footer_lang_label: "Language:",
+            footer_theme_label: "Aura:",
+            rights_reserved: "ALL RIGHTS RESERVED."
         }
-        if (this.y !== this.baseY) {
-          const dy = this.y - this.baseY;
-          this.y -= dy / 12;
+    };
+
+    let currentLang = localStorage.getItem('gennisys_lang') || 'pt';
+
+    function setLanguage(lang) {
+        currentLang = lang;
+        localStorage.setItem('gennisys_lang', lang);
+        
+        // Update header pill
+        const langBtn = document.getElementById('langSwitch');
+        if (langBtn) {
+            langBtn.querySelector('.lang-text').textContent = lang.toUpperCase();
         }
-      }
+
+        // Update footer language buttons
+        document.querySelectorAll('.footer-lang-btn').forEach(btn => {
+            if (btn.getAttribute('data-lang-val') === lang) {
+                btn.classList.add('active');
+            } else {
+                btn.classList.remove('active');
+            }
+        });
+
+        // Translate all data-i18n elements
+        document.querySelectorAll('[data-i18n]').forEach(el => {
+            const key = el.getAttribute('data-i18n');
+            if (translations[lang] && translations[lang][key]) {
+                el.textContent = translations[lang][key];
+            }
+        });
     }
-    draw() {
-      const neon = getComputedStyle(document.documentElement).getPropertyValue("--brand-neon").trim() || "#00ff88";
-      const r = parseInt(neon.slice(1, 3), 16);
-      const g = parseInt(neon.slice(3, 5), 16);
-      const b = parseInt(neon.slice(5, 7), 16);
-      ctx.beginPath();
-      ctx.fillStyle = `rgba(${r},${g},${b},${this.alpha})`;
-      ctx.arc(this.x, this.y, 1.2, 0, Math.PI * 2);
-      ctx.fill();
+
+    const langBtn = document.getElementById('langSwitch');
+    if (langBtn) {
+        langBtn.addEventListener('click', () => {
+            const nextLang = currentLang === 'pt' ? 'en' : 'pt';
+            setLanguage(nextLang);
+        });
     }
-  }
 
-  const mouse = {
-    x: undefined,
-    y: undefined,
-    radius: 120,
-  };
-
-  window.addEventListener("mousemove", (event) => {
-    mouse.x = event.x;
-    mouse.y = event.y;
-  });
-
-  function initParticles() {
-    particles = [];
-    for (let y = 0; y < h; y += gridSpacing) {
-      for (let x = 0; x < w; x += gridSpacing) {
-        particles.push(new Particle(x, y));
-      }
-    }
-  }
-
-  function loopParticles() {
-    ctx.clearRect(0, 0, w, h);
-    particles.forEach((p) => {
-      p.step();
-      p.draw();
+    document.querySelectorAll('.footer-lang-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const langVal = btn.getAttribute('data-lang-val');
+            if (langVal) setLanguage(langVal);
+        });
     });
-    requestAnimationFrame(loopParticles);
-  }
 
-  initParticles();
-  loopParticles();
+    setLanguage(currentLang);
 
-  /* ---------- Mobile menu toggle ---------- */
-  const hamburger = document.querySelector(".hamburger");
-  const mobileMenu = document.getElementById("mobileMenu");
 
-  function toggleMobileMenu(forceState) {
-    if (!mobileMenu || !hamburger) return;
-    const isOpen = mobileMenu.classList.contains("open");
-    const willOpen = typeof forceState === "boolean" ? forceState : !isOpen;
-    mobileMenu.classList.toggle("open", willOpen);
-    hamburger.setAttribute("aria-expanded", String(willOpen));
-    mobileMenu.setAttribute("aria-hidden", String(!willOpen));
-  }
+    // ----------------------------------------------------------------------
+    // 2. THEME & AURA SELECTOR (HEADER & FOOTER SYNC)
+    // ----------------------------------------------------------------------
+    let savedTheme = localStorage.getItem('gennisys_theme') || 'emerald';
+    
+    function applyTheme(themeId) {
+        document.body.setAttribute('data-theme', themeId);
+        localStorage.setItem('gennisys_theme', themeId);
+        savedTheme = themeId;
 
-  if (hamburger) {
-    hamburger.addEventListener("click", (e) => {
-      e.stopPropagation();
-      toggleMobileMenu();
-    });
-  }
-
-  // Close menu when a link is clicked
-  document.querySelectorAll(".mobile-menu a").forEach((a) => {
-    a.addEventListener("click", () => toggleMobileMenu(false));
-  });
-
-  // Close menu if user clicks outside
-  document.addEventListener("click", (e) => {
-    if (!e.target.closest(".mobile-menu") && !e.target.closest(".hamburger")) {
-      toggleMobileMenu(false);
-    }
-  });
-
-  // Close menu on resize
-  window.addEventListener("resize", () => {
-    toggleMobileMenu(false);
-  });
-
-  /* ---------- Translations EN/PT ---------- */
-  const translations = {
-    en: {
-      nav_home: "Home",
-      nav_leadership: "Leadership",
-      nav_vision: "Vision",
-      nav_solutions: "Solutions",
-      nav_ecosystem: "Ecosystem",
-      nav_news: "News",
-      nav_contact: "Contact",
-      hero_badge: "Independent App Studio",
-      hero_title: "Our Products, Built with Vision",
-      hero_text:
-        'At <strong class="brand-highlight">Gennisys</strong>, we conceive, design, and operate a proprietary portfolio of applications—no outsourced work, only experiences driven by our product vision.',
-      btn_contact: "Contact the Team",
-      btn_news: "Product Updates",
-      hero_point_1:
-        "Integrated product squads advancing our proprietary mobile, web, and XR platforms.",
-      hero_point_2:
-        "AI-first design and engineering powering an ambitious internal roadmap.",
-      hero_point_3:
-        "Continuous analytics, live operations, and structured community engagement around our apps.",
-      hero_stack_title: "Core focus areas:",
-      metric_products: "Products on the roadmap",
-      metric_users: "Users we plan to reach",
-      metric_markets: "Markets we're entering",
-      metric_uptime: "Reliability across our stack",
-      ceo_badge: "Leadership",
-      ceo_section_title: "Meet the Founder",
-      ceo_name: "Tiago Cardoso",
-      ceo_title: "Founder & CEO",
-      ceo_text:
-        "Tiago sets the strategic agenda for Gennisys, commanding execution across product, engineering, and audience expansion to uphold our independent vision.",
-      ceo_highlight_1_title: "Product Governance",
-      ceo_highlight_1_text:
-        "Directs the proprietary roadmap and enforces disciplined delivery for every launch.",
-      ceo_highlight_2_title: "Engineering Stewardship",
-      ceo_highlight_2_text:
-        "Leads technical excellence, resilient infrastructure, and continuous innovation standards.",
-      ceo_highlight_3_title: "Market Relationships",
-      ceo_highlight_3_text:
-        "Activates strategic alliances that extend distribution and stakeholder value.",
-      ceo_quote:
-        "“We design, validate, and scale the digital products we believe must exist—precise, responsive, and built for leadership.”",
-      vision_badge: "Vision 2025",
-      vision_title: "End-to-end execution, fully internal.",
-      vision_text:
-        "Cross-functional teams align strategy, design, and engineering to convert proprietary innovation into global platforms.",
-      vision_kpi_1: "Platforms deployed",
-      vision_kpi_2: "Prototypes in validation",
-      vision_kpi_3: "Operational coverage",
-      vision_card_1_title: "Acceleration Pods",
-      vision_card_1_text:
-        "Modular squads converting validated concepts into production-ready applications within weeks.",
-      vision_card_2_title: "AI-First Experiences",
-      vision_card_2_text:
-        "Intelligent systems embedded in every product we operate.",
-      vision_card_3_title: "Global Readiness",
-      vision_card_3_text:
-        "Localization, compliance, and infrastructure engineered for worldwide launches.",
-      apps_badge: "Gennisys Portfolio",
-      apps_title: "Our Applications",
-      apps_subtitle:
-        "Explore the proprietary applications engineered entirely in-house.",
-      app_calculator_title: "GenCalc",
-      app_calculator_desc:
-        "Advanced calculator with scientific functions, history tracking, and an intuitive interface.",
-      app_calendar_title: "BudgetBox",
-      app_calendar_desc:
-        "Smart financial manager to track expenses, set budgets, and achieve your financial goals.",
-      app_maps_title: "FazendaRPG",
-      app_maps_desc:
-        "Immersive farming RPG game where you build and manage your own virtual farm.",
-      app_games_title: "Hacker0s",
-      app_games_desc:
-        "Interactive hacking simulation tool with realistic terminal experience and cybersecurity challenges.",
-      app_utilities_title: "PacketClicker",
-      app_utilities_desc:
-        "Addictive incremental clicker game where you collect packets and upgrade your network infrastructure.",
-      app_music_title: "PassMap",
-      app_music_desc:
-        "Secure password and address management tool to organize your digital life safely.",
-      ecosystem_badge: "Build Engine",
-      ecosystem_title: "An internal pipeline for breakthrough products.",
-      ecosystem_text:
-        "Every discipline collaborates to operate the applications we own, from research through live operations.",
-      ecosystem_column_1_title: "Product Research",
-      ecosystem_column_1_item_1: "Audience intelligence & roadmap validation",
-      ecosystem_column_1_item_2: "Brand systems & design language for our apps",
-      ecosystem_column_1_item_3: "Concept sprints & prototype labs",
-      ecosystem_column_2_title: "Engineering Core",
-      ecosystem_column_2_item_1:
-        "Native and cross-platform builds across our stack",
-      ecosystem_column_2_item_2: "AI-driven personalization frameworks",
-      ecosystem_column_2_item_3: "Secure, scalable cloud backbone",
-      ecosystem_column_3_title: "Operations & Growth",
-      ecosystem_column_3_item_1: "Analytics frameworks & experimentation",
-      ecosystem_column_3_item_2: "LiveOps orchestration & release cadence",
-      ecosystem_column_3_item_3:
-        "Monetization experiments & ecosystem alliances",
-      partner_caption: "Strategic partners",
-      partner_slot: "",
-      partner_note:
-        "Global technology partners amplifying the reach of our proprietary applications.",
-      news_badge: "Newsroom",
-      news_title: "Latest from Gennisys",
-      news_subtitle: "Follow the milestones shaping our proprietary roadmap.",
-      btn_subscribe: "Notify me",
-      news_note: "We share release notes and corporate milestones regularly.",
-      contact_badge: "Contact",
-      contact_title: "Reach Gennisys",
-      contact_text:
-        "For inquiries about our apps, media coverage, or strategic partnerships, connect with our studio team.",
-      contact_channel_title: "Media & Partnerships",
-      contact_channel_text:
-        "Press, distribution, and strategic collaboration requests are welcome.",
-      contact_cta_title: "Connect with the Studio",
-      contact_bullet_1: "Portfolio briefings & beta access",
-      contact_bullet_2: "Product roadmap briefings & community initiatives",
-      contact_bullet_3: "Strategic alliances that amplify our apps",
-      btn_project: "Contact us",
-    },
-    pt: {
-      nav_home: "Início",
-      nav_leadership: "Liderança",
-      nav_vision: "Visão",
-      nav_solutions: "Soluções",
-      nav_ecosystem: "Ecossistema",
-      nav_news: "Notícias",
-      nav_contact: "Contato",
-      hero_badge: "Estúdio Independente de Apps",
-      hero_title: "Nossos Produtos, Construídos com Visão",
-      hero_text:
-        'Na <strong class="brand-highlight">Gennisys</strong>, concebemos, projetamos e operamos nosso portfólio proprietário de aplicativos — nada terceirizado, apenas experiências guiadas pela nossa visão de produto.',
-      btn_contact: "Falar com a Equipe",
-      btn_news: "Atualizações de Produto",
-      hero_point_1:
-        "Squads integrados evoluindo nossas plataformas proprietárias para mobile, web e XR.",
-      hero_point_2:
-        "Design e engenharia IA-first impulsionando um roadmap interno ambicioso.",
-      hero_point_3:
-        "Analytics contínuos, operações ao vivo e engajamento estruturado da comunidade em torno dos nossos apps.",
-      hero_stack_title: "Áreas de foco:",
-      metric_products: "Produtos no roadmap",
-      metric_users: "Usuários que planejamos alcançar",
-      metric_markets: "Mercados em que estamos entrando",
-      metric_uptime: "Confiabilidade do nosso stack",
-      ceo_badge: "Liderança",
-      ceo_section_title: "Conheça o fundador",
-      ceo_name: "Tiago Cardoso",
-      ceo_title: "Fundador & CEO",
-      ceo_text:
-        "Tiago define a agenda estratégica da Gennisys, coordenando execução em produto, engenharia e expansão de audiência para sustentar nossa visão independente.",
-      ceo_highlight_1_title: "Governança de Produto",
-      ceo_highlight_1_text:
-        "Direciona o roadmap proprietário e assegura entregas disciplinadas em cada lançamento.",
-      ceo_highlight_2_title: "Liderança de Engenharia",
-      ceo_highlight_2_text:
-        "Comanda excelência técnica, infraestrutura resiliente e padrões contínuos de inovação.",
-      ceo_highlight_3_title: "Relacionamentos de Mercado",
-      ceo_highlight_3_text:
-        "Ativa alianças estratégicas que ampliam distribuição e valor para stakeholders.",
-      ceo_quote:
-        "“Projetamos, validamos e escalamos os produtos digitais que acreditamos que precisam existir — precisos, responsivos e com liderança.”",
-      vision_badge: "Visão 2025",
-      vision_title: "Execução de ponta a ponta, 100% interna.",
-      vision_text:
-        "Equipes multidisciplinares alinham estratégia, design e engenharia para converter inovação proprietária em plataformas globais.",
-      vision_kpi_1: "Plataformas implantadas",
-      vision_kpi_2: "Protótipos em validação",
-      vision_kpi_3: "Cobertura operacional",
-      vision_card_1_title: "Pods de Aceleração",
-      vision_card_1_text:
-        "Squads modulares transformando conceitos validados em aplicações prontas para produção em semanas.",
-      vision_card_2_title: "Experiências IA-first",
-      vision_card_2_text:
-        "Sistemas inteligentes incorporados em cada produto que operamos.",
-      vision_card_3_title: "Prontos para o mundo",
-      vision_card_3_text:
-        "Localização, compliance e infraestrutura projetadas para lançamentos globais.",
-      apps_badge: "Portfólio Gennisys",
-      apps_title: "Nossos Aplicativos",
-      apps_subtitle:
-        "Explore os aplicativos proprietários projetados integralmente in-house.",
-      app_calculator_title: "GenCalc",
-      app_calculator_desc:
-        "Calculadora avançada com funções científicas, histórico e interface intuitiva.",
-      app_calendar_title: "BudgetBox",
-      app_calendar_desc:
-        "Gerenciador financeiro inteligente para controlar despesas, definir orçamentos e alcançar suas metas.",
-      app_maps_title: "FazendaRPG",
-      app_maps_desc:
-        "Jogo RPG de fazenda imersivo onde você constrói e gerencia sua própria fazenda virtual.",
-      app_games_title: "Hacker0s",
-      app_games_desc:
-        "Ferramenta interativa de simulação hacker com experiência realista de terminal e desafios de cibersegurança.",
-      app_utilities_title: "PacketClicker",
-      app_utilities_desc:
-        "Jogo viciante de clique incremental onde você coleta pacotes e melhora sua infraestrutura de rede.",
-      app_music_title: "PassMap",
-      app_music_desc:
-        "Ferramenta segura de gerenciamento de senhas e endereços para organizar sua vida digital com segurança.",
-      ecosystem_badge: "Motor de Construção",
-      ecosystem_title: "Um pipeline interno para produtos de ruptura.",
-      ecosystem_text:
-        "Cada disciplina opera em sincronia para evoluir os apps que nos pertencem, da pesquisa às operações ao vivo.",
-      ecosystem_column_1_title: "Pesquisa de Produto",
-      ecosystem_column_1_item_1:
-        "Inteligência de audiência & validação de roadmap",
-      ecosystem_column_1_item_2:
-        "Sistemas de marca & linguagem de design dos nossos apps",
-      ecosystem_column_1_item_3:
-        "Sprints de conceito & laboratórios de protótipos",
-      ecosystem_column_2_title: "Núcleo de Engenharia",
-      ecosystem_column_2_item_1:
-        "Builds nativos e multiplataforma em todo o nosso stack",
-      ecosystem_column_2_item_2: "Frameworks de personalização movidos por IA",
-      ecosystem_column_2_item_3: "Backbone seguro e escalável em nuvem",
-      ecosystem_column_3_title: "Operações & Crescimento",
-      ecosystem_column_3_item_1: "Frameworks de analytics & experimentação",
-      ecosystem_column_3_item_2:
-        "Orquestração de LiveOps & cadência de lançamentos",
-      ecosystem_column_3_item_3:
-        "Experimentos de monetização & alianças de ecossistema",
-      partner_caption: "Parceiros estratégicos",
-      partner_slot: "",
-      partner_note:
-        "Parceiros globais de tecnologia que ampliam o alcance dos nossos aplicativos proprietários.",
-      news_badge: "Sala de Imprensa",
-      news_title: "Atualizações da Gennisys",
-      news_subtitle:
-        "Acompanhe os marcos que moldam nosso roadmap proprietário.",
-      btn_subscribe: "Quero ser notificado",
-      news_note:
-        "Compartilhamos notas de versão e marcos corporativos regularmente.",
-      contact_badge: "Contato",
-      contact_title: "Conecte-se com a Gennisys",
-      contact_text:
-        "Para solicitações sobre nossos apps, cobertura de imprensa ou parcerias estratégicas, conecte-se com a nossa equipe de estúdio.",
-      contact_channel_title: "Imprensa & Parcerias",
-      contact_channel_text:
-        "Pedidos de imprensa, distribuição e colaborações estratégicas são bem-vindos.",
-      contact_cta_title: "Conecte-se ao Estúdio",
-      contact_bullet_1: "Briefings do portfólio & acesso a betas",
-      contact_bullet_2: "Briefings de roadmap & iniciativas de comunidade",
-      contact_bullet_3: "Alianças estratégicas que amplificam nossos apps",
-      btn_project: "Fale conosco",
-    },
-  };
-
-  const newsEntries = {
-    en: [
-      {
-        date: "Sep 2025",
-        tag: "Launch",
-        title: "Gennisys AI Studio enters private beta",
-        excerpt:
-          "Our AI-powered co-creation environment is rolling out to early design partners with real-time copilots and workflow automations.",
-      },
-      {
-        date: "Aug 2025",
-        tag: "Partnership",
-        title: "Strategic alliance expands our cloud reach",
-        excerpt:
-          "We are partnering with leading providers to deliver low-latency, secure distribution for our global user base.",
-      },
-      {
-        date: "Jul 2025",
-        tag: "Update",
-        title: "Navigation Plus adds adaptive offline routing",
-        excerpt:
-          "The latest release introduces smart caching, multi-city packs, and predictive routing for commuters everywhere.",
-      },
-    ],
-    pt: [
-      {
-        date: "Set 2025",
-        tag: "Lançamento",
-        title: "Gennisys AI Studio inicia beta privado",
-        excerpt:
-          "Nosso ambiente de co-criação com IA chega aos parceiros iniciais com copilotos em tempo real e automações de fluxo de trabalho.",
-      },
-      {
-        date: "Ago 2025",
-        tag: "Parceria",
-        title: "Aliança estratégica amplia nossa presença em nuvem",
-        excerpt:
-          "Estamos unindo forças com provedores líderes para entregar distribuição segura e de baixa latência para nossa base global de usuários.",
-      },
-      {
-        date: "Jul 2025",
-        tag: "Atualização",
-        title: "Navigation Plus ganha rotas offline adaptativas",
-        excerpt:
-          "A nova versão introduz cache inteligente, pacotes multi-cidade e rotas preditivas para consumidores em qualquer lugar.",
-      },
-    ],
-  };
-
-  // set default language
-  let currentLang = "pt";
-  const prefersReducedMotion = window.matchMedia(
-    "(prefers-reduced-motion: reduce)",
-  ).matches;
-
-  const revealObserver = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("is-visible");
-          revealObserver.unobserve(entry.target);
+        // Sync header dropdown
+        const themeDropdown = document.getElementById('themeDropdownMenu');
+        if (themeDropdown) {
+            themeDropdown.querySelectorAll('.theme-option').forEach(opt => {
+                if (opt.getAttribute('data-theme-id') === themeId) {
+                    opt.classList.add('active');
+                } else {
+                    opt.classList.remove('active');
+                }
+            });
         }
-      });
-    },
-    { threshold: 0.2 },
-  );
 
-  function observeReveal(element) {
-    if (!element) return;
-    if (prefersReducedMotion) {
-      element.classList.add("is-visible");
-      return;
+        // Sync footer theme dots
+        document.querySelectorAll('.footer-theme-dot').forEach(dot => {
+            if (dot.getAttribute('data-theme-id') === themeId) {
+                dot.classList.add('active');
+            } else {
+                dot.classList.remove('active');
+            }
+        });
     }
-    revealObserver.observe(element);
-  }
 
-  document.querySelectorAll("[data-reveal]").forEach(observeReveal);
+    applyTheme(savedTheme);
 
-  const counters = Array.from(document.querySelectorAll("[data-count]"));
+    const themePickerBtn = document.getElementById('themePickerBtn');
+    const themeDropdown = document.getElementById('themeDropdownMenu');
 
-  const counterObserver = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          animateCounter(entry.target);
-          counterObserver.unobserve(entry.target);
+    if (themePickerBtn && themeDropdown) {
+        themePickerBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            themeDropdown.classList.toggle('show');
+        });
+
+        document.addEventListener('click', () => {
+            themeDropdown.classList.remove('show');
+        });
+
+        themeDropdown.querySelectorAll('.theme-option').forEach(option => {
+            option.addEventListener('click', () => {
+                const themeId = option.getAttribute('data-theme-id');
+                applyTheme(themeId);
+                themeDropdown.classList.remove('show');
+            });
+        });
+    }
+
+    document.querySelectorAll('.footer-theme-dot').forEach(dot => {
+        dot.addEventListener('click', () => {
+            const themeId = dot.getAttribute('data-theme-id');
+            if (themeId) applyTheme(themeId);
+        });
+    });
+
+
+    // ----------------------------------------------------------------------
+    // 3. NEWS PAGINATION ENGINE
+    // ----------------------------------------------------------------------
+    let currentNewsPage = 1;
+    const totalNewsPages = 2;
+
+    function renderNewsPage(page) {
+        currentNewsPage = page;
+        const newsCards = document.querySelectorAll('.news-card');
+
+        newsCards.forEach(card => {
+            const cardPage = parseInt(card.getAttribute('data-page'), 10) || 1;
+            if (cardPage === page) {
+                card.style.display = 'flex';
+                setTimeout(() => {
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, 40);
+            } else {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(12px)';
+                setTimeout(() => {
+                    card.style.display = 'none';
+                }, 200);
+            }
+        });
+
+        // Update dots and buttons
+        document.querySelectorAll('.page-dot').forEach(dot => {
+            const dotPage = parseInt(dot.getAttribute('data-page'), 10);
+            if (dotPage === page) {
+                dot.classList.add('active');
+            } else {
+                dot.classList.remove('active');
+            }
+        });
+
+        const prevBtn = document.getElementById('newsPrevBtn');
+        const nextBtn = document.getElementById('newsNextBtn');
+        if (prevBtn) prevBtn.disabled = (page <= 1);
+        if (nextBtn) nextBtn.disabled = (page >= totalNewsPages);
+    }
+
+    const prevNewsBtn = document.getElementById('newsPrevBtn');
+    const nextNewsBtn = document.getElementById('newsNextBtn');
+
+    if (prevNewsBtn) {
+        prevNewsBtn.addEventListener('click', () => {
+            if (currentNewsPage > 1) {
+                renderNewsPage(currentNewsPage - 1);
+            }
+        });
+    }
+
+    if (nextNewsBtn) {
+        nextNewsBtn.addEventListener('click', () => {
+            if (currentNewsPage < totalNewsPages) {
+                renderNewsPage(currentNewsPage + 1);
+            }
+        });
+    }
+
+    document.querySelectorAll('.page-dot').forEach(dot => {
+        dot.addEventListener('click', () => {
+            const targetPage = parseInt(dot.getAttribute('data-page'), 10);
+            if (targetPage && targetPage !== currentNewsPage) {
+                renderNewsPage(targetPage);
+            }
+        });
+    });
+    const canvas = document.getElementById('ether-canvas');
+    if (canvas) {
+        const ctx = canvas.getContext('2d');
+        let width = canvas.width = window.innerWidth;
+        let height = canvas.height = window.innerHeight;
+
+        let stars = [];
+        const starCount = Math.min(100, Math.floor((width * height) / 12000));
+
+        class Star {
+            constructor() {
+                this.reset();
+            }
+
+            reset() {
+                this.x = Math.random() * width;
+                this.y = Math.random() * height;
+                this.vx = (Math.random() - 0.5) * 0.4;
+                this.vy = (Math.random() - 0.5) * 0.4;
+                this.radius = Math.random() * 1.6 + 0.6;
+                this.alpha = Math.random() * 0.7 + 0.2;
+                this.baseAlpha = this.alpha;
+            }
+
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+
+                if (this.x < 0 || this.x > width) this.vx *= -1;
+                if (this.y < 0 || this.y > height) this.vy *= -1;
+
+                // Mouse interaction
+                if (mouse.x !== null && mouse.y !== null) {
+                    const dx = this.x - mouse.x;
+                    const dy = this.y - mouse.y;
+                    const dist = Math.sqrt(dx * dx + dy * dy);
+                    if (dist < mouse.radius) {
+                        const force = (mouse.radius - dist) / mouse.radius;
+                        this.x += (dx / dist) * force * 2;
+                        this.y += (dy / dist) * force * 2;
+                        this.alpha = Math.min(1, this.baseAlpha + 0.4);
+                    } else {
+                        this.alpha = this.baseAlpha;
+                    }
+                }
+            }
+
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(255, 255, 255, ${this.alpha})`;
+                ctx.fill();
+            }
         }
-      });
-    },
-    { threshold: 0.55 },
-  );
 
-  function formatCounterValue(value, el) {
-    const decimals = parseInt(el.dataset.decimals || "0", 10);
-    const prefix = el.dataset.prefix || "";
-    const suffix = el.dataset.suffix || "";
-    const formatted =
-      decimals > 0 ? value.toFixed(decimals) : Math.round(value).toString();
-    return `${prefix}${formatted}${suffix}`;
-  }
+        const mouse = {
+            x: null,
+            y: null,
+            radius: 120
+        };
 
-  function setCounterFinal(el) {
-    const target = parseFloat(el.dataset.count || "0");
-    el.textContent = formatCounterValue(target, el);
-    el.dataset.animated = "true";
-  }
+        window.addEventListener('mousemove', (e) => {
+            mouse.x = e.clientX;
+            mouse.y = e.clientY;
+        });
 
-  function animateCounter(el) {
-    if (!el || el.dataset.animated === "true") return;
-    if (prefersReducedMotion) {
-      setCounterFinal(el);
-      return;
-    }
-    const target = parseFloat(el.dataset.count || "0");
-    const duration = parseInt(el.dataset.duration || "1600", 10);
-    const decimals = parseInt(el.dataset.decimals || "0", 10);
-    const prefix = el.dataset.prefix || "";
-    const suffix = el.dataset.suffix || "";
-    el.dataset.animated = "true";
-    const startTime = performance.now();
+        window.addEventListener('mouseleave', () => {
+            mouse.x = null;
+            mouse.y = null;
+        });
 
-    function update(now) {
-      const elapsed = now - startTime;
-      const progress = Math.min(elapsed / duration, 1);
-      const eased = 1 - Math.pow(1 - progress, 3);
-      const currentValue = target * eased;
-      const displayValue =
-        decimals > 0
-          ? currentValue.toFixed(decimals)
-          : Math.round(currentValue).toString();
-      el.textContent = `${prefix}${displayValue}${suffix}`;
-      if (progress < 1) {
-        requestAnimationFrame(update);
-      } else {
-        const finalValue =
-          decimals > 0
-            ? target.toFixed(decimals)
-            : Math.round(target).toString();
-        el.textContent = `${prefix}${finalValue}${suffix}`;
-      }
-    }
+        window.addEventListener('resize', () => {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+            initStars();
+        });
 
-    requestAnimationFrame(update);
-  }
-
-  counters.forEach((counterEl) => {
-    if (!counterEl) return;
-    if (prefersReducedMotion) {
-      setCounterFinal(counterEl);
-    } else {
-      counterEl.textContent = formatCounterValue(0, counterEl);
-      counterObserver.observe(counterEl);
-    }
-  });
-
-  function renderNews(lang) {
-    const grid = document.getElementById("newsGrid");
-    if (!grid) return;
-    const entries =
-      newsEntries[lang] && newsEntries[lang].length
-        ? newsEntries[lang]
-        : newsEntries.en || [];
-    grid.innerHTML = "";
-
-    entries.forEach((item) => {
-      const article = document.createElement("article");
-      article.className = "news-item";
-      article.setAttribute("data-reveal", "");
-      article.innerHTML = `
-        <div class="news-meta">
-          <span>${item.date}</span>
-          <span class="news-tag">${item.tag}</span>
-        </div>
-        <h3>${item.title}</h3>
-        <p>${item.excerpt}</p>
-      `;
-      grid.appendChild(article);
-      observeReveal(article);
-    });
-  }
-
-  function initAnchorLinks() {
-    document.querySelectorAll("[data-go]").forEach((trigger) => {
-      trigger.addEventListener("click", (event) => {
-        const targetSelector = trigger.dataset.go;
-        if (!targetSelector) return;
-        const target = document.querySelector(targetSelector);
-        if (!target) return;
-        event.preventDefault();
-        target.scrollIntoView({ behavior: "smooth", block: "start" });
-      });
-    });
-  }
-
-  function initNewsSubscription() {
-    const subscribeBtn = document.getElementById("subscribeNews");
-    if (!subscribeBtn) return;
-    subscribeBtn.addEventListener("click", () => {
-      window.location.href =
-        "mailto:info@gennisys.com?subject=Subscribe%20to%20Gennisys%20Newsroom";
-    });
-  }
-
-  function initAppLinks() {
-    const appCards = document.querySelectorAll(".apps-grid .app-item");
-    if (!appCards.length) return;
-    appCards.forEach((card) => {
-      card.addEventListener("click", (event) => {
-        const rawUrl = card.dataset.appUrl || card.getAttribute("href") || "";
-        const url = rawUrl.trim();
-        if (!url || url === "#") {
-          event.preventDefault();
-          return;
+        function initStars() {
+            stars = [];
+            for (let i = 0; i < starCount; i++) {
+                stars.push(new Star());
+            }
         }
-        event.preventDefault();
-        const targetPref = (card.dataset.appTarget || "new").toLowerCase();
-        if (targetPref === "self") {
-          window.location.href = url;
-        } else {
-          window.open(url, "_blank", "noopener");
+
+        function drawLines() {
+            const maxDistance = 100;
+            for (let i = 0; i < stars.length; i++) {
+                for (let j = i + 1; j < stars.length; j++) {
+                    const dx = stars[i].x - stars[j].x;
+                    const dy = stars[i].y - stars[j].y;
+                    const dist = Math.sqrt(dx * dx + dy * dy);
+
+                    if (dist < maxDistance) {
+                        const alpha = (1 - dist / maxDistance) * 0.15;
+                        ctx.beginPath();
+                        ctx.moveTo(stars[i].x, stars[i].y);
+                        ctx.lineTo(stars[j].x, stars[j].y);
+                        ctx.strokeStyle = `rgba(180, 180, 255, ${alpha})`;
+                        ctx.lineWidth = 0.8;
+                        ctx.stroke();
+                    }
+                }
+            }
         }
-      });
-    });
-  }
 
-  function initTilt() {
-    const pointerFine = window.matchMedia("(pointer: fine)").matches;
-    if (!pointerFine || prefersReducedMotion) return;
-    const tiltElements = document.querySelectorAll(".tilt");
+        function animateCanvas() {
+            ctx.clearRect(0, 0, width, height);
+            drawLines();
+            stars.forEach(star => {
+                star.update();
+                star.draw();
+            });
+            requestAnimationFrame(animateCanvas);
+        }
 
-    tiltElements.forEach((el) => {
-      const maxTilt = parseFloat(el.dataset.tiltMax || "10");
-      el.addEventListener("mousemove", (event) => {
-        const rect = el.getBoundingClientRect();
-        const relativeX = (event.clientX - rect.left) / rect.width;
-        const relativeY = (event.clientY - rect.top) / rect.height;
-        const tiltX = (0.5 - relativeY) * maxTilt;
-        const tiltY = (relativeX - 0.5) * maxTilt;
-        el.style.transform = `perspective(1200px) rotateX(${tiltX.toFixed(2)}deg) rotateY(${tiltY.toFixed(2)}deg)`;
-      });
-      el.addEventListener("mouseleave", () => {
-        el.style.transform = "perspective(1200px) rotateX(0deg) rotateY(0deg)";
-      });
-    });
-  }
-
-  function applyTranslations(lang) {
-    currentLang = lang;
-    document.documentElement.lang = lang === "pt" ? "pt-BR" : lang;
-    document.querySelectorAll("[data-key]").forEach((el) => {
-      const key = el.dataset.key;
-      if (!key) return;
-      const value = translations[lang][key];
-      if (value !== undefined) el.innerHTML = value;
-    });
-    renderNews(lang);
-  }
-
-  applyTranslations(currentLang);
-  initAnchorLinks();
-  initNewsSubscription();
-  initTilt();
-  initAppLinks();
-
-  // Flags click -> change language
-  document.querySelectorAll(".flag").forEach((img) => {
-    img.addEventListener("click", () => {
-      const lang = img.dataset.lang;
-      if (lang && translations[lang]) applyTranslations(lang);
-    });
-  });
-
-  /* ---------- Theme System ---------- */
-  const themes = {
-    green: {
-      neon: "#00ff88",
-      neonSoft: "rgba(0, 255, 136, 0.08)",
-      bg: "linear-gradient(135deg, #0a1a0e 0%, #0e1f12 100%)",
-      cardBorder: "rgba(0, 255, 136, 0.12)",
-      shadowSoft: "0 12px 35px rgba(0, 255, 136, 0.18)",
-      surface: "rgba(0, 255, 136, 0.04)",
-      surfaceStrong: "rgba(0, 255, 136, 0.08)",
-      text: "#d1fae5",
-      muted: "#6ee7b7",
-      neonGlow: "rgba(0, 255, 136, 0.22)",
-      neonBright: "rgba(0, 255, 136, 0.9)",
-      neonBorder: "rgba(0, 255, 136, 0.18)",
-      neonBorderLight: "rgba(0, 255, 136, 0.14)",
-      neonBorderStrong: "rgba(0, 255, 136, 0.6)",
-      neonBgSoft: "rgba(0, 255, 136, 0.05)",
-      neonBgMedium: "rgba(0, 255, 136, 0.12)",
-      neonBgStrong: "rgba(0, 255, 136, 0.16)",
-      neonShadow: "rgba(0, 255, 136, 0.18)",
-    },
-    blue: {
-      neon: "#3b82f6",
-      neonSoft: "rgba(59, 130, 246, 0.08)",
-      bg: "linear-gradient(135deg, #0c1220 0%, #1e293b 100%)",
-      cardBorder: "rgba(59, 130, 246, 0.15)",
-      shadowSoft: "0 12px 35px rgba(59, 130, 246, 0.25)",
-      surface: "rgba(59, 130, 246, 0.04)",
-      surfaceStrong: "rgba(59, 130, 246, 0.1)",
-      text: "#dbeafe",
-      muted: "#93c5fd",
-      neonGlow: "rgba(59, 130, 246, 0.22)",
-      neonBright: "rgba(59, 130, 246, 0.9)",
-      neonBorder: "rgba(59, 130, 246, 0.18)",
-      neonBorderLight: "rgba(59, 130, 246, 0.14)",
-      neonBorderStrong: "rgba(59, 130, 246, 0.6)",
-      neonBgSoft: "rgba(59, 130, 246, 0.05)",
-      neonBgMedium: "rgba(59, 130, 246, 0.12)",
-      neonBgStrong: "rgba(59, 130, 246, 0.16)",
-      neonShadow: "rgba(59, 130, 246, 0.18)",
-    },
-    purple: {
-      neon: "#a855f7",
-      neonSoft: "rgba(168, 85, 247, 0.08)",
-      bg: "linear-gradient(135deg, #1e1b4b 0%, #2e1065 100%)",
-      cardBorder: "rgba(168, 85, 247, 0.2)",
-      shadowSoft: "0 12px 35px rgba(168, 85, 247, 0.3)",
-      surface: "rgba(168, 85, 247, 0.04)",
-      surfaceStrong: "rgba(168, 85, 247, 0.1)",
-      text: "#e9d5ff",
-      muted: "#c084fc",
-      neonGlow: "rgba(168, 85, 247, 0.22)",
-      neonBright: "rgba(168, 85, 247, 0.9)",
-      neonBorder: "rgba(168, 85, 247, 0.2)",
-      neonBorderLight: "rgba(168, 85, 247, 0.14)",
-      neonBorderStrong: "rgba(168, 85, 247, 0.6)",
-      neonBgSoft: "rgba(168, 85, 247, 0.05)",
-      neonBgMedium: "rgba(168, 85, 247, 0.12)",
-      neonBgStrong: "rgba(168, 85, 247, 0.16)",
-      neonShadow: "rgba(168, 85, 247, 0.18)",
-    },
-    cyan: {
-      neon: "#06b6d4",
-      neonSoft: "rgba(6, 182, 212, 0.08)",
-      bg: "linear-gradient(135deg, #083344 0%, #0e7490 100%)",
-      cardBorder: "rgba(6, 182, 212, 0.18)",
-      shadowSoft: "0 12px 35px rgba(6, 182, 212, 0.25)",
-      surface: "rgba(6, 182, 212, 0.04)",
-      surfaceStrong: "rgba(6, 182, 212, 0.1)",
-      text: "#cffafe",
-      muted: "#67e8f9",
-      neonGlow: "rgba(6, 182, 212, 0.22)",
-      neonBright: "rgba(6, 182, 212, 0.9)",
-      neonBorder: "rgba(6, 182, 212, 0.18)",
-      neonBorderLight: "rgba(6, 182, 212, 0.14)",
-      neonBorderStrong: "rgba(6, 182, 212, 0.6)",
-      neonBgSoft: "rgba(6, 182, 212, 0.05)",
-      neonBgMedium: "rgba(6, 182, 212, 0.12)",
-      neonBgStrong: "rgba(6, 182, 212, 0.16)",
-      neonShadow: "rgba(6, 182, 212, 0.18)",
-    },
-    emerald: {
-      neon: "#10b981",
-      neonSoft: "rgba(16, 185, 129, 0.08)",
-      bg: "linear-gradient(135deg, #064e3b 0%, #047857 100%)",
-      cardBorder: "rgba(16, 185, 129, 0.15)",
-      shadowSoft: "0 12px 35px rgba(16, 185, 129, 0.22)",
-      surface: "rgba(16, 185, 129, 0.04)",
-      surfaceStrong: "rgba(16, 185, 129, 0.1)",
-      text: "#d1fae5",
-      muted: "#6ee7b7",
-      neonGlow: "rgba(16, 185, 129, 0.22)",
-      neonBright: "rgba(16, 185, 129, 0.9)",
-      neonBorder: "rgba(16, 185, 129, 0.18)",
-      neonBorderLight: "rgba(16, 185, 129, 0.14)",
-      neonBorderStrong: "rgba(16, 185, 129, 0.6)",
-      neonBgSoft: "rgba(16, 185, 129, 0.05)",
-      neonBgMedium: "rgba(16, 185, 129, 0.12)",
-      neonBgStrong: "rgba(16, 185, 129, 0.16)",
-      neonShadow: "rgba(16, 185, 129, 0.18)",
-    },
-  };
-
-  function applyTheme(themeName) {
-    const theme = themes[themeName];
-    if (!theme) return;
-
-    const root = document.documentElement;
-    root.style.setProperty("--brand-neon", theme.neon);
-    root.style.setProperty("--brand-neon-soft", theme.neonSoft);
-    root.style.setProperty("--brand-bg", theme.bg);
-    root.style.setProperty("--card-border", theme.cardBorder);
-    root.style.setProperty("--shadow-soft", theme.shadowSoft);
-    root.style.setProperty("--brand-surface", theme.surface);
-    root.style.setProperty("--brand-surface-strong", theme.surfaceStrong);
-    root.style.setProperty("--brand-text", theme.text);
-    root.style.setProperty("--brand-muted", theme.muted);
-
-    // Apply all neon variants
-    root.style.setProperty("--neon-glow", theme.neonGlow);
-    root.style.setProperty("--neon-bright", theme.neonBright);
-    root.style.setProperty("--neon-border", theme.neonBorder);
-    root.style.setProperty("--neon-border-light", theme.neonBorderLight);
-    root.style.setProperty("--neon-border-strong", theme.neonBorderStrong);
-    root.style.setProperty("--neon-bg-soft", theme.neonBgSoft);
-    root.style.setProperty("--neon-bg-medium", theme.neonBgMedium);
-    root.style.setProperty("--neon-bg-strong", theme.neonBgStrong);
-    root.style.setProperty("--neon-shadow", theme.neonShadow);
-
-    // Update body background
-    document.body.style.background = theme.bg;
-
-    // Save to localStorage
-    localStorage.setItem("gennisys-theme", themeName);
-
-    // Update active state
-    document.querySelectorAll(".theme-option").forEach((option) => {
-      option.classList.toggle("active", option.dataset.theme === themeName);
-    });
-  }
-
-  // Load saved theme or default to green
-  const savedTheme = localStorage.getItem("gennisys-theme") || "green";
-  applyTheme(savedTheme);
-
-  // Theme toggle button
-  const themeToggle = document.getElementById("themeToggle");
-  const themeDropdown = document.getElementById("themeDropdown");
-  const themeDropdownMobile = document.getElementById("themeDropdownMobile");
-
-  if (themeToggle && themeDropdown) {
-    themeToggle.addEventListener("click", (e) => {
-      e.stopPropagation();
-      themeDropdown.classList.toggle("active");
-      themeDropdownMobile.classList.remove("active");
-    });
-  }
-
-  // Mobile theme toggle
-  const mobileThemeToggle = document.querySelector(".mobile-theme");
-  if (mobileThemeToggle && themeDropdownMobile) {
-    mobileThemeToggle.addEventListener("click", (e) => {
-      e.stopPropagation();
-      themeDropdownMobile.classList.toggle("active");
-    });
-  }
-
-  // Theme selection
-  document.querySelectorAll(".theme-option").forEach((option) => {
-    option.addEventListener("click", () => {
-      const theme = option.dataset.theme;
-      applyTheme(theme);
-      themeDropdown.classList.remove("active");
-      themeDropdownMobile.classList.remove("active");
-    });
-  });
-
-  // Close dropdown when clicking outside
-  document.addEventListener("click", (e) => {
-    if (
-      !e.target.closest(".theme-toggle") &&
-      !e.target.closest(".theme-dropdown")
-    ) {
-      themeDropdown?.classList.remove("active");
-      themeDropdownMobile?.classList.remove("active");
+        initStars();
+        animateCanvas();
     }
-  });
 
-  /* ---------- Logo Animation with Rotating G ---------- */
-  function initLogoAnimation() {
-    // Animate G in mobile logo
-    const mobileLogoText = document.querySelector(".mobile-only-logo");
-    if (mobileLogoText && mobileLogoText.textContent.includes("Gennisys")) {
-      const text = mobileLogoText.textContent;
-      mobileLogoText.innerHTML = `<span class="rotating-g">${text.charAt(0)}</span>${text.slice(1)}`;
+
+    // ----------------------------------------------------------------------
+    // 5. CATEGORY FILTER (CREATIONS)
+    // ----------------------------------------------------------------------
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const cards = document.querySelectorAll('.creation-card');
+
+    filterButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            filterButtons.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+
+            const filter = btn.getAttribute('data-filter');
+
+            cards.forEach(card => {
+                const category = card.getAttribute('data-category');
+                if (filter === 'all' || category === filter) {
+                    card.style.display = 'flex';
+                    setTimeout(() => {
+                        card.style.opacity = '1';
+                        card.style.transform = 'translateY(0) scale(1)';
+                    }, 50);
+                } else {
+                    card.style.opacity = '0';
+                    card.style.transform = 'translateY(16px) scale(0.96)';
+                    setTimeout(() => {
+                        card.style.display = 'none';
+                    }, 300);
+                }
+            });
+        });
+    });
+
+
+    // ----------------------------------------------------------------------
+    // 6. PROJECT INSPECT MODAL
+    // ----------------------------------------------------------------------
+    const modal = document.getElementById('projectModal');
+    const modalCloseBtn = document.getElementById('modalCloseBtn');
+    const modalContent = document.getElementById('modalContent');
+
+    const projectDetails = {
+        'modal-fazenda': {
+            title: "FazendaRPG",
+            icon: "🌾",
+            type: "RPG & Farming Simulation",
+            status: "Online / Stable",
+            desc: "FazendaRPG é um simulador imersivo onde o jogador gerencia ciclos agrários, constrói benfeitorias, evolui habilidades de ofício e administra recursos sob diferentes condições climáticas.",
+            stack: ["Engine HTML5 / WebGL", "State Persistence", "Adaptive Sound Engine"],
+            link: "https://v4mpw0l.github.io/FazendaRPG/"
+        },
+        'modal-hacker': {
+            title: "Hacker0s",
+            icon: "💻",
+            type: "Tactical Terminal & Cyber Simulator",
+            status: "Online / Active",
+            desc: "Ambiente imersivo de emulação de terminal cibernético com ferramentas interativas de comando, decodificação e exploração de nós de rede simulados.",
+            stack: ["Virtual Terminal Shell", "Crypto Engine", "Custom Scripting Environment"],
+            link: "https://v4mpw0l.github.io/hacker0S/"
+        },
+        'modal-packet': {
+            title: "PacketClicker MMO",
+            icon: "📦",
+            type: "Incremental Network Architecture",
+            status: "Online / Expanding",
+            desc: "Simulação incremental de processamento de pacotes massivos. Monte clusters de servidores quânticos e automatize a infraestrutura de dados.",
+            stack: ["Incremental State Math", "Realtime Throughput", "Persistent Local Storage"],
+            link: "https://v4mpw0l.github.io/packetclickermmo/"
+        },
+        'modal-passmap': {
+            title: "PassMap",
+            icon: "🔐",
+            type: "Cryptographic Security Vault",
+            status: "Online / Encrypted",
+            desc: "Cofre digital pessoal construído para garantir soberania de dados, organização de credenciais sigilosas e proteção absoluta de ponta a ponta.",
+            stack: ["Client-Side Encryption", "Zero-Knowledge Architecture", "Biometric Ready"],
+            link: "https://passmap.app/"
+        },
+        'modal-budget': {
+            title: "BudgetBox",
+            icon: "💰",
+            type: "Financial Intelligence Engine",
+            status: "Online / Optimized",
+            desc: "Plataforma proprietária de controle patrimonial com inteligência preditiva de fluxo de caixa, relatórios ergonômicos e cálculo de metas.",
+            stack: ["Dynamic Data Visualization", "Algorithmic Forecasting", "Offline-First Engine"],
+            link: "https://v4mpw0l.github.io/BudgetBox/"
+        },
+        'modal-gencalc': {
+            title: "GenCalc",
+            icon: "🧮",
+            type: "Precision Calculation Core",
+            status: "Online / Verified",
+            desc: "Calculadora de alta precisão desenhada para fluxos de engenharia, finanças e operações científicas com trilha de auditoria completa.",
+            stack: ["Floating-Point Precision Fixes", "Audit Log System", "Keyboard Shortcuts"],
+            link: "https://v4mpw0l.github.io/GenCalc/"
+        }
+    };
+
+    document.querySelectorAll('.inspect-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const modalId = btn.getAttribute('data-modal');
+            const data = projectDetails[modalId];
+            if (data && modalContent && modal) {
+                modalContent.innerHTML = `
+                    <div style="display:flex; align-items:center; gap:16px; margin-bottom: 20px;">
+                        <span style="font-size:2.4rem;">${data.icon}</span>
+                        <div>
+                            <h3 style="font-family:var(--font-heading); font-size:1.5rem; color:var(--text-pure); margin-bottom:4px;">${data.title}</h3>
+                            <span style="font-size:0.8rem; color:var(--accent-secondary); font-weight:700; letter-spacing:1px; text-transform:uppercase;">${data.type}</span>
+                        </div>
+                    </div>
+                    <p style="color:var(--text-secondary); line-height:1.7; margin-bottom:20px; font-size:0.95rem;">${data.desc}</p>
+                    <div style="margin-bottom:24px;">
+                        <h4 style="font-size:0.75rem; color:var(--text-muted); text-transform:uppercase; letter-spacing:1.5px; margin-bottom:8px;">Arquitetura & Engenharia:</h4>
+                        <div style="display:flex; flex-wrap:wrap; gap:8px;">
+                            ${data.stack.map(s => `<span style="font-size:0.75rem; padding:4px 12px; background:rgba(255,255,255,0.05); border:1px solid var(--accent-border); border-radius:6px; color:var(--text-primary);">${s}</span>`).join('')}
+                        </div>
+                    </div>
+                    <a href="${data.link}" target="_blank" rel="noopener" class="primary-btn" style="width:100%; justify-content:center;">
+                        <span>Acessar Projeto</span>
+                    </a>
+                `;
+                modal.classList.add('open');
+            }
+        });
+    });
+
+    if (modalCloseBtn && modal) {
+        modalCloseBtn.addEventListener('click', () => {
+            modal.classList.remove('open');
+        });
+
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.classList.remove('open');
+            }
+        });
     }
-  }
 
-  // Initialize logo animation
-  initLogoAnimation();
+
+    // ----------------------------------------------------------------------
+    // 7. MOBILE DRAWER NAVIGATION
+    // ----------------------------------------------------------------------
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileDrawer = document.getElementById('mobileDrawer');
+
+    if (mobileMenuBtn && mobileDrawer) {
+        mobileMenuBtn.addEventListener('click', () => {
+            const isOpen = mobileDrawer.classList.toggle('open');
+            mobileMenuBtn.classList.toggle('open', isOpen);
+            mobileMenuBtn.setAttribute('aria-expanded', isOpen);
+        });
+
+        document.querySelectorAll('.mobile-link').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileDrawer.classList.remove('open');
+                mobileMenuBtn.classList.remove('open');
+                mobileMenuBtn.setAttribute('aria-expanded', 'false');
+            });
+        });
+    }
+
+
+    // ----------------------------------------------------------------------
+    // 8. SCROLL REVEAL OBSERVER
+    // ----------------------------------------------------------------------
+    const revealElements = document.querySelectorAll('[data-reveal]');
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('revealed');
+            }
+        });
+    }, {
+        threshold: 0.1,
+        rootMargin: '0px 0px -40px 0px'
+    });
+
+    revealElements.forEach(el => observer.observe(el));
+
+    // ----------------------------------------------------------------------
+    // 9. HEADER SCROLL & BACK TO TOP FLOATING BUTTON
+    // ----------------------------------------------------------------------
+    const header = document.querySelector('.studio-header');
+    const backToTopBtn = document.getElementById('backToTop');
+
+    window.addEventListener('scroll', () => {
+        const scrollPos = window.scrollY;
+
+        // Header glassmorphic background intensification
+        if (header) {
+            if (scrollPos > 40) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        }
+
+        // Back to top visibility
+        if (backToTopBtn) {
+            if (scrollPos > 300) {
+                backToTopBtn.classList.add('visible');
+            } else {
+                backToTopBtn.classList.remove('visible');
+            }
+        }
+    }, { passive: true });
+
+    if (backToTopBtn) {
+        backToTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    }
+
+    // Dynamic Year
+    const yearEl = document.getElementById('year');
+    if (yearEl) {
+        yearEl.textContent = new Date().getFullYear();
+    }
 });
