@@ -2109,3 +2109,23 @@ button {
     }
     
 }
+
+/* App Favicon & Logo Styling */
+.app-favicon-img {
+    width: 32px;
+    height: 32px;
+    border-radius: var(--radius-sm);
+    object-fit: contain;
+    display: block;
+    background: rgba(255, 255, 255, 0.04);
+    padding: 3px;
+    border: 1px solid var(--accent-border);
+    box-shadow: 0 0 10px rgba(0, 255, 136, 0.15);
+    transition: all var(--transition-fast);
+}
+
+.creation-card:hover .app-favicon-img {
+    transform: scale(1.08);
+    border-color: var(--accent-primary);
+    box-shadow: 0 0 16px var(--portal-glow);
+}
