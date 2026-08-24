@@ -1108,9 +1108,10 @@ button {
 
 .card-header {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 14px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+    margin-bottom: 12px;
 }
 
 .project-badge {
@@ -1128,9 +1129,10 @@ button {
 }
 
 .project-type {
-    font-size: 0.7rem;
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
     font-weight: 600;
-    letter-spacing: 0.8px;
+    letter-spacing: 0.6px;
     color: var(--text-muted);
     text-transform: uppercase;
 }
@@ -1212,26 +1214,9 @@ button {
     height: 13px;
 }
 
-.inspect-btn {
-    width: 36px;
-    height: 36px;
-    border-radius: var(--radius-sm);
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid var(--border-subtle);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--accent-secondary);
-    font-size: 0.9rem;
-    transition: all var(--transition-fast);
-}
 
-.inspect-btn:hover {
-    background: rgba(255, 255, 255, 0.08);
-    border-color: var(--accent-border);
-    color: var(--accent-light);
-    transform: rotate(45deg);
-}
+
+
 
 /* --------------------------------------------------------------------------
    8. NEWS / STUDIO DISPATCHES SECTION
@@ -2169,11 +2154,7 @@ button {
         width: 10px;
         height: 10px;
     }
-    .inspect-btn {
-        width: 28px;
-        height: 28px;
-        font-size: 0.75rem;
-    }
+    
     .news-grid {
         gap: 14px;
     }
