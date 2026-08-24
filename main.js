@@ -673,7 +673,9 @@ document.addEventListener('DOMContentLoaded', () => {
         if (item && modalContent && modal) {
             const lang = currentLang;
             const fullTextHtml = (item.texto && item.texto[lang]) ? item.texto[lang] : `<p>${item.excerpt ? item.excerpt[lang] : ''}</p>`;
-            const tagHtml = item.tag ? `<span class="news-tag">${item.tag}</span>` : '<span></span>';
+            const authorName = item.author || 'Gennisys';
+            const authorLabel = lang === 'pt' ? 'AUTOR' : 'AUTHOR';
+            const authorHtml = `<span class="news-date modal-author"><span class="date-month">${authorLabel}</span> <span class="date-num">${authorName}</span></span>`;
             const dateHtml = (item.date && item.date[lang]) ? `<span class="news-date">${formatStyledDate(item.date[lang])}</span>` : '';
 
             modalContent.innerHTML = `
@@ -684,7 +686,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div class="news-modal-body-card">
                     ${fullTextHtml}
                 </div>
-                <div class="news-footer" style="padding-top:10px; margin-top:6px; justify-content:flex-end;">
+                <div class="news-modal-footer">
+                    ${authorHtml}
                     ${dateHtml}
                 </div>
             `;
