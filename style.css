@@ -1869,46 +1869,56 @@ button {
 }
 
 .news-highlights-box {
-    background: rgba(255, 255, 255, 0.025);
-    border: 1px solid var(--accent-border);
-    border-radius: var(--radius-md);
-    padding: 16px 20px;
-    margin-bottom: 22px;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: var(--radius-sm);
+    padding: 12px 14px;
+    margin-top: 12px;
+    margin-bottom: 6px;
+}
+
+.highlights-header {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 8px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .highlights-title {
-    font-size: 0.78rem;
+    font-size: 0.72rem;
     font-weight: 800;
-    letter-spacing: 1px;
+    letter-spacing: 0.8px;
     text-transform: uppercase;
     color: var(--accent-light);
-    margin-bottom: 12px;
+    margin: 0;
 }
 
 .highlights-list {
     list-style: none;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 7px;
     padding: 0;
     margin: 0;
 }
 
 .highlights-list li {
-    font-size: 0.85rem;
+    font-size: 0.82rem;
     color: var(--text-secondary);
-    line-height: 1.55;
+    line-height: 1.5;
     position: relative;
-    padding-left: 18px;
+    padding-left: 14px;
 }
 
 .highlights-list li::before {
-    content: '◈';
+    content: '▪';
     position: absolute;
-    left: 0;
-    top: 0;
-    color: var(--accent-secondary);
-    font-size: 0.7rem;
+    left: 2px;
+    top: -1px;
+    color: var(--accent-light);
+    font-size: 0.75rem;
 }
 
 .hl-tag {
