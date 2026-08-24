@@ -53,12 +53,14 @@ document.addEventListener('DOMContentLoaded', () => {
             type_security: "Criptografia & Cofre",
             type_fin: "Estratégia Financeira",
             type_calc: "Computação de Precisão",
+            type_python: "Automação & Python",
             proj_fazenda_desc: "Um universo imersivo de simulação rural e RPG. Desenvolva sua propriedade, gerencie colheitas e evolua seu império agrícola.",
             proj_hacker_desc: "Simulador de terminal e cibersegurança tática. Uma experiência de interface estilo matriz com protocolos de penetração simulados.",
             proj_packet_desc: "Jogo incremental de arquitetura de dados e tráfego massivo. Colete pacotes digitais e domine a infraestrutura global.",
             proj_passmap_desc: "Gerenciador de segurança de senhas e dados sigilosos. Uma fortaleza de privacidade digital construída para proteção absoluta.",
             proj_budget_desc: "Sistema de controle patrimonial com categorização dinâmica, projeções orçamentárias e dashboards inteligentes.",
             proj_gencalc_desc: "Calculadora científica com histórico de auditoria instantâneo e layout ergonômico feito para operações complexas.",
+            proj_pytools_desc: "Suíte de ferramentas e scripts em Python para automação de tarefas, processamento de dados e utilitários de sistema.",
             btn_access: "Acessar",
             btn_enter_world: "Acessar",
             btn_access_terminal: "Acessar",
@@ -147,12 +149,14 @@ document.addEventListener('DOMContentLoaded', () => {
             type_security: "Cryptography & Vault",
             type_fin: "Financial Strategy",
             type_calc: "Precision Compute",
+            type_python: "Automation & Python Tools",
             proj_fazenda_desc: "An immersive rural simulation and RPG. Develop land, cultivate crops, master seasonal economies, and expand your empire.",
             proj_hacker_desc: "Tactical terminal and cybersecurity simulator. A matrix-style operating interface featuring penetration protocols and simulated networks.",
             proj_packet_desc: "Incremental game of data throughput and mass infrastructure. Harvest data packets, evolve quantum clusters, and command the grid.",
             proj_passmap_desc: "High-security password and credential manager. A cryptographic digital vault engineered for total autonomy and privacy.",
             proj_budget_desc: "Capital management architecture featuring dynamic categorization, cashflow projections, and financial intelligence visualizers.",
             proj_gencalc_desc: "Scientific computing engine with real-time audit logs and ergonomic interface engineered for advanced mathematical workflows.",
+            proj_pytools_desc: "Suite of Python automation scripts and tools for batch data processing, developer workflows, and system utilities.",
             btn_access: "Access",
             btn_enter_world: "Access",
             btn_access_terminal: "Access",
@@ -472,16 +476,43 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     // ----------------------------------------------------------------------
-    // 5. APPS / CREATIONS FILTER ENGINE (ALL 6 APPS VISIBLE: 3x2 GRID)
+    // 5. APPS / CREATIONS FILTER & RESPONSIVE PAGINATION ENGINE (6 PC / 4 MOBILE)
     // ----------------------------------------------------------------------
     const filterButtons = document.querySelectorAll('.filter-btn');
     const creationCards = document.querySelectorAll('.creation-card');
-    let activeFilter = 'all';
+    const creationsPagination = document.getElementById('creationsPagination');
+    const creationsPageIndicators = document.getElementById('creationsPageIndicators');
+    const creationsPrevBtn = document.getElementById('creationsPrevBtn');
+    const creationsNextBtn = document.getElementById('creationsNextBtn');
 
-    function renderCreations() {
-        creationCards.forEach(card => {
+    let activeFilter = 'all';
+    let currentCreationPage = 1;
+
+    function getAppsPerPage() {
+        return window.innerWidth < 900 ? 4 : 6;
+    }
+
+    function renderCreations(page = currentCreationPage) {
+        currentCreationPage = page;
+        const appsPerPage = getAppsPerPage();
+        const allCards = Array.from(creationCards);
+        
+        // Filter by category
+        const filteredCards = allCards.filter(card => {
             const category = card.getAttribute('data-category');
-            if (activeFilter === 'all' || category === activeFilter) {
+            return activeFilter === 'all' || category === activeFilter;
+        });
+
+        const totalPages = Math.ceil(filteredCards.length / appsPerPage) || 1;
+        if (currentCreationPage > totalPages) currentCreationPage = 1;
+
+        const startIndex = (currentCreationPage - 1) * appsPerPage;
+        const endIndex = startIndex + appsPerPage;
+        const visibleCards = filteredCards.slice(startIndex, endIndex);
+
+        // Update card visibility instantly
+        allCards.forEach(card => {
+            if (visibleCards.includes(card)) {
                 card.style.display = 'flex';
                 card.style.opacity = '1';
                 card.style.transform = 'none';
@@ -490,20 +521,80 @@ document.addEventListener('DOMContentLoaded', () => {
                 card.style.opacity = '0';
             }
         });
+
+        // Update Pagination Controls
+        if (creationsPagination) {
+            if (totalPages <= 1) {
+                creationsPagination.style.display = 'none';
+            } else {
+                creationsPagination.style.display = 'flex';
+                
+                if (creationsPageIndicators) {
+                    creationsPageIndicators.innerHTML = Array.from({ length: totalPages }, (_, i) => i + 1).map(p => `
+                        <button class="page-dot ${p === currentCreationPage ? 'active' : ''}" data-creation-page="${p}">${p}</button>
+                    `).join('');
+
+                    creationsPageIndicators.querySelectorAll('.page-dot').forEach(dot => {
+                        dot.addEventListener('click', () => {
+                            const targetPage = parseInt(dot.getAttribute('data-creation-page'), 10);
+                            if (targetPage && targetPage !== currentCreationPage) {
+                                renderCreations(targetPage);
+                            }
+                        });
+                    });
+                }
+
+                if (creationsPrevBtn) {
+                    creationsPrevBtn.disabled = (currentCreationPage <= 1);
+                }
+                if (creationsNextBtn) {
+                    creationsNextBtn.disabled = (currentCreationPage >= totalPages);
+                }
+            }
+        }
     }
 
-    // Filter Button Click
+    // Filter Buttons
     filterButtons.forEach(btn => {
         btn.addEventListener('click', () => {
             filterButtons.forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
             activeFilter = btn.getAttribute('data-filter');
-            renderCreations();
+            renderCreations(1);
         });
     });
 
+    // Arrow Buttons
+    if (creationsPrevBtn) {
+        creationsPrevBtn.addEventListener('click', () => {
+            if (currentCreationPage > 1) {
+                renderCreations(currentCreationPage - 1);
+            }
+        });
+    }
+
+    if (creationsNextBtn) {
+        creationsNextBtn.addEventListener('click', () => {
+            const appsPerPage = getAppsPerPage();
+            const filteredCount = Array.from(creationCards).filter(c => activeFilter === 'all' || c.getAttribute('data-category') === activeFilter).length;
+            const totalPages = Math.ceil(filteredCount / appsPerPage) || 1;
+            if (currentCreationPage < totalPages) {
+                renderCreations(currentCreationPage + 1);
+            }
+        });
+    }
+
+    // Window resize listener to dynamically switch between 6 (PC) and 4 (Mobile)
+    let resizeTimer;
+    window.addEventListener('resize', () => {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(() => {
+            renderCreations(currentCreationPage);
+        }, 150);
+    }, { passive: true });
+
     // Initial render
-    renderCreations();
+    renderCreations(1);
 
 
     // ----------------------------------------------------------------------
