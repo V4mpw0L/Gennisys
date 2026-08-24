@@ -1775,6 +1775,101 @@ button {
     color: var(--text-pure);
 }
 
+/* News Modal Specific Styles */
+.news-modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border-subtle);
+}
+
+.news-modal-title {
+    font-family: var(--font-heading);
+    font-size: 1.32rem;
+    font-weight: 700;
+    color: var(--text-pure);
+    line-height: 1.4;
+    margin-bottom: 16px;
+}
+
+.news-modal-lead {
+    font-size: 0.94rem;
+    color: var(--text-secondary);
+    line-height: 1.7;
+    margin-bottom: 18px;
+}
+
+.news-modal-lead strong {
+    color: var(--accent-light);
+}
+
+.news-highlights-box {
+    background: rgba(255, 255, 255, 0.025);
+    border: 1px solid var(--accent-border);
+    border-radius: var(--radius-md);
+    padding: 16px 20px;
+    margin-bottom: 22px;
+}
+
+.highlights-title {
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--accent-light);
+    margin-bottom: 12px;
+}
+
+.highlights-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 0;
+    margin: 0;
+}
+
+.highlights-list li {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    line-height: 1.55;
+    position: relative;
+    padding-left: 18px;
+}
+
+.highlights-list li::before {
+    content: '◈';
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: var(--accent-secondary);
+    font-size: 0.7rem;
+}
+
+.hl-tag {
+    font-weight: 700;
+    color: var(--text-pure);
+    margin-right: 4px;
+}
+
+.news-modal-actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+    padding-top: 18px;
+    border-top: 1px solid var(--border-subtle);
+    flex-wrap: wrap;
+}
+
+.news-modal-tag {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--text-muted);
+}
+
 /* --------------------------------------------------------------------------
    BACK TO TOP FLOATING BUTTON
    -------------------------------------------------------------------------- */

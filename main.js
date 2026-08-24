@@ -88,7 +88,7 @@ document.addEventListener('DOMContentLoaded', () => {
             news_7_desc: "Migração de nós globais para acelerar o tempo de resposta e sincronização de dados nos ecossistemas Gennisys.",
             news_8_title: "Design System: Atualização das Auras & UI",
             news_8_desc: "Implementação da nova paleta atmosférica com temas dinâmicos e componentes glassmorphism para todos os aplicativos.",
-            news_read_more: "Acessar →",
+            news_read_more: "Ler Mais →",
             vault_status: "LABORATÓRIO CLASSIFICADO // EM DESENVOLVIMENTO",
             vault_title: "Projeto: Protocolo Aetheria",
             vault_desc: "Nos bastidores da Gennisys, uma nova experiência de proporções épicas está sendo forjada. Uma fusão de narrativa mística, inteligência generativa e mecânicas táticas imersivas.",
@@ -183,7 +183,7 @@ document.addEventListener('DOMContentLoaded', () => {
             news_7_desc: "Migrated edge compute nodes globally to reduce latency and accelerate state sync across Gennisys apps.",
             news_8_title: "Design System: UI & Visual Auras Overhaul",
             news_8_desc: "Deployed refined atmospheric palette with dynamic themes and glassmorphic component tokens studio-wide.",
-            news_read_more: "Open →",
+            news_read_more: "Read More →",
             vault_status: "CLASSIFIED LAB // UNDER DEVELOPMENT",
             vault_title: "Project: Protocol Aetheria",
             vault_desc: "Behind closed doors at Gennisys, a new high-caliber reality is being forged. A synthesis of mystical lore, generative intelligence, and deep tactical mechanics.",
@@ -683,8 +683,134 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
+    // NEWS DETAILS FOR MODAL
+    const newsDetails = {
+        'news-1': {
+            badge: "PATCH NOTES",
+            badgeClass: "patch-badge",
+            date: "24 AGO 2026",
+            title: "FazendaRPG: Atualização de Economia Agrícola e Clima",
+            tag: "FazendaRPG v1.4",
+            lead: "A versão <strong>v1.4 do FazendaRPG</strong> foi disponibilizada com foco em rebalanceamento econômico, precificação dinâmica e simulação climática.",
+            highlights: [
+                { tag: "Economia Agrícola:", text: "Ajuste na rentabilidade de safras raras, custos de insumos e valorização sazonal de mercadorias no mercado." },
+                { tag: "Ciclos Climáticos:", text: "Novas mecânicas de chuvas sazonais, secas e tempestades que afetam diretamente a fertilidade da terra." },
+                { tag: "Persistência Otimizada:", text: "Gravação assíncrona local acelerada sem travamento de quadros por segundo." }
+            ],
+            link: "https://v4mpw0l.github.io/FazendaRPG/",
+            linkText: "Acessar FazendaRPG"
+        },
+        'news-2': {
+            badge: "SISTEMA",
+            badgeClass: "deploy-badge",
+            date: "18 AGO 2026",
+            title: "Hacker0s: Novos Módulos de Terminal e Desafios",
+            tag: "Hacker0s Build 2.1",
+            lead: "A build <strong>2.1 do Hacker0s</strong> expande o ambiente de linha de comando com ferramentas táticas de segurança e quebra de cifras.",
+            highlights: [
+                { tag: "Shell Cibernético:", text: "Novos utilitários de análise de pacotes e decodificação hash em tempo real." },
+                { tag: "Níveis Táticos:", text: "12 novos nós de rede criptografados com puzzles de invasão lógica e engenharia reversa." },
+                { tag: "Ambiente CRT:", text: "Refatoração visual do terminal com opções de fósforo âmbar e fósforo verde clássico." }
+            ],
+            link: "https://v4mpw0l.github.io/hacker0S/",
+            linkText: "Acessar Hacker0s"
+        },
+        'news-3': {
+            badge: "DEVLOG",
+            badgeClass: "devlog-badge",
+            date: "10 AGO 2026",
+            title: "Bastidores do Lab: Avanços no Motor de Simulação",
+            tag: "Gennisys Lab / R&D",
+            lead: "Nossa equipe concluiu a primeira fase de testes de um novo <strong>motor procedural leve</strong> para futuros títulos do estúdio.",
+            highlights: [
+                { tag: "Geração Procedural:", text: "Criação algorítmica de relevo, ecossistemas e mapas com carregamento instantâneo." },
+                { tag: "Áudio Sintetizado:", text: "Testes com ambiência e trilha sonora adaptativa gerada via Web Audio Core." },
+                { tag: "Zero Dependências:", text: "Arquitetura pura sem frameworks pesados, garantindo 60 FPS estáveis até em celulares." }
+            ],
+            link: "https://github.com/v4mpw0l",
+            linkText: "Acompanhar no GitHub"
+        },
+        'news-4': {
+            badge: "PATCH NOTES",
+            badgeClass: "patch-badge",
+            date: "02 AGO 2026",
+            title: "PacketClicker MMO: Expansão Quântica de Servidores",
+            tag: "PacketClicker v2.0",
+            lead: "O simulador incremental de tráfego de dados recebeu a sua <strong>maior expansão de infraestrutura</strong> até hoje.",
+            highlights: [
+                { tag: "Clusters Quânticos:", text: "Novas camadas de hardware para processar Petabytes por segundo de forma autônoma." },
+                { tag: "Árvore de Habilidades:", text: "Mais de 25 upgrades de roteamento, compressão de pacotes e automação de throughput." },
+                { tag: "Modo Offline:", text: "Cálculo de progresso em segundo plano calibrado com precisão analítica." }
+            ],
+            link: "https://v4mpw0l.github.io/packetclickermmo/",
+            linkText: "Acessar PacketClicker"
+        },
+        'news-5': {
+            badge: "SEGURANÇA",
+            badgeClass: "deploy-badge",
+            date: "25 JUL 2026",
+            title: "PassMap: Arquitetura Zero-Knowledge & Criptografia",
+            tag: "PassMap Core",
+            lead: "Aprimoramos o motor criptográfico local do <strong>PassMap</strong>, reforçando a filosofia de privacidade intransigente.",
+            highlights: [
+                { tag: "Zero-Knowledge:", text: "Seus dados e senhas nunca saem da sua máquina sem criptografia AES-GCM / PBKDF2." },
+                { tag: "Auditoria de Força:", text: "Novo analisador de entropia e detecção de credenciais comprometidas." },
+                { tag: "Exportação Segura:", text: "Backup protegido por chave mestra com integridade verificável por checksum." }
+            ],
+            link: "https://passmap.app/",
+            linkText: "Acessar PassMap"
+        },
+        'news-6': {
+            badge: "SISTEMA",
+            badgeClass: "devlog-badge",
+            date: "14 JUL 2026",
+            title: "GenCalc & BudgetBox: Otimizações de Precisão e Interface",
+            tag: "Gennisys Utils",
+            lead: "Nossos utilitários de produtividade foram <strong>completamente otimizados</strong> para operações rápidas no teclado e telas sensíveis ao toque.",
+            highlights: [
+                { tag: "Precisão IEEE-754:", text: "Tratamento de arredondamento de dízimas e números flutuantes para cálculos contábeis exatos." },
+                { tag: "Atalhos de Teclado:", text: "Fluxo 100% acelerado sem necessidade de usar o mouse para cálculos diários." },
+                { tag: "Visualizadores:", text: "Gráficos de pizza e fluxo de caixa responsivos integrados no BudgetBox." }
+            ],
+            link: "https://v4mpw0l.github.io/GenCalc/",
+            linkText: "Acessar GenCalc"
+        },
+        'news-7': {
+            badge: "SISTEMA",
+            badgeClass: "deploy-badge",
+            date: "01 JUL 2026",
+            title: "Infraestrutura: Novo Cluster de Baixa Latência",
+            tag: "Core Infrastructure",
+            lead: "Realizamos uma modernização completa nos nós de distribuição de conteúdo dos ecossistemas da Gennisys.",
+            highlights: [
+                { tag: "Distribuição Global:", text: "Tempos de carregamento reduzidos em até 65% em todas as regiões." },
+                { tag: "Cache Inteligente:", text: "Armazenamento otimizado de assets e fontes para navegação offline fluida." },
+                { tag: "Disponibilidade 99.9%:", text: "Servidores estáveis com monitoramento contínuo em tempo real." }
+            ],
+            link: "https://github.com/v4mpw0l",
+            linkText: "Ver no GitHub"
+        },
+        'news-8': {
+            badge: "DEVLOG",
+            badgeClass: "devlog-badge",
+            date: "18 JUN 2026",
+            title: "Design System: Atualização das Auras & UI",
+            tag: "Studio Design System",
+            lead: "Apresentamos o novo <strong>Design System atmosférico</strong> com foco em estética mística, moderna e imersiva.",
+            highlights: [
+                { tag: "Temas Dinâmicos:", text: "Suporte completo para as auras Cyber Emerald, Void Amethyst, Solar Amber e Abyssal Azure." },
+                { tag: "Glassmorphism:", text: "Camadas translúcidas com blur de alto desempenho e bordas com neon refinado." },
+                { tag: "Responsividade Total:", text: "Layouts adaptativos otimizados tanto para celulares quanto monitores widescreen." }
+            ],
+            link: "https://github.com/v4mpw0l",
+            linkText: "Explorar Criações"
+        }
+    };
+
+    // Project Inspect Modal Handler
     document.querySelectorAll('.inspect-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
+        btn.addEventListener('click', (e) => {
+            e.stopPropagation();
             const modalId = btn.getAttribute('data-modal');
             const data = projectDetails[modalId];
             if (data && modalContent && modal) {
@@ -708,6 +834,47 @@ document.addEventListener('DOMContentLoaded', () => {
                     </a>
                 `;
                 modal.classList.add('open');
+            }
+        });
+    });
+
+    // News Inspect Modal Handler
+    function openNewsModal(newsId) {
+        const data = newsDetails[newsId];
+        if (data && modalContent && modal) {
+            modalContent.innerHTML = `
+                <div class="news-modal-header">
+                    <span class="news-badge ${data.badgeClass}">${data.badge}</span>
+                    <span class="news-date" style="font-size:0.75rem; color:var(--text-muted); font-weight:600;">${data.date}</span>
+                </div>
+                <h3 class="news-modal-title">${data.title}</h3>
+                <p class="news-modal-lead">${data.lead}</p>
+                <div class="news-highlights-box">
+                    <h4 class="highlights-title">◈ Destaques da Transmissão</h4>
+                    <ul class="highlights-list">
+                        ${data.highlights.map(h => `<li><span class="hl-tag">${h.tag}</span> ${h.text}</li>`).join('')}
+                    </ul>
+                </div>
+                <div class="news-modal-actions">
+                    <span class="news-modal-tag">Tag: ${data.tag}</span>
+                    <a href="${data.link}" target="_blank" rel="noopener" class="primary-btn" style="padding:10px 22px; font-size:0.85rem;">
+                        <span>${data.linkText}</span>
+                        <svg viewBox="0 0 16 16" fill="none" style="width:13px; height:13px;">
+                            <path d="M3 13L13 3M13 3H6M13 3V10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </a>
+                </div>
+            `;
+            modal.classList.add('open');
+        }
+    }
+
+    // Attach Click Events to News Cards & Buttons
+    document.querySelectorAll('.news-card').forEach(card => {
+        card.addEventListener('click', (e) => {
+            const newsId = card.getAttribute('data-news-id');
+            if (newsId) {
+                openNewsModal(newsId);
             }
         });
     });
