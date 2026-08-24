@@ -97,6 +97,9 @@ html {
     font-size: 16px;
     background-color: var(--bg-primary);
     color: var(--text-primary);
+    overflow-x: hidden;
+    width: 100%;
+    max-width: 100%;
 }
 
 body {
@@ -104,10 +107,13 @@ body {
     line-height: 1.6;
     background-color: var(--bg-primary);
     overflow-x: hidden;
+    width: 100%;
+    max-width: 100%;
     min-height: 100vh;
     transition: background-color var(--transition-smooth), color var(--transition-smooth);
     position: relative;
     -webkit-font-smoothing: antialiased;
+    touch-action: pan-y;
 }
 
 /* Scrollbar Customization */
@@ -210,7 +216,9 @@ button {
     position: fixed;
     top: 0;
     left: 0;
+    right: 0;
     width: 100%;
+    max-width: 100%;
     height: var(--header-height);
     z-index: 100;
     display: flex;
@@ -220,6 +228,9 @@ button {
     background: rgba(6, 7, 10, 0.7);
     border-bottom: 1px solid var(--border-subtle);
     transition: background var(--transition-smooth), border-color var(--transition-smooth);
+    box-sizing: border-box;
+    touch-action: pan-y;
+    overflow-x: hidden;
 }
 
 .header-container {
@@ -440,13 +451,18 @@ button {
     position: fixed;
     top: var(--header-height);
     left: 0;
+    right: 0;
     width: 100%;
+    max-width: 100%;
     height: calc(100vh - var(--header-height));
     background: rgba(6, 7, 10, 0.95);
     backdrop-filter: blur(24px);
     -webkit-backdrop-filter: blur(24px);
     z-index: 99;
     display: flex;
+    overflow-x: hidden;
+    touch-action: pan-y;
+    box-sizing: border-box;
     align-items: center;
     justify-content: center;
     opacity: 0;
@@ -2104,7 +2120,7 @@ button {
         height: 14px;
     }
     .theme-dropdown {
-        right: -20px;
+        right: 0 !important;
         min-width: 155px;
     }
     .nexus-links-group {
