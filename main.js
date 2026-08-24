@@ -305,7 +305,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     <p class="news-excerpt">${item.excerpt[lang]}</p>
                 </div>
                 <div class="news-footer">
-                    <span class="news-tag">${item.tag}</span>
                     <button class="news-read-more" data-news-id="${item.id}">${readMoreText}</button>
                 </div>
             </article>
@@ -685,8 +684,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div class="news-modal-body-card">
                     ${fullTextHtml}
                 </div>
-                <div class="news-footer" style="padding-top:10px; margin-top:6px;">
-                    ${tagHtml}
+                <div class="news-footer" style="padding-top:10px; margin-top:6px; justify-content:flex-end;">
                     ${dateHtml}
                 </div>
             `;
