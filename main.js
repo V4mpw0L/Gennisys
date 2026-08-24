@@ -359,6 +359,9 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // Initial news render from noticias.js
+    renderNewsGrid(1);
+
     const canvas = document.getElementById('ether-canvas');
     if (canvas) {
         const ctx = canvas.getContext('2d');
