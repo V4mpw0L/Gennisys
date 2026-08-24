@@ -559,16 +559,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 const category = card.getAttribute('data-category');
                 if (category === activeFilter) {
                     card.style.display = 'flex';
-                    setTimeout(() => {
-                        card.style.opacity = '1';
-                        card.style.transform = 'translateY(0) scale(1)';
-                    }, 40);
+                    card.style.opacity = '1';
+                    card.style.transform = 'none';
                 } else {
+                    card.style.display = 'none';
                     card.style.opacity = '0';
-                    card.style.transform = 'translateY(12px) scale(0.96)';
-                    setTimeout(() => {
-                        card.style.display = 'none';
-                    }, 250);
                 }
             });
         } else {
@@ -578,16 +573,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 const page = parseInt(card.getAttribute('data-creation-page'), 10) || 1;
                 if (page === currentCreationPage) {
                     card.style.display = 'flex';
-                    setTimeout(() => {
-                        card.style.opacity = '1';
-                        card.style.transform = 'translateY(0) scale(1)';
-                    }, 40);
+                    card.style.opacity = '1';
+                    card.style.transform = 'none';
                 } else {
+                    card.style.display = 'none';
                     card.style.opacity = '0';
-                    card.style.transform = 'translateY(12px) scale(0.96)';
-                    setTimeout(() => {
-                        card.style.display = 'none';
-                    }, 250);
                 }
             });
 
