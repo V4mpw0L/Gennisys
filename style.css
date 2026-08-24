@@ -8,9 +8,10 @@
    -------------------------------------------------------------------------- */
 :root {
     /* Base Fonts */
-    --font-heading: 'Syne', sans-serif;
-    --font-mystic: 'Cinzel', serif;
-    --font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-heading: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --font-mystic: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
 
     /* Theme: Cyber Emerald (Default) */
     --bg-primary: #040906;
