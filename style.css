@@ -1292,24 +1292,27 @@ button {
 }
 
 .news-read-more {
-    font-size: 0.75rem;
+    font-size: 0.76rem;
     font-weight: 700;
     color: var(--accent-light);
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid var(--accent-border);
-    padding: 5px 12px;
-    border-radius: var(--radius-sm);
+    background: transparent;
+    border: none;
+    padding: 0;
     letter-spacing: 0.5px;
     cursor: pointer;
-    transition: all var(--transition-fast);
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    transition: gap var(--transition-fast), color var(--transition-fast);
 }
 
 .news-card:hover .news-read-more {
-    background: rgba(0, 255, 136, 0.12);
-    border-color: var(--accent-secondary);
     color: #ffffff;
-    box-shadow: 0 0 10px var(--portal-glow);
-    transform: translateX(2px);
+    gap: 7px;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    transform: none;
 }
 
 /* News & Creations Pagination (Soft & Elegant Glassmorphism) */
