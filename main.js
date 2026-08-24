@@ -327,6 +327,16 @@ document.addEventListener('DOMContentLoaded', () => {
     const getNewsData = () => (window.GENNISYS_NEWS_DATA && Array.isArray(window.GENNISYS_NEWS_DATA)) ? window.GENNISYS_NEWS_DATA : [];
     const itemsPerPage = 4;
 
+    // Format Date with highlighted day and year numbers
+    function formatStyledDate(dateStr) {
+        if (!dateStr) return '';
+        const parts = String(dateStr).trim().split(' ');
+        if (parts.length === 3) {
+            return `<span class="date-num">${parts[0]}</span> <span class="date-month">${parts[1]}</span> <span class="date-num">${parts[2]}</span>`;
+        }
+        return dateStr;
+    }
+
     function renderNewsGrid(page = 1) {
         currentNewsPage = page;
         const grid = document.getElementById('newsGrid');
@@ -347,7 +357,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div class="news-card-content">
                     <div class="news-card-header">
                         <span class="news-badge ${item.badgeClass}">${item.badge[lang]}</span>
-                        <span class="news-date">${item.date[lang]}</span>
+                        <span class="news-date">${formatStyledDate(item.date[lang])}</span>
                     </div>
                     <h3 class="news-title">${item.title[lang]}</h3>
                     <p class="news-excerpt">${item.excerpt[lang]}</p>
@@ -709,7 +719,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const lang = currentLang;
             const fullTextHtml = (item.texto && item.texto[lang]) ? item.texto[lang] : `<p>${item.excerpt ? item.excerpt[lang] : ''}</p>`;
             const tagHtml = item.tag ? `<span class="news-tag">${item.tag}</span>` : '<span></span>';
-            const dateHtml = (item.date && item.date[lang]) ? `<span class="news-date">${item.date[lang]}</span>` : '';
+            const dateHtml = (item.date && item.date[lang]) ? `<span class="news-date">${formatStyledDate(item.date[lang])}</span>` : '';
 
             modalContent.innerHTML = `
                 <div class="news-modal-top">

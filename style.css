@@ -1241,6 +1241,7 @@ button {
 
 .news-grid {
     display: grid;
+    min-height: 400px;
     grid-template-columns: repeat(2, 1fr);
     gap: 20px;
 }
@@ -1323,11 +1324,25 @@ button {
     border: 1px solid rgba(138, 43, 226, 0.25);
 }
 
+
 .news-date {
+    font-family: var(--font-mono);
     font-size: 0.72rem;
-    font-weight: 600;
-    color: var(--text-muted);
     letter-spacing: 0.5px;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.date-num {
+    color: var(--accent-light);
+    font-weight: 800;
+}
+
+.date-month {
+    color: var(--text-muted);
+    font-weight: 600;
+    text-transform: uppercase;
 }
 
 .news-title {
