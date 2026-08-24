@@ -707,25 +707,19 @@ document.addEventListener('DOMContentLoaded', () => {
         const item = getNewsData().find(n => n.id === newsId);
         if (item && modalContent && modal) {
             const lang = currentLang;
-            const highlightsHtml = (item.highlights[lang] || []).map(h => `
-                <li><span class="hl-tag">${h.tag}</span> ${h.text}</li>
-            `).join('');
+            const contentHtml = (item.content && item.content[lang]) ? item.content[lang] : `<p>${item.excerpt ? item.excerpt[lang] : ''}</p>`;
 
             modalContent.innerHTML = `
-                <div class="news-modal-header">
-                    <span class="news-badge ${item.badgeClass}">${item.badge[lang]}</span>
+                <div class="news-modal-top">
+                    <div class="news-modal-meta">
+                        <span class="news-badge ${item.badgeClass}">${item.badge[lang]}</span>
+                        <span class="news-tag-pill">${item.tag}</span>
+                    </div>
                     <span class="news-date" style="font-size:0.75rem; color:var(--text-muted); font-weight:600;">${item.date[lang]}</span>
                 </div>
                 <h3 class="news-modal-title">${item.title[lang]}</h3>
-                <p class="news-modal-lead">${item.excerpt[lang]}</p>
-                <div class="news-highlights-box">
-                    <div class="highlights-header">
-                        <span style="font-size:0.75rem; color:var(--accent-light);">◈</span>
-                        <h4 class="highlights-title">${lang === 'pt' ? 'Destaques da Transmissão' : 'Transmission Highlights'}</h4>
-                    </div>
-                    <ul class="highlights-list">
-                        ${highlightsHtml}
-                    </ul>
+                <div class="news-modal-body">
+                    ${contentHtml}
                 </div>
             `;
             modal.classList.add('open');
