@@ -106,7 +106,6 @@ document.addEventListener('DOMContentLoaded', () => {
             footer_meta_location: "Desenvolvimento Autônomo",
             footer_meta_remote: "Operação Global",
             footer_lang_label: "Idioma:",
-            footer_theme_label: "Aura:",
             rights_reserved: "TODOS OS DIREITOS RESERVADOS."
         },
         en: {
@@ -200,7 +199,6 @@ document.addEventListener('DOMContentLoaded', () => {
             footer_meta_location: "Autonomous Development",
             footer_meta_remote: "Global Operation",
             footer_lang_label: "Language:",
-            footer_theme_label: "Aura:",
             rights_reserved: "ALL RIGHTS RESERVED."
         }
     };
@@ -253,70 +251,6 @@ document.addEventListener('DOMContentLoaded', () => {
         btn.addEventListener('click', () => {
             const langVal = btn.getAttribute('data-lang-val');
             if (langVal) setLanguage(langVal);
-        });
-    });
-
-
-    // ----------------------------------------------------------------------
-    // 2. THEME & AURA SELECTOR (HEADER & FOOTER SYNC)
-    // ----------------------------------------------------------------------
-    let savedTheme = localStorage.getItem('gennisys_theme') || 'emerald';
-    
-    function applyTheme(themeId) {
-        document.body.setAttribute('data-theme', themeId);
-        localStorage.setItem('gennisys_theme', themeId);
-        savedTheme = themeId;
-
-        // Sync header dropdown
-        const themeDropdown = document.getElementById('themeDropdownMenu');
-        if (themeDropdown) {
-            themeDropdown.querySelectorAll('.theme-option').forEach(opt => {
-                if (opt.getAttribute('data-theme-id') === themeId) {
-                    opt.classList.add('active');
-                } else {
-                    opt.classList.remove('active');
-                }
-            });
-        }
-
-        // Sync footer theme dots
-        document.querySelectorAll('.footer-theme-dot').forEach(dot => {
-            if (dot.getAttribute('data-theme-id') === themeId) {
-                dot.classList.add('active');
-            } else {
-                dot.classList.remove('active');
-            }
-        });
-    }
-
-    applyTheme(savedTheme);
-
-    const themePickerBtn = document.getElementById('themePickerBtn');
-    const themeDropdown = document.getElementById('themeDropdownMenu');
-
-    if (themePickerBtn && themeDropdown) {
-        themePickerBtn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            themeDropdown.classList.toggle('show');
-        });
-
-        document.addEventListener('click', () => {
-            themeDropdown.classList.remove('show');
-        });
-
-        themeDropdown.querySelectorAll('.theme-option').forEach(option => {
-            option.addEventListener('click', () => {
-                const themeId = option.getAttribute('data-theme-id');
-                applyTheme(themeId);
-                themeDropdown.classList.remove('show');
-            });
-        });
-    }
-
-    document.querySelectorAll('.footer-theme-dot').forEach(dot => {
-        dot.addEventListener('click', () => {
-            const themeId = dot.getAttribute('data-theme-id');
-            if (themeId) applyTheme(themeId);
         });
     });
 
