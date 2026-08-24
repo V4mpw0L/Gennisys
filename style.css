@@ -275,12 +275,44 @@ button {
     justify-content: space-between;
 }
 
-/* Brand Crest / Sigil */
+/* Brand Crest / Sigil / Logo */
 .brand-crest {
     display: flex;
     align-items: center;
     gap: 14px;
     user-select: none;
+}
+
+.brand-logo-img {
+    width: 38px;
+    height: 38px;
+    border-radius: var(--radius-sm);
+    object-fit: cover;
+    transition: transform var(--transition-smooth), filter var(--transition-smooth), border-color var(--transition-smooth);
+    box-shadow: 0 0 12px var(--portal-glow);
+    border: 1px solid var(--accent-border);
+}
+
+.brand-crest:hover .brand-logo-img {
+    transform: translateY(-2px) scale(1.06);
+    filter: drop-shadow(0 0 10px var(--accent-glow));
+    border-color: var(--accent-secondary);
+}
+
+.brand-logo-img.large {
+    width: 48px;
+    height: 48px;
+    border-radius: var(--radius-md);
+}
+
+.drawer-logo-img {
+    width: 58px;
+    height: 58px;
+    border-radius: var(--radius-md);
+    object-fit: cover;
+    margin-bottom: 18px;
+    border: 1px solid var(--accent-border);
+    box-shadow: 0 0 20px var(--portal-glow);
 }
 
 .crest-sigil {
@@ -1876,7 +1908,7 @@ button {
     .brand-crest {
         gap: 10px;
     }
-    .crest-sigil {
+    .brand-logo-img, .crest-sigil {
         width: 32px;
         height: 32px;
     }
