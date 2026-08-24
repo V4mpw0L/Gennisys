@@ -1247,7 +1247,7 @@ button {
     background: var(--bg-card);
     border: 1px solid var(--border-subtle);
     border-radius: var(--radius-md);
-    padding: 24px;
+    padding: 22px 24px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -1255,6 +1255,7 @@ button {
     transition: all var(--transition-smooth);
     position: relative;
     overflow: hidden;
+    cursor: pointer;
 }
 
 .news-card::before {
@@ -1271,9 +1272,9 @@ button {
 
 .news-card:hover {
     border-color: var(--accent-border);
-    transform: translateY(-4px);
+    transform: translateY(-3px);
     background: var(--bg-surface-elevated);
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5), 0 0 20px var(--portal-glow);
 }
 
 .news-card:hover::before {
@@ -1291,26 +1292,26 @@ button {
     font-size: 0.65rem;
     font-weight: 800;
     letter-spacing: 1px;
-    padding: 2px 8px;
+    padding: 3px 9px;
     border-radius: var(--radius-full);
 }
 
 .patch-badge {
-    background: rgba(0, 255, 136, 0.1);
+    background: rgba(0, 255, 136, 0.08);
     color: #00ff88;
-    border: 1px solid rgba(0, 255, 136, 0.3);
+    border: 1px solid rgba(0, 255, 136, 0.25);
 }
 
 .deploy-badge {
-    background: rgba(0, 180, 216, 0.1);
+    background: rgba(0, 180, 216, 0.08);
     color: #00b4d8;
-    border: 1px solid rgba(0, 180, 216, 0.3);
+    border: 1px solid rgba(0, 180, 216, 0.25);
 }
 
 .devlog-badge {
-    background: rgba(138, 43, 226, 0.12);
+    background: rgba(138, 43, 226, 0.1);
     color: #c77dff;
-    border: 1px solid rgba(138, 43, 226, 0.3);
+    border: 1px solid rgba(138, 43, 226, 0.25);
 }
 
 .news-date {
@@ -1322,18 +1323,50 @@ button {
 
 .news-title {
     font-family: var(--font-heading);
-    font-size: 1.08rem;
+    font-size: 1.05rem;
     font-weight: 700;
     color: var(--text-pure);
-    line-height: 1.4;
+    line-height: 1.45;
     margin-bottom: 10px;
+    letter-spacing: -0.2px;
+    transition: color var(--transition-fast);
+}
+
+.news-card:hover .news-title {
+    color: var(--accent-light);
 }
 
 .news-excerpt {
-    font-size: 0.85rem;
+    font-size: 0.84rem;
     color: var(--text-secondary);
-    line-height: 1.6;
+    line-height: 1.65;
     margin-bottom: 18px;
+    background: rgba(255, 255, 255, 0.025);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: var(--radius-sm);
+    padding: 12px 14px;
+    transition: background var(--transition-fast), border-color var(--transition-fast);
+}
+
+.news-card:hover .news-excerpt {
+    background: rgba(255, 255, 255, 0.045);
+    border-color: rgba(255, 255, 255, 0.12);
+}
+
+/* Highlight Text Tokens */
+.text-hl {
+    color: var(--accent-light);
+    font-weight: 600;
+}
+
+.text-hl-cyan {
+    color: #00d4ff;
+    font-weight: 600;
+}
+
+.text-hl-purple {
+    color: #c77dff;
+    font-weight: 600;
 }
 
 .news-footer {
@@ -1345,22 +1378,34 @@ button {
 }
 
 .news-tag {
-    font-size: 0.72rem;
+    font-size: 0.7rem;
     font-weight: 600;
     color: var(--text-muted);
+    background: rgba(255, 255, 255, 0.025);
+    padding: 3px 8px;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border-subtle);
 }
 
 .news-read-more {
-    font-size: 0.78rem;
+    font-size: 0.75rem;
     font-weight: 700;
     color: var(--accent-light);
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--accent-border);
+    padding: 5px 12px;
+    border-radius: var(--radius-sm);
     letter-spacing: 0.5px;
-    transition: transform var(--transition-fast);
+    cursor: pointer;
+    transition: all var(--transition-fast);
 }
 
 .news-card:hover .news-read-more {
-    transform: translateX(4px);
-    color: var(--accent-secondary);
+    background: rgba(0, 255, 136, 0.12);
+    border-color: var(--accent-secondary);
+    color: #ffffff;
+    box-shadow: 0 0 10px var(--portal-glow);
+    transform: translateX(2px);
 }
 
 /* News & Creations Pagination (Soft & Elegant Glassmorphism) */
@@ -1755,24 +1800,30 @@ button {
 
 .modal-close-btn {
     position: absolute;
-    top: 20px;
-    right: 20px;
-    width: 36px;
-    height: 36px;
+    top: 18px;
+    right: 18px;
+    width: 32px;
+    height: 32px;
     border-radius: 50%;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid var(--border-subtle);
+    background: rgba(255, 71, 87, 0.08);
+    border: 1px solid rgba(255, 71, 87, 0.35);
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--text-secondary);
-    font-size: 1.1rem;
+    color: #ff4757;
+    font-size: 0.95rem;
+    font-weight: 700;
+    cursor: pointer;
+    z-index: 10;
     transition: all var(--transition-fast);
 }
 
 .modal-close-btn:hover {
-    background: rgba(255, 255, 255, 0.15);
-    color: var(--text-pure);
+    background: #ff4757;
+    border-color: #ff4757;
+    color: #ffffff;
+    box-shadow: 0 0 14px rgba(255, 71, 87, 0.5);
+    transform: scale(1.08);
 }
 
 /* News Modal Specific Styles */
@@ -1782,6 +1833,7 @@ button {
     justify-content: space-between;
     margin-bottom: 16px;
     padding-bottom: 12px;
+    padding-right: 42px; /* Ample space so the close button never overlaps the date */
     border-bottom: 1px solid var(--border-subtle);
 }
 
@@ -2106,13 +2158,14 @@ button {
         margin-bottom: 8px;
     }
     .news-title {
-        font-size: 0.98rem;
-        margin-bottom: 6px;
+        font-size: 0.96rem;
+        margin-bottom: 8px;
     }
     .news-excerpt {
-        font-size: 0.8rem;
+        font-size: 0.78rem;
         line-height: 1.45;
-        margin-bottom: 10px;
+        margin-bottom: 12px;
+        padding: 8px 10px;
     }
     .news-footer {
         padding-top: 8px;

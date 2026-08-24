@@ -73,21 +73,21 @@ document.addEventListener('DOMContentLoaded', () => {
             news_cat_deploy: "SISTEMA",
             news_cat_devlog: "DEVLOG",
             news_1_title: "FazendaRPG: Atualização de Economia Agrícola e Clima",
-            news_1_desc: "Lançado o novo balanceamento para ciclos de colheita, eventos dinâmicos de estação e aprimoramento na persistência de dados.",
+            news_1_desc: "Lançado o novo balanceamento para <span class=\"text-hl\">ciclos de colheita</span>, eventos dinâmicos de <span class=\"text-hl\">estação</span> e aprimoramento na <span class=\"text-hl\">persistência de dados</span>.",
             news_2_title: "Hacker0s: Novos Módulos de Terminal e Desafios",
-            news_2_desc: "A interface cibernética recebeu novos protocolos de penetração simulada, decifração criptográfica em tempo real e comandos táticos.",
+            news_2_desc: "A interface cibernética recebeu novos protocolos de <span class=\"text-hl-cyan\">penetração simulada</span>, <span class=\"text-hl-cyan\">decifração criptográfica</span> em tempo real e comandos táticos.",
             news_3_title: "Bastidores do Lab: Avanços no Protocolo Aetheria",
-            news_3_desc: "Nossa equipe de engenharia finalizou os primeiros testes com o motor de física procedural e atmosfera sonora para o próximo projeto.",
+            news_3_desc: "Nossa equipe de engenharia finalizou os primeiros testes com o <span class=\"text-hl-purple\">motor de física procedural</span> e <span class=\"text-hl-purple\">atmosfera sonora</span> para o próximo projeto.",
             news_4_title: "PacketClicker MMO: Expansão Quântica de Servidores",
-            news_4_desc: "Novas árvores de habilidades tecnológicas de rede, cluster quântico e balanceamento para processamento de pacotes massivos.",
+            news_4_desc: "Novas árvores de habilidades tecnológicas de rede, <span class=\"text-hl\">cluster quântico</span> e balanceamento para processamento de <span class=\"text-hl\">pacotes massivos</span>.",
             news_5_title: "PassMap: Arquitetura Zero-Knowledge & Criptografia",
-            news_5_desc: "Atualizado o protocolo criptográfico local para proteção absoluta de dados confidenciais com auditoria de integridade.",
+            news_5_desc: "Atualizado o protocolo criptográfico local para <span class=\"text-hl-cyan\">proteção Zero-Knowledge</span> de dados confidenciais com auditoria de integridade.",
             news_6_title: "GenCalc & BudgetBox: Otimizações de Precisão e Interface",
-            news_6_desc: "Refatoração dos algoritmos matemáticos com precisão de ponto flutuante corrigida e ergonomia acelerada por teclado.",
+            news_6_desc: "Refatoração dos algoritmos matemáticos com <span class=\"text-hl\">precisão de ponto flutuante</span> corrigida e ergonomia acelerada por teclado.",
             news_7_title: "Infraestrutura: Novo Cluster de Baixa Latência",
-            news_7_desc: "Migração de nós globais para acelerar o tempo de resposta e sincronização de dados nos ecossistemas Gennisys.",
+            news_7_desc: "Migração de nós globais para acelerar o <span class=\"text-hl-cyan\">tempo de resposta</span> e sincronização de dados nos ecossistemas Gennisys.",
             news_8_title: "Design System: Atualização das Auras & UI",
-            news_8_desc: "Implementação da nova paleta atmosférica com temas dinâmicos e componentes glassmorphism para todos os aplicativos.",
+            news_8_desc: "Implementação da nova paleta atmosférica com <span class=\"text-hl-purple\">temas dinâmicos</span> e componentes <span class=\"text-hl-purple\">glassmorphism</span> para todos os aplicativos.",
             news_read_more: "Ler Mais →",
             vault_status: "LABORATÓRIO CLASSIFICADO // EM DESENVOLVIMENTO",
             vault_title: "Projeto: Protocolo Aetheria",
@@ -117,10 +117,10 @@ document.addEventListener('DOMContentLoaded', () => {
             nav_vault: "The Lab",
             nav_nexus: "Nexus",
             status_servers: "Servers Online",
-            hero_badge: "INDEPENDENT GAME & APP STUDIO",
+            hero_badge: "INDEPENDENT DIGITAL ATELIER",
             hero_title_1: "WELCOME TO GENNISYS",
             hero_title_2: "FORGING NEW DIGITAL REALITIES",
-            hero_desc: "An independent studio dedicated to the conception, design, and engineering of immersive games, utility software, and proprietary digital experiences. Discover our handcrafted worlds.",
+            hero_desc: "We are an independent studio focused on designing, building, and refining immersive video games, developer utility tools, and sovereign digital applications.",
             hero_btn_explore: "Explore Creations",
             hero_btn_news: "Latest News",
             hero_btn_manifesto: "The Manifesto",
@@ -161,28 +161,28 @@ document.addEventListener('DOMContentLoaded', () => {
             btn_open_vault: "Access",
             btn_access_system: "Access",
             btn_launch_calculator: "Access",
-            news_tag: "STUDIO DISPATCHES",
+            news_tag: "DISPATCHES & LOGS",
             news_heading: "Latest Updates",
-            news_sub: "Track recent patch releases, development logs, and official studio announcements.",
+            news_sub: "Follow our release notes, devlogs, technical milestones, and studio announcements.",
             news_cat_patch: "PATCH NOTES",
             news_cat_deploy: "SYSTEM",
             news_cat_devlog: "DEVLOG",
             news_1_title: "FazendaRPG: Agricultural Economy & Seasonal Overhaul",
-            news_1_desc: "Deployed harvest rebalancing, dynamic seasonal weather cycles, and persistent state optimizations.",
+            news_1_desc: "Deployed harvest rebalancing for <span class=\"text-hl\">agricultural cycles</span>, dynamic <span class=\"text-hl\">seasonal weather</span>, and persistent state optimizations.",
             news_2_title: "Hacker0s: New Terminal Modules & Security Trials",
-            news_2_desc: "The terminal emulator received simulated penetration protocols, live cryptographic cracking, and advanced tactical commands.",
+            news_2_desc: "The terminal received simulated <span class=\"text-hl-cyan\">penetration protocols</span>, live <span class=\"text-hl-cyan\">cryptographic cracking</span>, and advanced tactical commands.",
             news_3_title: "Inside the Lab: Milestones in Project Aetheria",
-            news_3_desc: "Our engineering team concluded the first milestone of procedural generation and audio mechanics for our upcoming classified title.",
+            news_3_desc: "Our engineering team concluded the first milestone of <span class=\"text-hl-purple\">procedural physics</span> and <span class=\"text-hl-purple\">audio mechanics</span> for our upcoming classified title.",
             news_4_title: "PacketClicker MMO: Quantum Server Expansion",
-            news_4_desc: "New network tech progression trees, quantum node clustering, and large-scale data throughput balancing.",
+            news_4_desc: "New network progression trees, <span class=\"text-hl\">quantum node clustering</span>, and large-scale <span class=\"text-hl\">data throughput</span> balancing.",
             news_5_title: "PassMap: Zero-Knowledge Architecture & Crypto Core",
-            news_5_desc: "Upgraded client-side cryptographic protocols for uncompromising confidential storage and integrity auditing.",
+            news_5_desc: "Upgraded client-side cryptographic protocols for <span class=\"text-hl-cyan\">Zero-Knowledge protection</span> of confidential credentials and integrity auditing.",
             news_6_title: "GenCalc & BudgetBox: Precision & UI Optimizations",
-            news_6_desc: "Refactored mathematical engines with IEEE-754 precision correction and keyboard-accelerated workflows.",
+            news_6_desc: "Refactored mathematical engines with <span class=\"text-hl\">IEEE-754 floating precision</span> correction and keyboard-accelerated workflows.",
             news_7_title: "Infrastructure: New Low-Latency Cluster Deployed",
-            news_7_desc: "Migrated edge compute nodes globally to reduce latency and accelerate state sync across Gennisys apps.",
+            news_7_desc: "Migrated edge compute nodes globally to reduce <span class=\"text-hl-cyan\">response latency</span> and accelerate state sync across Gennisys apps.",
             news_8_title: "Design System: UI & Visual Auras Overhaul",
-            news_8_desc: "Deployed refined atmospheric palette with dynamic themes and glassmorphic component tokens studio-wide.",
+            news_8_desc: "Deployed refined atmospheric palette with <span class=\"text-hl-purple\">dynamic themes</span> and glassmorphic <span class=\"text-hl-purple\">component tokens</span> studio-wide.",
             news_read_more: "Read More →",
             vault_status: "CLASSIFIED LAB // UNDER DEVELOPMENT",
             vault_title: "Project: Protocol Aetheria",
@@ -192,7 +192,6 @@ document.addEventListener('DOMContentLoaded', () => {
             vault_label_engine: "ENGINE",
             vault_label_deployment: "RELEASE",
             nexus_mission: "An independent digital studio creating handcrafted games, tools, and proprietary digital experiences.",
-            status_servers: "Servers Online",
             footer_col_nav: "Navigation",
             footer_col_ecosystem: "Ecosystem",
             footer_devlog: "Release Notes",
@@ -231,7 +230,7 @@ document.addEventListener('DOMContentLoaded', () => {
         document.querySelectorAll('[data-i18n]').forEach(el => {
             const key = el.getAttribute('data-i18n');
             if (translations[lang] && translations[lang][key]) {
-                el.textContent = translations[lang][key];
+                el.innerHTML = translations[lang][key];
             }
         });
     }
@@ -854,15 +853,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     <ul class="highlights-list">
                         ${data.highlights.map(h => `<li><span class="hl-tag">${h.tag}</span> ${h.text}</li>`).join('')}
                     </ul>
-                </div>
-                <div class="news-modal-actions">
-                    <span class="news-modal-tag">Tag: ${data.tag}</span>
-                    <a href="${data.link}" target="_blank" rel="noopener" class="primary-btn" style="padding:10px 22px; font-size:0.85rem;">
-                        <span>${data.linkText}</span>
-                        <svg viewBox="0 0 16 16" fill="none" style="width:13px; height:13px;">
-                            <path d="M3 13L13 3M13 3H6M13 3V10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                    </a>
                 </div>
             `;
             modal.classList.add('open');
