@@ -8,6 +8,7 @@
 window.GENNISYS_NEWS_DATA = [
     {
         id: 'news-1',
+        author: 'Gennisys',
         badge: { pt: 'PATCH NOTES', en: 'PATCH NOTES' },
         badgeClass: 'patch-badge',
         date: { pt: '24 AGO 2026', en: '24 AUG 2026' },
@@ -37,6 +38,7 @@ window.GENNISYS_NEWS_DATA = [
         id: 'news-2',
         badge: { pt: 'SISTEMA', en: 'SYSTEM' },
         badgeClass: 'deploy-badge',
+        author: 'Gennisys',
         date: { pt: '18 AGO 2026', en: '18 AUG 2026' },
         tag: 'Hacker0s Build 2.1',
         title: {
@@ -64,6 +66,7 @@ window.GENNISYS_NEWS_DATA = [
         id: 'news-3',
         badge: { pt: 'DEVLOG', en: 'DEVLOG' },
         badgeClass: 'devlog-badge',
+        author: 'Gennisys',
         date: { pt: '10 AGO 2026', en: '10 AUG 2026' },
         tag: 'The Lab / R&D',
         title: {
@@ -89,6 +92,7 @@ window.GENNISYS_NEWS_DATA = [
     },
     {
         id: 'news-4',
+        author: 'Gennisys',
         badge: { pt: 'PATCH NOTES', en: 'PATCH NOTES' },
         badgeClass: 'patch-badge',
         date: { pt: '02 AGO 2026', en: '02 AUG 2026' },
@@ -118,6 +122,7 @@ window.GENNISYS_NEWS_DATA = [
         id: 'news-5',
         badge: { pt: 'SEGURANÇA', en: 'SECURITY' },
         badgeClass: 'deploy-badge',
+        author: 'Gennisys',
         date: { pt: '25 JUL 2026', en: '25 JUL 2026' },
         tag: 'PassMap Core',
         title: {
@@ -145,6 +150,7 @@ window.GENNISYS_NEWS_DATA = [
         id: 'news-6',
         badge: { pt: 'SISTEMA', en: 'SYSTEM' },
         badgeClass: 'devlog-badge',
+        author: 'Gennisys',
         date: { pt: '14 JUL 2026', en: '14 JUL 2026' },
         tag: 'Gennisys Utils',
         title: {
@@ -172,6 +178,7 @@ window.GENNISYS_NEWS_DATA = [
         id: 'news-7',
         badge: { pt: 'SISTEMA', en: 'SYSTEM' },
         badgeClass: 'deploy-badge',
+        author: 'Gennisys',
         date: { pt: '01 JUL 2026', en: '01 JUL 2026' },
         tag: 'Core Infrastructure',
         title: {
@@ -199,6 +206,7 @@ window.GENNISYS_NEWS_DATA = [
         id: 'news-8',
         badge: { pt: 'DEVLOG', en: 'DEVLOG' },
         badgeClass: 'devlog-badge',
+        author: 'Gennisys',
         date: { pt: '18 JUN 2026', en: '18 JUN 2026' },
         tag: 'Studio Design System',
         title: {
