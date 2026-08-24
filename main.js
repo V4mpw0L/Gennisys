@@ -472,62 +472,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     // ----------------------------------------------------------------------
-    // 5. CREATIONS FILTER & PAGINATION ENGINE
+    // 5. APPS / CREATIONS FILTER ENGINE (ALL 6 APPS VISIBLE: 3x2 GRID)
     // ----------------------------------------------------------------------
     const filterButtons = document.querySelectorAll('.filter-btn');
     const creationCards = document.querySelectorAll('.creation-card');
-    const creationsPagination = document.getElementById('creationsPagination');
-    const creationsPrevBtn = document.getElementById('creationsPrevBtn');
-    const creationsNextBtn = document.getElementById('creationsNextBtn');
-    const creationDots = document.querySelectorAll('[data-creation-page]');
-
     let activeFilter = 'all';
-    let currentCreationPage = 1;
-    const totalCreationPages = 2;
 
     function renderCreations() {
-        if (activeFilter !== 'all') {
-            // In filtered mode, hide pagination controls and display matching items
-            if (creationsPagination) creationsPagination.style.display = 'none';
-            creationCards.forEach(card => {
-                const category = card.getAttribute('data-category');
-                if (category === activeFilter) {
-                    card.style.display = 'flex';
-                    card.style.opacity = '1';
-                    card.style.transform = 'none';
-                } else {
-                    card.style.display = 'none';
-                    card.style.opacity = '0';
-                }
-            });
-        } else {
-            // In 'all' mode, use pagination (3 items per page)
-            if (creationsPagination) creationsPagination.style.display = 'flex';
-            creationCards.forEach(card => {
-                const page = parseInt(card.getAttribute('data-creation-page'), 10) || 1;
-                if (page === currentCreationPage) {
-                    card.style.display = 'flex';
-                    card.style.opacity = '1';
-                    card.style.transform = 'none';
-                } else {
-                    card.style.display = 'none';
-                    card.style.opacity = '0';
-                }
-            });
-
-            // Update pagination indicators
-            creationDots.forEach(dot => {
-                const page = parseInt(dot.getAttribute('data-creation-page'), 10);
-                if (page === currentCreationPage) {
-                    dot.classList.add('active');
-                } else {
-                    dot.classList.remove('active');
-                }
-            });
-
-            if (creationsPrevBtn) creationsPrevBtn.disabled = (currentCreationPage <= 1);
-            if (creationsNextBtn) creationsNextBtn.disabled = (currentCreationPage >= totalCreationPages);
-        }
+        creationCards.forEach(card => {
+            const category = card.getAttribute('data-category');
+            if (activeFilter === 'all' || category === activeFilter) {
+                card.style.display = 'flex';
+                card.style.opacity = '1';
+                card.style.transform = 'none';
+            } else {
+                card.style.display = 'none';
+                card.style.opacity = '0';
+            }
+        });
     }
 
     // Filter Button Click
@@ -536,37 +498,9 @@ document.addEventListener('DOMContentLoaded', () => {
             filterButtons.forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
             activeFilter = btn.getAttribute('data-filter');
-            currentCreationPage = 1;
             renderCreations();
         });
     });
-
-    // Pagination Dot Click
-    creationDots.forEach(dot => {
-        dot.addEventListener('click', () => {
-            currentCreationPage = parseInt(dot.getAttribute('data-creation-page'), 10);
-            renderCreations();
-        });
-    });
-
-    // Pagination Arrow Clicks
-    if (creationsPrevBtn) {
-        creationsPrevBtn.addEventListener('click', () => {
-            if (currentCreationPage > 1) {
-                currentCreationPage--;
-                renderCreations();
-            }
-        });
-    }
-
-    if (creationsNextBtn) {
-        creationsNextBtn.addEventListener('click', () => {
-            if (currentCreationPage < totalCreationPages) {
-                currentCreationPage++;
-                renderCreations();
-            }
-        });
-    }
 
     // Initial render
     renderCreations();
