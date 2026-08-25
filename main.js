@@ -11,6 +11,23 @@
 
 document.addEventListener('DOMContentLoaded', () => {
     // ----------------------------------------------------------------------
+    // STEALTH PWA SERVICE WORKER REGISTRATION & AUTO-SYNC ENGINE
+    // ----------------------------------------------------------------------
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+            navigator.serviceWorker.register('./sw.js?v=2.1.0', { updateViaCache: 'none' })
+                .then(reg => {
+                    // Check for updates periodically & on focus
+                    reg.update();
+                    document.addEventListener('visibilitychange', () => {
+                        if (document.visibilityState === 'visible') reg.update();
+                    });
+                })
+                .catch(() => {});
+        });
+    }
+
+    // ----------------------------------------------------------------------
     // 1. DUAL-LANGUAGE SYSTEM (PT-BR / EN)
     // ----------------------------------------------------------------------
     const translations = {
