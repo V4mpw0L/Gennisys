@@ -11,6 +11,30 @@
 
 document.addEventListener('DOMContentLoaded', () => {
     // ----------------------------------------------------------------------
+    // LIGHT / DARK THEME ENGINE (with localStorage persistence)
+    // ----------------------------------------------------------------------
+    (function() {
+        const STORAGE_KEY = 'gennisys_theme_mode';
+        const saved = localStorage.getItem(STORAGE_KEY) || 'dark';
+
+        function applyTheme(mode) {
+            document.body.setAttribute('data-theme-mode', mode);
+            localStorage.setItem(STORAGE_KEY, mode);
+            document.querySelectorAll('.footer-theme-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.id === (mode === 'dark' ? 'gen-theme-dark' : 'gen-theme-light'));
+            });
+        }
+
+        applyTheme(saved);
+
+        document.addEventListener('click', function(e) {
+            if (e.target.id === 'gen-theme-dark') applyTheme('dark');
+            else if (e.target.id === 'gen-theme-light') applyTheme('light');
+        });
+    })();
+
+
+    // ----------------------------------------------------------------------
     // STEALTH PWA SERVICE WORKER REGISTRATION & AUTO-SYNC ENGINE
     // ----------------------------------------------------------------------
     if ('serviceWorker' in navigator) {

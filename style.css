@@ -2194,3 +2194,296 @@ button {
     border-color: var(--accent-primary);
     box-shadow: 0 0 16px var(--portal-glow);
 }
+
+/* ==========================================================================
+   FOOTER THEME TOGGLE — Controls Styling (identical to language switcher)
+   ========================================================================== */
+.footer-theme-picker {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--bg-surface);
+    border: 1px solid var(--border-subtle);
+    padding: 3px 10px;
+    border-radius: var(--radius-sm);
+}
+
+.footer-theme-btn {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--text-secondary);
+    padding: 2px 4px;
+    transition: color var(--transition-fast);
+}
+
+.footer-theme-btn.active {
+    color: var(--accent-secondary);
+    font-weight: 700;
+}
+
+.footer-theme-btn:hover:not(.active) {
+    color: var(--accent-light);
+}
+
+/* ==========================================================================
+   LIGHT MODE — GENNISYS STUDIO
+   Soft Porcelain: clean, premium, low-glare, fully harmonious
+   ========================================================================== */
+body[data-theme-mode="light"] {
+    /* Backgrounds */
+    --bg-primary:          #f5f7fa;
+    --bg-void:             #eef1f5;
+    --bg-surface:          rgba(255, 255, 255, 0.92);
+    --bg-surface-elevated: #ffffff;
+    --bg-card:             #ffffff;
+
+    /* Accent (deeper emerald for contrast on white) */
+    --accent-glow:         #059669;
+    --accent-primary:      #059669;
+    --accent-secondary:    #10b981;
+    --accent-light:        #059669;
+    --accent-border:       rgba(5, 150, 105, 0.28);
+    --accent-border-hover: rgba(5, 150, 105, 0.55);
+    --accent-gradient:     linear-gradient(135deg, #059669 0%, #10b981 55%, #047857 100%);
+    --portal-glow:         rgba(5, 150, 105, 0.12);
+
+    /* Text */
+    --text-pure:      #0f172a;
+    --text-primary:   #1e293b;
+    --text-secondary: #475569;
+    --text-muted:     #64748b;
+
+    /* Borders */
+    --border-subtle: rgba(0, 0, 0, 0.07);
+    --border-strong: rgba(0, 0, 0, 0.12);
+
+    /* Shadows */
+    --shadow-card:     0 2px 12px rgba(0, 0, 0, 0.06);
+    --shadow-elevated: 0 8px 32px rgba(0, 0, 0, 0.10);
+}
+
+/* Background & overlays */
+body[data-theme-mode="light"] #ether-canvas { opacity: 0.08; }
+
+body[data-theme-mode="light"] .ambient-glow {
+    opacity: 0.18;
+    background: radial-gradient(ellipse at center, rgba(5, 150, 105, 0.12) 0%, transparent 68%);
+}
+
+body[data-theme-mode="light"] .vignette-overlay {
+    background: radial-gradient(ellipse at center, transparent 55%, rgba(220, 230, 240, 0.55) 100%);
+}
+
+/* Header */
+body[data-theme-mode="light"] .studio-header {
+    background: rgba(245, 247, 250, 0.96);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+body[data-theme-mode="light"] .studio-header.scrolled {
+    background: rgba(255, 255, 255, 0.97);
+    box-shadow: 0 2px 16px rgba(0, 0, 0, 0.07);
+}
+
+body[data-theme-mode="light"] .nav-link {
+    color: #475569;
+}
+
+body[data-theme-mode="light"] .nav-link:hover,
+body[data-theme-mode="light"] .nav-link.active {
+    color: #059669;
+}
+
+/* Mobile drawer */
+body[data-theme-mode="light"] .mobile-drawer {
+    background: rgba(255, 255, 255, 0.98);
+    border-right: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+body[data-theme-mode="light"] .drawer-nav-link {
+    color: #475569;
+}
+
+body[data-theme-mode="light"] .drawer-nav-link:hover {
+    color: #059669;
+    background: rgba(5, 150, 105, 0.06);
+}
+
+/* Section headers */
+body[data-theme-mode="light"] .section-header-row {
+    background: linear-gradient(135deg, rgba(255,255,255,0.98) 0%, rgba(241,245,249,0.92) 100%);
+    border: 1px solid rgba(0, 0, 0, 0.07);
+    border-left: 4px solid #059669;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+}
+
+body[data-theme-mode="light"] .section-header-row::after {
+    background: radial-gradient(circle at 0% 0%, rgba(5, 150, 105, 0.05) 0%, transparent 75%);
+}
+
+body[data-theme-mode="light"] .section-title { color: #0f172a; }
+body[data-theme-mode="light"] .section-desc  { color: #475569; }
+
+/* Cards — news */
+body[data-theme-mode="light"] .news-card {
+    background: #ffffff;
+    border: 1px solid rgba(0, 0, 0, 0.07);
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
+}
+
+body[data-theme-mode="light"] .news-card:hover {
+    border-color: rgba(5, 150, 105, 0.35);
+    box-shadow: 0 6px 24px rgba(5, 150, 105, 0.08);
+}
+
+body[data-theme-mode="light"] .news-title   { color: #0f172a; }
+body[data-theme-mode="light"] .news-excerpt {
+    background: #f8fafc;
+    border-color: rgba(0, 0, 0, 0.05);
+    color: #475569;
+}
+
+/* Cards — creation/apps */
+body[data-theme-mode="light"] .creation-card {
+    background: #ffffff;
+    border: 1px solid rgba(0, 0, 0, 0.07);
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
+}
+
+body[data-theme-mode="light"] .creation-card:hover {
+    border-color: rgba(5, 150, 105, 0.35);
+    box-shadow: 0 6px 24px rgba(5, 150, 105, 0.08);
+}
+
+body[data-theme-mode="light"] .card-title    { color: #0f172a; }
+body[data-theme-mode="light"] .card-desc     { color: #475569; }
+
+/* Manifesto */
+body[data-theme-mode="light"] .manifesto-lead,
+body[data-theme-mode="light"] .pillar-card {
+    background: #ffffff;
+    border: 1px solid rgba(0, 0, 0, 0.07);
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
+}
+
+body[data-theme-mode="light"] .pillar-card:hover {
+    border-color: rgba(5, 150, 105, 0.35);
+}
+
+body[data-theme-mode="light"] .manifesto-lead p { color: #334155; }
+body[data-theme-mode="light"] .pillar-body { color: #475569; }
+
+/* Vault / O Lab */
+body[data-theme-mode="light"] .vault-container {
+    background: linear-gradient(135deg, #ffffff 0%, #f1f5f9 100%);
+    border-color: rgba(0, 0, 0, 0.08);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+/* Modals */
+body[data-theme-mode="light"] .modal-overlay {
+    background: rgba(15, 23, 42, 0.55);
+}
+
+body[data-theme-mode="light"] .modal-card {
+    background: #ffffff;
+    border-color: rgba(0, 0, 0, 0.10);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.12);
+}
+
+body[data-theme-mode="light"] .modal-header-card {
+    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+    border: 1px solid rgba(0, 0, 0, 0.07);
+    border-left: 3px solid #059669;
+}
+
+body[data-theme-mode="light"] .modal-news-title { color: #0f172a; }
+
+body[data-theme-mode="light"] .news-modal-body-card {
+    background: #f8fafc;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    color: #334155;
+}
+
+body[data-theme-mode="light"] .news-modal-body-card p { color: #334155; }
+
+/* Footer — refined light mode with warm white + emerald accents */
+body[data-theme-mode="light"] .nexus-footer {
+    background: linear-gradient(180deg, #f0f4f8 0%, #e8edf3 100%);
+    border-top: 1px solid rgba(5, 150, 105, 0.15);
+}
+
+body[data-theme-mode="light"] .studio-nexus {
+    background: linear-gradient(180deg, #f0f4f8 0%, #e8edf3 100%);
+    border-top: 1px solid rgba(5, 150, 105, 0.15);
+}
+
+/* Brand area */
+body[data-theme-mode="light"] .nexus-mission {
+    color: #475569;
+}
+
+body[data-theme-mode="light"] .brand-title { color: #0f172a; }
+body[data-theme-mode="light"] .brand-sub   { color: #64748b; }
+
+/* Links columns */
+body[data-theme-mode="light"] .nexus-bottom {
+    border-top: 1px solid rgba(5, 150, 105, 0.12);
+}
+
+body[data-theme-mode="light"] .links-col h4 {
+    color: #059669;
+    letter-spacing: 2px;
+}
+
+body[data-theme-mode="light"] .links-col a {
+    color: #475569;
+}
+
+body[data-theme-mode="light"] .links-col a:hover {
+    color: #059669;
+}
+
+body[data-theme-mode="light"] .footer-meta-info {
+    color: #64748b;
+}
+
+/* Bottom controls row */
+body[data-theme-mode="light"] .footer-lang-picker,
+body[data-theme-mode="light"] .footer-theme-picker {
+    background: rgba(255, 255, 255, 0.85);
+    border-color: rgba(5, 150, 105, 0.18);
+    color: #64748b;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+}
+
+body[data-theme-mode="light"] .footer-lang-btn,
+body[data-theme-mode="light"] .footer-theme-btn {
+    color: #64748b;
+}
+
+body[data-theme-mode="light"] .footer-lang-btn.active,
+body[data-theme-mode="light"] .footer-theme-btn.active {
+    color: #059669;
+}
+
+body[data-theme-mode="light"] .footer-lang-btn:hover,
+body[data-theme-mode="light"] .footer-theme-btn:hover:not(.active) {
+    color: #047857;
+}
+
+body[data-theme-mode="light"] .footer-picker-label { color: #94a3b8; }
+body[data-theme-mode="light"] .footer-control-sep  { color: #cbd5e1; }
+
+body[data-theme-mode="light"] .copyright {
+    color: #64748b;
+}
+
+body[data-theme-mode="light"] .status-dot { background: #059669; }
+
+/* App favicon in light mode */
+body[data-theme-mode="light"] .app-favicon-img {
+    background: #f1f5f9;
+    border-color: rgba(5, 150, 105, 0.25);
+}
+
