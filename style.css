@@ -1216,7 +1216,7 @@ button {
     font-weight: 800;
     letter-spacing: 1px;
     padding: 3px 9px;
-    border-radius: var(--radius-full);
+    border-radius: 4px;
 }
 
 .patch-badge {
@@ -1322,7 +1322,7 @@ button {
     color: var(--text-muted);
     background: var(--bg-surface);
     padding: 3px 8px;
-    border-radius: var(--radius-sm);
+    border-radius: 4px;
     border: 1px solid var(--border-subtle);
 }
 
