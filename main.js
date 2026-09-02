@@ -252,12 +252,13 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    let currentLang = localStorage.getItem('gennisys_lang') || 'pt';
+    let currentLang = localStorage.getItem('gennisys_lang') || 'en';
     let currentNewsPage = 1;
 
     function setLanguage(lang) {
         currentLang = lang;
         localStorage.setItem('gennisys_lang', lang);
+        document.documentElement.setAttribute('lang', lang);
         
         // Update header pill
         const langBtn = document.getElementById('langSwitch');
