@@ -2333,7 +2333,7 @@ body[data-theme-mode="light"] {
 }
 
 /* Background & overlays */
-body[data-theme-mode="light"] #ether-canvas { opacity: 0.08; }
+body[data-theme-mode="light"] #ether-canvas { opacity: 1; }
 
 body[data-theme-mode="light"] .ambient-glow {
     opacity: 0.18;

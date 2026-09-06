@@ -414,123 +414,105 @@ document.addEventListener('DOMContentLoaded', () => {
     // Initial news render from noticias.js
     renderNewsGrid(1);
 
+    // ----------------------------------------------------------------------
+    // AAA STUDIO AMBIENT SPOTLIGHT ENGINE
+    // Pure, solid, cinematic interactive lighting without particles or grids
+    // ----------------------------------------------------------------------
     const canvas = document.getElementById('ether-canvas');
     if (canvas) {
         const ctx = canvas.getContext('2d');
         let width = canvas.width = window.innerWidth;
         let height = canvas.height = window.innerHeight;
+        let isVisible = true;
 
-        let stars = [];
-        const starCount = Math.min(100, Math.floor((width * height) / 12000));
+        // Default focal point is upper center hero
+        const targetPos = { x: width * 0.5, y: height * 0.28 };
+        const currentPos = { x: width * 0.5, y: height * 0.28 };
+        let isHovered = false;
 
-        class Star {
-            constructor() {
-                this.reset();
+        const isMobile = window.innerWidth < 768;
+
+        function drawSpotlight() {
+            ctx.clearRect(0, 0, width, height);
+
+            const isLight = document.body.getAttribute('data-theme-mode') === 'light';
+            const spotRadius = isMobile ? 320 : 520;
+            const spotGradient = ctx.createRadialGradient(
+                currentPos.x, currentPos.y, 0,
+                currentPos.x, currentPos.y, spotRadius
+            );
+
+            if (isLight) {
+                spotGradient.addColorStop(0, 'rgba(5, 150, 105, 0.08)');
+                spotGradient.addColorStop(0.5, 'rgba(14, 165, 233, 0.025)');
+                spotGradient.addColorStop(1, 'rgba(248, 250, 252, 0)');
+            } else {
+                spotGradient.addColorStop(0, 'rgba(18, 196, 138, 0.12)');
+                spotGradient.addColorStop(0.5, 'rgba(6, 182, 212, 0.035)');
+                spotGradient.addColorStop(1, 'rgba(11, 13, 16, 0)');
             }
 
-            reset() {
-                this.x = Math.random() * width;
-                this.y = Math.random() * height;
-                this.vx = (Math.random() - 0.5) * 0.4;
-                this.vy = (Math.random() - 0.5) * 0.4;
-                this.radius = Math.random() * 1.6 + 0.6;
-                this.alpha = Math.random() * 0.7 + 0.2;
-                this.baseAlpha = this.alpha;
-            }
-
-            update() {
-                this.x += this.vx;
-                this.y += this.vy;
-
-                if (this.x < 0 || this.x > width) this.vx *= -1;
-                if (this.y < 0 || this.y > height) this.vy *= -1;
-
-                // Mouse interaction
-                if (mouse.x !== null && mouse.y !== null) {
-                    const dx = this.x - mouse.x;
-                    const dy = this.y - mouse.y;
-                    const dist = Math.sqrt(dx * dx + dy * dy);
-                    if (dist < mouse.radius) {
-                        const force = (mouse.radius - dist) / mouse.radius;
-                        this.x += (dx / dist) * force * 2;
-                        this.y += (dy / dist) * force * 2;
-                        this.alpha = Math.min(1, this.baseAlpha + 0.4);
-                    } else {
-                        this.alpha = this.baseAlpha;
-                    }
-                }
-            }
-
-            draw() {
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-                ctx.fillStyle = `rgba(255, 255, 255, ${this.alpha})`;
-                ctx.fill();
-            }
+            ctx.fillStyle = spotGradient;
+            ctx.beginPath();
+            ctx.arc(currentPos.x, currentPos.y, spotRadius, 0, Math.PI * 2);
+            ctx.fill();
         }
 
-        const mouse = {
-            x: null,
-            y: null,
-            radius: 120
-        };
+        function renderAtmosphere() {
+            if (!isVisible) {
+                requestAnimationFrame(renderAtmosphere);
+                return;
+            }
+
+            // Smooth spotlight inertia (damped tracking)
+            const dx = targetPos.x - currentPos.x;
+            const dy = targetPos.y - currentPos.y;
+            currentPos.x += dx * 0.06;
+            currentPos.y += dy * 0.06;
+
+            drawSpotlight();
+
+            requestAnimationFrame(renderAtmosphere);
+        }
 
         window.addEventListener('mousemove', (e) => {
-            mouse.x = e.clientX;
-            mouse.y = e.clientY;
-        });
+            isHovered = true;
+            targetPos.x = e.clientX;
+            targetPos.y = e.clientY;
+        }, { passive: true });
 
         window.addEventListener('mouseleave', () => {
-            mouse.x = null;
-            mouse.y = null;
+            isHovered = false;
+            targetPos.x = width * 0.5;
+            targetPos.y = height * 0.28;
         });
 
         window.addEventListener('resize', () => {
             width = canvas.width = window.innerWidth;
             height = canvas.height = window.innerHeight;
-            initStars();
+            if (!isHovered) {
+                targetPos.x = width * 0.5;
+                targetPos.y = height * 0.28;
+            }
+            drawSpotlight();
+        }, { passive: true });
+
+        document.addEventListener('visibilitychange', () => {
+            isVisible = !document.hidden;
+            if (isVisible) drawSpotlight();
         });
 
-        function initStars() {
-            stars = [];
-            for (let i = 0; i < starCount; i++) {
-                stars.push(new Star());
-            }
-        }
-
-        function drawLines() {
-            const maxDistance = 100;
-            for (let i = 0; i < stars.length; i++) {
-                for (let j = i + 1; j < stars.length; j++) {
-                    const dx = stars[i].x - stars[j].x;
-                    const dy = stars[i].y - stars[j].y;
-                    const dist = Math.sqrt(dx * dx + dy * dy);
-
-                    if (dist < maxDistance) {
-                        const alpha = (1 - dist / maxDistance) * 0.15;
-                        ctx.beginPath();
-                        ctx.moveTo(stars[i].x, stars[i].y);
-                        ctx.lineTo(stars[j].x, stars[j].y);
-                        ctx.strokeStyle = `rgba(180, 180, 255, ${alpha})`;
-                        ctx.lineWidth = 0.8;
-                        ctx.stroke();
-                    }
+        // Instant redraw on theme change
+        const observer = new MutationObserver((mutations) => {
+            for (const m of mutations) {
+                if (m.attributeName === 'data-theme-mode') {
+                    drawSpotlight();
                 }
             }
-        }
+        });
+        observer.observe(document.body, { attributes: true, attributeFilter: ['data-theme-mode'] });
 
-        function animateCanvas() {
-            ctx.clearRect(0, 0, width, height);
-            drawLines();
-            stars.forEach(star => {
-                star.update();
-                star.draw();
-            });
-            requestAnimationFrame(animateCanvas);
-        }
-
-        initStars();
-        animateCanvas();
+        renderAtmosphere();
     }
 
 
