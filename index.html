@@ -16,7 +16,7 @@
     <link rel="icon" type="image/jpeg" href="assets/logo.jpg">
     <link rel="shortcut icon" type="image/jpeg" href="assets/logo.jpg">
     <link rel="apple-touch-icon" href="assets/logo.jpg">
-    <link rel="manifest" href="manifest.json?v=2.1.1">
+    <link rel="manifest" href="manifest.json?v=2.1.2">
     
     <!-- PWA & Mobile Web Capabilities -->
     <meta name="theme-color" content="#0b0d10">
@@ -29,7 +29,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     
-    <link rel="stylesheet" href="style.css?v=2.1.1">
+    <link rel="stylesheet" href="style.css?v=2.1.2">
 </head>
 <body data-theme="emerald">
     <!-- Background Canvas -->
@@ -317,9 +317,37 @@
                         <!-- Footer Language Switcher -->
                         <div class="footer-lang-picker">
                             <span class="footer-picker-label" data-i18n="footer_lang_label">Idioma:</span>
-                            <button class="footer-lang-btn active" data-lang-val="pt">PT</button>
+                            <button class="footer-lang-btn active" data-lang-val="pt" aria-label="Português">
+                                <svg class="lang-flag" viewBox="0 0 20 14" width="16" height="11" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+                                    <rect width="20" height="14" fill="#009c3b" rx="1.5"/>
+                                    <polygon points="10,2 18,7 10,12 2,7" fill="#ffdf00"/>
+                                    <circle cx="10" cy="7" r="3.1" fill="#002776"/>
+                                    <path d="M7.2,6.5 Q10,5.8 12.8,7.7" stroke="#ffffff" stroke-width="0.75" fill="none"/>
+                                </svg>
+                                <span>PT</span>
+                            </button>
                             <span class="footer-control-sep">|</span>
-                            <button class="footer-lang-btn" data-lang-val="en">EN</button>
+                            <button class="footer-lang-btn" data-lang-val="en" aria-label="English">
+                                <svg class="lang-flag" viewBox="0 0 20 14" width="16" height="11" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+                                    <rect width="20" height="14" fill="#b22234" rx="1.5"/>
+                                    <rect y="1.08" width="20" height="1.08" fill="#ffffff"/>
+                                    <rect y="3.23" width="20" height="1.08" fill="#ffffff"/>
+                                    <rect y="5.38" width="20" height="1.08" fill="#ffffff"/>
+                                    <rect y="7.54" width="20" height="1.08" fill="#ffffff"/>
+                                    <rect y="9.69" width="20" height="1.08" fill="#ffffff"/>
+                                    <rect y="11.85" width="20" height="1.08" fill="#ffffff"/>
+                                    <rect width="8.5" height="7.54" fill="#3c3b6e" rx="1.5"/>
+                                    <circle cx="2.2" cy="2" r="0.6" fill="#ffffff"/>
+                                    <circle cx="4.25" cy="2" r="0.6" fill="#ffffff"/>
+                                    <circle cx="6.3" cy="2" r="0.6" fill="#ffffff"/>
+                                    <circle cx="3.2" cy="3.8" r="0.6" fill="#ffffff"/>
+                                    <circle cx="5.3" cy="3.8" r="0.6" fill="#ffffff"/>
+                                    <circle cx="2.2" cy="5.6" r="0.6" fill="#ffffff"/>
+                                    <circle cx="4.25" cy="5.6" r="0.6" fill="#ffffff"/>
+                                    <circle cx="6.3" cy="5.6" r="0.6" fill="#ffffff"/>
+                                </svg>
+                                <span>EN</span>
+                            </button>
                         </div>
                         <!-- Footer Theme Switcher -->
                         <div class="footer-theme-picker">
@@ -353,7 +381,7 @@
     </button>
 
     <!-- Scripts -->
-    <script src="noticias.js?v=2.1.1"></script>
-    <script src="main.js?v=2.1.1"></script>
+    <script src="noticias.js?v=2.1.2"></script>
+    <script src="main.js?v=2.1.2"></script>
 </body>
 </html>

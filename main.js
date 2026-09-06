@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // ----------------------------------------------------------------------
     if ('serviceWorker' in navigator) {
         window.addEventListener('load', () => {
-            navigator.serviceWorker.register('./sw.js?v=2.1.1', { updateViaCache: 'none' })
+            navigator.serviceWorker.register('./sw.js?v=2.1.2', { updateViaCache: 'none' })
                 .then(reg => {
                     // Check for updates periodically & on focus
                     reg.update();

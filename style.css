@@ -1694,11 +1694,28 @@ body[data-theme-mode="light"] .page-nav-btn:hover:not(:disabled) {
 }
 
 .footer-lang-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
     font-size: 0.75rem;
     font-weight: 700;
     color: var(--text-secondary);
-    padding: 2px 4px;
-    transition: color var(--transition-fast);
+    padding: 2px 5px;
+    border-radius: var(--radius-sm);
+    transition: all var(--transition-fast);
+}
+
+.footer-lang-btn .lang-flag {
+    width: 16px;
+    height: 11px;
+    border-radius: 2px;
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.16);
+    flex-shrink: 0;
+    transition: transform var(--transition-fast);
+}
+
+.footer-lang-btn:hover .lang-flag {
+    transform: scale(1.08);
 }
 
 .footer-lang-btn.active {
