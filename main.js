@@ -153,6 +153,7 @@ document.addEventListener('DOMContentLoaded', () => {
             footer_meta_location: "Desenvolvimento Autônomo",
             footer_meta_remote: "Operação Global",
             footer_lang_label: "Idioma:",
+            footer_theme_label: "Tema:",
             rights_reserved: "TODOS OS DIREITOS RESERVADOS."
         },
         en: {
@@ -252,6 +253,7 @@ document.addEventListener('DOMContentLoaded', () => {
             footer_meta_location: "Autonomous Development",
             footer_meta_remote: "Global Operation",
             footer_lang_label: "Language:",
+            footer_theme_label: "Theme:",
             rights_reserved: "ALL RIGHTS RESERVED."
         }
     };
