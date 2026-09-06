@@ -556,38 +556,6 @@ button {
     z-index: -1;
 }
 
-.portal-circle {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    border-radius: 50%;
-    border: 1px solid var(--accent-border);
-}
-
-.ring-1 {
-    width: 320px;
-    height: 320px;
-    border-style: dashed;
-    animation: rotateRing 40s linear infinite;
-}
-
-.ring-2 {
-    width: 480px;
-    height: 480px;
-    border-color: rgba(255, 255, 255, 0.05);
-    animation: rotateRing 60s linear infinite reverse;
-}
-
-.ring-3 {
-    width: 640px;
-    height: 640px;
-    border-style: dotted;
-    border-color: var(--accent-border);
-    opacity: 0.5;
-    animation: rotateRing 80s linear infinite;
-}
-
 .portal-glow {
     position: absolute;
     top: 50%;
@@ -598,11 +566,6 @@ button {
     background: radial-gradient(circle, var(--portal-glow) 0%, transparent 70%);
     border-radius: 50%;
     filter: blur(40px);
-}
-
-@keyframes rotateRing {
-    from { transform: translate(-50%, -50%) rotate(0deg); }
-    to { transform: translate(-50%, -50%) rotate(360deg); }
 }
 
 .hero-content {
