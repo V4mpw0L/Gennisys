@@ -963,11 +963,24 @@ button {
     box-shadow: 0 0 12px var(--portal-glow);
 }
 
-/* Projects Grid - Compact 3-Column Layout */
+/* Projects Grid - Compact 3-Column Layout & Flagship Single-Card Mode */
 .creations-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 20px;
+}
+
+.creations-grid:has(.creation-card:only-child),
+.creations-grid.single-featured {
+    display: flex;
+    justify-content: center;
+    max-width: 580px;
+    margin: 0 auto;
+}
+
+.creations-grid:has(.creation-card:only-child) .creation-card,
+.creations-grid.single-featured .creation-card {
+    width: 100%;
 }
 
 .creation-card {

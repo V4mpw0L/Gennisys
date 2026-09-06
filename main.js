@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // ----------------------------------------------------------------------
     if ('serviceWorker' in navigator) {
         window.addEventListener('load', () => {
-            navigator.serviceWorker.register('./sw.js?v=2.1.0', { updateViaCache: 'none' })
+            navigator.serviceWorker.register('./sw.js?v=2.1.1', { updateViaCache: 'none' })
                 .then(reg => {
                     // Check for updates periodically & on focus
                     reg.update();
@@ -84,10 +84,12 @@ document.addEventListener('DOMContentLoaded', () => {
             creations_heading: "Apps",
             creations_sub: "Obras autorais em operação. Aplicativos, simulações e jogos moldados nos laboratórios da Gennisys.",
             filter_all: "Todos",
+            filter_navigation: "Mapas & Navegação",
             filter_games: "Jogos & RPG",
             filter_cyber: "Sistemas & Cyber",
             filter_tools: "Utilitários",
             badge_live: "ONLINE",
+            type_navigation: "Mapas & Geolocalização",
             type_rpg: "RPG & Simulação",
             type_idle_rpg: "RPG Incremental",
             type_cyber: "Cyberpunk OS",
@@ -100,7 +102,7 @@ document.addEventListener('DOMContentLoaded', () => {
             proj_scape_desc: "RPG de progressão incremental e fantasia medieval. Evolua habilidades de combate, enfrente masmorras e colete saques lendários mesmo offline.",
             proj_hacker_desc: "Simulador de terminal e cibersegurança tática. Uma experiência de interface estilo matriz com protocolos de penetração simulados.",
             proj_packet_desc: "Jogo incremental de arquitetura de dados e tráfego massivo. Colete pacotes digitais e domine a infraestrutura global.",
-            proj_passmap_desc: "Gerenciador de segurança de senhas e dados sigilosos. Uma fortaleza de privacidade digital construída para proteção absoluta.",
+            proj_passmap_desc: "Suíte cartográfica profissional com navegação offline, catálogo inteligente de POIs e telemetria de clima e qualidade do ar em tempo real.",
             proj_budget_desc: "Sistema de controle patrimonial com categorização dinâmica, projeções orçamentárias e dashboards inteligentes.",
             proj_gencalc_desc: "Calculadora científica com histórico de auditoria instantâneo e layout ergonômico feito para operações complexas.",
             proj_pytools_desc: "Suíte de ferramentas e scripts em Python para automação de tarefas, processamento de dados e utilitários de sistema.",
@@ -182,10 +184,12 @@ document.addEventListener('DOMContentLoaded', () => {
             creations_heading: "Apps",
             creations_sub: "Original works in active operation. Applications, simulations, and games crafted inside the Gennisys laboratory.",
             filter_all: "All",
+            filter_navigation: "Maps & Navigation",
             filter_games: "Games & RPG",
             filter_cyber: "Systems & Cyber",
             filter_tools: "Utilities",
             badge_live: "LIVE",
+            type_navigation: "Maps & Geolocation",
             type_rpg: "RPG & Simulation",
             type_idle_rpg: "Incremental Idle RPG",
             type_cyber: "Cyberpunk OS",
@@ -198,7 +202,7 @@ document.addEventListener('DOMContentLoaded', () => {
             proj_scape_desc: "Incremental fantasy idle RPG. Advance combat masteries, explore perilous dungeons, and gather legendary loot even while offline.",
             proj_hacker_desc: "Tactical terminal and cybersecurity simulator. A matrix-style operating interface featuring penetration protocols and simulated networks.",
             proj_packet_desc: "Incremental game of data throughput and mass infrastructure. Harvest data packets, evolve quantum clusters, and command the grid.",
-            proj_passmap_desc: "High-security password and credential manager. A cryptographic digital vault engineered for total autonomy and privacy.",
+            proj_passmap_desc: "Professional cartographic suite with resilient offline navigation, intelligent POI cataloging, and live weather and air quality telemetry.",
             proj_budget_desc: "Capital management architecture featuring dynamic categorization, cashflow projections, and financial intelligence visualizers.",
             proj_gencalc_desc: "Scientific computing engine with real-time audit logs and ergonomic interface engineered for advanced mathematical workflows.",
             proj_pytools_desc: "Suite of Python automation scripts and tools for batch data processing, developer workflows, and system utilities.",
@@ -361,6 +365,11 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         // Update Pagination Indicators
+        const newsPagination = document.getElementById('newsPagination');
+        if (newsPagination) {
+            newsPagination.style.display = (totalPages <= 1) ? 'none' : 'flex';
+        }
+
         if (indicators) {
             indicators.innerHTML = Array.from({ length: totalPages }, (_, i) => i + 1).map(p => `
                 <button class="page-dot ${p === page ? 'active' : ''}" data-page="${p}">${p}</button>
@@ -682,11 +691,11 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         'modal-passmap': {
             title: "PassMap",
-            icon: "🔐",
-            type: "Cryptographic Security Vault",
-            status: "Online / Encrypted",
-            desc: "Cofre digital pessoal construído para garantir soberania de dados, organização de credenciais sigilosas e proteção absoluta de ponta a ponta.",
-            stack: ["Client-Side Encryption", "Zero-Knowledge Architecture", "Biometric Ready"],
+            icon: "🗺️",
+            type: "Geospatial & Cartographic Intelligence",
+            status: "Online / v2.11 Live",
+            desc: "Suíte cartográfica e de navegação tática desenhada para autonomia total. Oferece visualização fluida de mapas, download de tiles para operação 100% offline, gestão avançada de pontos de interesse (POIs) e telemetria ambiental em tempo real.",
+            stack: ["Offline Vector & Raster Tiles", "Local IndexedDB Storage", "Realtime Weather & AQI", "Cross-Platform PWA"],
             link: "https://passmap.app/"
         },
         'modal-budget': {

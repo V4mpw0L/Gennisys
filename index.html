@@ -16,7 +16,7 @@
     <link rel="icon" type="image/jpeg" href="assets/logo.jpg">
     <link rel="shortcut icon" type="image/jpeg" href="assets/logo.jpg">
     <link rel="apple-touch-icon" href="assets/logo.jpg">
-    <link rel="manifest" href="manifest.json?v=2.1.0">
+    <link rel="manifest" href="manifest.json?v=2.1.1">
     
     <!-- PWA & Mobile Web Capabilities -->
     <meta name="theme-color" content="#0b0d10">
@@ -29,7 +29,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     
-    <link rel="stylesheet" href="style.css?v=3.0.0">
+    <link rel="stylesheet" href="style.css?v=2.1.1">
 </head>
 <body data-theme="emerald">
     <!-- Background Canvas -->
@@ -173,245 +173,34 @@
                 <!-- Filter Tabs -->
                 <div class="category-filter" data-reveal>
                     <button class="filter-btn active" data-filter="all" data-i18n="filter_all">Todos</button>
-                    <button class="filter-btn" data-filter="games" data-i18n="filter_games">Jogos & RPG</button>
-                    <button class="filter-btn" data-filter="cyber" data-i18n="filter_cyber">Sistemas & Cyber</button>
-                    <button class="filter-btn" data-filter="utilities" data-i18n="filter_tools">Utilitários</button>
+                    <button class="filter-btn" data-filter="navigation" data-i18n="filter_navigation">Mapas & Navegação</button>
                 </div>
 
                 <!-- Projects Grid -->
-                <div class="creations-grid" id="creationsGrid">
+                <div class="creations-grid single-featured" id="creationsGrid">
                     <!-- Project 1: PassMap -->
-                    <article class="creation-card" data-category="cyber" data-reveal>
+                    <article class="creation-card" data-category="navigation" data-reveal>
                         <div class="card-glow-bg"></div>
                         <div class="card-aura-edge"></div>
                         <div class="card-header">
                             <span class="project-badge status-live" data-i18n="badge_live">ONLINE</span>
-                            <span class="project-type" data-i18n="type_security">Criptografia & Cofre</span>
+                            <span class="project-type" data-i18n="type_navigation">Mapas & Geolocalização</span>
                         </div>
                         <div class="card-body">
-                            <div class="card-rune"><img src="https://passmap.app/favicon.ico" alt="PassMap" class="app-favicon-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline';" /><span class="emoji-fallback" style="display:none;">🔐</span></div>
+                            <div class="card-rune"><img src="https://passmap.app/icon-192.png" alt="PassMap" class="app-favicon-img" onerror="this.src='assets/logo.jpg';" /></div>
                             <h3 class="card-title">PassMap</h3>
                             <p class="card-summary" data-i18n="proj_passmap_desc">
-                                Gerenciador de segurança de senhas e dados sigilosos. Uma fortaleza de privacidade digital construída para autonomia e proteção absoluta.
+                                Suíte cartográfica profissional com navegação offline, catálogo inteligente de POIs e telemetria de clima e qualidade do ar em tempo real.
                             </p>
                             <div class="card-tags">
-                                <span class="tag">Privacidade</span>
-                                <span class="tag">Cofre</span>
-                                <span class="tag">Segurança</span>
+                                <span class="tag">Navegação Offline</span>
+                                <span class="tag">POIs & Listas</span>
+                                <span class="tag">Tempo Real</span>
+                                <span class="tag">PWA & Mobile</span>
                             </div>
                         </div>
                         <div class="card-footer">
                             <a href="https://passmap.app/" target="_blank" rel="noopener noreferrer" class="launch-btn">
-                                <span data-i18n="btn_access">Acessar</span>
-                                <svg class="launch-icon" viewBox="0 0 16 16" fill="none">
-                                    <path d="M3 13L13 3M13 3H6M13 3V10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-                                </svg>
-                            </a>
-                        </div>
-                    </article>
-
-                    <!-- Project 2: PyTools -->
-                    <article class="creation-card" data-category="utilities" data-reveal>
-                        <div class="card-glow-bg"></div>
-                        <div class="card-aura-edge"></div>
-                        <div class="card-header">
-                            <span class="project-badge status-live" data-i18n="badge_live">ONLINE</span>
-                            <span class="project-type" data-i18n="type_python">Automação & Python</span>
-                        </div>
-                        <div class="card-body">
-                            <div class="card-rune"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/python/python-original.svg" alt="PyTools" class="app-favicon-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline';" /><span class="emoji-fallback" style="display:none;">🐍</span></div>
-                            <h3 class="card-title">PyTools</h3>
-                            <p class="card-summary" data-i18n="proj_pytools_desc">
-                                Suíte de ferramentas e scripts em Python para automação de tarefas, processamento de dados e utilitários de sistema.
-                            </p>
-                            <div class="card-tags">
-                                <span class="tag">Python</span>
-                                <span class="tag">Automação</span>
-                                <span class="tag">DevTools</span>
-                            </div>
-                        </div>
-                        <div class="card-footer">
-                            <a href="https://github.com/V4mpw0L/PyTools" target="_blank" rel="noopener noreferrer" class="launch-btn">
-                                <span data-i18n="btn_access">Acessar</span>
-                                <svg class="launch-icon" viewBox="0 0 16 16" fill="none">
-                                    <path d="M3 13L13 3M13 3H6M13 3V10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-                                </svg>
-                            </a>
-                        </div>
-                    </article>
-
-                    <!-- Project 3: GenCalc -->
-                    <article class="creation-card" data-category="utilities" data-reveal>
-                        <div class="card-glow-bg"></div>
-                        <div class="card-aura-edge"></div>
-                        <div class="card-header">
-                            <span class="project-badge status-live" data-i18n="badge_live">ONLINE</span>
-                            <span class="project-type" data-i18n="type_calc">Computação de Precisão</span>
-                        </div>
-                        <div class="card-body">
-                            <div class="card-rune"><img src="https://v4mpw0l.github.io/GenCalc/assets/icons/calculator128px.png" alt="GenCalc" class="app-favicon-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline';" /><span class="emoji-fallback" style="display:none;">🧮</span></div>
-                            <h3 class="card-title">GenCalc</h3>
-                            <p class="card-summary" data-i18n="proj_gencalc_desc">
-                                Calculadora científica com histórico de auditoria instantâneo e layout ergonômico feito para cálculos avançados e operações complexas.
-                            </p>
-                            <div class="card-tags">
-                                <span class="tag">Matemática</span>
-                                <span class="tag">Cálculo</span>
-                                <span class="tag">Precisão</span>
-                            </div>
-                        </div>
-                        <div class="card-footer">
-                            <a href="https://v4mpw0l.github.io/GenCalc/" target="_blank" rel="noopener noreferrer" class="launch-btn">
-                                <span data-i18n="btn_access">Acessar</span>
-                                <svg class="launch-icon" viewBox="0 0 16 16" fill="none">
-                                    <path d="M3 13L13 3M13 3H6M13 3V10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-                                </svg>
-                            </a>
-                        </div>
-                    </article>
-
-                    <!-- Project 4: Hacker0s -->
-                    <article class="creation-card" data-category="cyber" data-reveal>
-                        <div class="card-glow-bg"></div>
-                        <div class="card-aura-edge"></div>
-                        <div class="card-header">
-                            <span class="project-badge status-live" data-i18n="badge_live">ONLINE</span>
-                            <span class="project-type" data-i18n="type_cyber">Cyberpunk OS</span>
-                        </div>
-                        <div class="card-body">
-                            <div class="card-rune"><img src="https://v4mpw0l.github.io/hacker0S/favicon.ico" alt="Hacker0s" class="app-favicon-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline';" /><span class="emoji-fallback" style="display:none;">💻</span></div>
-                            <h3 class="card-title">Hacker0s</h3>
-                            <p class="card-summary" data-i18n="proj_hacker_desc">
-                                Simulador de terminal e cibersegurança tática. Uma experiência de interface estilo matriz com protocolos de penetração, decifração e redes simuladas.
-                            </p>
-                            <div class="card-tags">
-                                <span class="tag">Terminal</span>
-                                <span class="tag">Cibersegurança</span>
-                                <span class="tag">Simulação</span>
-                            </div>
-                        </div>
-                        <div class="card-footer">
-                            <a href="https://v4mpw0l.github.io/hacker0S/" target="_blank" rel="noopener noreferrer" class="launch-btn">
-                                <span data-i18n="btn_access">Acessar</span>
-                                <svg class="launch-icon" viewBox="0 0 16 16" fill="none">
-                                    <path d="M3 13L13 3M13 3H6M13 3V10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-                                </svg>
-                            </a>
-                        </div>
-                    </article>
-
-                    <!-- Project 5: Scape IDLE RPG -->
-                    <article class="creation-card" data-category="games" data-reveal>
-                        <div class="card-glow-bg"></div>
-                        <div class="card-aura-edge"></div>
-                        <div class="card-header">
-                            <span class="project-badge status-live" data-i18n="badge_live">ONLINE</span>
-                            <span class="project-type" data-i18n="type_idle_rpg">RPG Incremental</span>
-                        </div>
-                        <div class="card-body">
-                            <div class="card-rune"><img src="https://v4mpw0l.github.io/RPGidle/icon-192.png" alt="Scape IDLE RPG" class="app-favicon-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline';" /><span class="emoji-fallback" style="display:none;">⚔️</span></div>
-                            <h3 class="card-title">Scape IDLE RPG</h3>
-                            <p class="card-summary" data-i18n="proj_scape_desc">
-                                RPG de progressão incremental e fantasia medieval. Evolua habilidades de combate, enfrente masmorras e colete saques lendários mesmo offline.
-                            </p>
-                            <div class="card-tags">
-                                <span class="tag">RPG</span>
-                                <span class="tag">Incremental</span>
-                                <span class="tag">Medieval</span>
-                            </div>
-                        </div>
-                        <div class="card-footer">
-                            <a href="https://v4mpw0l.github.io/RPGidle/" target="_blank" rel="noopener noreferrer" class="launch-btn">
-                                <span data-i18n="btn_access">Acessar</span>
-                                <svg class="launch-icon" viewBox="0 0 16 16" fill="none">
-                                    <path d="M3 13L13 3M13 3H6M13 3V10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-                                </svg>
-                            </a>
-                        </div>
-                    </article>
-
-                    <!-- Project 6: FazendaRPG -->
-                    <article class="creation-card" data-category="games" data-reveal>
-                        <div class="card-glow-bg"></div>
-                        <div class="card-aura-edge"></div>
-                        <div class="card-header">
-                            <span class="project-badge status-live" data-i18n="badge_live">ONLINE</span>
-                            <span class="project-type" data-i18n="type_rpg">RPG & Simulação</span>
-                        </div>
-                        <div class="card-body">
-                            <div class="card-rune"><img src="https://v4mpw0l.github.io/FazendaRPG/assets/icon-192.png" alt="FazendaRPG" class="app-favicon-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline';" /><span class="emoji-fallback" style="display:none;">🌾</span></div>
-                            <h3 class="card-title">FazendaRPG</h3>
-                            <p class="card-summary" data-i18n="proj_fazenda_desc">
-                                Um universo imersivo de simulação rural e RPG. Desenvolva sua propriedade, gerencie colheitas, enfrente desafios sazonais e evolua seu império agrícola.
-                            </p>
-                            <div class="card-tags">
-                                <span class="tag">Simulação</span>
-                                <span class="tag">Estratégia</span>
-                                <span class="tag">RPG</span>
-                            </div>
-                        </div>
-                        <div class="card-footer">
-                            <a href="https://v4mpw0l.github.io/FazendaRPG/" target="_blank" rel="noopener noreferrer" class="launch-btn">
-                                <span data-i18n="btn_access">Acessar</span>
-                                <svg class="launch-icon" viewBox="0 0 16 16" fill="none">
-                                    <path d="M3 13L13 3M13 3H6M13 3V10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-                                </svg>
-                            </a>
-                        </div>
-                    </article>
-
-                    <!-- Project 7: BudgetBox -->
-                    <article class="creation-card" data-category="utilities" data-reveal>
-                        <div class="card-glow-bg"></div>
-                        <div class="card-aura-edge"></div>
-                        <div class="card-header">
-                            <span class="project-badge status-live" data-i18n="badge_live">ONLINE</span>
-                            <span class="project-type" data-i18n="type_fin">Estratégia Financeira</span>
-                        </div>
-                        <div class="card-body">
-                            <div class="card-rune"><img src="https://v4mpw0l.github.io/BudgetBox/assets/icons/icon.svg" alt="BudgetBox" class="app-favicon-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline';" /><span class="emoji-fallback" style="display:none;">💰</span></div>
-                            <h3 class="card-title">BudgetBox</h3>
-                            <p class="card-summary" data-i18n="proj_budget_desc">
-                                Sistema de controle patrimonial com categorização dinâmica, projeções orçamentárias e dashboards de inteligência financeira.
-                            </p>
-                            <div class="card-tags">
-                                <span class="tag">Finanças</span>
-                                <span class="tag">Dashboards</span>
-                                <span class="tag">Controle</span>
-                            </div>
-                        </div>
-                        <div class="card-footer">
-                            <a href="https://v4mpw0l.github.io/BudgetBox/" target="_blank" rel="noopener noreferrer" class="launch-btn">
-                                <span data-i18n="btn_access">Acessar</span>
-                                <svg class="launch-icon" viewBox="0 0 16 16" fill="none">
-                                    <path d="M3 13L13 3H6M13 3V10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-                                </svg>
-                            </a>
-                        </div>
-                    </article>
-
-                    <!-- Project 8: PacketClicker MMO -->
-                    <article class="creation-card" data-category="games" data-reveal>
-                        <div class="card-glow-bg"></div>
-                        <div class="card-aura-edge"></div>
-                        <div class="card-header">
-                            <span class="project-badge status-live" data-i18n="badge_live">ONLINE</span>
-                            <span class="project-type" data-i18n="type_mmo">MMO Incremental</span>
-                        </div>
-                        <div class="card-body">
-                            <div class="card-rune"><img src="https://v4mpw0l.github.io/packetclickermmo/src/assets/packet-512.png" alt="PacketClicker" class="app-favicon-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline';" /><span class="emoji-fallback" style="display:none;">📦</span></div>
-                            <h3 class="card-title">PacketClicker MMO</h3>
-                            <p class="card-summary" data-i18n="proj_packet_desc">
-                                Jogo incremental de arquitetura de dados e tráfego massivo. Colete pacotes digitais, evolua servidores quânticos e domine a infraestrutura global.
-                            </p>
-                            <div class="card-tags">
-                                <span class="tag">Incremental</span>
-                                <span class="tag">Redes</span>
-                                <span class="tag">Evolução</span>
-                            </div>
-                        </div>
-                        <div class="card-footer">
-                            <a href="https://v4mpw0l.github.io/packetclickermmo/" target="_blank" rel="noopener noreferrer" class="launch-btn">
                                 <span data-i18n="btn_access">Acessar</span>
                                 <svg class="launch-icon" viewBox="0 0 16 16" fill="none">
                                     <path d="M3 13L13 3M13 3H6M13 3V10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
@@ -565,7 +354,7 @@
     </button>
 
     <!-- Scripts -->
-    <script src="noticias.js?v=2.1.0"></script>
-    <script src="main.js?v=2.1.0"></script>
+    <script src="noticias.js?v=2.1.1"></script>
+    <script src="main.js?v=2.1.1"></script>
 </body>
 </html>
