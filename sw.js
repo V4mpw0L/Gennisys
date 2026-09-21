@@ -1,6 +1,6 @@
-// GENNISYS STUDIO — Core Service Worker (Stealth PWA Auto-Updater)
-const APP_VERSION = '2.1.2';
-const CACHE_NAME = `gennisys-core-v${APP_VERSION}`;
+// SYSCORV LABS — Core Service Worker (Stealth PWA Auto-Updater)
+const APP_VERSION = '3.0.0';
+const CACHE_NAME = `syscorv-core-v${APP_VERSION}`;
 
 const PRECACHE_ASSETS = [
   './',
@@ -9,7 +9,9 @@ const PRECACHE_ASSETS = [
   `./main.js?v=${APP_VERSION}`,
   `./noticias.js?v=${APP_VERSION}`,
   `./manifest.json?v=${APP_VERSION}`,
-  './assets/logo.jpg',
+  './assets/syscorv-icon.png',
+  './assets/icon-192.png',
+  './favicon.png',
   './favicon.ico'
 ];
 

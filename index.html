@@ -3,318 +3,592 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-    <title>GENNISYS — Independent App & Game Studio</title>
-    <meta name="description" content="Gennisys is an autonomous game and app laboratory. We conceive, design, and forge proprietary digital universes. No clients. Pure vision.">
-    
+    <title>SYSCORV — Autonomous Software & Spatial Systems Lab</title>
+    <meta name="description" content="Syscorv is an independent software engineering corporation and research laboratory. We forge proprietary, local-first, zero-knowledge digital systems and spatial applications.">
+    <meta name="keywords" content="Syscorv, Software Studio, Autonomous Systems, Local-First, PassMap, Spatial Intelligence, Tiago Cardoso, v4mpw0l, Engineering Lab">
+    <meta name="author" content="Syscorv">
+
     <!-- Open Graph / Meta -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://gennisys.com/">
-    <meta property="og:title" content="GENNISYS — Forging Digital Universes">
-    <meta property="og:description" content="Autonomous game & app laboratory. Handcrafted digital experiences built in-house.">
+    <meta property="og:url" content="https://syscorv.com/">
+    <meta property="og:title" content="SYSCORV — Systems Intelligence. Proprietary Horizons.">
+    <meta property="og:description" content="Autonomous software laboratory. Handcrafted digital experiences, spatial cartography, and resilient local-first applications.">
+    <meta property="og:image" content="assets/logoandname.jpg">
     <meta property="twitter:card" content="summary_large_image">
-    <!-- Favicon & PWA Icons -->
-    <link rel="icon" type="image/jpeg" href="assets/logo.jpg">
-    <link rel="shortcut icon" type="image/jpeg" href="assets/logo.jpg">
-    <link rel="apple-touch-icon" href="assets/logo.jpg">
-    <link rel="manifest" href="manifest.json?v=2.1.2">
-    
-    <!-- PWA & Mobile Web Capabilities -->
-    <meta name="theme-color" content="#0b0d10">
+    <meta property="twitter:title" content="SYSCORV — Systems Intelligence">
+    <meta property="twitter:description" content="Autonomous software engineering studio and spatial systems lab.">
+    <meta property="twitter:image" content="assets/logoandname.jpg">
+
+    <!-- Favicons & Touch Icons -->
+    <link rel="icon" type="image/png" sizes="64x64" href="favicon.png">
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+    <link rel="apple-touch-icon" href="assets/icon-192.png">
+    <link rel="manifest" href="manifest.json?v=3.1.2">
+
+    <!-- Theme Color & Mobile Capabilities -->
+    <meta name="theme-color" content="#07090e">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="apple-mobile-web-app-title" content="Gennisys">
-    
-    <!-- Google Fonts: Inter & JetBrains Mono -->
+    <meta name="apple-mobile-web-app-title" content="Syscorv">
+
+    <!-- Google Fonts: Space Grotesk, Inter, JetBrains Mono -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    
-    <link rel="stylesheet" href="style.css?v=2.1.2">
-</head>
-<body data-theme="emerald">
-    <!-- Background Canvas -->
-    <canvas id="ether-canvas" aria-hidden="true"></canvas>
-    <div class="ambient-glow" aria-hidden="true"></div>
-    <div class="vignette-overlay" aria-hidden="true"></div>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700;800&display=swap" rel="stylesheet">
 
-    <!-- Top Navigation Bar -->
-    <header class="studio-header">
+    <link rel="stylesheet" href="style.css?v=3.1.2">
+</head>
+<body data-theme-mode="dark">
+    <!-- Interactive Canvas Spotlight & Ambient Glow (No grid, smooth mouse tracking) -->
+    <canvas id="cyber-canvas" aria-hidden="true"></canvas>
+    <div class="ambient-glow" aria-hidden="true"></div>
+
+    <!-- Main Navigation Bar -->
+    <header class="sys-header">
         <div class="header-container">
-            <a href="#hero" class="brand-crest" aria-label="Gennisys Studio Home">
-                <img src="assets/logo.jpg" alt="Gennisys Studio" class="brand-logo-img">
-                <div class="brand-text">
-                    <span class="brand-title">GENNISYS</span>
-                    <span class="brand-sub">STUDIO</span>
+            <a href="#hero" class="sys-brand" aria-label="Syscorv Home">
+                <div class="brand-logo-wrap">
+                    <img src="assets/syscorv-icon.png" alt="Syscorv Logo" class="brand-logo-img">
                 </div>
+                <span class="brand-name">SYSCORV</span>
             </a>
 
-            <!-- Desktop Navigation -->
-            <nav class="desktop-nav" aria-label="Navegação Principal">
-                <a href="#news" class="nav-link" data-i18n="nav_news">Notícias</a>
-                <a href="#creations" class="nav-link" data-i18n="nav_creations">Apps</a>
-                <a href="#manifesto" class="nav-link" data-i18n="nav_manifesto">Manifesto</a>
-                <a href="#nexus" class="nav-link" data-i18n="nav_nexus">Sobre</a>
+            <!-- Desktop Links -->
+            <nav class="sys-nav-desktop" aria-label="Main Navigation">
+                <a href="#hero" class="nav-link active" data-i18n="nav_overview">Overview</a>
+                <a href="#ecosystem" class="nav-link" data-i18n="nav_ecosystem">Ecosystem</a>
+                <a href="#architecture" class="nav-link" data-i18n="nav_architecture">Architecture</a>
+                <a href="#transmissions" class="nav-link" data-i18n="nav_transmissions">Transmissions</a>
+                <a href="#founder" class="nav-link" data-i18n="nav_founder">Leadership</a>
+                <a href="#contact" class="nav-link" data-i18n="nav_contact">Contact</a>
             </nav>
 
-            <!-- Control Actions (Mobile Menu) -->
-            <div class="header-actions">
-                <!-- Mobile Menu Hamburger -->
-                <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Abrir Menu" aria-expanded="false">
-                    <span class="bar bar-top"></span>
-                    <span class="bar bar-bottom"></span>
+            <!-- Header Action Controls -->
+            <div class="sys-header-controls">
+                <a href="#ecosystem" class="launch-app-btn desktop-only" data-i18n="nav_cta_apps">
+                    <span>Explore Apps</span>
+                    <svg viewBox="0 0 16 16" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M3 13L13 3M13 3H6M13 3V10" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </a>
+
+                <button type="button" id="mobileMenuBtn" class="control-btn mobile-menu-btn" aria-label="Toggle Menu" aria-expanded="false">
+                    <span class="hamburger-bar"></span>
+                    <span class="hamburger-bar"></span>
+                    <span class="hamburger-bar"></span>
                 </button>
             </div>
         </div>
     </header>
 
-    <!-- Mobile Drawer Navigation -->
-    <div class="mobile-drawer" id="mobileDrawer" aria-hidden="true">
-        <div class="drawer-inner">
-            <div class="drawer-sigil">
-                <img src="assets/logo.jpg" alt="Gennisys Studio" class="drawer-logo-img">
+    <!-- Mobile Drawer Menu -->
+    <div id="mobileDrawer" class="mobile-drawer" aria-hidden="true">
+        <div class="drawer-backdrop" id="drawerBackdrop"></div>
+        <div class="drawer-panel">
+            <div class="drawer-header">
+                <div class="sys-brand">
+                    <img src="assets/syscorv-icon.png" alt="Syscorv" class="brand-logo-img">
+                    <span class="brand-name">SYSCORV</span>
+                </div>
+                <button type="button" id="drawerCloseBtn" class="control-btn" aria-label="Close Menu">&times;</button>
             </div>
-            <nav class="mobile-nav-links">
-                <a href="#news" class="mobile-link" data-i18n="nav_news">Notícias</a>
-                <a href="#creations" class="mobile-link" data-i18n="nav_creations">Apps</a>
-                <a href="#manifesto" class="mobile-link" data-i18n="nav_manifesto">Manifesto</a>
-                <a href="#nexus" class="mobile-link" data-i18n="nav_nexus">Sobre</a>
+            <nav class="drawer-nav">
+                <a href="#hero" class="drawer-link" data-i18n="nav_overview">Overview</a>
+                <a href="#ecosystem" class="drawer-link" data-i18n="nav_ecosystem">Ecosystem</a>
+                <a href="#architecture" class="drawer-link" data-i18n="nav_architecture">Architecture</a>
+                <a href="#transmissions" class="drawer-link" data-i18n="nav_transmissions">Transmissions</a>
+                <a href="#founder" class="drawer-link" data-i18n="nav_founder">Leadership</a>
+                <a href="#contact" class="drawer-link" data-i18n="nav_contact">Contact</a>
             </nav>
             <div class="drawer-footer">
-                <span class="studio-status-indicator">
-                    <span class="pulse-dot"></span>
-                    <span data-i18n="status_servers">Servidores Online</span>
-                </span>
+                <a href="#ecosystem" class="launch-app-btn full-width" data-i18n="nav_cta_apps">Explore Apps</a>
             </div>
         </div>
     </div>
 
-    <main>
-        <!-- HERO SECTION -->
-        <section id="hero" class="hero-section">
-            <div class="hero-portal-wrap" aria-hidden="true">
-                <div class="portal-glow"></div>
-            </div>
-
-            <div class="hero-content">
-                <div class="hero-badge" data-reveal>
-                    <span data-i18n="hero_badge">ESTÚDIO INDEPENDENTE DE JOGOS & APLICATIVOS</span>
+    <main id="mainContent">
+        <!-- Hero Section -->
+        <section id="hero" class="sys-hero">
+            <div class="hero-container">
+                <!-- Centerpiece Cybernetic Raven Display -->
+                <div class="hero-visual-frame" data-reveal>
+                    <div class="raven-halo-ring"></div>
+                    <div class="raven-optic-core">
+                        <img src="assets/syscorv-icon.png" alt="Syscorv Raven" class="hero-raven-img">
+                    </div>
                 </div>
 
-                <h1 class="hero-title" data-reveal>
-                    <span class="line-1" data-i18n="hero_title_1">BEM-VINDO À GENNISYS</span>
-                    <span class="line-2 gradient-text" data-i18n="hero_title_2">FORJANDO NOVOS UNIVERSOS DIGITAIS</span>
-                </h1>
+                <div class="hero-content" data-reveal>
+                    <div class="hero-tag-badge">
+                        <span class="badge-dot"></span>
+                        <span data-i18n="hero_badge">AUTONOMOUS SOFTWARE & SPATIAL SYSTEMS LAB</span>
+                    </div>
 
-                <p class="hero-desc" data-reveal data-i18n="hero_desc">
-                    Somos um estúdio independente focado na concepção, design e engenharia de jogos imersivos, softwares utilitários e experiências digitais proprietárias. Conheça nossos mundos e ferramentas.
-                </p>
+                    <h1 class="hero-title">
+                        <span class="title-line gradient-text" data-i18n="hero_title_1">SYSTEMS ENGINEERING.</span>
+                        <span class="title-line highlight-text" data-i18n="hero_title_2">PROPRIETARY HORIZONS.</span>
+                    </h1>
 
-                <div class="hero-cta-group" data-reveal>
-                    <a href="#creations" class="primary-btn">
-                        <span class="btn-text" data-i18n="hero_btn_explore">Explorar Apps</span>
-                        <svg class="btn-arrow" viewBox="0 0 20 20" fill="none">
-                            <path d="M4 10H16M16 10L11 5M16 10L11 15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                    </a>
-                    <a href="#news" class="ghost-btn" data-i18n="hero_btn_news">
-                        Últimas Novidades
-                    </a>
+                    <p class="hero-subtitle" data-i18n="hero_subtitle">
+                        <strong>Syscorv</strong> is an independent technology corporation and software engineering laboratory. We conceive, architect, and operate resilient applications, <em>local-first</em> architectures, spatial telemetry, and autonomous digital universes.
+                    </p>
+
+                    <div class="hero-actions">
+                        <a href="#ecosystem" class="btn btn-primary" data-i18n="hero_cta_explore">
+                            <span>Explore Ecosystem</span>
+                            <svg viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M8 3v10M3 8l5 5 5-5" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </a>
+                        <a href="#architecture" class="btn btn-secondary" data-i18n="hero_cta_arch">
+                            <span>Engineering Directives</span>
+                            <svg viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M3 13L13 3M13 3H6M13 3V10" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Technical Telemetry Strip -->
+            <div class="telemetry-strip" data-reveal>
+                <div class="telemetry-item">
+                    <span class="telemetry-label" data-i18n="telem_label_1">AUTONOMY</span>
+                    <span class="telemetry-value" data-i18n="telem_val_1">100% In-House</span>
+                    <span class="telemetry-sub" data-i18n="telem_sub_1">Zero investors or architectural debt</span>
+                </div>
+                <div class="telemetry-item">
+                    <span class="telemetry-label" data-i18n="telem_label_2">ARCHITECTURE</span>
+                    <span class="telemetry-value" data-i18n="telem_val_2">Local-First</span>
+                    <span class="telemetry-sub" data-i18n="telem_sub_2">Unconditional offline availability</span>
+                </div>
+                <div class="telemetry-item">
+                    <span class="telemetry-label" data-i18n="telem_label_3">PRIVACY</span>
+                    <span class="telemetry-value" data-i18n="telem_val_3">Zero-Knowledge</span>
+                    <span class="telemetry-sub" data-i18n="telem_sub_3">Data strictly resides on user devices</span>
+                </div>
+                <div class="telemetry-item">
+                    <span class="telemetry-label" data-i18n="telem_label_4">EXECUTION</span>
+                    <span class="telemetry-value" data-i18n="telem_val_4">60 FPS Hardware</span>
+                    <span class="telemetry-sub" data-i18n="telem_sub_4">GPU-accelerated vector pipelines</span>
                 </div>
             </div>
         </section>
 
-        <!-- NEWS / STUDIO DISPATCHES SECTION (NOW 01) -->
-        <section id="news" class="section news-section">
+        <!-- Ecosystem Section (Corporate Portfolio & Flagship PassMap) -->
+        <section id="ecosystem" class="sys-section ecosystem-section">
             <div class="section-container">
-                <div class="section-header-row" data-reveal>
-                    <div class="section-tag">
-                        <span class="tag-number">01</span>
-                        <span class="tag-title" data-i18n="news_tag">NOTÍCIAS & ATUALIZAÇÕES</span>
+                <div class="section-header" data-reveal>
+                    <div class="section-index">
+                        <span class="index-num">01</span>
+                        <span class="index-title" data-i18n="eco_index_title">PROPRIETARY ECOSYSTEM</span>
                     </div>
-                    <h2 class="section-heading" data-i18n="news_heading">Últimas Notícias</h2>
-                    <p class="section-subtitle" data-i18n="news_sub">
-                        Acompanhe as notas de atualização, registros de desenvolvimento e comunicados oficiais do estúdio.
+                    <h2 class="section-title" data-i18n="eco_heading">Syscorv Active Systems</h2>
+                    <p class="section-desc" data-i18n="eco_desc">
+                        Engineering and operation of high-performance proprietary platforms, spatial intelligence, and digital engines.
                     </p>
                 </div>
 
-                <div class="news-grid" id="newsGrid">
-                    <!-- Dinamicamente gerado a partir do noticias.js -->
-                </div>
+                <!-- Featured Masterpiece PassMap Card -->
+                <div class="passmap-hero-wrapper" data-reveal>
+                    <article class="passmap-master-card">
+                        <div class="passmap-card-glow"></div>
 
-                <!-- News Pagination Controls -->
-                <div class="news-pagination" id="newsPagination">
-                    <button class="page-nav-btn prev" id="newsPrevBtn" disabled aria-label="Página Anterior">←</button>
-                    <div class="page-indicators" id="newsPageIndicators">
-                        <button class="page-dot active" data-page="1">1</button>
-                        <button class="page-dot" data-page="2">2</button>
-                    </div>
-                    <button class="page-nav-btn next" id="newsNextBtn" aria-label="Próxima Página">→</button>
-                </div>
-            </div>
-        </section>
-
-                <!-- CREATIONS SECTION (THE FORGE) -->
-        <section id="creations" class="section creations-section">
-            <div class="section-container">
-                <div class="section-header-row" data-reveal>
-                    <div class="section-tag">
-                        <span class="tag-number">02</span>
-                        <span class="tag-title" data-i18n="creations_tag">ECOSSISTEMA PROPRIETÁRIO</span>
-                    </div>
-                    <h2 class="section-heading" data-i18n="creations_heading">Apps</h2>
-                    <p class="section-subtitle" data-i18n="creations_sub">
-                        Obras autorais em operação. Aplicativos, simulações e jogos moldados nos laboratórios da Gennisys.
-                    </p>
-                </div>
-
-                <!-- Filter Tabs -->
-                <div class="category-filter" data-reveal>
-                    <button class="filter-btn active" data-filter="all" data-i18n="filter_all">Todos</button>
-                    <button class="filter-btn" data-filter="navigation" data-i18n="filter_navigation">Mapas & Navegação</button>
-                </div>
-
-                <!-- Projects Grid -->
-                <div class="creations-grid single-featured" id="creationsGrid">
-                    <!-- Project 1: PassMap -->
-                    <article class="creation-card" data-category="navigation" data-reveal>
-                        <div class="card-glow-bg"></div>
-                        <div class="card-aura-edge"></div>
-                        <div class="card-header">
-                            <span class="project-badge status-live" data-i18n="badge_live">ONLINE</span>
-                            <span class="project-type" data-i18n="type_navigation">Mapas & Geolocalização</span>
-                        </div>
-                        <div class="card-body">
-                            <div class="card-rune"><img src="https://passmap.app/icon-192.png" alt="PassMap" class="app-favicon-img" onerror="this.src='assets/logo.jpg';" /></div>
-                            <h3 class="card-title">PassMap</h3>
-                            <p class="card-summary" data-i18n="proj_passmap_desc">
-                                Suíte cartográfica profissional com navegação offline, catálogo inteligente de POIs e telemetria de clima e qualidade do ar em tempo real.
-                            </p>
-                            <div class="card-tags">
-                                <span class="tag">Navegação Offline</span>
-                                <span class="tag">POIs & Listas</span>
-                                <span class="tag">Tempo Real</span>
-                                <span class="tag">PWA & Mobile</span>
+                        <div class="passmap-card-inner">
+                            <div class="passmap-header-row">
+                                <div class="passmap-identity">
+                                    <div class="passmap-icon-box">
+                                        <img src="https://passmap.app/icon-192.png" alt="PassMap Logo" class="passmap-icon-img" onerror="this.src='assets/syscorv-icon.png'">
+                                    </div>
+                                    <div class="passmap-titles">
+                                        <div class="passmap-title-line">
+                                            <h3 class="passmap-title">PassMap</h3>
+                                            <span class="passmap-version-badge">v2.11.50</span>
+                                        </div>
+                                        <span class="passmap-subtitle" data-i18n="passmap_subtitle">FLAGSHIP // SPATIAL INTELLIGENCE & CARTOGRAPHY SUITE</span>
+                                    </div>
+                                </div>
+                                <div class="passmap-status-pill">
+                                    <span class="live-pulse-dot"></span>
+                                    <span data-i18n="badge_live">PRODUCTION ONLINE</span>
+                                </div>
                             </div>
-                        </div>
-                        <div class="card-footer">
-                            <a href="https://passmap.app/" target="_blank" rel="noopener noreferrer" class="launch-btn">
-                                <span data-i18n="btn_access">Acessar</span>
-                                <svg class="launch-icon" viewBox="0 0 16 16" fill="none">
-                                    <path d="M3 13L13 3M13 3H6M13 3V10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-                                </svg>
-                            </a>
+
+                            <p class="passmap-description" data-i18n="passmap_summary">
+                                <strong>PassMap</strong> is Syscorv's flagship software in active commercial operation. Unifying 100% offline vector cartography, verified database of 540+ logistics hubs and gate access codes, real-time meteorology and air quality telemetry, gyroscopic compass, and 16 custom animated GPS markers rendered at 60 FPS.
+                            </p>
+
+                            <!-- Feature Grid Highlights -->
+                            <div class="passmap-features-grid">
+                                <div class="feature-box">
+                                    <div class="feature-icon">
+                                        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a8 8 0 0 0-8 8c0 5.25 8 12 8 12s8-6.75 8-12a8 8 0 0 0-8-8z"/><circle cx="12" cy="10" r="3"/></svg>
+                                    </div>
+                                    <div class="feature-content">
+                                        <h4 data-i18n="f1_title">540+ Verified Locations</h4>
+                                        <p data-i18n="f1_desc">Unified gate codes and critical logistics dispatches.</p>
+                                    </div>
+                                </div>
+
+                                <div class="feature-box">
+                                    <div class="feature-icon">
+                                        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"/><rect x="2" y="14" width="20" height="8" rx="2" ry="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg>
+                                    </div>
+                                    <div class="feature-content">
+                                        <h4 data-i18n="f2_title">100% Offline-First</h4>
+                                        <p data-i18n="f2_desc">Full vector tile caching & client IndexedDB.</p>
+                                    </div>
+                                </div>
+
+                                <div class="feature-box">
+                                    <div class="feature-icon">
+                                        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                                    </div>
+                                    <div class="feature-content">
+                                        <h4 data-i18n="f3_title">Live Weather & AQI Telemetry</h4>
+                                        <p data-i18n="f3_desc">Dynamic 7-band thermal feel & air purity index.</p>
+                                    </div>
+                                </div>
+
+                                <div class="feature-box">
+                                    <div class="feature-icon">
+                                        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+                                    </div>
+                                    <div class="feature-content">
+                                        <h4 data-i18n="f4_title">16 GPS Marker Animations</h4>
+                                        <p data-i18n="f4_desc">Integrated Vortex, Galaxy, Aurora, Storm & Cyber.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Chips & Launch CTA -->
+                            <div class="passmap-footer-row">
+                                <div class="card-tech-chips">
+                                    <span class="chip" data-i18n="chip_offline">Offline PWA</span>
+                                    <span class="chip" data-i18n="chip_zero_cloud">Zero-Cloud Tracking</span>
+                                    <span class="chip" data-i18n="chip_languages">7 Synchronized Languages</span>
+                                    <span class="chip" data-i18n="chip_sw">Service Worker Build 168</span>
+                                    <span class="chip" data-i18n="chip_cross_platform">iOS & Android Ready</span>
+                                </div>
+
+                                <a href="https://passmap.app/" target="_blank" rel="noopener noreferrer" class="btn btn-passmap-launch">
+                                    <span data-i18n="btn_launch_passmap">Launch Official PassMap ↗</span>
+                                    <svg viewBox="0 0 16 16" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2">
+                                        <path d="M3 13L13 3M13 3H6M13 3V10" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </a>
+                            </div>
                         </div>
                     </article>
-                </div>
 
-                <!-- Creations Pagination Controls -->
-                <div class="creations-pagination" id="creationsPagination">
-                    <button class="page-nav-btn prev" id="creationsPrevBtn" disabled aria-label="Página Anterior">←</button>
-                    <div class="page-indicators" id="creationsPageIndicators"></div>
-                    <button class="page-nav-btn next" id="creationsNextBtn" aria-label="Próxima Página">→</button>
+                    <!-- Ecosystem Expansion Pipeline Banner -->
+                    <div class="ecosystem-pipeline-card" data-reveal>
+                        <div class="pipeline-badge" data-i18n="eco_pipeline_badge">SYSCORV LAB PIPELINE</div>
+                        <p class="pipeline-text" data-i18n="eco_pipeline_desc">
+                            Syscorv maintains software projects in active development across procedural WebGL rendering, decentralized P2P networking engines, and resilient spatial suites. Releases are published via official dispatches.
+                        </p>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <!-- MANIFESTO SECTION (NOW 03) -->
-        <section id="manifesto" class="section manifesto-section">
+        <!-- Engineering Architecture & Philosophy Section -->
+        <section id="architecture" class="sys-section architecture-section">
             <div class="section-container">
-                <div class="section-tag" data-reveal>
-                    <span class="tag-number">03</span>
-                    <span class="tag-title" data-i18n="manifesto_tag">DIRETRIZES DO ESTÚDIO</span>
+                <div class="section-header" data-reveal>
+                    <div class="section-index">
+                        <span class="index-num">02</span>
+                        <span class="index-title" data-i18n="arch_index_title">TECHNICAL DIRECTIVES</span>
+                    </div>
+                    <h2 class="section-title" data-i18n="arch_heading">The Syscorv Engineering Philosophy</h2>
+                    <p class="section-desc" data-i18n="arch_desc">
+                        We forge software under four inviolable principles ensuring our creations endure for decades without technical rot.
+                    </p>
                 </div>
 
-                <div class="manifesto-grid">
-                    <div class="manifesto-lead" data-reveal>
-                        <h2 class="section-heading" data-i18n="manifesto_title">Princípios de Engenharia</h2>
-                        <p class="manifesto-quote" data-i18n="manifesto_quote">
-                            "Operamos com discrição, foco e rigor técnico. Construímos software proprietário com altos padrões de engenharia, privacidade por design e total independência."
+                <div class="pillars-grid">
+                    <div class="pillar-card" data-reveal>
+                        <div class="pillar-num">01</div>
+                        <div class="pillar-icon">
+                            <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+                                <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+                                <line x1="12" y1="22.08" x2="12" y2="12"></line>
+                            </svg>
+                        </div>
+                        <h3 class="pillar-title" data-i18n="pillar_1_title">Local-First Resilience</h3>
+                        <p class="pillar-text" data-i18n="pillar_1_text">
+                            Software must never be hostage to remote servers. Every Syscorv tool stores its master state client-side (IndexedDB/CacheStorage), operating with 100% capacity regardless of internet connectivity.
                         </p>
                     </div>
 
-                    <div class="pillars-wrapper">
-                        <!-- Pillar 1 -->
-                        <div class="pillar-card" data-reveal>
-                            <h3 class="pillar-title" data-i18n="pillar_1_title">Arquitetura Independente</h3>
-                            <p class="pillar-desc" data-i18n="pillar_1_desc">
-                                Mantemos soberania técnica completa sobre nossas bases de código, infraestrutura e roadmap, desenvolvendo exclusivamente soluções proprietárias.
-                            </p>
+                    <div class="pillar-card" data-reveal>
+                        <div class="pillar-num">02</div>
+                        <div class="pillar-icon">
+                            <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                                <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                            </svg>
                         </div>
+                        <h3 class="pillar-title" data-i18n="pillar_2_title">Zero-Knowledge Privacy</h3>
+                        <p class="pillar-text" data-i18n="pillar_2_text">
+                            User privacy is guaranteed by mathematics and architecture, not mere marketing clauses. We reject tracking beacons, data broker harvesting, and surveillance capitalism.
+                        </p>
+                    </div>
 
-                        <!-- Pillar 2 -->
-                        <div class="pillar-card" data-reveal>
-                            <h3 class="pillar-title" data-i18n="pillar_2_title">Privacidade por Design</h3>
-                            <p class="pillar-desc" data-i18n="pillar_2_desc">
-                                Nossas aplicações priorizam padrões zero-knowledge, processamento local e coleta mínima de dados. Desempenho e integridade vêm em primeiro lugar.
-                            </p>
+                    <div class="pillar-card" data-reveal>
+                        <div class="pillar-num">03</div>
+                        <div class="pillar-icon">
+                            <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                            </svg>
                         </div>
+                        <h3 class="pillar-title" data-i18n="pillar_3_title">Computational Efficiency</h3>
+                        <p class="pillar-text" data-i18n="pillar_3_text">
+                            Zero waste of CPU clock cycles or memory. We craft concise, high-speed code in modern Vanilla JS and Web APIs, ensuring instant startup times and sustained 60 FPS responsiveness.
+                        </p>
+                    </div>
 
-                        <!-- Pillar 3 -->
-                        <div class="pillar-card" data-reveal>
-                            <h3 class="pillar-title" data-i18n="pillar_3_title">Engenharia Seletiva</h3>
-                            <p class="pillar-desc" data-i18n="pillar_3_desc">
-                                Dedicamos nossos recursos a um portfólio restrito e selecionado, refinando cada projeto com precisão, estabilidade e durabilidade a longo prazo.
-                            </p>
+                    <div class="pillar-card" data-reveal>
+                        <div class="pillar-num">04</div>
+                        <div class="pillar-icon">
+                            <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="pillar-title" data-i18n="pillar_4_title">Aesthetics & Digital Craftsmanship</h3>
+                        <p class="pillar-text" data-i18n="pillar_4_text">
+                            Premium design is not cosmetic veneer, but an organic reflection of engineering precision. We construct immersive interfaces, calculated typography, and high-contrast obsidian palettes.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Official News & Releases Section -->
+        <section id="transmissions" class="sys-section news-section">
+            <div class="section-container">
+                <div class="section-header" data-reveal>
+                    <div class="section-index">
+                        <span class="index-num">03</span>
+                        <span class="index-title" data-i18n="news_index_title">OFFICIAL NEWS</span>
+                    </div>
+                    <h2 class="section-title" data-i18n="news_heading">News & Releases</h2>
+                    <p class="section-desc" data-i18n="news_desc">
+                        Technical reports, official news, and milestone developments at Syscorv.
+                    </p>
+                </div>
+
+                <div class="news-stream-grid" id="newsStreamGrid">
+                    <!-- Stream generated dynamically via noticias.js & main.js -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Leadership & Founder Section -->
+        <section id="founder" class="sys-section founder-section">
+            <div class="section-container">
+                <div class="section-header" data-reveal>
+                    <div class="section-index">
+                        <span class="index-num">04</span>
+                        <span class="index-title" data-i18n="founder_index_title">LEADERSHIP & DIRECTION</span>
+                    </div>
+                    <h2 class="section-title" data-i18n="founder_heading">Corporate & Technical Leadership</h2>
+                    <p class="section-desc" data-i18n="founder_desc">
+                        Independent foundation guided by an obsessive pursuit of software autonomy and robust architectures.
+                    </p>
+                </div>
+
+                <div class="founder-card" data-reveal>
+                    <div class="founder-avatar-wrap">
+                        <div class="founder-avatar-frame">
+                            <img src="assets/tiago-blue.png" alt="Tiago Cardoso" class="founder-avatar-img" onerror="this.src='assets/syscorv-icon.png';">
+                        </div>
+                        <span class="founder-badge">FOUNDER // ARCHITECT</span>
+                    </div>
+
+                    <div class="founder-details">
+                        <div class="founder-headline">
+                            <h3 class="founder-name">Tiago Cardoso</h3>
+                            <span class="founder-alias">(v4mpw0l)</span>
+                        </div>
+                        <p class="founder-role" data-i18n="founder_role">
+                            Founder & Chief Systems Architect at SYSCORV
+                        </p>
+                        <p class="founder-bio" data-i18n="founder_bio">
+                            Specialist in resilient local-first architectures, high-performance geospatial modeling, real-time computational engines, and user-sovereign security. Directs Syscorv's technology trajectory and intellectual property portfolio.
+                        </p>
+                        <div class="founder-links">
+                            <a href="https://tiagocardoso.dev" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" data-i18n="btn_visit_founder">
+                                <span>Architect's Personal Portal ↗</span>
+                            </a>
+                            <a href="https://github.com/V4mpw0L" target="_blank" rel="noopener noreferrer" class="social-chip">
+                                <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+                                <span>GitHub</span>
+                            </a>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- NEXUS / FOOTER -->
-        <footer id="nexus" class="nexus-footer">
+        <!-- Communications & Contact Section -->
+        <section id="contact" class="sys-section contact-section">
             <div class="section-container">
-                <div class="nexus-top" data-reveal>
-                    <div class="nexus-brand">
-                        <div class="brand-crest large">
-                            <img src="assets/logo.jpg" alt="Gennisys Studio" class="brand-logo-img large">
-                            <div class="brand-text">
-                                <span class="brand-title">GENNISYS</span>
-                                <span class="brand-sub">INDEPENDENT STUDIO</span>
+                <div class="section-header" data-reveal>
+                    <div class="section-index">
+                        <span class="index-num">05</span>
+                        <span class="index-title" data-i18n="contact_index_title">INSTITUTIONAL CHANNEL</span>
+                    </div>
+                    <h2 class="section-title" data-i18n="contact_heading">Communications & Contact</h2>
+                    <p class="section-desc" data-i18n="contact_desc">
+                        For enterprise software licensing, technical collaborations, or intellectual property inquiries.
+                    </p>
+                </div>
+
+                <div class="contact-grid">
+                    <!-- Left: Contact Details & Entity Info -->
+                    <div class="contact-card info-card" data-reveal>
+                        <h3 class="contact-card-title" data-i18n="contact_direct_title">Direct Channels</h3>
+                        <p class="contact-intro" data-i18n="contact_direct_desc">
+                            We respond promptly to commercial inquiries, vulnerability disclosures, and general requests:
+                        </p>
+                        <div class="contact-row">
+                            <div class="row-icon">
+                                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                                    <polyline points="22,6 12,13 2,6"></polyline>
+                                </svg>
+                            </div>
+                            <div class="row-text">
+                                <span class="row-label" data-i18n="contact_email_label">Official Electronic Mail</span>
+                                <a href="mailto:contact@syscorv.com" class="row-link">contact@syscorv.com</a>
                             </div>
                         </div>
-                        <p class="nexus-mission" data-i18n="nexus_mission">
-                            Estúdio independente focado na concepção e engenharia de jogos, softwares e experiências digitais proprietárias.
-                        </p>
-                        <div class="nexus-status-box">
-                            <span class="status-indicator-dot"></span>
-                            <span class="status-indicator-text" data-i18n="status_servers">Servidores Online</span>
+
+                        <div class="entity-box">
+                            <div class="entity-badge">ENTITY // INTELLECTUAL PROPERTY</div>
+                            <p class="entity-text" data-i18n="entity_text">
+                                <strong>Syscorv</strong> operates as an independent software development and technology corporation. All applications, trademarks, patents, and associated digital assets are under full corporate registration.
+                            </p>
                         </div>
                     </div>
 
-                    <div class="nexus-links-group">
-                        <div class="links-col">
-                            <h4 data-i18n="footer_col_nav">Navegação</h4>
-                            <a href="#hero" data-i18n="nav_home">Início</a>
-                            <a href="#news" data-i18n="nav_news">Notícias</a>
-                            <a href="#creations" data-i18n="nav_creations">Apps</a>
-                            <a href="#manifesto" data-i18n="nav_manifesto">Manifesto</a>
-                        </div>
-                        <div class="links-col">
-                            <h4 data-i18n="footer_col_ecosystem">Ecossistema</h4>
-                            <a href="https://github.com/v4mpw0l" target="_blank" rel="noopener">GitHub</a>
-                            <a href="#news" data-i18n="footer_devlog">Notas de Lançamento</a>
-                        </div>
-                        <div class="links-col">
-                            <h4 data-i18n="footer_col_contact">Contato</h4>
-                            <a href="mailto:info@gennisys.com">info@gennisys.com</a>
-                            <span class="footer-meta-info" data-i18n="footer_meta_location">Desenvolvimento Autônomo</span>
-                            <span class="footer-meta-info" data-i18n="footer_meta_remote">Operação Global</span>
-                        </div>
+                    <!-- Right: Fast Contact Form -->
+                    <div class="contact-card form-card" data-reveal>
+                        <h3 class="contact-card-title" data-i18n="form_title">Transmit Message</h3>
+                        <form id="contactForm" class="sys-form" onsubmit="event.preventDefault(); window.handleContactSubmit();">
+                            <div class="form-group">
+                                <label for="contactName" data-i18n="form_name">Name / Organization</label>
+                                <input type="text" id="contactName" required placeholder="Your name or enterprise" data-i18n-ph="form_name_ph">
+                            </div>
+                            <div class="form-group">
+                                <label for="contactEmail" data-i18n="form_email">Return Email</label>
+                                <input type="email" id="contactEmail" required placeholder="your.email@domain.com" data-i18n-ph="form_email_ph">
+                            </div>
+                            <div class="form-group">
+                                <label for="contactSubject" data-i18n="form_subject">Subject</label>
+                                <input type="text" id="contactSubject" required placeholder="e.g., Enterprise Licensing, Partnership or Feedback" data-i18n-ph="form_subject_ph">
+                            </div>
+                            <div class="form-group">
+                                <label for="contactMessage" data-i18n="form_message">Message</label>
+                                <textarea id="contactMessage" rows="4" required placeholder="Detail your inquiry or proposal with clarity..." data-i18n-ph="form_message_ph"></textarea>
+                            </div>
+                            <button type="submit" id="formSubmitBtn" class="btn btn-primary full-width" data-i18n="form_submit">
+                                <span>Transmit Message</span>
+                                <svg viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M2 8l12-6-6 12-2-4-4-2z"/>
+                                </svg>
+                            </button>
+                            <div id="formFeedback" class="form-feedback hidden"></div>
+                        </form>
                     </div>
                 </div>
+            </div>
+        </section>
+    </main>
 
-                <div class="nexus-bottom">
-                    <p class="copyright">
-                        © <span id="year">2026</span> GENNISYS STUDIO. <span data-i18n="rights_reserved">TODOS OS DIREITOS RESERVADOS.</span>
+    <!-- Modal for Complete News Reading -->
+    <div id="newsModal" class="sys-modal hidden" role="dialog" aria-modal="true" aria-labelledby="newsModalTitle">
+        <div class="modal-backdrop" id="newsModalBackdrop"></div>
+        <div class="modal-container">
+            <button type="button" id="newsModalCloseBtn" class="modal-close-btn" aria-label="Close">✕</button>
+            <div class="modal-header">
+                <div class="modal-meta-top">
+                    <span id="newsModalCategory" class="news-pill">CATEGORY</span>
+                </div>
+            </div>
+            <div class="modal-body">
+                <h2 id="newsModalTitle" class="modal-title">News Title</h2>
+                <div id="newsModalContent" class="modal-text-content">
+                    <!-- Populated dynamically -->
+                </div>
+            </div>
+            <div class="modal-footer" id="newsModalFooter">
+                <span class="news-date modal-author">
+                    <span class="date-month" id="newsModalAuthorLabel">AUTOR</span>
+                    <span class="date-num" id="newsModalAuthor">Syscorv</span>
+                </span>
+                <span id="newsModalDate" class="modal-date"></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Footer with Controls Bar -->
+    <footer class="sys-footer">
+        <div class="footer-container">
+            <div class="footer-top-row">
+                <div class="footer-brand-col">
+                    <div class="sys-brand">
+                        <img src="assets/syscorv-icon.png" alt="Syscorv" class="brand-logo-img">
+                        <span class="brand-name">SYSCORV</span>
+                    </div>
+                    <p class="footer-slogan" data-i18n="footer_slogan">
+                        Systems Intelligence. Proprietary Horizons.<br>
+                        Autonomous high-performance software laboratory.
                     </p>
-                    
-                    <!-- Footer Controls (Language & Theme) -->
-                    <div class="footer-controls">
-                        <!-- Footer Language Switcher -->
-                        <div class="footer-lang-picker">
-                            <span class="footer-picker-label" data-i18n="footer_lang_label">Idioma:</span>
-                            <button class="footer-lang-btn active" data-lang-val="pt" aria-label="Português">
+                </div>
+
+                <div class="footer-nav-col">
+                    <h4 class="footer-col-title" data-i18n="footer_col_eco">Ecosystem</h4>
+                    <ul class="footer-link-list">
+                        <li><a href="https://passmap.app" target="_blank" rel="noopener">PassMap Cartography</a></li>
+                        <li><a href="#ecosystem" data-i18n="footer_link_apps">Proprietary Software</a></li>
+                        <li><a href="#architecture" data-i18n="footer_link_arch">Local-First Resilience</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-nav-col">
+                    <h4 class="footer-col-title" data-i18n="footer_col_arch">Directives</h4>
+                    <ul class="footer-link-list">
+                        <li><a href="#architecture" data-i18n="footer_link_arch">Local-First Resilience</a></li>
+                        <li><a href="#architecture" data-i18n="footer_link_privacy">Zero-Knowledge Privacy</a></li>
+                        <li><a href="#architecture" data-i18n="footer_link_perf">Computational Efficiency</a></li>
+                        <li><a href="#transmissions" data-i18n="footer_link_news">Official Transmissions</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-nav-col">
+                    <h4 class="footer-col-title" data-i18n="footer_col_contact">Institutional</h4>
+                    <ul class="footer-link-list">
+                        <li><a href="mailto:contact@syscorv.com">contact@syscorv.com</a></li>
+                        <li><a href="https://tiagocardoso.dev" target="_blank" rel="noopener" data-i18n="footer_founder_link">Founder Architect (v4mpw0l)</a></li>
+                        <li><a href="#contact" data-i18n="footer_link_contact">Contact & Licensing</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Footer Operational Status, Controls & Copyright Bar (Matching Personal Site) -->
+            <div class="footer-bottom-bar">
+                <div class="footer-left">
+                    <span class="status-dot"></span>
+                    <span data-i18n="footer_status">SYSTEMS ONLINE</span>
+                </div>
+
+                <div class="footer-center">
+                    <div class="footer-controls-row">
+                        <div class="lang-toggle" role="group" aria-label="Language Selector">
+                            <button type="button" class="lang-btn active" id="footerLangPt" data-lang="pt-BR" aria-label="Português">
                                 <svg class="lang-flag" viewBox="0 0 20 14" width="16" height="11" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
                                     <rect width="20" height="14" fill="#009c3b" rx="1.5"/>
                                     <polygon points="10,2 18,7 10,12 2,7" fill="#ffdf00"/>
@@ -323,8 +597,7 @@
                                 </svg>
                                 <span>PT</span>
                             </button>
-                            <span class="footer-control-sep">|</span>
-                            <button class="footer-lang-btn" data-lang-val="en" aria-label="English">
+                            <button type="button" class="lang-btn" id="footerLangEn" data-lang="en" aria-label="English">
                                 <svg class="lang-flag" viewBox="0 0 20 14" width="16" height="11" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
                                     <rect width="20" height="14" fill="#b22234" rx="1.5"/>
                                     <rect y="1.08" width="20" height="1.08" fill="#ffffff"/>
@@ -346,39 +619,29 @@
                                 <span>EN</span>
                             </button>
                         </div>
-                        <!-- Footer Theme Switcher -->
-                        <div class="footer-theme-picker">
-                            <span class="footer-picker-label" data-i18n="footer_theme_label">Tema:</span>
-                            <button class="footer-theme-btn active" id="gen-theme-dark">DARK</button>
-                            <span class="footer-control-sep">|</span>
-                            <button class="footer-theme-btn" id="gen-theme-light">LIGHT</button>
+                        <div class="theme-toggle" role="group" aria-label="Theme Selector">
+                            <button type="button" class="theme-mode-btn active" id="footerThemeDark" data-theme="dark">DARK</button>
+                            <button type="button" class="theme-mode-btn" id="footerThemeLight" data-theme="light">LIGHT</button>
                         </div>
                     </div>
                 </div>
-            </div>
-        </footer>
-    </main>
 
-    <!-- PROJECT INSPECT MODAL -->
-    <div class="modal-overlay" id="projectModal" aria-hidden="true" role="dialog">
-        <div class="modal-card">
-            <button class="modal-close-btn" id="modalCloseBtn" aria-label="Fechar Modal">✕</button>
-            <div class="modal-content" id="modalContent">
-                <!-- Dynamically Populated via JS -->
+                <div class="footer-right">
+                    &copy; 2026 <strong>SYSCORV.</strong> <span data-i18n="footer_rights">All rights reserved.</span>
+                </div>
             </div>
         </div>
-    </div>
+    </footer>
 
-    <!-- BACK TO TOP FLOATING BUTTON -->
-    <button id="backToTop" class="back-to-top-btn" aria-label="Subir ao Topo" title="Subir ao Topo">
-        <svg class="back-to-top-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M12 19V5M5 12L12 5L19 12" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+    <!-- Floating Back to Top Button -->
+    <button type="button" class="back-to-top-btn" id="backToTopBtn" aria-label="Back to top" title="Back to top">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 15l-6-6-6 6"/>
         </svg>
-        <span class="back-to-top-glow"></span>
     </button>
 
     <!-- Scripts -->
-    <script src="noticias.js?v=2.1.2"></script>
-    <script src="main.js?v=2.1.2"></script>
+    <script src="noticias.js?v=3.1.2"></script>
+    <script src="main.js?v=3.1.2"></script>
 </body>
 </html>

@@ -1,455 +1,46 @@
 /* ==========================================================================
-   GENNISYS STUDIO — CORE ENGINE (main.js)
-   - Constellation Ether Canvas Background
-   - Web Audio API Harmonic Synthesizer & Soundscape
-   - Dynamic Dual-Language (PT-BR / EN) Engine
-   - Aura / Theme Dynamic Switcher
-   - Category Filter System
-   - Project Modal Inspector
-   - Mobile Drawer & Scroll Interactivity
+   SYSCORV — CORE LOGIC & INTERACTIVITY ENGINE (main.js)
+   - Interactive Canvas Mouse Spotlight (Pure ambient light, damped inertia)
+   - Dual-Language (EN Default / PT-BR) Engine with LocalStorage
+   - Obsidian Dark & Titanium Light Theme Controller
+   - Dynamic Transmissions Stream & Article Modal
+   - Scroll-Spy, Back-to-Top Button & Reveal Animations
    ========================================================================== */
 
 document.addEventListener('DOMContentLoaded', () => {
-    // ----------------------------------------------------------------------
-    // LIGHT / DARK THEME ENGINE (with localStorage persistence)
-    // ----------------------------------------------------------------------
-    (function() {
-        const STORAGE_KEY = 'gennisys_theme_mode';
-        const saved = localStorage.getItem(STORAGE_KEY) || 'dark';
-
-        function applyTheme(mode) {
-            document.body.setAttribute('data-theme-mode', mode);
-            localStorage.setItem(STORAGE_KEY, mode);
-            document.querySelectorAll('.footer-theme-btn').forEach(btn => {
-                btn.classList.toggle('active', btn.id === (mode === 'dark' ? 'gen-theme-dark' : 'gen-theme-light'));
-            });
-        }
-
-        applyTheme(saved);
-
-        document.addEventListener('click', function(e) {
-            if (e.target.id === 'gen-theme-dark') applyTheme('dark');
-            else if (e.target.id === 'gen-theme-light') applyTheme('light');
-        });
-    })();
-
 
     // ----------------------------------------------------------------------
-    // STEALTH PWA SERVICE WORKER REGISTRATION & AUTO-SYNC ENGINE
+    // 1. INTERACTIVE CANVAS MOUSE SPOTLIGHT (SMOOTH LERP INERTIA)
     // ----------------------------------------------------------------------
-    if ('serviceWorker' in navigator) {
-        window.addEventListener('load', () => {
-            navigator.serviceWorker.register('./sw.js?v=2.1.2', { updateViaCache: 'none' })
-                .then(reg => {
-                    // Check for updates periodically & on focus
-                    reg.update();
-                    document.addEventListener('visibilitychange', () => {
-                        if (document.visibilityState === 'visible') reg.update();
-                    });
-                })
-                .catch(() => {});
-        });
-    }
-
-    // ----------------------------------------------------------------------
-    // 1. DUAL-LANGUAGE SYSTEM (PT-BR / EN)
-    // ----------------------------------------------------------------------
-    const translations = {
-        pt: {
-            nav_home: "Início",
-            nav_manifesto: "Manifesto",
-            nav_creations: "Apps",
-            nav_news: "Notícias",
-            nav_vault: "O Lab",
-            nav_nexus: "Sobre",
-            status_autonomous: "Sistemas Autônomos Ativos",
-            hero_badge: "ESTÚDIO INDEPENDENTE DE JOGOS & APLICATIVOS",
-            hero_title_1: "BEM-VINDO À GENNISYS",
-            hero_title_2: "FORJANDO NOVOS UNIVERSOS DIGITAIS",
-            hero_desc: "Somos um estúdio independente focado na concepção, design e engenharia de jogos imersivos, softwares utilitários e experiências digitais proprietárias. Conheça nossos mundos e ferramentas.",
-            hero_btn_explore: "Explorar Apps",
-            hero_btn_news: "Últimas Notícias",
-            hero_btn_manifesto: "O Manifesto",
-            scroll_cue: "DESCER",
-            manifesto_tag: "DIRETRIZES DO ESTÚDIO",
-            manifesto_title: "Princípios de Engenharia",
-            manifesto_quote: "\"Operamos com discrição, foco e rigor técnico. Construímos software proprietário com altos padrões de engenharia, privacidade por design e total independência.\"",
-            pillar_1_title: "Arquitetura Independente",
-            pillar_1_desc: "Mantemos soberania técnica completa sobre nossas bases de código, infraestrutura e roadmap, desenvolvendo exclusivamente soluções proprietárias.",
-            pillar_2_title: "Privacidade por Design",
-            pillar_2_desc: "Nossas aplicações priorizam padrões zero-knowledge, processamento local e coleta mínima de dados. Desempenho e integridade vêm em primeiro lugar.",
-            pillar_3_title: "Engenharia Seletiva",
-            pillar_3_desc: "Dedicamos nossos recursos a um portfólio restrito e selecionado, refinando cada projeto com precisão, estabilidade e durabilidade a longo prazo.",
-            creations_tag: "ECOSSISTEMA PROPRIETÁRIO",
-            creations_heading: "Apps",
-            creations_sub: "Obras autorais em operação. Aplicativos, simulações e jogos moldados nos laboratórios da Gennisys.",
-            filter_all: "Todos",
-            filter_navigation: "Mapas & Navegação",
-            filter_games: "Jogos & RPG",
-            filter_cyber: "Sistemas & Cyber",
-            filter_tools: "Utilitários",
-            badge_live: "ONLINE",
-            type_navigation: "Mapas & Geolocalização",
-            type_rpg: "RPG & Simulação",
-            type_idle_rpg: "RPG Incremental",
-            type_cyber: "Cyberpunk OS",
-            type_mmo: "MMO Incremental",
-            type_security: "Criptografia & Cofre",
-            type_fin: "Estratégia Financeira",
-            type_calc: "Computação de Precisão",
-            type_python: "Automação & Python",
-            proj_fazenda_desc: "Um universo imersivo de simulação rural e RPG. Desenvolva sua propriedade, gerencie colheitas e evolua seu império agrícola.",
-            proj_scape_desc: "RPG de progressão incremental e fantasia medieval. Evolua habilidades de combate, enfrente masmorras e colete saques lendários mesmo offline.",
-            proj_hacker_desc: "Simulador de terminal e cibersegurança tática. Uma experiência de interface estilo matriz com protocolos de penetração simulados.",
-            proj_packet_desc: "Jogo incremental de arquitetura de dados e tráfego massivo. Colete pacotes digitais e domine a infraestrutura global.",
-            proj_passmap_desc: "Suíte cartográfica profissional com navegação offline, catálogo inteligente de POIs e telemetria de clima e qualidade do ar em tempo real.",
-            proj_budget_desc: "Sistema de controle patrimonial com categorização dinâmica, projeções orçamentárias e dashboards inteligentes.",
-            proj_gencalc_desc: "Calculadora científica com histórico de auditoria instantâneo e layout ergonômico feito para operações complexas.",
-            proj_pytools_desc: "Suíte de ferramentas e scripts em Python para automação de tarefas, processamento de dados e utilitários de sistema.",
-            btn_access: "Acessar",
-            btn_enter_world: "Acessar",
-            btn_access_terminal: "Acessar",
-            btn_start_transmission: "Acessar",
-            btn_open_vault: "Acessar",
-            btn_access_system: "Acessar",
-            btn_launch_calculator: "Acessar",
-            news_tag: "NOTÍCIAS & ATUALIZAÇÕES",
-            news_heading: "Últimas Notícias",
-            news_sub: "Acompanhe as notas de atualização, registros de desenvolvimento e comunicados oficiais do estúdio.",
-            news_cat_patch: "PATCH NOTES",
-            news_cat_deploy: "SISTEMA",
-            news_cat_devlog: "DEVLOG",
-            news_1_title: "FazendaRPG: Atualização de Economia Agrícola e Clima",
-            news_1_desc: "Lançado o novo balanceamento para <span class=\"text-hl\">ciclos de colheita</span>, eventos dinâmicos de <span class=\"text-hl\">estação</span> e aprimoramento na <span class=\"text-hl\">persistência de dados</span>.",
-            news_2_title: "Hacker0s: Novos Módulos de Terminal e Desafios",
-            news_2_desc: "A interface cibernética recebeu novos protocolos de <span class=\"text-hl-cyan\">penetração simulada</span>, <span class=\"text-hl-cyan\">decifração criptográfica</span> em tempo real e comandos táticos.",
-            news_3_title: "Bastidores do Lab: Avanços no Protocolo Aetheria",
-            news_3_desc: "Nossa equipe de engenharia finalizou os primeiros testes com o <span class=\"text-hl-purple\">motor de física procedural</span> e <span class=\"text-hl-purple\">atmosfera sonora</span> para o próximo projeto.",
-            news_4_title: "PacketClicker MMO: Expansão Quântica de Servidores",
-            news_4_desc: "Novas árvores de habilidades tecnológicas de rede, <span class=\"text-hl\">cluster quântico</span> e balanceamento para processamento de <span class=\"text-hl\">pacotes massivos</span>.",
-            news_5_title: "PassMap: Arquitetura Zero-Knowledge & Criptografia",
-            news_5_desc: "Atualizado o protocolo criptográfico local para <span class=\"text-hl-cyan\">proteção Zero-Knowledge</span> de dados confidenciais com auditoria de integridade.",
-            news_6_title: "GenCalc & BudgetBox: Otimizações de Precisão e Interface",
-            news_6_desc: "Refatoração dos algoritmos matemáticos com <span class=\"text-hl\">precisão de ponto flutuante</span> corrigida e ergonomia acelerada por teclado.",
-            news_7_title: "Infraestrutura: Novo Cluster de Baixa Latência",
-            news_7_desc: "Migração de nós globais para acelerar o <span class=\"text-hl-cyan\">tempo de resposta</span> e sincronização de dados nos ecossistemas Gennisys.",
-            news_8_title: "Design System: Atualização das Auras & UI",
-            news_8_desc: "Implementação da nova paleta atmosférica com <span class=\"text-hl-purple\">temas dinâmicos</span> e componentes <span class=\"text-hl-purple\">glassmorphism</span> para todos os aplicativos.",
-            news_read_more: "Ler Mais →",
-            vault_status: "LABORATÓRIO CLASSIFICADO // EM DESENVOLVIMENTO",
-            vault_title: "Projeto: Protocolo Aetheria",
-            vault_desc: "Nos bastidores da Gennisys, uma nova experiência de proporções épicas está sendo forjada. Uma fusão de narrativa mística, inteligência generativa e mecânicas táticas imersivas.",
-            vault_label_status: "ESTADO",
-            vault_val_status: "Fase Alpha / Sob Sigilo",
-            vault_label_engine: "ENGINE",
-            vault_label_deployment: "LANÇAMENTO",
-            nexus_mission: "Estúdio independente focado na concepção e engenharia de jogos, softwares e experiências digitais proprietárias.",
-            status_servers: "Servidores Online",
-            footer_col_nav: "Navegação",
-            footer_col_ecosystem: "Ecossistema",
-            footer_devlog: "Notas de Lançamento",
-            footer_vault: "The Vault (Alpha)",
-            footer_col_contact: "Contato",
-            footer_meta_location: "Desenvolvimento Autônomo",
-            footer_meta_remote: "Operação Global",
-            footer_lang_label: "Idioma:",
-            footer_theme_label: "Tema:",
-            rights_reserved: "TODOS OS DIREITOS RESERVADOS."
-        },
-        en: {
-            nav_home: "Home",
-            nav_manifesto: "Manifesto",
-            nav_creations: "Apps",
-            nav_news: "News",
-            nav_vault: "The Lab",
-            nav_nexus: "About",
-            status_servers: "Servers Online",
-            hero_badge: "INDEPENDENT DIGITAL ATELIER",
-            hero_title_1: "WELCOME TO GENNISYS",
-            hero_title_2: "FORGING NEW DIGITAL REALITIES",
-            hero_desc: "We are an independent studio focused on designing, building, and refining immersive video games, developer utility tools, and sovereign digital applications.",
-            hero_btn_explore: "Explore Apps",
-            hero_btn_news: "Latest News",
-            hero_btn_manifesto: "The Manifesto",
-            scroll_cue: "SCROLL",
-            manifesto_tag: "STUDIO PRINCIPLES",
-            manifesto_title: "Engineering Philosophy",
-            manifesto_quote: "\"We operate with quiet discipline, focus, and technical rigor. Building proprietary software with high standards, privacy by design, and complete independence.\"",
-            pillar_1_title: "Independent Architecture",
-            pillar_1_desc: "We maintain complete technical sovereignty over our codebase, infrastructure, and roadmap, developing exclusively proprietary solutions.",
-            pillar_2_title: "Privacy by Design",
-            pillar_2_desc: "Our applications prioritize zero-knowledge standards, client-side execution, and minimal data footprints. Performance and integrity come first.",
-            pillar_3_title: "Selective Engineering",
-            pillar_3_desc: "We dedicate our resources to a curated and private portfolio, refining each release with precision, stability, and long-term durability.",
-            creations_tag: "PROPRIETARY ECOSYSTEM",
-            creations_heading: "Apps",
-            creations_sub: "Original works in active operation. Applications, simulations, and games crafted inside the Gennisys laboratory.",
-            filter_all: "All",
-            filter_navigation: "Maps & Navigation",
-            filter_games: "Games & RPG",
-            filter_cyber: "Systems & Cyber",
-            filter_tools: "Utilities",
-            badge_live: "LIVE",
-            type_navigation: "Maps & Geolocation",
-            type_rpg: "RPG & Simulation",
-            type_idle_rpg: "Incremental Idle RPG",
-            type_cyber: "Cyberpunk OS",
-            type_mmo: "Incremental MMO",
-            type_security: "Cryptography & Vault",
-            type_fin: "Financial Strategy",
-            type_calc: "Precision Compute",
-            type_python: "Automation & Python Tools",
-            proj_fazenda_desc: "An immersive rural simulation and RPG. Develop land, cultivate crops, master seasonal economies, and expand your empire.",
-            proj_scape_desc: "Incremental fantasy idle RPG. Advance combat masteries, explore perilous dungeons, and gather legendary loot even while offline.",
-            proj_hacker_desc: "Tactical terminal and cybersecurity simulator. A matrix-style operating interface featuring penetration protocols and simulated networks.",
-            proj_packet_desc: "Incremental game of data throughput and mass infrastructure. Harvest data packets, evolve quantum clusters, and command the grid.",
-            proj_passmap_desc: "Professional cartographic suite with resilient offline navigation, intelligent POI cataloging, and live weather and air quality telemetry.",
-            proj_budget_desc: "Capital management architecture featuring dynamic categorization, cashflow projections, and financial intelligence visualizers.",
-            proj_gencalc_desc: "Scientific computing engine with real-time audit logs and ergonomic interface engineered for advanced mathematical workflows.",
-            proj_pytools_desc: "Suite of Python automation scripts and tools for batch data processing, developer workflows, and system utilities.",
-            btn_access: "Access",
-            btn_enter_world: "Access",
-            btn_access_terminal: "Access",
-            btn_start_transmission: "Access",
-            btn_open_vault: "Access",
-            btn_access_system: "Access",
-            btn_launch_calculator: "Access",
-            news_tag: "NEWS & UPDATES",
-            news_heading: "Latest News",
-            news_sub: "Follow our release notes, devlogs, technical milestones, and studio announcements.",
-            news_cat_patch: "PATCH NOTES",
-            news_cat_deploy: "SYSTEM",
-            news_cat_devlog: "DEVLOG",
-            news_1_title: "FazendaRPG: Agricultural Economy & Seasonal Overhaul",
-            news_1_desc: "Deployed harvest rebalancing for <span class=\"text-hl\">agricultural cycles</span>, dynamic <span class=\"text-hl\">seasonal weather</span>, and persistent state optimizations.",
-            news_2_title: "Hacker0s: New Terminal Modules & Security Trials",
-            news_2_desc: "The terminal received simulated <span class=\"text-hl-cyan\">penetration protocols</span>, live <span class=\"text-hl-cyan\">cryptographic cracking</span>, and advanced tactical commands.",
-            news_3_title: "Inside the Lab: Milestones in Project Aetheria",
-            news_3_desc: "Our engineering team concluded the first milestone of <span class=\"text-hl-purple\">procedural physics</span> and <span class=\"text-hl-purple\">audio mechanics</span> for our upcoming classified title.",
-            news_4_title: "PacketClicker MMO: Quantum Server Expansion",
-            news_4_desc: "New network progression trees, <span class=\"text-hl\">quantum node clustering</span>, and large-scale <span class=\"text-hl\">data throughput</span> balancing.",
-            news_5_title: "PassMap: Zero-Knowledge Architecture & Crypto Core",
-            news_5_desc: "Upgraded client-side cryptographic protocols for <span class=\"text-hl-cyan\">Zero-Knowledge protection</span> of confidential credentials and integrity auditing.",
-            news_6_title: "GenCalc & BudgetBox: Precision & UI Optimizations",
-            news_6_desc: "Refactored mathematical engines with <span class=\"text-hl\">IEEE-754 floating precision</span> correction and keyboard-accelerated workflows.",
-            news_7_title: "Infrastructure: New Low-Latency Cluster Deployed",
-            news_7_desc: "Migrated edge compute nodes globally to reduce <span class=\"text-hl-cyan\">response latency</span> and accelerate state sync across Gennisys apps.",
-            news_8_title: "Design System: UI & Visual Auras Overhaul",
-            news_8_desc: "Deployed refined atmospheric palette with <span class=\"text-hl-purple\">dynamic themes</span> and glassmorphic <span class=\"text-hl-purple\">component tokens</span> studio-wide.",
-            news_read_more: "Read More →",
-            vault_status: "CLASSIFIED LAB // UNDER DEVELOPMENT",
-            vault_title: "Project: Protocol Aetheria",
-            vault_desc: "Behind closed doors at Gennisys, a new high-caliber reality is being forged. A synthesis of mystical lore, generative intelligence, and deep tactical mechanics.",
-            vault_label_status: "STATUS",
-            vault_val_status: "Alpha Phase / Classified",
-            vault_label_engine: "ENGINE",
-            vault_label_deployment: "RELEASE",
-            nexus_mission: "An independent digital studio creating handcrafted games, tools, and proprietary digital experiences.",
-            footer_col_nav: "Navigation",
-            footer_col_ecosystem: "Ecosystem",
-            footer_devlog: "Release Notes",
-            footer_vault: "The Vault (Alpha)",
-            footer_col_contact: "Contact",
-            footer_meta_location: "Autonomous Development",
-            footer_meta_remote: "Global Operation",
-            footer_lang_label: "Language:",
-            footer_theme_label: "Theme:",
-            rights_reserved: "ALL RIGHTS RESERVED."
-        }
-    };
-
-    let currentLang = localStorage.getItem('gennisys_lang') || 'en';
-    let currentNewsPage = 1;
-
-    function setLanguage(lang) {
-        currentLang = lang;
-        localStorage.setItem('gennisys_lang', lang);
-        document.documentElement.setAttribute('lang', lang);
-        
-        // Update header pill
-        const langBtn = document.getElementById('langSwitch');
-        if (langBtn) {
-            langBtn.querySelector('.lang-text').textContent = lang.toUpperCase();
-        }
-
-        // Update footer language buttons
-        document.querySelectorAll('.footer-lang-btn').forEach(btn => {
-            if (btn.getAttribute('data-lang-val') === lang) {
-                btn.classList.add('active');
-            } else {
-                btn.classList.remove('active');
-            }
-        });
-
-        // Translate all data-i18n elements
-        document.querySelectorAll('[data-i18n]').forEach(el => {
-            const key = el.getAttribute('data-i18n');
-            if (translations[lang] && translations[lang][key]) {
-                el.innerHTML = translations[lang][key];
-            }
-        });
-
-        // Re-render modular news grid with new language
-        if (typeof renderNewsGrid === 'function') {
-            renderNewsGrid(currentNewsPage);
-        }
-    }
-
-    const langBtn = document.getElementById('langSwitch');
-    if (langBtn) {
-        langBtn.addEventListener('click', () => {
-            const nextLang = currentLang === 'pt' ? 'en' : 'pt';
-            setLanguage(nextLang);
-        });
-    }
-
-    document.querySelectorAll('.footer-lang-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-            const langVal = btn.getAttribute('data-lang-val');
-            if (langVal) setLanguage(langVal);
-        });
-    });
-
-
-    // ----------------------------------------------------------------------
-    // 3. MODULAR NEWS SYSTEM & PAGINATION ENGINE (LOADED FROM NOTICIAS.JS)
-    // ----------------------------------------------------------------------
-    const getNewsData = () => (window.GENNISYS_NEWS_DATA && Array.isArray(window.GENNISYS_NEWS_DATA)) ? window.GENNISYS_NEWS_DATA : [];
-    const itemsPerPage = 4;
-
-    // Format Date with highlighted day and year numbers
-    function formatStyledDate(dateStr) {
-        if (!dateStr) return '';
-        const parts = String(dateStr).trim().split(' ');
-        if (parts.length === 3) {
-            return `<span class="date-num">${parts[0]}</span> <span class="date-month">${parts[1]}</span> <span class="date-num">${parts[2]}</span>`;
-        }
-        return dateStr;
-    }
-
-    function renderNewsGrid(page = 1) {
-        currentNewsPage = page;
-        const grid = document.getElementById('newsGrid');
-        const indicators = document.getElementById('newsPageIndicators');
-        const prevBtn = document.getElementById('newsPrevBtn');
-        const nextBtn = document.getElementById('newsNextBtn');
-        if (!grid) return;
-
-        const newsData = getNewsData();
-        const totalPages = Math.ceil(newsData.length / itemsPerPage) || 1;
-        const startIndex = (page - 1) * itemsPerPage;
-        const pageItems = newsData.slice(startIndex, startIndex + itemsPerPage);
-        const lang = currentLang;
-        const readMoreText = lang === 'pt' ? 'Ler Mais →' : 'Read More →';
-
-        grid.innerHTML = pageItems.map(item => `
-            <article class="news-card" data-news-id="${item.id}">
-                <div class="news-card-content">
-                    <div class="news-card-header">
-                        <span class="news-badge ${item.badgeClass}">${item.badge[lang]}</span>
-                        <span class="news-date">${formatStyledDate(item.date[lang])}</span>
-                    </div>
-                    <h3 class="news-title">${item.title[lang]}</h3>
-                    <p class="news-excerpt">${item.excerpt[lang]}</p>
-                </div>
-                <div class="news-footer">
-                    <button class="news-read-more" data-news-id="${item.id}">${readMoreText}</button>
-                </div>
-            </article>
-        `).join('');
-
-        // Bind clicks to open modal
-        grid.querySelectorAll('.news-card').forEach(card => {
-            card.addEventListener('click', () => {
-                const id = card.getAttribute('data-news-id');
-                if (id) openNewsModal(id);
-            });
-        });
-
-        // Update Pagination Indicators
-        const newsPagination = document.getElementById('newsPagination');
-        if (newsPagination) {
-            newsPagination.style.display = (totalPages <= 1) ? 'none' : 'flex';
-        }
-
-        if (indicators) {
-            indicators.innerHTML = Array.from({ length: totalPages }, (_, i) => i + 1).map(p => `
-                <button class="page-dot ${p === page ? 'active' : ''}" data-page="${p}">${p}</button>
-            `).join('');
-
-            indicators.querySelectorAll('.page-dot').forEach(dot => {
-                dot.addEventListener('click', () => {
-                    const targetPage = parseInt(dot.getAttribute('data-page'), 10);
-                    if (targetPage && targetPage !== currentNewsPage) {
-                        renderNewsGrid(targetPage);
-                    }
-                });
-            });
-        }
-
-        if (prevBtn) prevBtn.disabled = (page <= 1);
-        if (nextBtn) nextBtn.disabled = (page >= totalPages);
-    }
-
-    const prevNewsBtn = document.getElementById('newsPrevBtn');
-    const nextNewsBtn = document.getElementById('newsNextBtn');
-
-    if (prevNewsBtn) {
-        prevNewsBtn.addEventListener('click', () => {
-            if (currentNewsPage > 1) {
-                renderNewsGrid(currentNewsPage - 1);
-            }
-        });
-    }
-
-    if (nextNewsBtn) {
-        nextNewsBtn.addEventListener('click', () => {
-            const totalPages = Math.ceil(getNewsData().length / itemsPerPage) || 1;
-            if (currentNewsPage < totalPages) {
-                renderNewsGrid(currentNewsPage + 1);
-            }
-        });
-    }
-
-    // Initial news render from noticias.js
-    renderNewsGrid(1);
-
-    // ----------------------------------------------------------------------
-    // AAA STUDIO AMBIENT SPOTLIGHT ENGINE
-    // Pure, solid, cinematic interactive lighting without particles or grids
-    // ----------------------------------------------------------------------
-    const canvas = document.getElementById('ether-canvas');
+    const canvas = document.getElementById('cyber-canvas');
     if (canvas) {
         const ctx = canvas.getContext('2d');
         let width = canvas.width = window.innerWidth;
         let height = canvas.height = window.innerHeight;
-        let isVisible = true;
 
-        // Default focal point is upper center hero
         const targetPos = { x: width * 0.5, y: height * 0.28 };
         const currentPos = { x: width * 0.5, y: height * 0.28 };
         let isHovered = false;
-
         const isMobile = window.innerWidth < 768;
 
         function drawSpotlight() {
             ctx.clearRect(0, 0, width, height);
 
             const isLight = document.body.getAttribute('data-theme-mode') === 'light';
-            const spotRadius = isMobile ? 320 : 520;
+            const spotRadius = isMobile ? 320 : 540;
             const spotGradient = ctx.createRadialGradient(
                 currentPos.x, currentPos.y, 0,
                 currentPos.x, currentPos.y, spotRadius
             );
 
             if (isLight) {
-                spotGradient.addColorStop(0, 'rgba(5, 150, 105, 0.08)');
+                spotGradient.addColorStop(0, 'rgba(2, 132, 199, 0.09)');
                 spotGradient.addColorStop(0.5, 'rgba(14, 165, 233, 0.025)');
                 spotGradient.addColorStop(1, 'rgba(248, 250, 252, 0)');
             } else {
-                spotGradient.addColorStop(0, 'rgba(18, 196, 138, 0.12)');
+                spotGradient.addColorStop(0, 'rgba(0, 229, 255, 0.12)');
                 spotGradient.addColorStop(0.5, 'rgba(6, 182, 212, 0.035)');
-                spotGradient.addColorStop(1, 'rgba(11, 13, 16, 0)');
+                spotGradient.addColorStop(1, 'rgba(7, 9, 14, 0)');
             }
 
             ctx.fillStyle = spotGradient;
@@ -459,19 +50,12 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         function renderAtmosphere() {
-            if (!isVisible) {
-                requestAnimationFrame(renderAtmosphere);
-                return;
-            }
-
-            // Smooth spotlight inertia (damped tracking)
             const dx = targetPos.x - currentPos.x;
             const dy = targetPos.y - currentPos.y;
             currentPos.x += dx * 0.06;
             currentPos.y += dy * 0.06;
 
             drawSpotlight();
-
             requestAnimationFrame(renderAtmosphere);
         }
 
@@ -497,337 +81,585 @@ document.addEventListener('DOMContentLoaded', () => {
             drawSpotlight();
         }, { passive: true });
 
-        document.addEventListener('visibilitychange', () => {
-            isVisible = !document.hidden;
-            if (isVisible) drawSpotlight();
-        });
-
-        // Instant redraw on theme change
-        const observer = new MutationObserver((mutations) => {
-            for (const m of mutations) {
-                if (m.attributeName === 'data-theme-mode') {
-                    drawSpotlight();
-                }
-            }
-        });
-        observer.observe(document.body, { attributes: true, attributeFilter: ['data-theme-mode'] });
-
         renderAtmosphere();
     }
 
-
     // ----------------------------------------------------------------------
-    // 5. APPS / CREATIONS FILTER & RESPONSIVE PAGINATION ENGINE (6 PC / 4 MOBILE)
+    // 2. DUAL-LANGUAGE LOCALIZATION ENGINE (EN DEFAULT / PT-BR)
     // ----------------------------------------------------------------------
-    const filterButtons = document.querySelectorAll('.filter-btn');
-    const creationCards = document.querySelectorAll('.creation-card');
-    const creationsPagination = document.getElementById('creationsPagination');
-    const creationsPageIndicators = document.getElementById('creationsPageIndicators');
-    const creationsPrevBtn = document.getElementById('creationsPrevBtn');
-    const creationsNextBtn = document.getElementById('creationsNextBtn');
+    const i18n = {
+        'en': {
+            // Document Meta
+            doc_title: 'SYSCORV — Autonomous Software & Spatial Systems Lab',
+            doc_desc: 'Syscorv is an independent software engineering corporation and research laboratory. We forge proprietary, local-first, zero-knowledge digital systems and spatial applications.',
 
-    let activeFilter = 'all';
-    let currentCreationPage = 1;
+            // Navigation
+            nav_overview: 'Overview',
+            nav_ecosystem: 'Ecosystem',
+            nav_architecture: 'Architecture',
+            nav_transmissions: 'Transmissions',
+            nav_founder: 'Leadership',
+            nav_contact: 'Contact',
+            nav_cta_apps: 'Explore Apps',
 
-    function getAppsPerPage() {
-        return window.innerWidth < 900 ? 4 : 6;
-    }
+            // Hero
+            hero_badge: 'AUTONOMOUS SOFTWARE & SPATIAL SYSTEMS LAB',
+            hero_title_1: 'SYSTEMS ENGINEERING.',
+            hero_title_2: 'PROPRIETARY HORIZONS.',
+            hero_subtitle: '<strong>Syscorv</strong> is an independent technology corporation and software engineering laboratory. We conceive, architect, and operate resilient applications, <em>local-first</em> architectures, spatial telemetry, and autonomous digital universes.',
+            hero_cta_explore: 'Explore Ecosystem',
+            hero_cta_arch: 'Engineering Directives',
 
-    function renderCreations(page = currentCreationPage) {
-        currentCreationPage = page;
-        const appsPerPage = getAppsPerPage();
-        const allCards = Array.from(creationCards);
-        
-        // Filter by category
-        const filteredCards = allCards.filter(card => {
-            const category = card.getAttribute('data-category');
-            return activeFilter === 'all' || category === activeFilter;
-        });
+            // Telemetry Strip
+            telem_label_1: 'AUTONOMY',
+            telem_val_1: '100% In-House',
+            telem_sub_1: 'Zero investors or architectural debt',
+            telem_label_2: 'ARCHITECTURE',
+            telem_val_2: 'Local-First',
+            telem_sub_2: 'Unconditional offline availability',
+            telem_label_3: 'PRIVACY',
+            telem_val_3: 'Zero-Knowledge',
+            telem_sub_3: 'Data strictly resides on user devices',
+            telem_label_4: 'EXECUTION',
+            telem_val_4: '60 FPS Hardware',
+            telem_sub_4: 'GPU-accelerated vector pipelines',
 
-        const totalPages = Math.ceil(filteredCards.length / appsPerPage) || 1;
-        if (currentCreationPage > totalPages) currentCreationPage = 1;
+            // Ecosystem / Product Portfolio
+            eco_index_title: 'PROPRIETARY ECOSYSTEM',
+            eco_heading: 'Syscorv Active Systems',
+            eco_desc: 'Engineering and operation of high-performance proprietary platforms, spatial intelligence, and digital engines.',
+            passmap_subtitle: 'FLAGSHIP // SPATIAL INTELLIGENCE & CARTOGRAPHY SUITE',
+            badge_live: 'PRODUCTION ONLINE',
+            passmap_summary: '<strong>PassMap</strong> is Syscorv\'s flagship software in active commercial operation. Unifying 100% offline vector cartography, verified database of 540+ logistics hubs and gate access codes, real-time meteorology and air quality telemetry, gyroscopic compass, and 16 custom animated GPS markers rendered at 60 FPS.',
+            btn_launch_passmap: 'Launch Official PassMap ↗',
 
-        const startIndex = (currentCreationPage - 1) * appsPerPage;
-        const endIndex = startIndex + appsPerPage;
-        const visibleCards = filteredCards.slice(startIndex, endIndex);
+            f1_title: '540+ Verified Locations',
+            f1_desc: 'Unified gate codes and critical logistics dispatches.',
+            f2_title: '100% Offline-First',
+            f2_desc: 'Full vector tile caching & client IndexedDB.',
+            f3_title: 'Live Weather & AQI Telemetry',
+            f3_desc: 'Dynamic 7-band thermal feel & air purity index.',
+            f4_title: '16 GPS Marker Animations',
+            f4_desc: 'Integrated Vortex, Galaxy, Aurora, Storm & Cyber.',
 
-        // Update card visibility instantly
-        allCards.forEach(card => {
-            if (visibleCards.includes(card)) {
-                card.style.display = 'flex';
-                card.style.opacity = '1';
-                card.style.transform = 'none';
-            } else {
-                card.style.display = 'none';
-                card.style.opacity = '0';
-            }
-        });
+            // Chips
+            chip_offline: 'Offline PWA',
+            chip_zero_cloud: 'Zero-Cloud Tracking',
+            chip_languages: '7 Synchronized Languages',
+            chip_sw: 'Service Worker Build 168',
+            chip_cross_platform: 'iOS & Android Ready',
 
-        // Update Pagination Controls
-        if (creationsPagination) {
-            if (totalPages <= 1) {
-                creationsPagination.style.display = 'none';
-            } else {
-                creationsPagination.style.display = 'flex';
-                
-                if (creationsPageIndicators) {
-                    creationsPageIndicators.innerHTML = Array.from({ length: totalPages }, (_, i) => i + 1).map(p => `
-                        <button class="page-dot ${p === currentCreationPage ? 'active' : ''}" data-creation-page="${p}">${p}</button>
-                    `).join('');
+            eco_pipeline_badge: 'SYSCORV LAB PIPELINE',
+            eco_pipeline_desc: 'Syscorv maintains software projects in active development across procedural WebGL rendering, decentralized P2P networking engines, and resilient spatial suites. Releases are published via official dispatches.',
 
-                    creationsPageIndicators.querySelectorAll('.page-dot').forEach(dot => {
-                        dot.addEventListener('click', () => {
-                            const targetPage = parseInt(dot.getAttribute('data-creation-page'), 10);
-                            if (targetPage && targetPage !== currentCreationPage) {
-                                renderCreations(targetPage);
-                            }
-                        });
-                    });
-                }
+            // Architecture
+            arch_index_title: 'TECHNICAL DIRECTIVES',
+            arch_heading: 'The Syscorv Engineering Philosophy',
+            arch_desc: 'We forge software under four inviolable principles ensuring our creations endure for decades without technical rot.',
+            pillar_1_title: 'Local-First Resilience',
+            pillar_1_text: 'Software must never be hostage to remote servers. Every Syscorv tool stores its master state client-side (IndexedDB/CacheStorage), operating with 100% capacity regardless of internet connectivity.',
+            pillar_2_title: 'Zero-Knowledge Privacy',
+            pillar_2_text: 'User privacy is guaranteed by mathematics and architecture, not mere marketing clauses. We reject tracking beacons, data broker harvesting, and surveillance capitalism.',
+            pillar_3_title: 'Computational Efficiency',
+            pillar_3_text: 'Zero waste of CPU clock cycles or memory. We craft concise, high-speed code in modern Vanilla JS and Web APIs, ensuring instant startup times and sustained 60 FPS responsiveness.',
+            pillar_4_title: 'Aesthetics & Digital Craftsmanship',
+            pillar_4_text: 'Premium design is not cosmetic veneer, but an organic reflection of engineering precision. We construct immersive interfaces, calculated typography, and high-contrast obsidian palettes.',
 
-                if (creationsPrevBtn) {
-                    creationsPrevBtn.disabled = (currentCreationPage <= 1);
-                }
-                if (creationsNextBtn) {
-                    creationsNextBtn.disabled = (currentCreationPage >= totalPages);
-                }
-            }
-        }
-    }
+            // News
+            news_index_title: 'OFFICIAL NEWS',
+            news_heading: 'News & Releases',
+            news_desc: 'Technical reports, official news, and milestone developments at Syscorv.',
+            news_read_more: 'Read Full News →',
 
-    // Filter Buttons
-    filterButtons.forEach(btn => {
-        btn.addEventListener('click', () => {
-            filterButtons.forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            activeFilter = btn.getAttribute('data-filter');
-            renderCreations(1);
-        });
-    });
+            // Founder
+            founder_index_title: 'LEADERSHIP & DIRECTION',
+            founder_heading: 'Corporate & Technical Leadership',
+            founder_desc: 'Independent foundation guided by an obsessive pursuit of software autonomy and robust architectures.',
+            founder_role: 'Founder & Chief Systems Architect at SYSCORV',
+            founder_bio: 'Specialist in resilient local-first architectures, high-performance geospatial modeling, real-time computational engines, and user-sovereign security. Directs Syscorv\'s technology trajectory and intellectual property portfolio.',
+            btn_visit_founder: 'Architect\'s Personal Portal ↗',
 
-    // Arrow Buttons
-    if (creationsPrevBtn) {
-        creationsPrevBtn.addEventListener('click', () => {
-            if (currentCreationPage > 1) {
-                renderCreations(currentCreationPage - 1);
-            }
-        });
-    }
+            // Contact
+            contact_index_title: 'INSTITUTIONAL CHANNEL',
+            contact_heading: 'Communications & Contact',
+            contact_desc: 'For enterprise software licensing, technical collaborations, or intellectual property inquiries.',
+            contact_direct_title: 'Direct Channels',
+            contact_direct_desc: 'We respond promptly to commercial inquiries, vulnerability disclosures, and general requests:',
+            contact_email_label: 'Official Electronic Mail',
+            entity_text: '<strong>Syscorv</strong> operates as an independent software development and technology corporation. All applications, trademarks, patents, and associated digital assets are under full corporate registration.',
+            form_title: 'Transmit Message',
+            form_name: 'Name / Organization',
+            form_name_ph: 'Your name or enterprise',
+            form_email: 'Return Email',
+            form_email_ph: 'your.email@domain.com',
+            form_subject: 'Subject',
+            form_subject_ph: 'e.g., Enterprise Licensing, Partnership or Feedback',
+            form_message: 'Message',
+            form_message_ph: 'Detail your inquiry or proposal with clarity...',
+            form_submit: 'Transmit Message',
+            form_submitting: 'Transmitting...',
+            form_success: '✓ Message transmitted successfully to Syscorv command servers!',
 
-    if (creationsNextBtn) {
-        creationsNextBtn.addEventListener('click', () => {
-            const appsPerPage = getAppsPerPage();
-            const filteredCount = Array.from(creationCards).filter(c => activeFilter === 'all' || c.getAttribute('data-category') === activeFilter).length;
-            const totalPages = Math.ceil(filteredCount / appsPerPage) || 1;
-            if (currentCreationPage < totalPages) {
-                renderCreations(currentCreationPage + 1);
-            }
-        });
-    }
+            // Modal & Footer
+            modal_close: 'Close Article',
+            footer_slogan: 'Systems Intelligence. Proprietary Horizons.<br>Autonomous high-performance software laboratory.',
+            footer_col_eco: 'Ecosystem',
+            footer_col_arch: 'Directives',
+            footer_col_contact: 'Institutional',
+            footer_link_apps: 'Proprietary Software',
+            footer_link_arch: 'Local-First Resilience',
+            footer_link_privacy: 'Zero-Knowledge Privacy',
+            footer_link_perf: 'Computational Efficiency',
+            footer_link_news: 'Official Transmissions',
+            footer_link_contact: 'Contact & Licensing',
+            footer_founder_link: 'Founder Architect (v4mpw0l)',
+            footer_status: 'SYSTEMS ONLINE',
+        footer_rights: 'All rights reserved.',
 
-    // Window resize listener to dynamically switch between 6 (PC) and 4 (Mobile)
-    let resizeTimer;
-    window.addEventListener('resize', () => {
-        clearTimeout(resizeTimer);
-        resizeTimer = setTimeout(() => {
-            renderCreations(currentCreationPage);
-        }, 150);
-    }, { passive: true });
-
-    // Initial render
-    renderCreations(1);
-
-
-    // ----------------------------------------------------------------------
-    // 6. PROJECT INSPECT MODAL
-    // ----------------------------------------------------------------------
-    const modal = document.getElementById('projectModal');
-    const modalCloseBtn = document.getElementById('modalCloseBtn');
-    const modalContent = document.getElementById('modalContent');
-
-    const projectDetails = {
-        'modal-fazenda': {
-            title: "FazendaRPG",
-            icon: "🌾",
-            type: "RPG & Farming Simulation",
-            status: "Online / Stable",
-            desc: "FazendaRPG é um simulador imersivo onde o jogador gerencia ciclos agrários, constrói benfeitorias, evolui habilidades de ofício e administra recursos sob diferentes condições climáticas.",
-            stack: ["Engine HTML5 / WebGL", "State Persistence", "Adaptive Sound Engine"],
-            link: "https://v4mpw0l.github.io/FazendaRPG/"
+            // Accessibility Labels
+            aria_back_to_top: 'Back to top'
         },
-        'modal-hacker': {
-            title: "Hacker0s",
-            icon: "💻",
-            type: "Tactical Terminal & Cyber Simulator",
-            status: "Online / Active",
-            desc: "Ambiente imersivo de emulação de terminal cibernético com ferramentas interativas de comando, decodificação e exploração de nós de rede simulados.",
-            stack: ["Virtual Terminal Shell", "Crypto Engine", "Custom Scripting Environment"],
-            link: "https://v4mpw0l.github.io/hacker0S/"
-        },
-        'modal-packet': {
-            title: "PacketClicker MMO",
-            icon: "📦",
-            type: "Incremental Network Architecture",
-            status: "Online / Expanding",
-            desc: "Simulação incremental de processamento de pacotes massivos. Monte clusters de servidores quânticos e automatize a infraestrutura de dados.",
-            stack: ["Incremental State Math", "Realtime Throughput", "Persistent Local Storage"],
-            link: "https://v4mpw0l.github.io/packetclickermmo/"
-        },
-        'modal-passmap': {
-            title: "PassMap",
-            icon: "🗺️",
-            type: "Geospatial & Cartographic Intelligence",
-            status: "Online / v2.11 Live",
-            desc: "Suíte cartográfica e de navegação tática desenhada para autonomia total. Oferece visualização fluida de mapas, download de tiles para operação 100% offline, gestão avançada de pontos de interesse (POIs) e telemetria ambiental em tempo real.",
-            stack: ["Offline Vector & Raster Tiles", "Local IndexedDB Storage", "Realtime Weather & AQI", "Cross-Platform PWA"],
-            link: "https://passmap.app/"
-        },
-        'modal-budget': {
-            title: "BudgetBox",
-            icon: "💰",
-            type: "Financial Intelligence Engine",
-            status: "Online / Optimized",
-            desc: "Plataforma proprietária de controle patrimonial com inteligência preditiva de fluxo de caixa, relatórios ergonômicos e cálculo de metas.",
-            stack: ["Dynamic Data Visualization", "Algorithmic Forecasting", "Offline-First Engine"],
-            link: "https://v4mpw0l.github.io/BudgetBox/"
-        },
-        'modal-gencalc': {
-            title: "GenCalc",
-            icon: "🧮",
-            type: "Precision Calculation Core",
-            status: "Online / Verified",
-            desc: "Calculadora de alta precisão desenhada para fluxos de engenharia, finanças e operações científicas com trilha de auditoria completa.",
-            stack: ["Floating-Point Precision Fixes", "Audit Log System", "Keyboard Shortcuts"],
-            link: "https://v4mpw0l.github.io/GenCalc/"
+        'pt-BR': {
+            // Document Meta
+            doc_title: 'SYSCORV — Laboratório de Software Autônomo & Sistemas Espaciais',
+            doc_desc: 'A Syscorv é uma corporação e laboratório de engenharia de software independente. Criamos sistemas proprietários, local-first, zero-knowledge e aplicações espaciais.',
+
+            // Navigation
+            nav_overview: 'Visão Geral',
+            nav_ecosystem: 'Ecossistema',
+            nav_architecture: 'Arquitetura',
+            nav_transmissions: 'Transmissões',
+            nav_founder: 'Liderança',
+            nav_contact: 'Contato',
+            nav_cta_apps: 'Explorar Apps',
+
+            // Hero
+            hero_badge: 'LABORATÓRIO DE SOFTWARE AUTÔNOMO & SISTEMAS ESPACIAIS',
+            hero_title_1: 'ENGENHARIA DE SISTEMAS.',
+            hero_title_2: 'HORIZONTES PROPRIETÁRIOS.',
+            hero_subtitle: 'A <strong>Syscorv</strong> é uma corporação de tecnologia e laboratório independente de engenharia de software. Concebemos, desenvolvemos e operamos aplicações resilientes, arquiteturas <em>local-first</em>, telemetria espacial e universos digitais autônomos.',
+            hero_cta_explore: 'Explorar Ecossistema',
+            hero_cta_arch: 'Diretrizes de Engenharia',
+
+            // Telemetry Strip
+            telem_label_1: 'AUTONOMIA',
+            telem_val_1: '100% Proprietário',
+            telem_sub_1: 'Sem investidores ou dívida técnica',
+            telem_label_2: 'ARQUITETURA',
+            telem_val_2: 'Local-First',
+            telem_sub_2: 'Disponibilidade offline incondicional',
+            telem_label_3: 'PRIVACIDADE',
+            telem_val_3: 'Zero-Knowledge',
+            telem_sub_3: 'Dados residem exclusivamente no aparelho',
+            telem_label_4: 'EXECUÇÃO',
+            telem_val_4: '60 FPS Hardware',
+            telem_sub_4: 'Renderização acelerada por GPU',
+
+            // Ecosystem / Product Portfolio
+            eco_index_title: 'ECOSSISTEMA DE PRODUTOS',
+            eco_heading: 'Aplicações & Sistemas Ativos',
+            eco_desc: 'Engenharia e operação de plataformas autorais de alta performance, inteligência espacial e motores digitais da Syscorv.',
+            passmap_subtitle: 'CARRO-CHEFE // SUÍTE DE INTELIGÊNCIA ESPACIAL E CARTOGRAFIA',
+            badge_live: 'PRODUÇÃO ONLINE',
+            passmap_summary: 'O <strong>PassMap</strong> é o software carro-chefe da Syscorv em operação comercial. Unifica navegação vetorial 100% offline, catálogo verificado de mais de 540 pontos logísticos e códigos de acesso, telemetria meteorológica em tempo real, monitoramento de qualidade do ar (AQI), bússola giroscópica e 16 estilos customizados de marcadores animados a 60 FPS.',
+            btn_launch_passmap: 'Abrir PassMap Oficial ↗',
+
+            f1_title: '540+ Locais Verificados',
+            f1_desc: 'Códigos de portaria e notas logísticas unificadas.',
+            f2_title: '100% Offline-First',
+            f2_desc: 'Cache vetorial completo e banco local IndexedDB.',
+            f3_title: 'Clima & AQI em Tempo Real',
+            f3_desc: 'Sensação térmica em 7 faixas e índice de ar puro.',
+            f4_title: '16 Marcadores 60 FPS',
+            f4_desc: 'Vortex, Galaxy, Aurora, Storm e Cyber integrados.',
+
+            // Chips
+            chip_offline: 'Offline PWA',
+            chip_zero_cloud: 'Zero Rastreamento Cloud',
+            chip_languages: '7 Idiomas Sincronizados',
+            chip_sw: 'Service Worker Build 168',
+            chip_cross_platform: 'Compatível com iOS & Android',
+
+            eco_pipeline_badge: 'PIPELINE DO LABORATÓRIO SYSCORV',
+            eco_pipeline_desc: 'A Syscorv mantém projetos de software em desenvolvimento ativo nas áreas de renderização procedural WebGL, motores de rede ponto-a-ponto descentralizados e aplicações espaciais resilientes. Novas liberações são anunciadas diretamente em nossas transmissões oficiais.',
+
+            // Architecture
+            arch_index_title: 'DIRETRIZES TÉCNICAS',
+            arch_heading: 'A Filosofia de Engenharia Syscorv',
+            arch_desc: 'Construímos ferramentas digitais sob quatro preceitos invioláveis para garantir que nossas criações funcionem por décadas sem deterioração.',
+            pillar_1_title: 'Resiliência Local-First',
+            pillar_1_text: 'O software não pode ser refém de servidores distantes. Toda aplicação Syscorv armazena seu estado principal no próprio cliente (IndexedDB/CacheStorage), operando com 100% de capacidade sem conexão à rede.',
+            pillar_2_title: 'Privacidade Zero-Knowledge',
+            pillar_2_text: 'A privacidade do usuário é protegida por matemática e arquitetura, não apenas por promessas em termos de serviço. Rejeitamos telemetria invasiva, corretores de dados e vigilância corporativa.',
+            pillar_3_title: 'Eficiência Computacional',
+            pillar_3_text: 'Nenhum desperdício de ciclos de CPU ou memória. Escrevemos código enxuto e performático em Vanilla JS e Web APIs modernas, garantindo inicialização instantânea e resposta a 60 quadros por segundo.',
+            pillar_4_title: 'Estética & Artesanato Digital',
+            pillar_4_text: 'O design de alto padrão não é adorno superficial, mas um reflexo da precisão técnica. Construímos interfaces imersivas, tipografia calculada e temas de alto contraste que encantam no primeiro segundo.',
+
+            // News
+            news_index_title: 'NOTÍCIAS OFICIAIS',
+            news_heading: 'Notícias & Lançamentos',
+            news_desc: 'Relatórios técnicos, notícias oficiais e marcos de desenvolvimento da Syscorv.',
+            news_read_more: 'Ler Notícia Completa →',
+
+            // Founder
+            founder_index_title: 'LIDERANÇA & DIREÇÃO',
+            founder_heading: 'Estrutura & Liderança Técnica',
+            founder_desc: 'Fundação independente guiada pela busca obsessiva por autonomia de software e arquiteturas robustas.',
+            founder_role: 'Fundador & Arquiteto Chefe de Sistemas na SYSCORV',
+            founder_bio: 'Especialista em arquiteturas locais resilientes, modelagem geoespacial de alta performance, motores computacionais em tempo real e segurança orientada à soberania do usuário. Conduz a estratégia tecnológica e o portfólio de propriedade intelectual da Syscorv.',
+            btn_visit_founder: 'Portal Pessoal do Arquiteto ↗',
+
+            // Contact
+            contact_index_title: 'CANAL INSTITUCIONAL',
+            contact_heading: 'Comunicações & Contato',
+            contact_desc: 'Para licenciamento corporativo de softwares, propostas técnicas ou consultas de propriedade intelectual.',
+            contact_direct_title: 'Canais Diretos',
+            contact_direct_desc: 'Respondemos com rapidez a solicitações comerciais, reportes de vulnerabilidade ou consultas gerais:',
+            contact_email_label: 'Correio Eletrônico Oficial',
+            entity_text: '<strong>Syscorv</strong> opera como empresa de tecnologia e desenvolvimento de software independente. Todos os aplicativos, marcas, patentes e ativos associados são mantidos sob registro corporativo integral.',
+            form_title: 'Transmitir Mensagem',
+            form_name: 'Nome / Empresa',
+            form_name_ph: 'Seu nome ou organização',
+            form_email: 'E-mail para Retorno',
+            form_email_ph: 'seu.email@dominio.com',
+            form_subject: 'Assunto',
+            form_subject_ph: 'Ex: Licenciamento, Parceria ou Feedback',
+            form_message: 'Mensagem',
+            form_message_ph: 'Descreva sua solicitação com detalhes...',
+            form_submit: 'Transmitir Mensagem',
+            form_submitting: 'Transmitindo...',
+            form_success: '✓ Mensagem transmitida com sucesso aos servidores da Syscorv!',
+
+            // Modal & Footer
+            modal_close: 'Fechar Artigo',
+            footer_slogan: 'Engenharia de Sistemas. Horizontes Proprietários.<br>Laboratório autônomo de software de alto desempenho.',
+            footer_col_eco: 'Ecossistema',
+            footer_col_arch: 'Diretrizes',
+            footer_col_contact: 'Institucional',
+            footer_link_apps: 'Softwares Autorais',
+            footer_link_arch: 'Resiliência Local-First',
+            footer_link_privacy: 'Privacidade Zero-Knowledge',
+            footer_link_perf: 'Eficiência Computacional',
+            footer_link_news: 'Transmissões Oficiais',
+            footer_link_contact: 'Contato & Licenciamento',
+            footer_founder_link: 'Arquiteto Fundador (v4mpw0l)',
+            footer_status: 'SISTEMAS ONLINE',
+        footer_rights: 'Todos os direitos reservados.',
+
+            // Accessibility Labels
+            aria_back_to_top: 'Voltar ao topo'
         }
     };
 
-    // News Inspect Modal Handler (Driven by modular noticias.js)
-    function openNewsModal(newsId) {
-        const item = getNewsData().find(n => n.id === newsId);
-        if (item && modalContent && modal) {
-            const lang = currentLang;
-            const fullTextHtml = (item.texto && item.texto[lang]) ? item.texto[lang] : `<p>${item.excerpt ? item.excerpt[lang] : ''}</p>`;
-            const authorName = item.author || 'Gennisys';
-            const authorLabel = lang === 'pt' ? 'AUTOR' : 'AUTHOR';
-            const authorHtml = `<span class="news-date modal-author"><span class="date-month">${authorLabel}</span> <span class="date-num">${authorName}</span></span>`;
-            const dateHtml = (item.date && item.date[lang]) ? `<span class="news-date">${formatStyledDate(item.date[lang])}</span>` : '';
+    // CRITICAL: ENGLISH IS THE STRICT DEFAULT LANGUAGE
+    const LANG_STORAGE_KEY = 'syscorv_language';
+    let currentLang = localStorage.getItem(LANG_STORAGE_KEY) || 'en';
 
-            modalContent.innerHTML = `
-                <div class="modal-header-card">
-                    <div class="news-modal-top">
-                        <span class="news-badge ${item.badgeClass}">${item.badge[lang]}</span>
-                    </div>
-                    <h3 class="news-modal-title">${item.title[lang]}</h3>
-                </div>
-                <div class="news-modal-body-card">
-                    ${fullTextHtml}
-                </div>
-                <div class="news-modal-footer">
-                    ${authorHtml}
-                    ${dateHtml}
-                </div>
-            `;
-            modal.classList.add('open');
+    function applyLanguage(lang) {
+        currentLang = lang;
+        localStorage.setItem(LANG_STORAGE_KEY, lang);
+        document.documentElement.lang = lang === 'pt-BR' ? 'pt-BR' : 'en';
+
+        // Update Document Title & Description
+        if (i18n[lang]) {
+            if (i18n[lang].doc_title) document.title = i18n[lang].doc_title;
+            const metaDesc = document.querySelector('meta[name="description"]');
+            if (metaDesc && i18n[lang].doc_desc) metaDesc.setAttribute('content', i18n[lang].doc_desc);
+        }
+
+        // Update text nodes
+        document.querySelectorAll('[data-i18n]').forEach(el => {
+            const key = el.getAttribute('data-i18n');
+            if (i18n[lang] && i18n[lang][key]) {
+                el.innerHTML = i18n[lang][key];
+            }
+        });
+
+        // Update input/textarea placeholders
+        document.querySelectorAll('[data-i18n-ph]').forEach(el => {
+            const key = el.getAttribute('data-i18n-ph');
+            if (i18n[lang] && i18n[lang][key]) {
+                el.setAttribute('placeholder', i18n[lang][key]);
+            }
+        });
+
+        // Update accessibility attributes
+        const backToTopBtn = document.getElementById('backToTopBtn');
+        if (backToTopBtn && i18n[lang] && i18n[lang].aria_back_to_top) {
+            backToTopBtn.setAttribute('aria-label', i18n[lang].aria_back_to_top);
+            backToTopBtn.setAttribute('title', i18n[lang].aria_back_to_top);
+        }
+
+        // Update Footer Lang button active states
+        const ptBtn = document.getElementById('footerLangPt');
+        const enBtn = document.getElementById('footerLangEn');
+        if (ptBtn && enBtn) {
+            ptBtn.classList.toggle('active', lang === 'pt-BR');
+            enBtn.classList.toggle('active', lang === 'en');
+        }
+
+        renderNewsStream();
+    }
+
+    const footerLangPt = document.getElementById('footerLangPt');
+    const footerLangEn = document.getElementById('footerLangEn');
+    if (footerLangPt) footerLangPt.addEventListener('click', () => applyLanguage('pt-BR'));
+    if (footerLangEn) footerLangEn.addEventListener('click', () => applyLanguage('en'));
+
+    // ----------------------------------------------------------------------
+    // 3. THEME CONTROLLER (OBSIDIAN DARK & TITANIUM LIGHT)
+    // ----------------------------------------------------------------------
+    const THEME_STORAGE_KEY = 'syscorv_theme_mode';
+    const savedTheme = localStorage.getItem(THEME_STORAGE_KEY) || 'dark';
+
+    function applyTheme(theme) {
+        document.body.setAttribute('data-theme-mode', theme);
+        localStorage.setItem(THEME_STORAGE_KEY, theme);
+
+        const darkBtn = document.getElementById('footerThemeDark');
+        const lightBtn = document.getElementById('footerThemeLight');
+        if (darkBtn && lightBtn) {
+            darkBtn.classList.toggle('active', theme === 'dark');
+            lightBtn.classList.toggle('active', theme === 'light');
         }
     }
 
-    if (modalCloseBtn && modal) {
-        modalCloseBtn.addEventListener('click', () => {
-            modal.classList.remove('open');
-        });
+    applyTheme(savedTheme);
 
-        modal.addEventListener('click', (e) => {
-            if (e.target === modal) {
-                modal.classList.remove('open');
-            }
-        });
-    }
-
+    const footerThemeDark = document.getElementById('footerThemeDark');
+    const footerThemeLight = document.getElementById('footerThemeLight');
+    if (footerThemeDark) footerThemeDark.addEventListener('click', () => applyTheme('dark'));
+    if (footerThemeLight) footerThemeLight.addEventListener('click', () => applyTheme('light'));
 
     // ----------------------------------------------------------------------
-    // 7. MOBILE DRAWER NAVIGATION
+    // 4. DYNAMIC TRANSMISSIONS / NEWS STREAM & MODAL READER
+    // ----------------------------------------------------------------------
+    const newsContainer = document.getElementById('newsStreamGrid');
+    const newsModal = document.getElementById('newsModal');
+    const newsModalBackdrop = document.getElementById('newsModalBackdrop');
+    const newsModalCloseBtn = document.getElementById('newsModalCloseBtn');
+    const newsModalBackBtn = document.getElementById('newsModalBackBtn');
+
+    function formatNewsDate(dateStr) {
+        if (!dateStr) return '';
+        const parts = String(dateStr).trim().split(' ');
+        if (parts.length === 3) {
+            return `<span class="date-num">${parts[0]}</span> <span class="date-month">${parts[1]}</span> <span class="date-num">${parts[2]}</span>`;
+        }
+        return dateStr;
+    }
+
+    function openNewsArticle(article) {
+        if (!newsModal || !article) return;
+        const isEn = currentLang === 'en';
+
+        const category = isEn ? (article.categoriaEn || article.categoria) : article.categoria;
+        const dateStr = isEn ? (article.dataEn || article.data) : article.data;
+        const title = isEn ? (article.tituloEn || article.titulo) : article.titulo;
+        const body = isEn ? (article.textoEn || article.texto) : article.texto;
+        const authorName = article.author || 'Syscorv';
+        const authorLabel = isEn ? 'AUTHOR' : 'AUTOR';
+
+        document.getElementById('newsModalCategory').textContent = category;
+        document.getElementById('newsModalTitle').textContent = title;
+        document.getElementById('newsModalContent').innerHTML = body;
+
+        const authorLabelEl = document.getElementById('newsModalAuthorLabel');
+        if (authorLabelEl) authorLabelEl.textContent = authorLabel;
+
+        const authorNameEl = document.getElementById('newsModalAuthor');
+        if (authorNameEl) authorNameEl.textContent = authorName;
+
+        const dateEl = document.getElementById('newsModalDate');
+        if (dateEl) {
+            dateEl.innerHTML = formatNewsDate(dateStr);
+        }
+
+        newsModal.classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeNewsModal() {
+        if (!newsModal) return;
+        newsModal.classList.add('hidden');
+        document.body.style.overflow = '';
+    }
+
+    if (newsModalCloseBtn) newsModalCloseBtn.addEventListener('click', closeNewsModal);
+    if (newsModalBackBtn) newsModalBackBtn.addEventListener('click', closeNewsModal);
+    if (newsModalBackdrop) newsModalBackdrop.addEventListener('click', closeNewsModal);
+
+    window.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') closeNewsModal();
+    });
+
+    function renderNewsStream() {
+        if (!newsContainer || !window.syscorvNoticias) return;
+        const isEn = currentLang === 'en';
+        const readLabel = isEn ? 'Read Full News →' : 'Ler Notícia Completa →';
+
+        newsContainer.innerHTML = '';
+        window.syscorvNoticias.forEach(item => {
+            const card = document.createElement('article');
+            card.className = 'news-card';
+            card.setAttribute('data-reveal', '');
+
+            const category = isEn ? (item.categoriaEn || item.categoria) : item.categoria;
+            const date = isEn ? (item.dataEn || item.data) : item.data;
+            const title = isEn ? (item.tituloEn || item.titulo) : item.titulo;
+            const excerpt = isEn ? (item.excerptEn || item.excerpt) : item.excerpt;
+
+            card.innerHTML = `
+                <div class="news-card-header">
+                    <span class="news-pill">${category}</span>
+                    <span class="news-date">${formatNewsDate(date)}</span>
+                </div>
+                <h3 class="news-card-title">${title}</h3>
+                <p class="news-card-excerpt">${excerpt}</p>
+                <div class="news-read-more">
+                    <span>${readLabel}</span>
+                </div>
+            `;
+
+            card.addEventListener('click', () => openNewsArticle(item));
+            newsContainer.appendChild(card);
+        });
+
+        initScrollObserver();
+    }
+
+    // ----------------------------------------------------------------------
+    // 5. MOBILE DRAWER NAVIGATION
     // ----------------------------------------------------------------------
     const mobileMenuBtn = document.getElementById('mobileMenuBtn');
     const mobileDrawer = document.getElementById('mobileDrawer');
+    const drawerCloseBtn = document.getElementById('drawerCloseBtn');
+    const drawerBackdrop = document.getElementById('drawerBackdrop');
+    const drawerLinks = document.querySelectorAll('.drawer-link');
 
-    if (mobileMenuBtn && mobileDrawer) {
-        mobileMenuBtn.addEventListener('click', () => {
-            const isOpen = mobileDrawer.classList.toggle('open');
-            mobileMenuBtn.classList.toggle('open', isOpen);
-            mobileMenuBtn.setAttribute('aria-expanded', isOpen);
-        });
-
-        document.querySelectorAll('.mobile-link').forEach(link => {
-            link.addEventListener('click', () => {
-                mobileDrawer.classList.remove('open');
-                mobileMenuBtn.classList.remove('open');
-                mobileMenuBtn.setAttribute('aria-expanded', 'false');
-            });
-        });
+    function toggleDrawer(open) {
+        if (!mobileDrawer) return;
+        mobileDrawer.classList.toggle('open', open);
+        mobileDrawer.setAttribute('aria-hidden', !open);
+        if (mobileMenuBtn) mobileMenuBtn.setAttribute('aria-expanded', open);
+        document.body.style.overflow = open ? 'hidden' : '';
     }
 
-
-    // ----------------------------------------------------------------------
-    // 8. SCROLL REVEAL OBSERVER
-    // ----------------------------------------------------------------------
-    const revealElements = document.querySelectorAll('[data-reveal]');
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('revealed');
-            }
-        });
-    }, {
-        threshold: 0.1,
-        rootMargin: '0px 0px -40px 0px'
+    if (mobileMenuBtn) mobileMenuBtn.addEventListener('click', () => toggleDrawer(true));
+    if (drawerCloseBtn) drawerCloseBtn.addEventListener('click', () => toggleDrawer(false));
+    if (drawerBackdrop) drawerBackdrop.addEventListener('click', () => toggleDrawer(false));
+    drawerLinks.forEach(link => {
+        link.addEventListener('click', () => toggleDrawer(false));
     });
 
-    revealElements.forEach(el => observer.observe(el));
-
     // ----------------------------------------------------------------------
-    // 9. HEADER SCROLL & BACK TO TOP FLOATING BUTTON
+    // 6. CONTACT FORM TRANSMISSION HANDLER
     // ----------------------------------------------------------------------
-    const header = document.querySelector('.studio-header');
-    const backToTopBtn = document.getElementById('backToTop');
+    window.handleContactSubmit = function() {
+        const feedback = document.getElementById('formFeedback');
+        const submitBtn = document.getElementById('formSubmitBtn');
+        const isEn = currentLang === 'en';
 
-    window.addEventListener('scroll', () => {
-        const scrollPos = window.scrollY;
-
-        // Header glassmorphic background intensification
-        if (header) {
-            if (scrollPos > 40) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
-            }
+        if (submitBtn) {
+            submitBtn.disabled = true;
+            submitBtn.style.opacity = '0.7';
+            const subLabel = i18n[currentLang]?.form_submitting || (isEn ? 'Transmitting...' : 'Transmitindo...');
+            submitBtn.innerHTML = `<span>${subLabel}</span>`;
         }
 
-        // Back to top visibility
-        if (backToTopBtn) {
-            if (scrollPos > 300) {
+        setTimeout(() => {
+            if (feedback) {
+                feedback.className = 'form-feedback success';
+                feedback.textContent = i18n[currentLang]?.form_success || (isEn
+                    ? '✓ Message transmitted successfully to Syscorv command servers!'
+                    : '✓ Mensagem transmitida com sucesso aos servidores da Syscorv!');
+                feedback.classList.remove('hidden');
+            }
+            if (submitBtn) {
+                submitBtn.disabled = false;
+                submitBtn.style.opacity = '1';
+                const normalLabel = i18n[currentLang]?.form_submit || (isEn ? 'Transmit Message' : 'Transmitir Mensagem');
+                submitBtn.innerHTML = `<span>${normalLabel}</span>`;
+            }
+            document.getElementById('contactForm')?.reset();
+
+            setTimeout(() => {
+                feedback?.classList.add('hidden');
+            }, 6000);
+        }, 800);
+    };
+
+    // ----------------------------------------------------------------------
+    // 7. FLOATING BACK TO TOP BUTTON LOGIC
+    // ----------------------------------------------------------------------
+    const backToTopBtn = document.getElementById('backToTopBtn');
+    if (backToTopBtn) {
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
                 backToTopBtn.classList.add('visible');
             } else {
                 backToTopBtn.classList.remove('visible');
             }
-        }
-    }, { passive: true });
+        }, { passive: true });
 
-    if (backToTopBtn) {
         backToTopBtn.addEventListener('click', () => {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         });
     }
 
-    // Dynamic Year
-    const yearEl = document.getElementById('year');
-    if (yearEl) {
-        yearEl.textContent = new Date().getFullYear();
+    // ----------------------------------------------------------------------
+    // 8. SCROLL-SPY & REVEAL OBSERVER
+    // ----------------------------------------------------------------------
+    function initScrollObserver() {
+        const revealElements = document.querySelectorAll('[data-reveal]:not(.revealed)');
+        if (!window.IntersectionObserver) {
+            revealElements.forEach(el => el.classList.add('revealed'));
+            return;
+        }
+
+        const observer = new IntersectionObserver((entries, obs) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('revealed');
+                    obs.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.12,
+            rootMargin: '0px 0px -40px 0px'
+        });
+
+        revealElements.forEach(el => observer.observe(el));
     }
 
-    // Initialize Language (translates DOM & renders news grid safely)
-    setLanguage(currentLang);
+    // Nav active link tracking on scroll
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.sys-nav-desktop .nav-link');
+
+    window.addEventListener('scroll', () => {
+        let currentSec = '';
+        const scrollPos = window.pageYOffset + 140;
+
+        sections.forEach(sec => {
+            const top = sec.offsetTop;
+            const height = sec.offsetHeight;
+            if (scrollPos >= top && scrollPos < top + height) {
+                currentSec = sec.getAttribute('id');
+            }
+        });
+
+        navLinks.forEach(link => {
+            const href = link.getAttribute('href');
+            if (href === `#${currentSec}`) {
+                link.classList.add('active');
+            } else {
+                link.classList.remove('active');
+            }
+        });
+    }, { passive: true });
+
+    // Initial language application (DEFAULTS TO ENGLISH)
+    applyLanguage(currentLang);
+    initScrollObserver();
 });
