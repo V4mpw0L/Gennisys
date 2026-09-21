@@ -199,6 +199,7 @@ document.addEventListener('DOMContentLoaded', () => {
             form_submit: 'Transmit Message',
             form_submitting: 'Transmitting...',
             form_success: '✓ Message transmitted successfully to Syscorv command servers!',
+            form_error: '✕ Transmission failed. Please contact us directly at contact@syscorv.com',
 
             // Modal & Footer
             modal_close: 'Close Article',
@@ -330,6 +331,7 @@ document.addEventListener('DOMContentLoaded', () => {
             form_submit: 'Transmitir Mensagem',
             form_submitting: 'Transmitindo...',
             form_success: '✓ Mensagem transmitida com sucesso aos servidores da Syscorv!',
+            form_error: '✕ Falha na transmissão. Envie diretamente para contact@syscorv.com',
 
             // Modal & Footer
             modal_close: 'Fechar Artigo',
@@ -554,12 +556,25 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // ----------------------------------------------------------------------
-    // 6. CONTACT FORM TRANSMISSION HANDLER
+    // 6. CONTACT FORM TRANSMISSION HANDLER (LIVE FormSubmit.co Integration)
     // ----------------------------------------------------------------------
-    window.handleContactSubmit = function() {
+    window.handleContactSubmit = async function() {
+        const nameInput = document.getElementById('contactName');
+        const emailInput = document.getElementById('contactEmail');
+        const subjectInput = document.getElementById('contactSubject');
+        const messageInput = document.getElementById('contactMessage');
         const feedback = document.getElementById('formFeedback');
         const submitBtn = document.getElementById('formSubmitBtn');
         const isEn = currentLang === 'en';
+
+        const name = nameInput ? nameInput.value.trim() : '';
+        const email = emailInput ? emailInput.value.trim() : '';
+        const subject = subjectInput ? subjectInput.value.trim() : '';
+        const message = messageInput ? messageInput.value.trim() : '';
+
+        if (!name || !email || !message) {
+            return;
+        }
 
         if (submitBtn) {
             submitBtn.disabled = true;
@@ -568,26 +583,60 @@ document.addEventListener('DOMContentLoaded', () => {
             submitBtn.innerHTML = `<span>${subLabel}</span>`;
         }
 
-        setTimeout(() => {
+        try {
+            const response = await fetch('https://formsubmit.co/ajax/contact@syscorv.com', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify({
+                    name: name,
+                    email: email,
+                    _subject: `[Syscorv Transmission] ${subject || 'General Inquiry'} - ${name}`,
+                    subject: subject || 'General Inquiry',
+                    message: message,
+                    _template: 'table',
+                    _captcha: 'false'
+                })
+            });
+
+            const data = await response.json();
+
+            if (response.ok || (data && (data.success === 'true' || data.success === true))) {
+                if (feedback) {
+                    feedback.className = 'form-feedback success';
+                    feedback.textContent = i18n[currentLang]?.form_success || (isEn
+                        ? '✓ Message transmitted successfully to Syscorv command servers!'
+                        : '✓ Mensagem transmitida com sucesso aos servidores da Syscorv!');
+                    feedback.classList.remove('hidden');
+                }
+                document.getElementById('contactForm')?.reset();
+            } else {
+                throw new Error(data?.message || 'Submission error');
+            }
+        } catch (err) {
+            console.error('Contact transmission error:', err);
             if (feedback) {
-                feedback.className = 'form-feedback success';
-                feedback.textContent = i18n[currentLang]?.form_success || (isEn
-                    ? '✓ Message transmitted successfully to Syscorv command servers!'
-                    : '✓ Mensagem transmitida com sucesso aos servidores da Syscorv!');
+                feedback.className = 'form-feedback error';
+                const errMsg = i18n[currentLang]?.form_error || (isEn
+                    ? '✕ Transmission failed. Please email contact@syscorv.com directly.'
+                    : '✕ Falha na transmissão. Por favor envie para contact@syscorv.com');
+                const mailtoUrl = `mailto:contact@syscorv.com?subject=${encodeURIComponent(subject || 'Inquiry')}&body=${encodeURIComponent(message)}`;
+                feedback.innerHTML = `${errMsg}<br><a href="${mailtoUrl}" style="color: var(--sys-cyan); text-decoration: underline; margin-top: 6px; display: inline-block;">Open Mail Client ↗</a>`;
                 feedback.classList.remove('hidden');
             }
+        } finally {
             if (submitBtn) {
                 submitBtn.disabled = false;
                 submitBtn.style.opacity = '1';
                 const normalLabel = i18n[currentLang]?.form_submit || (isEn ? 'Transmit Message' : 'Transmitir Mensagem');
-                submitBtn.innerHTML = `<span>${normalLabel}</span>`;
+                submitBtn.innerHTML = `<span>${normalLabel}</span> <svg viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 8l12-6-6 12-2-4-4-2z"/></svg>`;
             }
-            document.getElementById('contactForm')?.reset();
-
             setTimeout(() => {
                 feedback?.classList.add('hidden');
-            }, 6000);
-        }, 800);
+            }, 8000);
+        }
     };
 
     // ----------------------------------------------------------------------
@@ -669,7 +718,7 @@ document.addEventListener('DOMContentLoaded', () => {
 // ----------------------------------------------------------------------
 if ("serviceWorker" in navigator) {
     window.addEventListener("load", () => {
-        navigator.serviceWorker.register("./sw.js?v=3.2.0", { updateViaCache: "none" })
+        navigator.serviceWorker.register("./sw.js?v=3.2.1", { updateViaCache: "none" })
             .then(reg => {
                 reg.update();
                 document.addEventListener("visibilitychange", () => {

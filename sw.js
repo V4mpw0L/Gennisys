@@ -1,5 +1,5 @@
 // SYSCORV LABS — Core Service Worker (Stealth PWA Auto-Updater)
-const APP_VERSION = '3.2.0';
+const APP_VERSION = '3.2.1';
 const CACHE_NAME = `syscorv-core-v${APP_VERSION}`;
 
 const PRECACHE_ASSETS = [

@@ -1540,6 +1540,12 @@ body[data-theme-mode="light"] .date-month {
     border: 1px solid rgba(16, 185, 129, 0.4);
 }
 
+.form-feedback.error {
+    background: rgba(239, 68, 68, 0.15);
+    color: #ef4444;
+    border: 1px solid rgba(239, 68, 68, 0.4);
+}
+
 .hidden {
     display: none !important;
 }
