@@ -591,8 +591,20 @@ body[data-theme-mode="light"] .gradient-text {
     .hero-subtitle { font-size: 1.18rem; }
 }
 
-.hero-subtitle strong {
-    color: var(--sys-text-heading);
+.hero-subtitle strong,
+.entity-text strong,
+.syscorv-brand-highlight {
+    color: #00e5ff;
+    font-weight: 800;
+    letter-spacing: 0.05em;
+    text-shadow: 0 0 10px rgba(0, 229, 255, 0.45);
+}
+
+body[data-theme-mode="light"] .hero-subtitle strong,
+body[data-theme-mode="light"] .entity-text strong,
+body[data-theme-mode="light"] .syscorv-brand-highlight {
+    color: #0284c7;
+    text-shadow: none;
 }
 
 .hero-subtitle em {
