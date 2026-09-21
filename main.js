@@ -663,3 +663,21 @@ document.addEventListener('DOMContentLoaded', () => {
     applyLanguage(currentLang);
     initScrollObserver();
 });
+
+// ----------------------------------------------------------------------
+// 6. PWA CORE SERVICE WORKER REGISTRATION (AUTO-SYNC)
+// ----------------------------------------------------------------------
+if ("serviceWorker" in navigator) {
+    window.addEventListener("load", () => {
+        navigator.serviceWorker.register("./sw.js?v=3.2.0", { updateViaCache: "none" })
+            .then(reg => {
+                reg.update();
+                document.addEventListener("visibilitychange", () => {
+                    if (document.visibilityState === "visible") reg.update();
+                });
+            })
+            .catch(err => {
+                console.warn("[SW] Registration failed:", err);
+            });
+    });
+}

@@ -1,18 +1,23 @@
 // SYSCORV LABS — Core Service Worker (Stealth PWA Auto-Updater)
-const APP_VERSION = '3.0.0';
+const APP_VERSION = '3.2.0';
 const CACHE_NAME = `syscorv-core-v${APP_VERSION}`;
 
 const PRECACHE_ASSETS = [
-  './',
-  './index.html',
+  '.' + /,
+  '.' + /index.html,
   `./style.css?v=${APP_VERSION}`,
   `./main.js?v=${APP_VERSION}`,
   `./noticias.js?v=${APP_VERSION}`,
   `./manifest.json?v=${APP_VERSION}`,
-  './assets/syscorv-icon.png',
-  './assets/icon-192.png',
-  './favicon.png',
-  './favicon.ico'
+  '.' + /assets/icon-192.png,
+  '.' + /assets/icon-512.png,
+  '.' + /assets/icon-maskable-192.png,
+  '.' + /assets/icon-maskable-512.png,
+  '.' + /assets/apple-touch-icon.png,
+  '.' + /assets/syscorv-icon.png,
+  '.' + /favicon.png,
+  '.' + /favicon-32x32.png,
+  '.' + /favicon.ico
 ];
 
 // Install: Pre-cache core shell & activate immediately
@@ -34,6 +39,7 @@ self.addEventListener('activate', event => {
       return Promise.all(
         cacheNames.map(cache => {
           if (cache !== CACHE_NAME) {
+            console.log('[SW] Deleting obsolete cache:', cache);
             return caches.delete(cache);
           }
         })

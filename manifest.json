@@ -1,5 +1,5 @@
 {
-  "name": "SYSCORV — Autonomous Software & Spatial Systems Lab",
+  "name": "SYSCORV \u2014 Autonomous Software & Spatial Systems Lab",
   "short_name": "SYSCORV",
   "description": "Autonomous software engineering corporation and spatial systems laboratory.",
   "start_url": "./index.html",
@@ -7,21 +7,78 @@
   "display": "standalone",
   "orientation": "any",
   "background_color": "#07090e",
-  "theme_color": "#00e5ff",
+  "theme_color": "#07090e",
   "icons": [
     {
       "src": "assets/icon-192.png",
       "sizes": "192x192",
       "type": "image/png",
-      "purpose": "any maskable"
+      "purpose": "any"
     },
     {
-      "src": "assets/syscorv-icon.png",
+      "src": "assets/icon-512.png",
       "sizes": "512x512",
       "type": "image/png",
-      "purpose": "any maskable"
+      "purpose": "any"
+    },
+    {
+      "src": "assets/icon-maskable-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "assets/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
     }
   ],
-  "version": "3.0.0",
+  "shortcuts": [
+    {
+      "name": "DevLog & Transmissions",
+      "short_name": "DevLog",
+      "description": "Read latest system transmissions and dev updates",
+      "url": "./#news",
+      "icons": [
+        {
+          "src": "assets/icon-192.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "Spatial Systems Lab",
+      "short_name": "Systems",
+      "description": "Explore proprietary systems and digital frontiers",
+      "url": "./#systems",
+      "icons": [
+        {
+          "src": "assets/icon-192.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "Direct Transmission",
+      "short_name": "Contact",
+      "description": "Establish encrypted communication link",
+      "url": "./#contact",
+      "icons": [
+        {
+          "src": "assets/icon-192.png",
+          "sizes": "192x192"
+        }
+      ]
+    }
+  ],
+  "categories": [
+    "business",
+    "developer",
+    "technology"
+  ],
+  "lang": "en",
+  "dir": "ltr",
+  "version": "3.2.0",
   "id": "syscorv-labs-pwa"
 }
