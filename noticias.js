@@ -11,25 +11,25 @@ window.syscorvNoticias = [
     {
         id: "passmap-2-11-shipped",
         categoria: "LANÇAMENTO",
-        categoriaEn: "SHIPPED",
+        categoriaEn: "RELEASE",
         data: "05 SET 2026",
         dataEn: "05 SEP 2026",
         author: "Syscorv",
         tag: "PassMap v2.11",
         tagEn: "PassMap v2.11",
-        titulo: "PassMap 2.11 no Ar: A Saga dos Mapas Offline e 60 FPS no Celular",
-        tituloEn: "PassMap 2.11 Shipped: Offline Maps & 60 FPS Mobile Polish",
-        excerpt: "Reconstruí o motor do PassMap nos últimos dias. O maior desafio foi fazer o cache de tiles funcionar 100% offline com renderização lisa e sem engasgos no mobile.",
-        excerptEn: "Overhauled PassMap’s core engine over the past days. The biggest hurdle was seamless tile caching for true offline navigation with 60 FPS mobile panning.",
+        titulo: "PassMap 2.11: Otimização de Motor Cartográfico e Renderização a 60 FPS",
+        tituloEn: "PassMap 2.11 Shipped: Cartographic Engine & 60 FPS Optimization",
+        excerpt: "Atualização estrutural do pipeline de renderização vetorial. Implementação de particionamento e cache em IndexedDB para navegação offline fluida e estável.",
+        excerptEn: "Structural overhaul of the vector rendering pipeline. Multi-quadrant IndexedDB caching delivers fluid, reliable offline navigation.",
         texto: `
-            <p>Finalmente liberei a versão <strong>v2.11 do PassMap</strong>. Esse projeto começou de uma necessidade pessoal de ter um mapa offline rápido, confiável e sem poluição visual para viagens e trilhas onde o sinal 4G/5G oscila constantemente.</p>
-            <p>Passei as últimas semanas refinando o loop de renderização cartográfica para cravar 60 FPS estáveis mesmo com dezenas de marcadores e polígonos na tela. O sistema de cache em IndexedDB agora pré-carrega quadrantes inteiros de tiles, permitindo navegação fluida sem conexão de rede.</p>
-            <p>O ajuste fino de interface no mobile — respeitando safe-areas, notch e barra de navegação no iOS e Android — deu trabalho, mas o resultado é uma experiência que parece um app nativo de primeira linha.</p>
+            <p>A versão <strong>v2.11 do PassMap</strong> introduz aprimoramentos fundamentais no subsistema de renderização vetorial e na gestão de memória local, com foco em estabilidade operacional em condições de rede nula ou intermitente.</p>
+            <p>O ciclo principal de renderização cartográfica foi reestruturado para assegurar taxa sustentada de 60 quadros por segundo durante rotações dinâmicas e transições de escala. O mecanismo de armazenamento em IndexedDB agora processa o pré-carregamento determinístico de quadrantes cartográficos, garantindo navegação contínua sem requisições adicionais.</p>
+            <p>A interface foi recalibrada para respeitar as especificações ergonômicas de visualização e áreas de respiro dos sistemas operacionais móveis, assegurando legibilidade rigorosa e precisão espacial.</p>
         `,
         textoEn: `
-            <p>I finally shipped <strong>PassMap v2.11</strong>. This project was born from a personal need for a fast, dependable, clutter-free offline map during travel and trails where cellular connectivity drops out.</p>
-            <p>Spent intense sessions tuning the cartographic rendering loop to maintain 60 FPS during pinch, zoom, and dynamic rotation. Re-architected tile caching into local IndexedDB chunks so entire regions can be navigated fully disconnected.</p>
-            <p>Calibrating edge-to-edge viewports across mobile browsers (handling viewport height, home bars, and safe-area insets seamlessly on iOS WebKit and Android) was tricky, but the app now feels indistinguishable from a native build.</p>
+            <p><strong>PassMap v2.11</strong> introduces foundational refinements to the vector rendering subsystem and local memory management, specifically engineered for operational reliability under degraded or non-existent network conditions.</p>
+            <p>The cartographic render loop has been profiled to maintain a stable 60 FPS cadence throughout dynamic rotation and continuous zoom transitions. The client-side IndexedDB cache now deterministically pre-fetches map quadrants, enabling seamless uninterrupted navigation.</p>
+            <p>The mobile viewport architecture was systematically calibrated against operating system safe-area insets, ensuring typographic hierarchy and geometric clarity.</p>
         `
     },
     {
@@ -41,67 +41,67 @@ window.syscorvNoticias = [
         author: "Syscorv",
         tag: "Engenharia & Privacidade",
         tagEn: "Engineering & Privacy",
-        titulo: "Por Que Decidi Fazer o PassMap 100% Local-First e Sem Telemetria",
-        tituloEn: "Why I Built PassMap Around a Local-First, Zero-Telemetry Ethos",
-        excerpt: "Minhas reflexões como desenvolvedor sobre privacidade: seus pontos favoritos, coordenadas e rotas pertencem ao armazenamento local do seu aparelho, e não a servidores de terceiros.",
-        excerptEn: "My thoughts as an engineer on data privacy: your saved pins, coordinates, and notes belong to your local device storage, not remote corporate servers.",
+        titulo: "Arquitetura Local-First e Princípios de Soberania de Dados",
+        tituloEn: "Local-First Architecture and Data Sovereignty Principles",
+        excerpt: "Análise técnica sobre a retenção estrita de dados no dispositivo: chaves de acesso e registros geográficos preservados no armazenamento cliente.",
+        excerptEn: "Technical insights on strict client-side data retention: local cryptographic keys and on-device coordinate storage.",
         texto: `
-            <p>Sempre me incomodou como os grandes serviços de mapas tratam cada passo do usuário como telemetria monetizável. Ao planejar o <strong>PassMap</strong>, decidi seguir na contramão: arquitetura <strong>Local-First intransigente</strong>.</p>
-            <p>Todos os marcadores, listas personalizadas de POIs e anotações ficam salvos em IndexedDB com criptografia local. Não temos servidores rastreando por onde você anda, nem rotas enviadas para a nuvem sem você querer.</p>
-            <p>Desenvolver dessa forma dá trabalho porque não posso terceirizar a lógica para um backend centralizado, mas a paz de espírito e a velocidade instantânea de carregamento compensam cada linha de código.</p>
+            <p>A concepção arquitetural do <strong>PassMap</strong> orienta-se pela primazia do armazenamento local. Ao contrário de modelos dependentes de sincronização contínua na nuvem, todas as estruturas de dados fundamentais residem exclusivamente no dispositivo do usuário.</p>
+            <p>Marcadores geográficos, metadados de acesso e anotações logísticas são processados e armazenados via IndexedDB local. Essa abordagem elimina vetores desnecessários de telemetria externa e preserva a integridade informacional de cada sessão de uso.</p>
+            <p>A descentralização do processamento impõe um rigor adicional ao design dos algoritmos de indexação, recompensado por tempos de resposta instantâneos e total resiliência operacional.</p>
         `,
         textoEn: `
-            <p>It always bothered me how major map providers treat every route and pin as monetizable telemetry. When designing <strong>PassMap</strong>, I chose the opposite path: uncompromising <strong>Local-First engineering</strong>.</p>
-            <p>All custom POIs, categorized lists, and geographical annotations live in on-device IndexedDB with local encryption. We maintain zero tracking backends collecting user footsteps or routes.</p>
-            <p>Building this way requires extra discipline because you can’t lean on server-side shortcuts, but the resulting instantaneous load times and true privacy make every refactor worthwhile.</p>
+            <p>The architectural foundation of <strong>PassMap</strong> is anchored on the primacy of client-side storage. Moving away from models dependent on continuous cloud telemetry, primary state collections remain exclusively on user hardware.</p>
+            <p>Geographic coordinates, access metadata, and logistics notes are indexed directly into local IndexedDB structures. This design eliminates unnecessary third-party transmission vectors while safeguarding session integrity.</p>
+            <p>Decentralizing processing requires elevated rigor in local spatial indexing algorithms, delivering instantaneous retrieval and resilient offline operation.</p>
         `
     },
     {
         id: "realtime-telemetry-weather-aqi",
-        categoria: "EXPERIMENTOS",
-        categoriaEn: "EXPERIMENTS",
+        categoria: "ENGENHARIA",
+        categoriaEn: "ENGINEERING",
         data: "18 AGO 2026",
         dataEn: "18 AUG 2026",
         author: "Syscorv",
-        tag: "PassMap Telemetria",
-        tagEn: "PassMap Telemetry",
-        titulo: "Telemetria em Tempo Real: Integrando Clima e Qualidade do Ar (AQI)",
-        tituloEn: "Realtime Telemetry: Integrating Weather & Air Quality (AQI) on Maps",
-        excerpt: "Implementei um widget ambiental no cabeçalho do PassMap que calcula em tempo real o índice de qualidade do ar (AQI), temperatura e vento a partir de coordenadas globais.",
-        excerptEn: "Engineered an environmental telemetry widget in PassMap’s header correlating live coordinates with air quality index (AQI), temperature, and wind.",
+        tag: "Telemetria Espacial",
+        tagEn: "Spatial Telemetry",
+        titulo: "Telemetria Ambiental Integrada: Índices Meteorológicos e AQI",
+        tituloEn: "Integrated Environmental Telemetry: Meteorological Indices and AQI",
+        excerpt: "Módulo espacial para correlação em tempo real de coordenadas geográficas com dados micrometeorológicos e qualidade do ar, operando com cache inteligente.",
+        excerptEn: "Spatial module correlating realtime geographic coordinates with micrometeorological and air quality indices, backed by threshold caching.",
         texto: `
-            <p>Uma funcionalidade que eu queria muito no PassMap era ver de relance as condições atmosféricas do local onde estou ou para onde estou planejando ir. Criei um módulo de <strong>telemetria ambiental hiperlocal</strong>.</p>
-            <p>O widget faz requisições otimizadas para endpoints de dados meteorológicos abertos e correlaciona a latitude e longitude com medições oficiais de <strong>AQI (Índice de Qualidade do Ar)</strong>, velocidade do vento e temperatura.</p>
-            <p>Para evitar requisições desnecessárias quando o usuário apenas passeia pelo mapa, apliquei um algoritmo de debouncing e cache inteligente com base no raio de deslocamento.</p>
+            <p>O PassMap incorporou uma camada de <strong>telemetria ambiental de precisão</strong>, permitindo aos usuários a visualização pontual de variáveis atmosféricas vinculadas à posição observada.</p>
+            <p>O módulo integra consultas a bases públicas abertas de meteorologia e modelos globais de qualidade do ar (AQI), traduzindo vetores de vento, gradientes térmicos e índices de pureza atmosférica em uma camada visual discreta.</p>
+            <p>Para preservar largura de banda e autonomia energética do dispositivo, o pipeline adota algoritmos de limiar espacial e amortecimento temporal (debouncing), atualizando métricas apenas quando ocorrem alterações geográficas significativas.</p>
         `,
         textoEn: `
-            <p>A capability I really wanted inside PassMap was glancing at atmospheric conditions right at my target destination. I built an ultra-lightweight <strong>hyperlocal environmental telemetry widget</strong>.</p>
-            <p>The module queries open meteorological endpoints, correlating geographic coordinates with official <strong>AQI (Air Quality Index)</strong> measurements, wind velocity, and ambient temperature.</p>
-            <p>To preserve network bandwidth while panning, I built a smart debouncing and spatial threshold cache that only refreshes when significant distance thresholds are crossed.</p>
+            <p>PassMap has integrated an ultra-lean <strong>precision environmental telemetry layer</strong>, enabling contextual observation of atmospheric metrics linked directly to spatial coordinates.</p>
+            <p>The module correlates public meteorological data and atmospheric dispersion models, translating wind vectors, thermal gradients, and air quality indices (AQI) into an unobtrusive overlay.</p>
+            <p>To preserve network bandwidth and battery efficiency, the pipeline employs distance-threshold caching and temporal debouncing, querying remote data points only upon verified spatial movement.</p>
         `
     },
     {
         id: "native-packaging-ios-android",
-        categoria: "BASTIDORES",
-        categoriaEn: "DEVLOG",
+        categoria: "DESENVOLVIMENTO",
+        categoriaEn: "DEVELOPMENT",
         data: "08 AGO 2026",
         dataEn: "08 AUG 2026",
         author: "Syscorv",
-        tag: "Roadmap Mobile",
-        tagEn: "Mobile Roadmap",
-        titulo: "O Próximo Passo: Empacotando o PassMap Nativo para iOS e Android",
-        tituloEn: "The Next Milestone: Packaging PassMap Natively for iOS & Android",
-        excerpt: "Com o PWA rodando redondo, comecei os testes para empacotar o PassMap com casca nativa para as lojas oficiais, aproveitando aceleração de hardware e sensores de bússola.",
-        excerptEn: "With our PWA running smooth, I am preparing the native compilation pipeline for PassMap on the App Store & Google Play, tapping into hardware compass and native acceleration.",
+        tag: "Plataformas Móveis",
+        tagEn: "Mobile Platforms",
+        titulo: "Compilação Nativa e Integração de Sensores em Dispositivos Móveis",
+        tituloEn: "Native Runtimes and Mobile Sensor Integration",
+        excerpt: "Estruturação de camadas nativas para acesso a acelerômetros, bússola giroscópica e persistência de baixa latência em ecossistemas móveis.",
+        excerptEn: "Structuring native bridge layers for direct accelerometer access, gyroscopic orientation, and low-latency persistence.",
         texto: `
-            <p>O ecossistema PWA do PassMap está extremamente sólido, mas há barreiras do ecossistema web móvel (como travas de orientação no WebKit do iOS e limitações de sensores em segundo plano) que só uma compilação nativa resolve de forma definitiva.</p>
-            <p>Comecei a estruturar o pipeline de empacotamento para a <strong>Apple App Store</strong> e a <strong>Google Play Store</strong>. A meta é manter a base de código 100% autônoma, adicionando pontes nativas apenas para sensores biométricos, bússola giroscópica e sincronização local offline.</p>
-            <p>Seguimos firmes no compromisso de construir software independente com alma, sem código genérico de template.</p>
+            <p>Embora a suíte PWA do PassMap ofereça desempenho consistente em navegadores modernos, certas capacidades de hardware requerem acesso de baixo nível para máxima fidelidade.</p>
+            <p>Iniciou-se a preparação de invólucros nativos direcionados às plataformas <strong>iOS</strong> e <strong>Android</strong>. O objetivo é viabilizar o polling contínuo da bússola magnetométrica e otimizar os ciclos de atualização da interface em segundo plano.</p>
+            <p>A arquitetura central permanece unificada e independente, garantindo equivalência funcional e manutenção simplificada entre todas as vias de distribuição.</p>
         `,
         textoEn: `
-            <p>PassMap’s PWA shell is rock-solid, but mobile web browsers introduce constraints (such as iOS WebKit orientation lock limitations and background sensor throttling) that only a native runtime solves cleanly.</p>
-            <p>I have begun laying out the native deployment pipeline for both the <strong>Apple App Store</strong> and <strong>Google Play Store</strong>. The goal is maintaining our lean, autonomous codebase while unlocking native gyrocompass access and biometric unlock.</p>
-            <p>Continuing our philosophy: handcrafted independent software with soul, zero generic boilerplates.</p>
+            <p>While PassMap's PWA runtime demonstrates consistent performance across modern engines, specific hardware capabilities necessitate low-level interfaces for peak fidelity.</p>
+            <p>Preparation of native wrappers for <strong>iOS</strong> and <strong>Android</strong> runtimes is underway. The objective is to unlock low-overhead magnetometer polling and enhance background execution resilience.</p>
+            <p>The core computational engine remains unified and platform-agnostic, preserving operational parity across all distribution channels.</p>
         `
     },
     {
@@ -111,21 +111,21 @@ window.syscorvNoticias = [
         data: "20 SET 2026",
         dataEn: "20 SEP 2026",
         author: "Syscorv",
-        tag: "COMUNICADO OFICIAL",
-        tagEn: "OFFICIAL RELEASE",
-        titulo: "Inauguração Oficial da Syscorv: A Síntese de Sistemas e Autonomia",
-        tituloEn: "Official Launch of Syscorv: The Synthesis of Systems and Autonomy",
-        excerpt: "Apresentamos oficialmente a Syscorv — um estúdio corporativo e organização de software independente focada em arquiteturas resilientes, sistemas espaciais e aplicações proprietárias.",
-        excerptEn: "Officially introducing Syscorv — a corporate software organization focused on resilient architectures, spatial suites, and user-sovereign proprietary applications.",
+        tag: "DIRETRIZ INSTITUCIONAL",
+        tagEn: "INSTITUTIONAL DIRECTIVE",
+        titulo: "Diretrizes Institucionais: A Síntese de Sistemas e Autonomia",
+        tituloEn: "Institutional Directives: The Synthesis of Systems and Autonomy",
+        excerpt: "Apresentação da Syscorv como laboratório independente dedicado ao desenvolvimento de software proprietário, sistemas espaciais e arquiteturas resilientes.",
+        excerptEn: "Introducing Syscorv as an independent laboratory dedicated to proprietary software, spatial systems, and resilient computational architectures.",
         texto: `
-            <p>A Syscorv nasce da convicção de que o software contemporâneo precisa resgatar os princípios de alto desempenho, independência de infraestrutura e controle soberano do usuário.</p>
-            <p>Em um mercado dominado por aplicações web frágeis e dependentes de conectividade ininterrupta, nossa missão é arquitetar ferramentas computacionais que operem com máxima eficiência no ambiente local, sem concessões de privacidade ou qualidade técnica.</p>
-            <p>O portfólio da Syscorv consolida anos de pesquisa aplicada em algoritmos de renderização vetorial, estruturas de dados espaciais e motores de simulação interativa.</p>
+            <p>A <strong>Syscorv</strong> estabelece-se com o propósito de desenvolver software de alto desempenho estruturado sobre princípios de eficiência computacional, resiliência de infraestrutura e controle estrito do usuário sobre seus dados.</p>
+            <p>Frente a um ecossistema progressivamente dependente de serviços centralizados, orientamos nossa pesquisa aplicada à criação de ferramentas autônomas que operam com integridade e rapidez em nível local.</p>
+            <p>O ecossistema reúne pesquisa em algoritmos de renderização vetorial, estruturas de dados espaciais e interfaces de controle com rigor técnico e estético.</p>
         `,
         textoEn: `
-            <p>Syscorv is founded on the core thesis that contemporary software must restore the foundations of raw computational speed, infrastructural resilience, and user data sovereignty.</p>
-            <p>In an ecosystem inundated with fragile web applications beholden to continuous cloud dependencies, our engineering directive is building computational tools that function with peak efficiency directly on the local machine.</p>
-            <p>The Syscorv ecosystem consolidates years of applied research into high-throughput spatial vector algorithms, decoupled synchronization, and autonomous graphical engines.</p>
+            <p><strong>Syscorv</strong> is established with the objective of engineering high-performance software grounded in computational efficiency, infrastructural resilience, and rigorous user data sovereignty.</p>
+            <p>Addressing an industry characterized by increasing cloud dependency, we direct our applied research toward autonomous tools that operate reliably and efficiently on local hardware.</p>
+            <p>The ecosystem unifies research into high-throughput vector rendering algorithms, spatial data structures, and restrained, high-density interface design.</p>
         `
     }
 ];

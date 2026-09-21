@@ -1,7 +1,7 @@
 {
-  "name": "SYSCORV \u2014 Autonomous Software & Spatial Systems Lab",
+  "name": "SYSCORV — Systems Laboratory & Proprietary Software",
   "short_name": "SYSCORV",
-  "description": "Autonomous software engineering corporation and spatial systems laboratory.",
+  "description": "Independent software engineering laboratory and proprietary spatial systems.",
   "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",

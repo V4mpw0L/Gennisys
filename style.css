@@ -520,30 +520,6 @@ body[data-theme-mode="light"] .brand-name {
     align-items: center;
 }
 
-.hero-tag-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 6px 16px;
-    border-radius: var(--radius-pill);
-    background: var(--sys-cyan-dim);
-    border: 1px solid var(--sys-border);
-    font-family: var(--font-mono);
-    font-size: 0.72rem;
-    font-weight: 700;
-    color: var(--sys-sky);
-    letter-spacing: 0.08em;
-    margin-bottom: 22px;
-}
-
-.badge-dot {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: var(--sys-cyan);
-    box-shadow: 0 0 6px var(--sys-cyan);
-}
-
 .hero-title {
     font-size: 2.2rem;
     font-weight: 800;
@@ -686,11 +662,11 @@ body[data-theme-mode="light"] .syscorv-brand-highlight {
     background: var(--sys-card-bg);
     backdrop-filter: var(--sys-glass-blur);
     border: 1px solid var(--sys-border-subtle);
-    border-radius: var(--radius-md);
-    padding: 20px;
+    border-radius: var(--radius-sm);
+    padding: 16px 18px;
     display: flex;
     flex-direction: column;
-    gap: 4px;
+    gap: 3px;
     transition: var(--transition);
     position: relative;
     overflow: hidden;
@@ -701,10 +677,10 @@ body[data-theme-mode="light"] .syscorv-brand-highlight {
     position: absolute;
     top: 0;
     left: 0;
-    width: 3px;
+    width: 2px;
     height: 100%;
     background: var(--sys-cyan);
-    opacity: 0.6;
+    opacity: 0.5;
     transition: var(--transition);
 }
 
@@ -716,27 +692,29 @@ body[data-theme-mode="light"] .syscorv-brand-highlight {
 
 .telemetry-item:hover::before {
     opacity: 1;
-    box-shadow: 0 0 10px var(--sys-cyan);
+    box-shadow: 0 0 8px var(--sys-cyan);
 }
 
 .telemetry-label {
     font-family: var(--font-mono);
-    font-size: 0.72rem;
-    font-weight: 700;
-    letter-spacing: 0.1em;
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
     color: var(--sys-sky);
 }
 
 .telemetry-value {
     font-family: var(--font-heading);
-    font-size: 1.3rem;
-    font-weight: 800;
+    font-size: 1.08rem;
+    font-weight: 700;
     color: var(--sys-text-heading);
+    letter-spacing: -0.01em;
 }
 
 .telemetry-sub {
-    font-size: 0.82rem;
+    font-size: 0.74rem;
     color: var(--sys-text-muted);
+    line-height: 1.4;
 }
 
 /* --- Section Structural Elements --- */
@@ -803,34 +781,34 @@ body[data-theme-mode="light"] .syscorv-brand-highlight {
     background: var(--sys-card-bg);
     backdrop-filter: var(--sys-glass-blur);
     -webkit-backdrop-filter: var(--sys-glass-blur);
-    border: 1.5px solid rgba(0, 229, 255, 0.25);
-    border-radius: var(--radius-lg);
-    padding: 36px;
+    border: 1px solid rgba(0, 229, 255, 0.18);
+    border-radius: var(--radius-md);
+    padding: 24px 20px;
     overflow: hidden;
     transition: var(--transition);
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6), 0 0 35px rgba(0, 229, 255, 0.1);
+    box-shadow: 0 12px 36px rgba(0, 0, 0, 0.45);
 }
 
 @media (min-width: 768px) {
     .passmap-master-card {
-        padding: 44px;
+        padding: 28px 32px;
     }
 }
 
 .passmap-master-card:hover {
-    border-color: rgba(0, 229, 255, 0.5);
-    box-shadow: 0 16px 50px rgba(0, 0, 0, 0.7), 0 0 50px rgba(0, 229, 255, 0.2);
+    border-color: rgba(0, 229, 255, 0.35);
+    box-shadow: 0 16px 44px rgba(0, 0, 0, 0.55), 0 0 24px rgba(0, 229, 255, 0.1);
     transform: translateY(-2px);
 }
 
 .passmap-card-glow {
     position: absolute;
-    top: -30%;
-    right: -20%;
-    width: 600px;
-    height: 600px;
+    top: -20%;
+    right: -15%;
+    width: 340px;
+    height: 340px;
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(0, 229, 255, 0.08) 0%, rgba(2, 132, 199, 0.04) 50%, transparent 70%);
+    background: radial-gradient(circle, rgba(0, 229, 255, 0.05) 0%, transparent 70%);
     pointer-events: none;
 }
 
@@ -839,13 +817,13 @@ body[data-theme-mode="light"] .syscorv-brand-highlight {
     z-index: 2;
     display: flex;
     flex-direction: column;
-    gap: 26px;
+    gap: 18px;
 }
 
 .passmap-header-row {
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 14px;
 }
 
 @media (min-width: 768px) {
@@ -859,16 +837,16 @@ body[data-theme-mode="light"] .syscorv-brand-highlight {
 .passmap-identity {
     display: flex;
     align-items: center;
-    gap: 18px;
+    gap: 14px;
 }
 
 .passmap-icon-box {
-    width: 68px;
-    height: 68px;
-    border-radius: var(--radius-md);
-    background: rgba(0, 0, 0, 0.4);
-    border: 1.5px solid var(--sys-cyan);
-    box-shadow: 0 0 20px var(--sys-cyan-glow);
+    width: 46px;
+    height: 46px;
+    border-radius: 10px;
+    background: rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(0, 229, 255, 0.3);
+    box-shadow: 0 0 12px rgba(0, 229, 255, 0.15);
     overflow: hidden;
     display: flex;
     align-items: center;
@@ -885,26 +863,27 @@ body[data-theme-mode="light"] .syscorv-brand-highlight {
 .passmap-titles {
     display: flex;
     flex-direction: column;
-    gap: 4px;
+    gap: 3px;
 }
 
 .passmap-title-line {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 10px;
 }
 
 .passmap-title {
-    font-size: 1.9rem;
-    font-weight: 800;
+    font-size: 1.35rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
     color: var(--sys-text-heading);
 }
 
 .passmap-version-badge {
     font-family: var(--font-mono);
-    font-size: 0.76rem;
-    font-weight: 700;
-    padding: 3px 8px;
+    font-size: 0.68rem;
+    font-weight: 600;
+    padding: 2px 7px;
     border-radius: 4px;
     background: var(--sys-cyan-dim);
     color: var(--sys-cyan);
@@ -912,51 +891,54 @@ body[data-theme-mode="light"] .syscorv-brand-highlight {
 }
 
 .passmap-subtitle {
-    font-size: 0.88rem;
+    font-size: 0.74rem;
     color: var(--sys-sky);
-    font-weight: 600;
-    letter-spacing: 0.04em;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
 }
 
 .passmap-status-pill {
     display: inline-flex;
     align-items: center;
-    gap: 8px;
-    padding: 6px 14px;
+    gap: 6px;
+    padding: 4px 11px;
     border-radius: var(--radius-pill);
-    background: rgba(16, 185, 129, 0.12);
-    border: 1px solid rgba(16, 185, 129, 0.35);
+    background: rgba(16, 185, 129, 0.1);
+    border: 1px solid rgba(16, 185, 129, 0.3);
     font-family: var(--font-mono);
-    font-size: 0.74rem;
-    font-weight: 700;
+    font-size: 0.68rem;
+    font-weight: 600;
     color: #10b981;
     width: fit-content;
 }
 
 .live-pulse-dot {
-    width: 7px;
-    height: 7px;
+    width: 6px;
+    height: 6px;
     border-radius: 50%;
     background: #10b981;
-    box-shadow: 0 0 8px #10b981;
+    box-shadow: 0 0 6px #10b981;
     animation: pulseBeacon 2s infinite ease-in-out;
 }
 
 .passmap-description {
-    font-size: 1.05rem;
+    font-size: 0.92rem;
     color: var(--sys-text-muted);
-    line-height: 1.75;
+    line-height: 1.65;
+    max-width: 920px;
 }
 
 .passmap-description strong {
     color: var(--sys-text-heading);
+    font-weight: 600;
 }
 
 /* Feature Grid Highlights */
 .passmap-features-grid {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 16px;
+    gap: 12px;
 }
 
 @media (min-width: 640px) {
@@ -972,51 +954,55 @@ body[data-theme-mode="light"] .syscorv-brand-highlight {
 }
 
 .feature-box {
-    background: var(--sys-surface);
-    border: 1px solid var(--sys-border);
-    border-radius: var(--radius-md);
-    padding: 20px;
+    background: rgba(255, 255, 255, 0.015);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: var(--radius-sm);
+    padding: 12px 14px;
     display: flex;
-    flex-direction: column;
-    gap: 12px;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 11px;
     transition: var(--transition);
 }
 
 .feature-box:hover {
-    border-color: var(--sys-cyan);
-    transform: translateY(-2px);
-    box-shadow: var(--sys-shadow-sm);
+    background: rgba(255, 255, 255, 0.03);
+    border-color: rgba(0, 229, 255, 0.25);
+    transform: translateY(-1px);
 }
 
 .feature-icon {
-    width: 38px;
-    height: 38px;
-    border-radius: var(--radius-sm);
+    width: 30px;
+    height: 30px;
+    border-radius: 6px;
     background: var(--sys-cyan-dim);
     color: var(--sys-cyan);
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-shrink: 0;
+    margin-top: 1px;
 }
 
 .feature-content h4 {
-    font-size: 0.95rem;
-    font-weight: 700;
-    margin-bottom: 4px;
+    font-size: 0.84rem;
+    font-weight: 600;
+    color: var(--sys-text-heading);
+    margin-bottom: 2px;
 }
 
 .feature-content p {
-    font-size: 0.82rem;
+    font-size: 0.74rem;
     color: var(--sys-text-muted);
-    line-height: 1.5;
+    line-height: 1.45;
 }
 
 /* PassMap Footer Row */
 .passmap-footer-row {
     display: flex;
     flex-direction: column;
-    gap: 20px;
-    padding-top: 20px;
+    gap: 14px;
+    padding-top: 14px;
     border-top: 1px solid var(--sys-border-subtle);
 }
 
@@ -1031,13 +1017,13 @@ body[data-theme-mode="light"] .syscorv-brand-highlight {
 .card-tech-chips {
     display: flex;
     flex-wrap: wrap;
-    gap: 8px;
+    gap: 6px;
 }
 
 .chip {
     font-family: var(--font-mono);
-    font-size: 0.72rem;
-    padding: 4px 10px;
+    font-size: 0.68rem;
+    padding: 3px 8px;
     border-radius: 4px;
     background: var(--sys-surface);
     border: 1px solid var(--sys-border);
@@ -1047,34 +1033,35 @@ body[data-theme-mode="light"] .syscorv-brand-highlight {
 .btn-passmap-launch {
     display: inline-flex;
     align-items: center;
-    gap: 10px;
-    padding: 14px 30px;
+    gap: 8px;
+    padding: 9px 18px;
     border-radius: var(--radius-sm);
     background: linear-gradient(135deg, var(--sys-cyan) 0%, var(--sys-blue) 100%);
     color: #050b14;
-    font-weight: 800;
-    font-size: 0.96rem;
+    font-weight: 700;
+    font-size: 0.86rem;
     letter-spacing: 0.02em;
     transition: var(--transition);
-    box-shadow: 0 0 25px var(--sys-cyan-glow);
+    box-shadow: 0 0 16px var(--sys-cyan-glow);
     white-space: nowrap;
+    text-decoration: none;
 }
 
 .btn-passmap-launch:hover {
-    box-shadow: 0 0 35px rgba(0, 229, 255, 0.5);
-    transform: translateY(-2px);
+    box-shadow: 0 0 24px rgba(0, 229, 255, 0.4);
+    transform: translateY(-1px);
 }
 
 /* Ecosystem Pipeline Card */
 .ecosystem-pipeline-card {
-    margin-top: 24px;
+    margin-top: 18px;
     background: var(--sys-surface);
     border: 1px solid var(--sys-border-subtle);
-    border-radius: var(--radius-md);
-    padding: 20px 24px;
+    border-radius: var(--radius-sm);
+    padding: 14px 18px;
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 6px;
     transition: var(--transition);
 }
 
@@ -1084,16 +1071,16 @@ body[data-theme-mode="light"] .syscorv-brand-highlight {
 
 .pipeline-badge {
     font-family: var(--font-mono);
-    font-size: 0.72rem;
+    font-size: 0.68rem;
     font-weight: 700;
     color: var(--sys-cyan);
     letter-spacing: 0.08em;
 }
 
 .pipeline-text {
-    font-size: 0.88rem;
+    font-size: 0.82rem;
     color: var(--sys-text-muted);
-    line-height: 1.6;
+    line-height: 1.55;
 }
 
 /* --- Architecture & Engineering Pillars --- */
@@ -1115,53 +1102,56 @@ body[data-theme-mode="light"] .syscorv-brand-highlight {
     background: var(--sys-card-bg);
     backdrop-filter: var(--sys-glass-blur);
     border: 1px solid var(--sys-border-subtle);
-    border-radius: var(--radius-md);
-    padding: 30px 24px;
+    border-radius: var(--radius-sm);
+    padding: 22px 20px;
     position: relative;
     transition: var(--transition);
     overflow: hidden;
 }
 
 .pillar-card:hover {
-    border-color: var(--sys-border);
-    transform: translateY(-4px);
+    border-color: rgba(0, 229, 255, 0.3);
+    transform: translateY(-2px);
     box-shadow: var(--sys-shadow-md);
 }
 
 .pillar-num {
     position: absolute;
-    top: 16px;
-    right: 20px;
+    top: 18px;
+    right: 18px;
     font-family: var(--font-mono);
-    font-size: 1.8rem;
-    font-weight: 800;
-    color: var(--sys-border);
-    opacity: 0.5;
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--sys-sky);
+    opacity: 0.45;
+    letter-spacing: 0.04em;
 }
 
 .pillar-icon {
-    width: 48px;
-    height: 48px;
-    border-radius: var(--radius-sm);
+    width: 36px;
+    height: 36px;
+    border-radius: 6px;
     background: var(--sys-cyan-dim);
     color: var(--sys-cyan);
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 20px;
+    margin-bottom: 14px;
     border: 1px solid var(--sys-border);
 }
 
 .pillar-title {
-    font-size: 1.25rem;
-    font-weight: 800;
-    margin-bottom: 12px;
+    font-size: 1.05rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: var(--sys-text-heading);
+    letter-spacing: -0.01em;
 }
 
 .pillar-text {
-    font-size: 0.9rem;
+    font-size: 0.84rem;
     color: var(--sys-text-muted);
-    line-height: 1.6;
+    line-height: 1.55;
 }
 
 /* --- Transmissions (News) Section --- */
@@ -1179,19 +1169,19 @@ body[data-theme-mode="light"] .syscorv-brand-highlight {
     background: var(--sys-card-bg);
     backdrop-filter: var(--sys-glass-blur);
     border: 1px solid var(--sys-border-subtle);
-    border-radius: var(--radius-md);
-    padding: 24px;
+    border-radius: var(--radius-sm);
+    padding: 20px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    gap: 16px;
+    gap: 14px;
     transition: var(--transition);
     cursor: pointer;
 }
 
 .news-card:hover {
-    border-color: var(--sys-border-hover);
-    transform: translateY(-3px);
+    border-color: rgba(0, 229, 255, 0.35);
+    transform: translateY(-2px);
     box-shadow: var(--sys-shadow-md);
 }
 
@@ -1204,17 +1194,17 @@ body[data-theme-mode="light"] .syscorv-brand-highlight {
 
 .news-pill {
     font-family: var(--font-mono);
-    font-size: 0.68rem;
+    font-size: 0.65rem;
     font-weight: 700;
     color: var(--sys-cyan);
     background: var(--sys-cyan-dim);
-    padding: 3px 8px;
+    padding: 2px 7px;
     border-radius: 4px;
 }
 
 .news-date {
     font-family: var(--font-mono);
-    font-size: 0.74rem;
+    font-size: 0.72rem;
     color: var(--sys-text-dim);
     letter-spacing: 0.4px;
     display: inline-flex;
@@ -1242,7 +1232,7 @@ body[data-theme-mode="light"] .date-month {
 }
 
 .news-card-title {
-    font-size: 1.2rem;
+    font-size: 1.02rem;
     font-weight: 700;
     line-height: 1.35;
     color: var(--sys-text-heading);
@@ -1254,21 +1244,21 @@ body[data-theme-mode="light"] .date-month {
 }
 
 .news-card-excerpt {
-    font-size: 0.9rem;
+    font-size: 0.83rem;
     color: var(--sys-text-muted);
-    line-height: 1.6;
+    line-height: 1.55;
 }
 
 .news-read-more {
     font-family: var(--font-heading);
-    font-size: 0.84rem;
-    font-weight: 700;
+    font-size: 0.78rem;
+    font-weight: 600;
     color: var(--sys-cyan);
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 6px;
-    padding-top: 12px;
+    padding-top: 10px;
     border-top: 1px solid var(--sys-border-subtle);
     width: 100%;
     text-align: center;
@@ -1279,12 +1269,12 @@ body[data-theme-mode="light"] .date-month {
 .founder-card {
     background: var(--sys-card-bg);
     backdrop-filter: var(--sys-glass-blur);
-    border: 1.5px solid var(--sys-border-subtle);
-    border-radius: var(--radius-lg);
-    padding: 36px;
+    border: 1px solid var(--sys-border-subtle);
+    border-radius: var(--radius-md);
+    padding: 24px;
     display: flex;
     flex-direction: column;
-    gap: 28px;
+    gap: 22px;
     transition: var(--transition);
 }
 
@@ -1292,30 +1282,30 @@ body[data-theme-mode="light"] .date-month {
     .founder-card {
         flex-direction: row;
         align-items: center;
-        gap: 40px;
-        padding: 44px;
+        gap: 32px;
+        padding: 28px 36px;
     }
 }
 
 .founder-card:hover {
-    border-color: var(--sys-border-hover);
-    box-shadow: var(--sys-shadow-md), var(--sys-shadow-glow);
+    border-color: rgba(0, 229, 255, 0.3);
+    box-shadow: var(--sys-shadow-md);
 }
 
 .founder-avatar-wrap {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 12px;
+    gap: 10px;
     flex-shrink: 0;
 }
 
 .founder-avatar-frame {
-    width: 140px;
-    height: 140px;
+    width: 100px;
+    height: 100px;
     border-radius: 50%;
-    border: 2px solid var(--sys-cyan);
-    box-shadow: 0 0 25px var(--sys-cyan-glow);
+    border: 1.5px solid var(--sys-cyan);
+    box-shadow: 0 0 16px var(--sys-cyan-glow);
     overflow: hidden;
     background: #000;
 }
@@ -1328,11 +1318,11 @@ body[data-theme-mode="light"] .date-month {
 
 .founder-badge {
     font-family: var(--font-mono);
-    font-size: 0.7rem;
+    font-size: 0.68rem;
     font-weight: 700;
     color: var(--sys-cyan);
     background: var(--sys-cyan-dim);
-    padding: 3px 10px;
+    padding: 2px 8px;
     border-radius: var(--radius-pill);
     border: 1px solid var(--sys-border);
 }
@@ -1341,31 +1331,32 @@ body[data-theme-mode="light"] .date-month {
     display: flex;
     align-items: baseline;
     gap: 10px;
-    margin-bottom: 6px;
+    margin-bottom: 4px;
 }
 
 .founder-name {
-    font-size: 1.8rem;
-    font-weight: 800;
+    font-size: 1.45rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
 }
 
 .founder-alias {
     font-family: var(--font-mono);
-    font-size: 1.1rem;
+    font-size: 0.95rem;
     color: var(--sys-cyan);
 }
 
 .founder-role {
-    font-size: 1rem;
+    font-size: 0.88rem;
     font-weight: 600;
     color: var(--sys-sky);
-    margin-bottom: 14px;
+    margin-bottom: 10px;
 }
 
 .founder-bio {
-    font-size: 0.96rem;
+    font-size: 0.88rem;
     color: var(--sys-text-muted);
-    line-height: 1.7;
+    line-height: 1.6;
     margin-bottom: 22px;
 }
 
