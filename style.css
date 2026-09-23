@@ -1358,14 +1358,30 @@ body[data-theme-mode="light"] .date-month {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    gap: 14px;
+    gap: 12px;
+}
+
+.founder-links .btn {
+    padding: 10px 20px;
+    font-size: 0.88rem;
+    height: 42px;
+    width: 180px;
+    max-width: 100%;
+    box-sizing: border-box;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    white-space: nowrap;
 }
 
 .social-chip {
     display: inline-flex;
     align-items: center;
     gap: 6px;
-    padding: 10px 18px;
+    padding: 10px 22px;
+    height: 42px;
+    box-sizing: border-box;
     border-radius: var(--radius-sm);
     background: var(--sys-surface);
     border: 1px solid var(--sys-border);
