@@ -97,7 +97,7 @@ document.addEventListener('DOMContentLoaded', () => {
             nav_overview: 'Overview',
             nav_ecosystem: 'Ecosystem',
             nav_architecture: 'Directives',
-            nav_transmissions: 'Dispatches',
+            nav_transmissions: 'News',
             nav_founder: 'Leadership',
             nav_contact: 'Contact',
             nav_cta_apps: 'Explore Apps',
@@ -149,7 +149,7 @@ document.addEventListener('DOMContentLoaded', () => {
             chip_cross_platform: 'iOS & Android Ready',
 
             eco_pipeline_badge: 'RESEARCH & DEVELOPMENT',
-            eco_pipeline_desc: 'Syscorv conducts continuous engineering in WebGL procedural rendering, decentralized state protocols, and resilient spatial architectures. New milestones are published through official dispatches.',
+            eco_pipeline_desc: 'Syscorv conducts continuous engineering in WebGL procedural rendering, decentralized state protocols, and resilient spatial architectures. New milestones are published through official releases.',
 
             // Architecture
             arch_index_title: 'TECHNICAL DIRECTIVES',
@@ -165,10 +165,10 @@ document.addEventListener('DOMContentLoaded', () => {
             pillar_4_text: 'Visual balance as an organic outcome of disciplined engineering. High-contrast typography, restrained geometry, and coherent spatial density.',
 
             // News
-            news_index_title: 'OFFICIAL DISPATCHES',
-            news_heading: 'Engineering Dispatches',
+            news_index_title: 'NEWS & RELEASES',
+            news_heading: 'Latest News & Updates',
             news_desc: 'Technical notes, release reports, and development milestones from Syscorv.',
-            news_read_more: 'Read Dispatch →',
+            news_read_more: 'Read Article →',
 
             // Founder
             founder_index_title: 'LEADERSHIP & DIRECTION',
@@ -201,8 +201,8 @@ document.addEventListener('DOMContentLoaded', () => {
             form_error: '✕ Transmission failed. Please contact us directly at contact@syscorv.com',
 
             // Modal & Footer
-            modal_dispatch_label: 'DISPATCH ARCHIVE',
-            modal_close: 'Close Dispatch',
+            modal_news_label: 'NEWS ARCHIVE',
+            modal_close: 'Close Article',
             footer_slogan: 'Systems Intelligence. Proprietary Horizons.<br>Autonomous high-performance software laboratory.',
             footer_col_eco: 'Ecosystem',
             footer_col_arch: 'Directives',
@@ -211,7 +211,7 @@ document.addEventListener('DOMContentLoaded', () => {
             footer_link_arch: 'Local-First Architecture',
             footer_link_privacy: 'Structural Privacy',
             footer_link_perf: 'Computational Efficiency',
-            footer_link_news: 'Official Dispatches',
+            footer_link_news: 'Official News',
             footer_link_contact: 'Contact & Licensing',
             footer_founder_link: 'Founder Architect (v4mpw0l)',
             footer_status: 'SYSTEMS ONLINE',
@@ -229,7 +229,7 @@ document.addEventListener('DOMContentLoaded', () => {
             nav_overview: 'Visão Geral',
             nav_ecosystem: 'Ecossistema',
             nav_architecture: 'Diretrizes',
-            nav_transmissions: 'Transmissões',
+            nav_transmissions: 'Notícias',
             nav_founder: 'Liderança',
             nav_contact: 'Contato',
             nav_cta_apps: 'Explorar Apps',
@@ -297,10 +297,10 @@ document.addEventListener('DOMContentLoaded', () => {
             pillar_4_text: 'O equilíbrio visual concebido como extensão da disciplina de engenharia. Tipografia de alto contraste, geometria contida e densidade informacional equilibrada.',
 
             // News
-            news_index_title: 'TRANSMISSÕES OFICIAIS',
-            news_heading: 'Relatórios & Comunicados',
+            news_index_title: 'NOTÍCIAS & ARTIGOS',
+            news_heading: 'Notícias & Comunicados',
             news_desc: 'Notas técnicas, relatórios de lançamento e marcos de desenvolvimento da Syscorv.',
-            news_read_more: 'Ler Comunicado →',
+            news_read_more: 'Ler Notícia →',
 
             // Founder
             founder_index_title: 'LIDERANÇA & DIREÇÃO',
@@ -333,7 +333,7 @@ document.addEventListener('DOMContentLoaded', () => {
             form_error: '✕ Falha no envio. Por favor, utilize contact@syscorv.com',
 
             // Modal & Footer
-            modal_dispatch_label: 'ARQUIVO DE NOTÍCIAS',
+            modal_news_label: 'ARQUIVO DE NOTÍCIAS',
             modal_close: 'Fechar Artigo',
             footer_slogan: 'Inteligência de Sistemas. Horizontes Proprietários.<br>Laboratório independente de software de alto desempenho.',
             footer_col_eco: 'Ecossistema',
@@ -343,7 +343,7 @@ document.addEventListener('DOMContentLoaded', () => {
             footer_link_arch: 'Arquitetura Local-First',
             footer_link_privacy: 'Privacidade Estrutural',
             footer_link_perf: 'Eficiência Computacional',
-            footer_link_news: 'Transmissões Oficiais',
+            footer_link_news: 'Notícias Oficiais',
             footer_link_contact: 'Contato & Licenciamento',
             footer_founder_link: 'Arquiteto Fundador (v4mpw0l)',
             footer_status: 'SISTEMAS OPERACIONAIS',
