@@ -34,12 +34,12 @@ document.addEventListener('DOMContentLoaded', () => {
             );
 
             if (isLight) {
-                spotGradient.addColorStop(0, 'rgba(2, 132, 199, 0.09)');
-                spotGradient.addColorStop(0.5, 'rgba(14, 165, 233, 0.025)');
+                spotGradient.addColorStop(0, 'rgba(2, 132, 199, 0.035)');
+                spotGradient.addColorStop(0.5, 'rgba(14, 165, 233, 0.01)');
                 spotGradient.addColorStop(1, 'rgba(248, 250, 252, 0)');
             } else {
-                spotGradient.addColorStop(0, 'rgba(0, 229, 255, 0.12)');
-                spotGradient.addColorStop(0.5, 'rgba(6, 182, 212, 0.035)');
+                spotGradient.addColorStop(0, 'rgba(0, 229, 255, 0.032)');
+                spotGradient.addColorStop(0.5, 'rgba(6, 182, 212, 0.01)');
                 spotGradient.addColorStop(1, 'rgba(7, 9, 14, 0)');
             }
 
@@ -201,6 +201,7 @@ document.addEventListener('DOMContentLoaded', () => {
             form_error: '✕ Transmission failed. Please contact us directly at contact@syscorv.com',
 
             // Modal & Footer
+            modal_dispatch_label: 'DISPATCH ARCHIVE',
             modal_close: 'Close Dispatch',
             footer_slogan: 'Systems Intelligence. Proprietary Horizons.<br>Autonomous high-performance software laboratory.',
             footer_col_eco: 'Ecosystem',
@@ -332,6 +333,7 @@ document.addEventListener('DOMContentLoaded', () => {
             form_error: '✕ Falha no envio. Por favor, utilize contact@syscorv.com',
 
             // Modal & Footer
+            modal_dispatch_label: 'ARQUIVO DE NOTÍCIAS',
             modal_close: 'Fechar Artigo',
             footer_slogan: 'Inteligência de Sistemas. Horizontes Proprietários.<br>Laboratório independente de software de alto desempenho.',
             footer_col_eco: 'Ecossistema',
